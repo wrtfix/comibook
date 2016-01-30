@@ -61,8 +61,11 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `Localidad` varchar(100) NOT NULL,
   `Telefono` varchar(100) NOT NULL,
   `Cuit` int(100) NOT NULL,
+  `Numero` INT NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
 
 -- --------------------------------------------------------
 
@@ -100,3 +103,12 @@ INSERT INTO `pedidos` (`Numero`, `FormaPago`, `Fecha`, `ClienteOrignen`, `Client
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+CREATE TABLE `comibook`.`gastos` ( 
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` int(11) NOT NULL , 
+  `importe` float NOT NULL , 
+  `fecha` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
