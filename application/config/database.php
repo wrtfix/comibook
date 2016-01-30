@@ -49,7 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'wrtfix';
+$db['default']['username'] = 'root';
 $db['default']['password'] = 'hanna64';
 $db['default']['database'] = 'comibook';
 $db['default']['dbdriver'] = 'mysql';
