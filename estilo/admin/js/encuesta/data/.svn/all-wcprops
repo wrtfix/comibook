@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4/branches/ComiBook/estilo/admin/js/encuesta/data
+END
+buttons.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/4/branches/ComiBook/estilo/admin/js/encuesta/data/buttons.yaml
+END
+radio.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4/branches/ComiBook/estilo/admin/js/encuesta/data/radio.yaml
+END
+input.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4/branches/ComiBook/estilo/admin/js/encuesta/data/input.yaml
+END
+select.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/4/branches/ComiBook/estilo/admin/js/encuesta/data/select.yaml
+END
+buttons.json
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/4/branches/ComiBook/estilo/admin/js/encuesta/data/buttons.json
+END
+radio.json
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4/branches/ComiBook/estilo/admin/js/encuesta/data/radio.json
+END
+select.json
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/4/branches/ComiBook/estilo/admin/js/encuesta/data/select.json
+END
+input.json
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4/branches/ComiBook/estilo/admin/js/encuesta/data/input.json
+END
+parse.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4/branches/ComiBook/estilo/admin/js/encuesta/data/parse.rb
+END

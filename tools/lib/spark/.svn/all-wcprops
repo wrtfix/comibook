@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/4/branches/ComiBook/tools/lib/spark
+END
+sources
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/4/branches/ComiBook/tools/lib/spark/sources
+END
+spark_exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4/branches/ComiBook/tools/lib/spark/spark_exception.php
+END
+spark_utils.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4/branches/ComiBook/tools/lib/spark/spark_utils.php
+END
+spark_source.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4/branches/ComiBook/tools/lib/spark/spark_source.php
+END
+spark_type.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4/branches/ComiBook/tools/lib/spark/spark_type.php
+END
+spark_cli.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4/branches/ComiBook/tools/lib/spark/spark_cli.php
+END

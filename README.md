@@ -1,3 +1,4 @@
-# comibook
+ci-bootstrap
+============
 
-Este proyecto es para la gestion de comisios se sube con el ojetivo de modificarlo para realizar gestion de matafuegos.
+CodeIgniter 2.1.3 and Twitter Bootstrap
