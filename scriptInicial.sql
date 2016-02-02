@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `cheques` (
   `proviene` varchar(100) NOT NULL,
   `entregado` varchar(100) NOT NULL,
   `banco` varchar(100) NOT NULL,
+  `importe` float not null,
   `numero` bigint(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
