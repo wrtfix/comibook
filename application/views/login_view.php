@@ -9,7 +9,7 @@
         <div class="span4 offset4 well">
           <legend>Sistema de gestión</legend>
           <?php if (validation_errors() !=null) { ?>
-                <div class="alert alert-error">
+                <div class="alert alert-danger">
                     <a class="close" data-dismiss="alert" href="#">×</a><?php echo validation_errors(); ?>
                 </div>
           <?php } ?>

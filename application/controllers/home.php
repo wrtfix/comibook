@@ -13,7 +13,6 @@ class Home extends CI_Controller {
       
       $session_data = $this->session->userdata('logged_in');
       $data['username'] = $session_data['username'];
-      //$this->load->view('home_view', $data);
     }
     else
     {
@@ -25,9 +24,15 @@ class Home extends CI_Controller {
   
   function logout()
   {
-    echo "hola";
     $this->session->unset_userdata('logged_in');
-    session_destroy();
+    try{
+      session_destroy();
+    
+    } catch (Exception $e) {
+      echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+    }
+
+ 
     redirect('login', 'refresh');
   }
 
