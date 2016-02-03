@@ -107,9 +107,20 @@ INSERT INTO `pedidos` (`Numero`, `FormaPago`, `Fecha`, `ClienteOrignen`, `Client
 
 
 CREATE TABLE `comibook`.`gastos` ( 
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idGasto` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` int(11) NOT NULL , 
   `importe` float NOT NULL , 
   `fecha` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--Tablas para terciarizar el login
+
+CREATE TABLE `users` (
+ `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+ `username` varchar(10) NOT NULL,
+ `password` varchar(100) NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+insert into users (username, password) values ('admin', MD5('hanna64'));

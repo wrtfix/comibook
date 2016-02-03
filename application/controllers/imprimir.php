@@ -1,4 +1,4 @@
-<?php 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Imprimir extends CI_Controller 
 {
 	public function __construct()
@@ -13,49 +13,57 @@ class Imprimir extends CI_Controller
 
 	public function index($nombre=null,$fechaDesde=null,$fechaHasta=null)
 	{
-		$this->load->library('form_validation');
-		$data['page'] = 'imprimir';
-		$hoy = date("Y-m-d");
-		list($dia, $mes, $ano) = explode("-", $hoy);
-		$lafecha = $ano."-".$mes."-".$dia;
-		if ($nombre==null && $fechaDesde==null && $fechaHasta==null){
-			$data['agregados'] = $this->pedido->getPedidosPedientes(' ',$lafecha,$lafecha,"No");
-			$data['gasto'] = $this->gasto->getGastoTotal($hoy,$hoy);
-			$data['cheque'] = $this->cheque->getChequeTotal($hoy,$hoy);
-			$data['nombre'] = "%20";
-				$data['fechaDesde'] = "%20";
-				$data['fechaHasta'] = "%20";
-		}else{
-			$n = str_replace("%20"," ",$nombre);
-			$desde = str_replace("%20"," ",$fechaDesde);
-			$hasta = str_replace("%20"," ",$fechaHasta);
-			$data['agregados'] = $this->pedido->getPedidosPedientes($n,$desde,$hasta,"No");
-			$data['nombre'] = $nombre;
-			if ($desde !=" " && $hasta !=" "){
-				list($dia, $mes, $ano) = explode("-", $desde);
-				$fd = $ano ."-".$mes."-".$dia;
-				list($dia2, $mes2, $ano2) = explode("-", $hasta);
-				$fh = $ano2."-".$mes2."-".$dia2;
-				$fechaDesde = $fd;
-				$fechaHasta = $fh;
-				$data['gasto'] = $this->gasto->getGastoTotal($fd,$fh);
-				$data['cheque'] = $this->cheque->getChequeTotal($fd,$fh);
-				$data['fechaDesde'] = $desde;
-				$data['fechaHasta'] = $hasta;
+		if($this->session->userdata('logged_in'))
+		{
+			$this->load->library('form_validation');
+			$data['page'] = 'imprimir';
+			$hoy = date("Y-m-d");
+			list($dia, $mes, $ano) = explode("-", $hoy);
+			$lafecha = $ano."-".$mes."-".$dia;
+			if ($nombre==null && $fechaDesde==null && $fechaHasta==null){
+				$data['agregados'] = $this->pedido->getPedidosPedientes(' ',$lafecha,$lafecha,"No");
+				$data['gasto'] = $this->gasto->getGastoTotal($hoy,$hoy);
+				$data['cheque'] = $this->cheque->getChequeTotal($hoy,$hoy);
+				$data['nombre'] = "%20";
+					$data['fechaDesde'] = "%20";
+					$data['fechaHasta'] = "%20";
 			}else{
-				$data['gasto'] =null;
-				$data['cheque'] =null;
-				$data['fechaDesde'] = "%20";
-				$data['fechaHasta'] = "%20";
+				$n = str_replace("%20"," ",$nombre);
+				$desde = str_replace("%20"," ",$fechaDesde);
+				$hasta = str_replace("%20"," ",$fechaHasta);
+				$data['agregados'] = $this->pedido->getPedidosPedientes($n,$desde,$hasta,"No");
+				$data['nombre'] = $nombre;
+				if ($desde !=" " && $hasta !=" "){
+					list($dia, $mes, $ano) = explode("-", $desde);
+					$fd = $ano ."-".$mes."-".$dia;
+					list($dia2, $mes2, $ano2) = explode("-", $hasta);
+					$fh = $ano2."-".$mes2."-".$dia2;
+					$fechaDesde = $fd;
+					$fechaHasta = $fh;
+					$data['gasto'] = $this->gasto->getGastoTotal($fd,$fh);
+					$data['cheque'] = $this->cheque->getChequeTotal($fd,$fh);
+					$data['fechaDesde'] = $desde;
+					$data['fechaHasta'] = $hasta;
+				}else{
+					$data['gasto'] =null;
+					$data['cheque'] =null;
+					$data['fechaDesde'] = "%20";
+					$data['fechaHasta'] = "%20";
+					
+				}
 				
 			}
-			
+			$this->layout->view('pages/imprimir', $data);
+		}else{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
 		}
-		$this->layout->view('pages/imprimir', $data);
 	}
 	
 	
 	public function generarPDF($nombre=null,$fechaDesde=null,$fechaHasta=null){
+		if($this->session->userdata('logged_in'))
+		{
 			$this->load->library('TemplatePdf');
 			// Creacion del PDF
 		
@@ -180,7 +188,11 @@ class Imprimir extends CI_Controller
 			 *
 			 */
 			$this->TemplatePdf->Output("impresion.pdf", 'I');
-	
+		}else{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
+			
+		}
 	}
 	
 

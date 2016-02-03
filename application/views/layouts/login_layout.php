@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="jorge carlos mendiola" >
 
-    <title>CT20 - Admin</title>
+    <title>Sistema de gestion de pedidos</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?=base_url()?>estilo/admin/css/table-responsive.css" rel="stylesheet">
@@ -61,46 +61,9 @@
 	</script>
 </head>
 <body>
-<div id="">
-
-      <!-- Sidebar -->
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="<?=base_url()?>index.php/pedidos/index"><i class="fa fa-truck"></i> Pedidos</a></li>
-            <li><a href="<?=base_url()?>index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
-            <li><a href="<?=base_url()?>index.php/cheques/index"><i class="fa fa-money"></i> Cheques </a></li>
-            <li><a href="<?=base_url()?>index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
-            <li><a href="<?=base_url()?>index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
-            <li><a href="<?=base_url()?>index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>
-            <li><a href="<?=base_url()?>index.php/backup/index"><i class="fa fa-desktop"></i> Copia de Seguridad </a></li>
-            <li><a href="<?=base_url()?>index.php/home/logout"><i class="fa fa-desktop"></i> Salir </a></li>
-			<li><a href="<?=base_url()?>index.php/about/index"><i class="fa fa-globe"></i> Acerca de...</a></li>
-          </ul>
-
-        </div>
-      </nav>
-
       <div id="page-wrapper">
-
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="span9 content"><?php echo $content_for_layout ?> </div>
-          </div>
-        </div>
-
-
-
-
-</body></html>
+            <?php echo $content_for_layout ?> 
+      </div>
+</body>
+</html>
 
