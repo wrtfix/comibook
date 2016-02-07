@@ -18,6 +18,10 @@
             <input type="password" id="password" class="span4" name="password" placeholder="Clave"/>
             <label class="checkbox"></label>
             <button type="submit" name="submit" class="btn btn-info btn-block">Ingresar</button>
+            <br/>
+            <center>
+            <a href="">Registrarse</a>
+            </center>
           </form>    
         </div>
       </div>

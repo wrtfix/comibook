@@ -74,7 +74,7 @@
             <span class="icon-bar"></span>
           </button>
         </div>
-
+        <a class="navbar-brand" href="#">Comibook</a>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?=base_url()?>index.php/pedidos/index"><i class="fa fa-truck"></i> Pedidos</a></li>
