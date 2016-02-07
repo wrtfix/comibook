@@ -1,4 +1,4 @@
-<?php 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Pedientes extends CI_Controller 
 {
 	public function __construct()
@@ -11,17 +11,23 @@ class Pedientes extends CI_Controller
 
 	public function index($nombre=null,$fechaDesde=null,$fechaHasta=null)
 	{
-		$data['page'] = 'pedientes';
-		$this->load->library('form_validation');
-		if ($nombre==null && $fechaDesde==null && $fechaHasta==null){
-			$data['agregados'] =  $this->pedido->getPedidoPedientes();
+		if($this->session->userdata('logged_in'))
+		{
+			$data['page'] = 'pedientes';
+			$this->load->library('form_validation');
+			if ($nombre==null && $fechaDesde==null && $fechaHasta==null){
+				$data['agregados'] =  $this->pedido->getPedidoPedientes();
+			}else{
+				$n = str_replace("%20"," ",$nombre);
+				$desde = str_replace("%20"," ",$fechaDesde);
+				$hasta = str_replace("%20"," ",$fechaHasta);
+				$data['agregados'] = $this->pedido->getPedidosPedientes($n,$desde,$hasta,"Si");
+			}
+			$this->layout->view('pages/pedientes', $data);
 		}else{
-			$n = str_replace("%20"," ",$nombre);
-			$desde = str_replace("%20"," ",$fechaDesde);
-			$hasta = str_replace("%20"," ",$fechaHasta);
-			$data['agregados'] = $this->pedido->getPedidosPedientes($n,$desde,$hasta,"Si");
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
 		}
-		$this->layout->view('pages/pedientes', $data);
 	}
 
 }

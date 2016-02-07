@@ -16,7 +16,7 @@ $(function() {
 
 $(document).ready(function(){
 
-	var fecha= '<?if ($fechaSeleccionada!=null)echo $fechaSeleccionada?>';
+	var fecha= '<?php if ($fechaSeleccionada!=null) echo $fechaSeleccionada; ?>';
 	if (fecha==''){
 		fecha = $("#datepicker").val();
 	}

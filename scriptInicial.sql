@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `cheques` (
   `proviene` varchar(100) NOT NULL,
   `entregado` varchar(100) NOT NULL,
   `banco` varchar(100) NOT NULL,
+  `importe` float not null,
   `numero` bigint(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -77,10 +78,11 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `Numero` int(11) NOT NULL AUTO_INCREMENT,
   `FormaPago` varchar(20) NOT NULL,
   `Fecha` date NOT NULL,
-  `ClienteOrignen` int(11) NOT NULL,
-  `ClienteDestino` int(11) NOT NULL,
+  `ClienteOrignen` varchar(50) NOT NULL,
+  `ClienteDestino` varchar(50) NOT NULL,
   `Bultos` int(11) NOT NULL,
   `CostoFlete` float NOT NULL,
+  `valorDeclarado` float NOT NULL,
   `ContraReembolso` float NOT NULL,
   `Observaciones` varchar(100) NOT NULL,
   `Pago` tinyint(1) NOT NULL,
@@ -106,9 +108,20 @@ INSERT INTO `pedidos` (`Numero`, `FormaPago`, `Fecha`, `ClienteOrignen`, `Client
 
 
 CREATE TABLE `comibook`.`gastos` ( 
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` int(11) NOT NULL , 
+  `idGasto` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL , 
   `importe` float NOT NULL , 
   `fecha` date NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`idGasto`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+
+CREATE TABLE `comibook`.`users` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `username` varchar(10) NOT NULL ,
+ `password` varchar(100) NOT NULL ,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES (8, 'admin', '3c71987c6285d972c05c9aa048002e91');
+

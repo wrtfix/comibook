@@ -11,51 +11,75 @@ class Gastos extends CI_Controller
 
 	public function index($nombre=null,$fechaDesde=null,$fechaHasta=null)
 	{
-		$this->load->library('form_validation');
-		$data['page'] = 'gastos';
-		if ($nombre==null && $fechaDesde==null && $fechaHasta==null){
-			$data['agregados'] =  $this->gasto->getGastos();
+		if($this->session->userdata('logged_in'))
+		{
+			$this->load->library('form_validation');
+			$data['page'] = 'gastos';
+			if ($nombre==null && $fechaDesde==null && $fechaHasta==null){
+				$data['agregados'] =  $this->gasto->getGastos();
+			}else{
+				$n = str_replace("%20"," ",$nombre);
+				$desde = str_replace("%20"," ",$fechaDesde);
+				$hasta = str_replace("%20"," ",$fechaHasta);
+				$data['agregados'] = $this->gasto->getGasto($n,$desde,$hasta);
+			}
+			$this->layout->view('pages/gastos', $data);
 		}else{
-			$n = str_replace("%20"," ",$nombre);
-			$desde = str_replace("%20"," ",$fechaDesde);
-			$hasta = str_replace("%20"," ",$fechaHasta);
-			$data['agregados'] = $this->gasto->getGasto($n,$desde,$hasta);
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
 		}
-		$this->layout->view('pages/gastos', $data);
 	}
 	public function addGasto(){
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('nombre','nombre','required');
-	   	$this->form_validation->set_rules('importe','importe','required|numeric');
-		$this->form_validation->set_rules('fecha','fecha','required');
-		if ($this->form_validation->run() == FALSE) {
-  			$this->output->set_status_header('400'); //Triggers the jQuery error callback
-        } else {		
-			$result = $this->gasto->addGasto();
-        }	
-		$data['page'] = 'gastos';
-		$data['agregados'] =  $this->gasto->getGastos();
-		$this->layout->view('pages/gastos', $data);
+		if($this->session->userdata('logged_in'))
+		{
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('nombre','nombre','required');
+		   	$this->form_validation->set_rules('importe','importe','required|numeric');
+			$this->form_validation->set_rules('fecha','fecha','required');
+			if ($this->form_validation->run() == FALSE) {
+	  			$this->output->set_status_header('400'); //Triggers the jQuery error callback
+	        } else {		
+				$result = $this->gasto->addGasto();
+	        }	
+			$data['page'] = 'gastos';
+			$data['agregados'] =  $this->gasto->getGastos();
+			$this->layout->view('pages/gastos', $data);
+		}else{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
+		}
 	}
 	
 	public function delGasto($id){
-		$this->load->library('form_validation');
-		$result = $this->gasto->delGastos($id);	
-		$data['page'] = 'gastos';
-		$data['agregados'] =  $this->gasto->getGastos();
-		$this->layout->view('pages/gastos', $data);
+		if($this->session->userdata('logged_in'))
+		{
+			$this->load->library('form_validation');
+			$result = $this->gasto->delGastos($id);	
+			$data['page'] = 'gastos';
+			$data['agregados'] =  $this->gasto->getGastos();
+			$this->layout->view('pages/gastos', $data);
+		}else{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
+		}
 	}
 	
 	public function updateGasto($id){
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('nombre','nombre','required');
-	   	$this->form_validation->set_rules('importe','importe','required|numeric');
-		$this->form_validation->set_rules('fecha','fecha','required');
-		if ($this->form_validation->run() == FALSE) {
-  			$this->output->set_status_header('400'); //Triggers the jQuery error callback
-        } else {		
-			$result = $this->gasto->updateGastos($id);
-        }
+		if($this->session->userdata('logged_in'))
+		{
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('nombre','nombre','required');
+		   	$this->form_validation->set_rules('importe','importe','required|numeric');
+			$this->form_validation->set_rules('fecha','fecha','required');
+			if ($this->form_validation->run() == FALSE) {
+	  			$this->output->set_status_header('400'); //Triggers the jQuery error callback
+	        } else {		
+				$result = $this->gasto->updateGastos($id);
+	        }
+	    }else{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
+	    }
 	}
 	
 
