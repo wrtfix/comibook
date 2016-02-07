@@ -82,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `ClienteDestino` varchar(50) NOT NULL,
   `Bultos` int(11) NOT NULL,
   `CostoFlete` float NOT NULL,
+  `valorDeclarado` float NOT NULL,
   `ContraReembolso` float NOT NULL,
   `Observaciones` varchar(100) NOT NULL,
   `Pago` tinyint(1) NOT NULL,
