@@ -7,7 +7,7 @@ class Login extends CI_Controller {
     parent::__construct();
     $this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
     $this->load->spark('markdown-extra/0.0.0');
-	$this->layout->setLayout("layouts/login_layout");
+	  $this->layout->setLayout("layouts/login_layout");
   }
 
 

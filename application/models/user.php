@@ -21,5 +21,18 @@ Class User extends CI_Model
 		}
 
 	}
+
+	function add($username,$password,$email,$tel){
+		$data = array(
+			'username' => $username,
+			'password' => MD5($password),		
+			'email' => $email,
+			'telefono' => $tel
+		);
+		
+		return $this->db->insert('users', $data);
+
+	}
+
 }
 ?>

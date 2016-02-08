@@ -12,8 +12,11 @@
     <title>CT20 - Admin</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?=base_url()?>estilo/admin/css/table-responsive.css" rel="stylesheet">
     <link href="<?=base_url()?>estilo/admin/css/bootstrap.css" rel="stylesheet">
+    <!--<link href="<?=base_url()?>estilo/admin/css/style.css" rel="stylesheet">
+    <link href="<?=base_url()?>estilo/admin/css/style-responsive.css" rel="stylesheet">
+    <link href="<?=base_url()?>estilo/admin/css/table-responsive.css" rel="stylesheet">-->
+
     <!-- Add custom CSS here -->
 
     <link href="<?=base_url()?>estilo/admin/css/sb-admin.css" rel="stylesheet">
@@ -66,6 +69,7 @@
       <!-- Sidebar -->
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
+        <a class="navbar-brand" href="#">Comibook</a>
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -74,7 +78,7 @@
             <span class="icon-bar"></span>
           </button>
         </div>
-        <a class="navbar-brand" href="#">Comibook</a>
+
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?=base_url()?>index.php/pedidos/index"><i class="fa fa-truck"></i> Pedidos</a></li>
