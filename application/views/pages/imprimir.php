@@ -29,9 +29,12 @@ $(function() {
 </script>
 <?php echo form_open('imprimir/addCheques'); ?>
 <div class="row">
-
-
+                 
+<div class="page-header">
 	<h2>Impresión</h2>
+</div>            
+
+
 	<div id="datepicker"></div>
 	<div class="row">
 		<div class="col-lg-4">

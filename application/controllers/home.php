@@ -27,7 +27,6 @@ class Home extends CI_Controller {
     $this->session->unset_userdata('logged_in');
     try{
       session_destroy();
-    
     } catch (Exception $e) {
       echo 'Excepción capturada: ',  $e->getMessage(), "\n";
     }

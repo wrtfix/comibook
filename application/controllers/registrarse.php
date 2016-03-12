@@ -58,7 +58,7 @@ class Registrarse extends CI_Controller
 	      return true;
 	    }
 	    else{
-	      $this->form_validation->set_message('check_captcha', 'Please enter correct words!');
+	      $this->form_validation->set_message('check_captcha', 'El captcha ingresado es incorrecto');
 	      return false;
 	    }
   }

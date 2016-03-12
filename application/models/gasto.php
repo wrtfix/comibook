@@ -11,8 +11,10 @@ class Gasto extends CI_Model {
 	function addGasto()
 	{
 		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
-		
+		$IdUser = $this->session->userdata('logged_in')['id'];
+
 		$data = array(
+			'IdUser' => $IdUser,
 			'nombre' => strtoupper($this->input->post('nombre')),
 			'importe' => $this->input->post('importe'),		
 			'fecha' => $ano."-".$mes."-".$dia
@@ -23,6 +25,10 @@ class Gasto extends CI_Model {
 	
 	function getGastos(){
 		$this -> db -> from('gastos');
+
+		$IdUser = $this->session->userdata('logged_in')['id'];
+		$this -> db -> like('IdUser',$IdUser);
+
 		$query = $this -> db -> get();
 		return $query->result();
 	}
@@ -32,15 +38,19 @@ class Gasto extends CI_Model {
 	}
 	function getGasto($nombre,$fechaDesde,$fechaHasta){
 		$this -> db -> from('gastos');
+
+		$IdUser = $this->session->userdata('logged_in')['id'];
+		$this -> db -> like('IdUser',$IdUser);
+
 		if ($nombre !=' ')
 			$this -> db -> like("nombre",$nombre);
 		if ($fechaDesde !=' ' && $fechaHasta !=' '){
 			list($dia, $mes, $ano) = explode("-", $fechaDesde);
 			list($dia2, $mes2, $ano2) = explode("-", $fechaHasta);
 			if ($nombre !=' ')
-				return $this->db->query("select * from gastos where fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "' AND nombre like '".$nombre."'")->result();
+				return $this->db->query("select * from gastos where IdUser = ".$IdUser." AND fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "' AND nombre like '".$nombre."'")->result();
 			else{ 				
-				return $this->db->query("select * from gastos where fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "'")->result();
+				return $this->db->query("select * from gastos where IdUser = ".$IdUser." AND fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "'")->result();
 			}
 		}
 		$query = $this -> db -> get();
@@ -58,7 +68,8 @@ class Gasto extends CI_Model {
 	}
 	
 	function  getGastoTotal($fechaDesde,$fechaHasta){
-		return $this->db->query("select sum(importe) as importe from gastos where fecha BETWEEN '".$fechaDesde."' AND '".$fechaHasta."'")->result();
+		$IdUser = $this->session->userdata('logged_in')['id'];
+		return $this->db->query("select sum(importe) as importe from gastos where IdUser = ".$IdUser." AND fecha BETWEEN '".$fechaDesde."' AND '".$fechaHasta."'")->result();
 	}
 }
 ?>

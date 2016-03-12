@@ -121,8 +121,12 @@ $(function() {
 <?php }?>
 
 <?php echo form_open('cheques/addCheques'); ?>
+
 <div class="row">
-                 <h2>Cheques</h2>
+	<div class="page-header">
+        <h2>Cheques</h2>
+	</div>
+      
   
   <div class="row">
           <div class="col-lg-4">

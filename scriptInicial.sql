@@ -120,6 +120,8 @@ CREATE TABLE `comibook`.`users` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `username` varchar(10) NOT NULL ,
  `password` varchar(100) NOT NULL ,
+ `telefono` varchar(100) NOT NULL ,
+ `email` varchar(100) NOT NULL ,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 

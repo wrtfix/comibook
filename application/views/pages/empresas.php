@@ -89,32 +89,10 @@ $(document).ready(function(){
 <div class='row'>
 
 <div class="page-header">
-	<h2>Clientes</h2>
+	<h2>Empresa</h2>
 </div>
 
-
-
-	<div class='row'>
-		<div class='col-lg-4'>
-			<div class='checkbox'>
-				<label> Nombre <input id='busquedaNombre' class=''> </label>
-			</div>
-		</div>
-		<div class='col-lg-4'>
-			<div class='checkbox'>
-				<label> Cuit/Cuil <input id='busquedaCuil' class=''> </label>
-			</div>
-		</div>
-		<div class='col-lg-4'>
-			<div class='checkbox'>
-				<label> Número <input id='busquedaNumero' class=''> </label>
-			</div>
-		</div>
-	</div>
-
-
-	<button type='button' id='buscar' class='btn btn-default'>Buscar</button>
-	<button type='button' id='agregar' class='btn btn-success'>Agregar</button>
+Z	<button type='button' id='agregar' class='btn btn-success'>Agregar</button>
 	<button type='button' id="eliminar" class='btn btn-danger'>Eliminar</button>
 	<button type='button' id='guardar' class='btn btn-primary'>Guardar</button>
 	<br> <br>

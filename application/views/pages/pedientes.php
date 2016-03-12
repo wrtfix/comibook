@@ -26,10 +26,12 @@ $('#buscar').click(function(){
 
 </script>
 <?php echo form_open('pedientes/addCheques'); ?>
- <div class="row">
-            
+<div class="row">
+<div class="page-header">
+        <h2>Pedientes</h2>
+</div>            
               
-                 <h2>Pedientes</h2>
+        
   
   <div class="row">
           <div class="col-lg-4">

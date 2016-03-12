@@ -1,6 +1,6 @@
 <?php
 
-class Cliente extends CI_Model {
+class Empresa extends CI_Model {
 
 	function __construct()
 	{
@@ -8,7 +8,7 @@ class Cliente extends CI_Model {
 		$this->load->database();
 	}
 
-	function addCliente()
+	function addEmpresa()
 	{
 		$data = array(
 			'IdUser' =>$this->session->userdata('logged_in')['id'],

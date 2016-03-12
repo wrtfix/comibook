@@ -134,8 +134,12 @@ $(document).ready(function(){
 <?php echo form_open('pedidos/addPedido'); ?>
 <div class="row">
 
+<div class="page-header">
+<h2><div id="titulo"></div></h2>
+</div>
 
-	<h2><div id="titulo"></div></h2>
+
+	
 	<div id="datepicker"></div>
 	<br>
 	<div id="row" class="row">

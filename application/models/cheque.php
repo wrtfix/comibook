@@ -13,6 +13,7 @@ class Cheque extends CI_Model {
 		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
 		list($dia2, $mes2, $ano2) = explode("-", $this->input->post('vencimiento'));
 		$data = array(
+			'IdUser' =>$this->session->userdata('logged_in')['id'],
 			'banco' => strtoupper($this->input->post('banco')),
 			'importe' => $this->input->post('importe'),		
 			'fecha' => $ano."-".$mes."-".$dia,
@@ -26,6 +27,10 @@ class Cheque extends CI_Model {
 	
 	function getCheques(){
 		$this -> db -> from('cheques');
+
+		$IdUser = $this->session->userdata('logged_in')['id'];
+		$this -> db -> like('IdUser',$IdUser);
+
 		$query = $this -> db -> get();
 		return $query->result();
 	}
@@ -34,16 +39,21 @@ class Cheque extends CI_Model {
 		return $this->db->delete('cheques', array('id' => $identificador));
 	}
 	function getCheque($nombre,$fechaDesde,$fechaHasta){
+
 		$this -> db -> from('cheques');
+
+		$IdUser = $this->session->userdata('logged_in')['id'];
+		$this -> db -> like('IdUser',$IdUser);
+
 		if ($nombre !=' ')
 			$this -> db -> like("proviene",$nombre);
 		if ($fechaDesde !=' ' && $fechaHasta !=' '){
 			list($dia, $mes, $ano) = explode("-", $fechaDesde);
 			list($dia2, $mes2, $ano2) = explode("-", $fechaHasta);
 			if ($nombre !=' ')
-				return $this->db->query("select * from cheques where fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "' AND nombre like '".$nombre."'")->result();
+				return $this->db->query("select * from cheques where IdUser = ".$IdUser." AND fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "' AND nombre like '".$nombre."'")->result();
 			else{ 				
-				return $this->db->query("select * from cheques where fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "'")->result();
+				return $this->db->query("select * from cheques where IdUser = ".$IdUser." AND fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "'")->result();
 			}
 		}
 		$query = $this -> db -> get();
@@ -66,7 +76,8 @@ class Cheque extends CI_Model {
 	}
 	
 	function  getChequeTotal($fechaDesde,$fechaHasta){
-		return $this->db->query("select sum(importe) as importe from cheques where fecha BETWEEN '".$fechaDesde."' AND '".$fechaHasta."'")->result();
+		$IdUser = $this->session->userdata('logged_in')['id'];
+		return $this->db->query("select sum(importe) as importe from cheques where IdUser ='".$IdUser."' AND fecha BETWEEN '".$fechaDesde."' AND '".$fechaHasta."'")->result();
 	}
 }
 ?>

@@ -12,6 +12,7 @@ class Pedido extends CI_Model {
 	{
 		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
 		$data = array(
+			'IdUser' =>$this->session->userdata('logged_in')['id'],
 			'Fecha' => $ano."-".$mes."-".$dia,
 			'ClienteOrignen' => strtoupper($this->input->post('ClienteOrigen')),		
 			'Bultos' => $this->input->post('Bultos'),
@@ -27,8 +28,10 @@ class Pedido extends CI_Model {
 	}
 	
 	function getPedidoPedientes(){
+		$IdUser = $this->session->userdata('logged_in')['id'];
 		$this -> db -> from('pedidos');
 		$this -> db -> like('pago','0');
+		$this -> db -> like('IdUser',$IdUser);
 		$query = $this -> db -> get();
 		return $query->result();
 	}
@@ -38,6 +41,10 @@ class Pedido extends CI_Model {
 	}
 	function getPedidosPedientes($nombre,$fechaDesde,$fechaHasta,$pediente){
 		$this -> db -> from('pedidos');
+		
+		$IdUser = $this->session->userdata('logged_in')['id'];
+		$this -> db -> like('IdUser',$IdUser);
+		
 		if ($nombre !=' '){
 			$this -> db -> like("ClienteOrignen",$nombre);
 		}
@@ -50,9 +57,9 @@ class Pedido extends CI_Model {
 			list($dia, $mes, $ano) = explode("-", $fechaDesde);
 			list($dia2, $mes2, $ano2) = explode("-", $fechaHasta);
 			if ($nombre !=' '){
-				return $this->db->query("select * from pedidos where ".$pen." fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "' AND ClienteOrignen like '%".$nombre."%'")->result();
+				return $this->db->query("select * from pedidos where IdUser = ".$IdUser." AND ".$pen." fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "' AND ClienteOrignen like '%".$nombre."%'")->result();
 			}else{ 		
-				return $this->db->query("select * from pedidos where ".$pen." fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "'")->result();
+				return $this->db->query("select * from pedidos where IdUser = ".$IdUser." AND ".$pen." fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "'")->result();
 			}
 		}
 		$query = $this -> db -> get();

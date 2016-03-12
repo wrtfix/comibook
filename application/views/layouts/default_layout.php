@@ -69,7 +69,7 @@
       <!-- Sidebar -->
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <a class="navbar-brand" href="#">Comibook</a>
+        <a class="navbar-brand" href="<?=base_url()?>index.php/about/index"><?php print_r($this->session->userdata('logged_in')['username']); ?></a>
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -85,13 +85,13 @@
             <li><a href="<?=base_url()?>index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
             <li><a href="<?=base_url()?>index.php/cheques/index"><i class="fa fa-money"></i> Cheques </a></li>
             <li><a href="<?=base_url()?>index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
-            <li><a href="<?=base_url()?>index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
+            <li><a href="<?=base_url()?>index.php/gastos/index"><i class="fa fa-table"></i> Gastos </a></li>
             <li><a href="<?=base_url()?>index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>
+            <li><a href="<?=base_url()?>index.php/empresas/index"><i class="fa fa-wrench"></i> Equipo </a></li>
             <li><a href="<?=base_url()?>index.php/backup/index"><i class="fa fa-desktop"></i> Copia de Seguridad </a></li>
-			      <li><a href="<?=base_url()?>index.php/about/index"><i class="fa fa-globe"></i> Acerca de...</a></li>
+      			<li><a href="<?=base_url()?>index.php/about/index"><i class="fa fa-globe"></i> Acerca de...</a></li>
             <li><a href="<?=base_url()?>index.php/home/logout"><i class="fa fa-power-off"></i> Salir </a></li>
           </ul>
-
         </div>
       </nav>
 
