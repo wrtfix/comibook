@@ -6,17 +6,31 @@ $('#buscar').click(function(){
 	var fechaDesde = $('#desde').val();
 	var fechaHasta = $('#hasta').val();
 	if (fechaDesde==''){
-		fechaDesde = '%20';
+		fechaDesde = 'null';
 	}
 	if (fechaHasta==''){
-		fechaHasta = '%20';
+		fechaHasta = 'null';
 	}
 	if (nombre==''){
-		nombre = '%20';
+		nombre = 'null';
 	}
+	nombre = nombre.replace(".", "");
 	$aux.attr('action',"<?=base_url()?>index.php/pedientes/index/"+nombre+"/"+fechaDesde+"/"+fechaHasta);
 	$aux.submit();
 });
+
+$('.tab').focusout(function(){
+		var elem = $("#"+$(this).attr('id')).val();
+		var donde = "#"+$(this).attr('id');
+		$.ajax({
+		       type: "POST",
+		       url: "<?=base_url()?>index.php/cheques/getCliente/"+elem,
+		       dataType:'json',
+		       success: function(response){
+		    		$(donde).val(response[0].Nombre);
+		       }
+		});
+	});
 
 });
   $(function() {
@@ -46,7 +60,7 @@ $('#buscar').click(function(){
           </div>
   <div class="col-lg-4">
 <div class="checkbox">
-                  <label>Nombre <input id="nombreBusqueda"class="">
+                  <label>Nombre <input id="nombreBusqueda"class="tab">
                   </label>
               </div>
 </div>

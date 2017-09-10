@@ -59,13 +59,13 @@ $(document).ready(function(){
 		var fechaDesde = $('#fechaDesde').val();
 		var fechaHasta = $('#fechaDesde').val();
 		if (fechaDesde==''){
-			fechaDesde = '%20';
+			fechaDesde = 'null';
 		}
 		if (fechaHasta==''){
-			fechaHasta = '%20';
+			fechaHasta = 'null';
 		}
 		if (nombre==''){
-			nombre = '%20';
+			nombre = 'null';
 		}
 		$aux.attr('action',"<?=base_url()?>index.php/gastos/index/"+nombre+"/"+fechaDesde+"/"+fechaHasta);
 		$aux.submit();

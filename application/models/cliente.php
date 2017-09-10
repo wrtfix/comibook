@@ -31,14 +31,24 @@ class Cliente extends CI_Model {
 	function delClientes($identificador){
 		return $this->db->delete('clientes', array('id' => $identificador));
 	}
-	function getCliente($nombre,$cuil,$numero){
+	function getCliente($nombre,$cuil,$numero,$localidad){
 		$this -> db -> from('clientes');
 		if ($nombre !=' ')
-			$this -> db -> like("nombre",$nombre);
+			$this -> db -> like("Nombre",$nombre);
 		if ($cuil !=' ')
-			$this -> db -> where("cuit",$cuil);
+			$this -> db -> where("Cuit",$cuil);
 		if ($numero !=' ')
-			$this -> db -> where("numero",$numero);
+			$this -> db -> like("Numero",$numero);
+		if ($localidad !=' ')
+			$this -> db -> like("Localidad",$localidad);
+			
+		$query = $this -> db -> get();
+		return $query->result();
+	}
+	
+	function getClientelLocalidad($nombre){
+		$this -> db -> from('clientes');
+		$this -> db -> like("Localidad",$nombre);
 		$query = $this -> db -> get();
 		return $query->result();
 	}

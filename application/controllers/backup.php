@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
 class Backup extends CI_Controller 
 {
 	public function __construct()
@@ -11,16 +11,9 @@ class Backup extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in'))
-		{
-			$data['page'] = 'backup';
-			$data['agregados'] =  $this->backups->generarBackUp();
-			$this->layout->view('pages/backup', $data);
-		}else{
-			$data['page'] = 'construccion';
-			$this->load->view('pages/construccion', $data);
-
-		}
+		$data['page'] = 'backup';
+		$data['agregados'] =  $this->backups->generarBackUp();
+		$this->layout->view('pages/backup', $data);
 	}
 
 }

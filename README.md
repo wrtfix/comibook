@@ -1,5 +1,4 @@
-Comibook
+ci-bootstrap
 ============
 
-Sistema de gestion de comisios basado en CodeIgniter 2.1.3 and Twitter Bootstrap
-
+CodeIgniter 2.1.3 and Twitter Bootstrap

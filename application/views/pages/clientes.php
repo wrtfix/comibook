@@ -62,16 +62,31 @@ $(document).ready(function(){
 		var cuil = $('#busquedaCuil').val();
 		var numero = $('#busquedaNumero').val();
 		if (numero==''){
-			numero = '%20';
+			numero = 'null';
 		}
 		if (cuil==''){
-			cuil = '%20';
+			cuil = 'null';
 		}
 		if (nombre==''){
-			nombre = '%20';
+			nombre = 'null';
 		}
+		nombre = nombre.replace(".", "");
+		nombre = nombre.replace(")", "");
 		$aux.attr('action',"<?=base_url()?>index.php/clientes/index/"+nombre+"/"+cuil+"/"+numero);
 		$aux.submit();
+	});
+
+	$('.tab').focusout(function(){
+		var elem = $("#"+$(this).attr('id')).val();
+		var donde = "#"+$(this).attr('id');
+		$.ajax({
+		       type: "POST",
+		       url: "<?=base_url()?>index.php/cheques/getCliente/"+elem,
+		       dataType:'json',
+		       success: function(response){
+		    		$(donde).val(response[0].Nombre);
+		       }
+		});
 	});
 	
 	
@@ -94,7 +109,7 @@ $(document).ready(function(){
 	<div class='row'>
 		<div class='col-lg-4'>
 			<div class='checkbox'>
-				<label> Nombre <input id='busquedaNombre' class=''> </label>
+				<label> Nombre <input id='busquedaNombre' class='tab'> </label>
 			</div>
 		</div>
 		<div class='col-lg-4'>
@@ -104,7 +119,7 @@ $(document).ready(function(){
 		</div>
 		<div class='col-lg-4'>
 			<div class='checkbox'>
-				<label> Número <input id='busquedaNumero' class=''> </label>
+				<label> Localidad <input id='busquedaNumero' class=''> </label>
 			</div>
 		</div>
 	</div>

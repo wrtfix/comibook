@@ -2,6 +2,9 @@
 cambios=[];
 guardar=[];
 
+
+
+
 $(function() {
     $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy', onSelect: function(dateText, inst) { 
         var dateAsString = dateText; //the first parameter of this function
@@ -12,11 +15,16 @@ $(function() {
      } });
     
   });
+$body = $("body");
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+    ajaxStop: function() { $body.removeClass("loading"); }    
+});
 
+ 
 
 $(document).ready(function(){
-
-	var fecha= '<?php if ($fechaSeleccionada!=null) echo $fechaSeleccionada; ?>';
+	var fecha= '<?php if ($fechaSeleccionada!=null)echo $fechaSeleccionada?>';
 	if (fecha==''){
 		fecha = $("#datepicker").val();
 	}
@@ -51,16 +59,14 @@ $(document).ready(function(){
 			       type: "POST",
 			       url: "<?=base_url()?>index.php/pedidos/addPedido/",
 			       success: function(){
-			    	   alert('Los cambios se guardaron con exito!');
-			    	   guardar = [];
+			    	   $("#resultado").html("Los cambios se guardaron con exito");
 				   },
 				   error: function(){
-					   alert('ERROR : Verifique los campos ingresados');
+						console.log('ERROR : Verifique los campos ingresados');
 				   }
 				       
 			});
 		}
-		
 
 		for (i = 0; i < cambios.length; i++)
 		{
@@ -77,7 +83,6 @@ $(document).ready(function(){
 			       type: "POST",
 			       url: "<?=base_url()?>index.php/pedidos/updatePedido/"+cambios[i],
 			       success: function(){
-			    	   alert('Los cambios se guardaron con exito!');
 			    	   cambios = [];
 				   },
 				   error: function(){
@@ -86,7 +91,7 @@ $(document).ready(function(){
 			       
 			});
 		}
-				
+		
 	});
 	$('.pago').click(function(){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
@@ -102,9 +107,16 @@ $(document).ready(function(){
 		       url: "<?=base_url()?>index.php/cheques/getCliente/"+elem,
 		       dataType:'json',
 		       success: function(response){
-		    		$(donde).val(response[0].Nombre);
+		    		if (response !='')
+						$(donde).val(response[0].Nombre);
 		       }
 		});
+	});
+	$('.suma').focusout(function(){
+		var elem = $("#"+$(this).attr('id')).val();
+		var donde = "#"+$(this).attr('id');
+		$("#calcularTotal").val(parseFloat($("#calcularTotal").val())+parseFloat(elem));
+		
 	});
 
 	$('#eliminar').click(function(){
@@ -117,6 +129,7 @@ $(document).ready(function(){
 			});
 		});
  		$("input:checkbox:checked").parent().parent().remove();
+		location.reload();	
 	});
 
 	
@@ -143,37 +156,40 @@ $(document).ready(function(){
 		<div class="col-lg-4"></div>
 
 	</div>
-
+	
+	<br>
 
 	<!--  <button type="button" id="agregar" class="btn btn-success">Agregar</button>-->
 	<button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
 	<button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-	<br> <br>
+
+	
+	<?php function mostrarTotal($total){ echo "En Caja: $<input type='text' disabled id='calcularTotal' value='".number_format($total,2)."'/>"; } ?>
 	<dir id="pedidos"></dir>
 	<div class="table-responsive" id="pedidos">
 		<table class="table table-bordered table-hover tablesorter">
 			<thead>
 				<tr>
-					<th class="header">Seleccionar<i class=""></i></th>
-					<th class="header">Cliente Origen<i class=""></i></th>
-					<th class="header headerSortDown">Bultos<i class=""></i></th>
-					<th class="header">Cliente Destino<i class=""></i></th>
-					<th class="header">Valor Declarado<i class=""></i></th>
-					<th class="header">Contrareembolso<i class=""></i></th>
-					<th class="header">Costo de Flete<i class=""></i></th>
+					<th class="header">Selec.<i class=""></i></th>
+					<th class="header">Cliente <br> Origen<i class=""></i></th>
+					<th class="header headerSortDown" width="50px">Bultos<i class=""></i></th>
+					<th class="header">Cliente <br> Destino<i class=""></i></th>
+					<th class="header"  width="50px">Valor <br> Declarado<i class=""></i></th>
+					<th class="header">Contrare.<i class=""></i></th>
+					<th class="header">Costo <br> de Flete<i class=""></i></th>
 					<th class="header">Pago?<i class=""></i></th>
 					<th class="header">Observaciones<i class=""></i></th>
 				</tr>
 			</thead>
 			<tbody>
 
-				<?php $cont=0; foreach($agregados as $item): $cont=$cont+1;?>
+				<?php $cont=0; $total=0; foreach($agregados as $item): $cont=$cont+1;?>
 				<tr>
 					<td><input type="checkbox" class="selec" id="<?php print_r($item->Numero);?>" value=""></td>
 					<td><input class="formulario tab" id="ClienteOrigen-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteOrignen);?>'/></td>
-					<td><input class="formulario" id="Bultos-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Bultos);?>'/></td>
+					<td width="50px"><input class="formulario" id="Bultos-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Bultos);?>'/></td>
 					<td><input class="formulario tab" id="ClienteDestino-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteDestino);?>'/></td>
-					<td><input class="formulario" id="valorDeclarado-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->valorDeclarado);?>'/></td>
+					<td width="50px"><input class="formulario" id="valorDeclarado-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->valorDeclarado);?>'/></td>
 					<td>
 					<!-- <input class="formulario" id="Contrareembolso-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ContraReembolso);?>'/>-->
 						<select class="pago" id="Contrareembolso-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' >
@@ -181,7 +197,7 @@ $(document).ready(function(){
 	  							<option value="1" <?php if ($item->ContraReembolso==1) echo "selected"; ?>>Si</option>
 	  					</select>
 					</td>
-					<td><input class="formulario" id="CostoFlete-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->CostoFlete);?>'/></td>
+					<td><input class="formulario suma" id="CostoFlete-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php $total = $item->CostoFlete + $total; print_r($item->CostoFlete);?>'/></td>
 					<td>
 						<select class="pago" id="Pago-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' >
 	  							<option value="0" <?php if ($item->Pago==0) echo "selected"; ?>>No</option>
@@ -190,14 +206,14 @@ $(document).ready(function(){
 					</td>
 					<td><input class="formulario" id="Observaciones-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Observaciones);?>'/></td>
 				</tr>
-				<?php endforeach;?>
+				<?php endforeach; mostrarTotal($total); ?>
 				<?php for ($i = 0; $i < 100; $i++) {?>
 				<tr>
 					<td><input type="checkbox" class="selec" value=""></td>
 					<td><input class="guardar tab" id="saveClienteOrigen-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td><input class="guardar" id="saveBultos-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
+					<td width="50px" ><input class="guardar" id="saveBultos-<?php echo $i;?>" style='width: 50px; border:none;' type='text' /></td>
 					<td><input class="guardar tab" id="saveClienteDestino-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td><input class="guardar" id="savevalorDeclarado-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
+					<td width="50px" ><input class="guardar" id="savevalorDeclarado-<?php echo $i;?>" style='width: 50px; border:none;' type='text' /></td>
 					<td>
 					<!-- <input class="guardar" id="saveContrareembolso-<?php echo $i;?>" style='width: 100%; border:none;' type='text' />-->
 					<select class="guardar" id="saveContrareembolso-<?php echo $i;?>" style='width: 100%; border:none;' >
@@ -205,7 +221,7 @@ $(document).ready(function(){
   							<option value="1">Si</option>
   					</select>
 					</td>
-					<td><input class="guardar" id="saveCostoFlete-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
+					<td width="50px"><input class="guardar suma" id="saveCostoFlete-<?php echo $i;?>" style='width: 50px; border:none;' type='text' /></td>
 					<td>
 					<!--  <input class="guardar" id="savePago-<?php echo $i;?>" style='width: 100%; border:none;' type='text' />-->
 					<select class="guardar" id="savePago-<?php echo $i;?>" style='width: 100%; border:none;' >

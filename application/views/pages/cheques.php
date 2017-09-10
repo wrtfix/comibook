@@ -92,13 +92,13 @@ $(document).ready(function(){
 		var fechaDesde = $('#desde').val();
 		var fechaHasta = $('#hasta').val();
 		if (fechaDesde==''){
-			fechaDesde = '%20';
+			fechaDesde = 'null';
 		}
 		if (fechaHasta==''){
-			fechaHasta = '%20';
+			fechaHasta = 'null';
 		}
 		if (nombre==''){
-			nombre = '%20';
+			nombre = 'null';
 		}
 		$aux.attr('action',"<?=base_url()?>index.php/cheques/index/"+nombre+"/"+fechaDesde+"/"+fechaHasta);
 		$aux.submit();

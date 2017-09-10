@@ -7,13 +7,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="jorge carlos mendiola" >
+    <meta name="author" content="jorge" >
 
     <title>CT20 - Admin</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?=base_url()?>estilo/admin/css/table-responsive.css" rel="stylesheet">
     <link href="<?=base_url()?>estilo/admin/css/bootstrap.css" rel="stylesheet">
+
     <!-- Add custom CSS here -->
 
     <link href="<?=base_url()?>estilo/admin/css/sb-admin.css" rel="stylesheet">
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
 
     <script src="<?=base_url()?>estilo/admin/js/jquery-1.10.2.js"></script>
+	<link href="<?=base_url()?>estilo/admin/css/block.css" rel="stylesheet">
     <script src="<?=base_url()?>estilo/admin/js/bootstrap.js"></script>
     
     <!--<link href="<?=base_url()?>estilo/admin/css/lib/bootstrap-responsive.min.css" rel="stylesheet">-->
@@ -61,6 +62,7 @@
 	</script>
 </head>
 <body>
+<div class="modal"><!-- Place at bottom of page --></div>
 <div id="">
 
       <!-- Sidebar -->
@@ -84,8 +86,7 @@
             <li><a href="<?=base_url()?>index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
             <li><a href="<?=base_url()?>index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>
             <li><a href="<?=base_url()?>index.php/backup/index"><i class="fa fa-desktop"></i> Copia de Seguridad </a></li>
-			      <li><a href="<?=base_url()?>index.php/about/index"><i class="fa fa-globe"></i> Acerca de...</a></li>
-            <li><a href="<?=base_url()?>index.php/home/logout"><i class="fa fa-power-off"></i> Salir </a></li>
+			<li><a href="<?=base_url()?>index.php/about/index"><i class="fa fa-globe"></i> Acerca de...</a></li>
           </ul>
 
         </div>
