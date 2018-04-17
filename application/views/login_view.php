@@ -4,6 +4,8 @@
     <title>Sistema de gestión</title>
   </head>
   <body>
+      <p> Si realizaste un nuevo branch de este proyecto revisar config/config.php y config/database.php </p>
+      <p> No te olvides de ejeuctar el script inicial scriptInicial.sql en la base de datos </p>
       <div class="container">
           <div class="row mt">
         <div class="span4 offset4 well">
