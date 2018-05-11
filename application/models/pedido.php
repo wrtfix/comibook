@@ -20,7 +20,7 @@ class Pedido extends CI_Model {
 			'Contrareembolso' => $this->input->post('Contrareembolso'),
 			'CostoFlete' => $this->input->post('CostoFlete'),
 			'Pago' => $this->input->post('Pago'),
-			'Observaciones' => strtoupper($this->input->post('Observaciones')),
+			'Observaciones' => $this->input->post('Observaciones'),
 		);
 		
 		return $this->db->insert('pedidos', $data);
@@ -70,7 +70,7 @@ class Pedido extends CI_Model {
 			'Contrareembolso' => $this->input->post('Contrareembolso'),
 			'CostoFlete' => $this->input->post('CostoFlete'),
 			'Pago' => $this->input->post('Pago'),
-			'Observaciones' => strtoupper($this->input->post('Observaciones')),
+			'Observaciones' => $this->input->post('Observaciones'),
 		);
 		$this->db->where('Numero', $id);
         return $this->db->update('pedidos', $data);

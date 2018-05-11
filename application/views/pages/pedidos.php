@@ -21,7 +21,7 @@ $(document).ready(function(){
 		fecha = $("#datepicker").val();
 	}
 	
-	$("#titulo").append("Pedidos del " + fecha);
+	$("#titulo").append("Noticias del " + fecha);
 
 	$('.formulario').keypress(function(){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
@@ -94,7 +94,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('.tab').focusout(function(){
+	/*$('.tab').focusout(function(){
 		var elem = $("#"+$(this).attr('id')).val();
 		var donde = "#"+$(this).attr('id');
 		$.ajax({
@@ -105,7 +105,7 @@ $(document).ready(function(){
 		    		$(donde).val(response[0].Nombre);
 		       }
 		});
-	});
+	});*/
 
 	$('#eliminar').click(function(){
 		$('input:checked').each(function() {
@@ -155,14 +155,14 @@ $(document).ready(function(){
 			<thead>
 				<tr>
 					<th class="header">Seleccionar<i class=""></i></th>
-					<th class="header">Cliente Origen<i class=""></i></th>
-					<th class="header headerSortDown">Bultos<i class=""></i></th>
-					<th class="header">Cliente Destino<i class=""></i></th>
-					<th class="header">Valor Declarado<i class=""></i></th>
-					<th class="header">Contrareembolso<i class=""></i></th>
-					<th class="header">Costo de Flete<i class=""></i></th>
-					<th class="header">Pago?<i class=""></i></th>
-					<th class="header">Observaciones<i class=""></i></th>
+					<th class="header">Titulo<i class=""></i></th>
+					<th class="header headerSortDown">Visitas<i class=""></i></th>
+					<th class="header">Resumen<i class=""></i></th>
+					<th class="header">Likes<i class=""></i></th>
+					<th class="header" style="display: none;">Contrareembolso<i class=""></i></th>
+					<th class="header">UnLikes<i class=""></i></th>
+					<th class="header" style="display: none;">Pago?<i class=""></i></th>
+					<th class="header">Imagen<i class=""></i></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -174,7 +174,7 @@ $(document).ready(function(){
 					<td><input class="formulario" id="Bultos-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Bultos);?>'/></td>
 					<td><input class="formulario tab" id="ClienteDestino-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteDestino);?>'/></td>
 					<td><input class="formulario" id="valorDeclarado-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->valorDeclarado);?>'/></td>
-					<td>
+					<td style="display: none;">
 					<!-- <input class="formulario" id="Contrareembolso-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ContraReembolso);?>'/>-->
 						<select class="pago" id="Contrareembolso-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' >
 	  							<option value="0" <?php if ($item->ContraReembolso==0) echo "selected"; ?>>No</option>
@@ -182,7 +182,7 @@ $(document).ready(function(){
 	  					</select>
 					</td>
 					<td><input class="formulario" id="CostoFlete-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->CostoFlete);?>'/></td>
-					<td>
+					<td style="display: none;">
 						<select class="pago" id="Pago-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' >
 	  							<option value="0" <?php if ($item->Pago==0) echo "selected"; ?>>No</option>
 	  							<option value="1" <?php if ($item->Pago==1) echo "selected"; ?>>Si</option>
@@ -198,7 +198,7 @@ $(document).ready(function(){
 					<td><input class="guardar" id="saveBultos-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
 					<td><input class="guardar tab" id="saveClienteDestino-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
 					<td><input class="guardar" id="savevalorDeclarado-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td>
+					<td style="display: none;">
 					<!-- <input class="guardar" id="saveContrareembolso-<?php echo $i;?>" style='width: 100%; border:none;' type='text' />-->
 					<select class="guardar" id="saveContrareembolso-<?php echo $i;?>" style='width: 100%; border:none;' >
   							<option value="0">No</option>
@@ -206,7 +206,7 @@ $(document).ready(function(){
   					</select>
 					</td>
 					<td><input class="guardar" id="saveCostoFlete-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td>
+					<td style="display: none;">
 					<!--  <input class="guardar" id="savePago-<?php echo $i;?>" style='width: 100%; border:none;' type='text' />-->
 					<select class="guardar" id="savePago-<?php echo $i;?>" style='width: 100%; border:none;' >
   							<option value="0">No</option>

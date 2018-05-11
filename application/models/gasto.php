@@ -10,12 +10,12 @@ class Gasto extends CI_Model {
 
 	function addGasto()
 	{
-		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
+		//list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
 		
 		$data = array(
-			'nombre' => strtoupper($this->input->post('nombre')),
-			'importe' => $this->input->post('importe'),		
-			'fecha' => $ano."-".$mes."-".$dia
+			'nombre' => $this->input->post('nombre'),
+			'importe' => $this->input->post('importe')
+			//'fecha' => $ano."-".$mes."-".$dia
 		);
 		
 		return $this->db->insert('gastos', $data);

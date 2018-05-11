@@ -35,7 +35,7 @@ class Gastos extends CI_Controller
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('nombre','nombre','required');
 		   	$this->form_validation->set_rules('importe','importe','required|numeric');
-			$this->form_validation->set_rules('fecha','fecha','required');
+			//$this->form_validation->set_rules('fecha','fecha','required');
 			if ($this->form_validation->run() == FALSE) {
 	  			$this->output->set_status_header('400'); //Triggers the jQuery error callback
 	        } else {		

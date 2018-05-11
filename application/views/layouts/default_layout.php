@@ -77,12 +77,12 @@
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?=base_url()?>index.php/pedidos/index"><i class="fa fa-truck"></i> Pedidos</a></li>
-            <li><a href="<?=base_url()?>index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
-            <li><a href="<?=base_url()?>index.php/cheques/index"><i class="fa fa-money"></i> Cheques </a></li>
-            <li><a href="<?=base_url()?>index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
-            <li><a href="<?=base_url()?>index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
-            <li><a href="<?=base_url()?>index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>
+            <li><a href="<?=base_url()?>index.php/pedidos/index"><i class="fa fa-truck"></i> Noticias</a></li>
+            <!--<li><a href="<?=base_url()?>index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>-->
+            <!--<li><a href="<?=base_url()?>index.php/cheques/index"><i class="fa fa-money"></i> Cheques </a></li>-->
+            <!--<li><a href="<?=base_url()?>index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>-->
+            <li><a href="<?=base_url()?>index.php/gastos/index"><i class="fa fa-wrench"></i> Menu </a></li>
+            <!--<li><a href="<?=base_url()?>index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>-->
             <li><a href="<?=base_url()?>index.php/backup/index"><i class="fa fa-desktop"></i> Copia de Seguridad </a></li>
 			      <li><a href="<?=base_url()?>index.php/about/index"><i class="fa fa-globe"></i> Acerca de...</a></li>
             <li><a href="<?=base_url()?>index.php/home/logout"><i class="fa fa-power-off"></i> Salir </a></li>
