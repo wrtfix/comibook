@@ -28,7 +28,6 @@ class Pedido extends CI_Model {
 	
 	function getPedidoPedientes(){
 		$this -> db -> from('pedidos');
-		$this -> db -> like('pago','0');
 		$query = $this -> db -> get();
 		return $query->result();
 	}
