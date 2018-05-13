@@ -10,13 +10,13 @@ class Cheque extends CI_Model {
 
 	function addCheque()
 	{
-		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
-		list($dia2, $mes2, $ano2) = explode("-", $this->input->post('vencimiento'));
+		//list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
+		//list($dia2, $mes2, $ano2) = explode("-", $this->input->post('vencimiento'));
 		$data = array(
 			'banco' => strtoupper($this->input->post('banco')),
 			'importe' => $this->input->post('importe'),		
-			'fecha' => $ano."-".$mes."-".$dia,
-			'fechavto' => $ano2."-".$mes2."-".$dia2,
+		//	'fecha' => $ano."-".$mes."-".$dia,
+		//	'fechavto' => $ano2."-".$mes2."-".$dia2,
 			'proviene' => $this->input->post('origen'),
 			'entregado' => $this->input->post('destino'),
 		);

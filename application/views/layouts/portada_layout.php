@@ -9,27 +9,34 @@
     <meta name="description" content="">
     <meta name="author" content="jorge carlos mendiola" >
 
+	<!-- You can use Open Graph tags to customize link previews.
+	Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+	<meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Your Website Title" />
+	<meta property="og:description"   content="Your description" />
+	<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+
     <!-- Bootstrap core CSS -->
     <link href="<?=base_url()?>estilo/admin/css/table-responsive.css" rel="stylesheet">
-    <link href="<?=base_url()?>estilo/admin/css/bootstrap.css" rel="stylesheet">
-    <!-- Add custom CSS here -->
 
-    <link href="<?=base_url()?>estilo/login/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?=base_url()?>estilo/admin/font-awesome/css/font-awesome.min.css">
-
-    <!-- Page Specific CSS -->
-    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
-    <script src="<?=base_url()?>estilo/admin/js/jquery-1.10.2.js"></script>
-    <script src="<?=base_url()?>estilo/admin/js/bootstrap.js"></script>
-    
- 	<link href="<?=base_url()?>estilo/admin/css/custom.css" rel="stylesheet">
-	<link href="<?=base_url()?>estilo/admin/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-	<script src="<?=base_url()?>estilo/admin/js/jquery-1.10.2.js"></script>
-	<script src="<?=base_url()?>estilo/admin/js/jquery-ui-1.10.4.custom.js"></script>
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CLato:300,400" rel="stylesheet"> 
 	
-	<!-- Tabla dinamica -->
-	<script data-jsfiddle="common" src="<?=base_url()?>estilo/admin/js/handsontable/jquery.handsontable.full.js"></script>
-  	<link data-jsfiddle="common" rel="stylesheet" media="screen" href="<?=base_url()?>estilo/admin/js/handsontable/jquery.handsontable.full.css">
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="<?=base_url()?>estilo/home/css/bootstrap.min.css"/>
+
+	<!-- Owl Carousel -->
+	<link type="text/css" rel="stylesheet" href="<?=base_url()?>estilo/home/css/owl.carousel.css" />
+	<link type="text/css" rel="stylesheet" href="<?=base_url()?>estilo/home/css/owl.theme.default.css" />
+	
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="<?=base_url()?>estilo/home/css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="<?=base_url()?>estilo/home/css/style.css"/>
+	
+
 	<!-- Fin de Tabla dinamica -->
 	<script type="text/javascript">
 
@@ -55,6 +62,14 @@
 	    $.datepicker.setDefaults($.datepicker.regional['es']);
 	});
 	
+	(function(d, s, id) {
+	    var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1";
+	    fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));
+
 	</script>
 </head>
 <body>
@@ -65,15 +80,15 @@
 				<div class="container">
 					<div class="header-links">
 						<ul>
-							<li><a href="#">Martes 17 de Abril</a></li>
+							<li><? print_r($fechaActual); ?></li>
 						</ul>
 						
 					</div>
 					<div class="header-social">
 						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="https://twitter.com/intent/tweet?text=Salta Chequeado" data-size="large"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="http://instagram.com/wrtfix?ref=badge"><i class="fa fa-instagram"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -101,7 +116,7 @@
 						</div>
 						<ul class="main-nav nav navbar-nav">
 						<?php $cont=0; foreach($menu as $item): $cont=$cont+1;?>                  
-							<li class="active"><a href="#"><?php print_r($item->nombre);?></a></li>
+							<li><a href="#"><?php print_r($item->nombre);?></a></li>
 						<?php endforeach; ?>
 						</ul>
 					</nav>
@@ -111,9 +126,6 @@
 		</header>
 
 		<?php echo $content_for_layout ?> 
-
-		
-		
 
 		<!-- SECTION -->
 		<div class="section">
@@ -128,8 +140,6 @@
 			<!-- /CONTAINER -->
 		</div>
 		<!-- /SECTION -->
-		
-		
 		
 		<!-- FOOTER -->
 		<footer id="footer">
@@ -149,9 +159,7 @@
 						<!-- footer copyright -->
 						<div class="col-md-6 col-md-pull-6">
 							<div class="footer-copyright">
-								<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
+								<span>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></span>
 							</div>
 						</div>
 						<!-- /footer copyright -->
@@ -163,6 +171,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<!-- /Bottom Footer -->
 		</footer>
 		<!-- /FOOTER -->
+
+				<!-- jQuery Plugins -->
+		<script src="<?=base_url()?>estilo/login/js/jquery.min.js"></script>
+		<script src="<?=base_url()?>estilo/login/js/bootstrap.min.js"></script>
+		<script src="<?=base_url()?>estilo/login/js/owl.carousel.min.js"></script>
+		<script src="<?=base_url()?>estilo/login/js/main.js"></script>
+
 </body>
 </html>
 

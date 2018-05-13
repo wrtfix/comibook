@@ -65,70 +65,6 @@
 										<article class="article widget-article">
 											<div class="article-img">
 												<a href="#">
-													<img src="<?php print_r($noticiasPrincipales[0]->Observaciones);?>" alt="">
-												</a>
-											</div>
-											<div class="article-body">
-												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[0]->ClienteOrignen);?></a></h4>
-												<ul class="article-meta">
-													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[0]->Fecha);?> </li>
-													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[0]->Bultos);?></li>
-													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[0]->valorDeclarado);?></li>
-													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[0]->CostoFlete);?></li>
-
-												</ul>
-											</div>
-										</article>
-										<!-- /ARTICLE -->
-										
-										<!-- ARTICLE -->
-										<article class="article widget-article">
-											<div class="article-img">
-												<a href="#">
-													<img src="<?php print_r($noticiasPrincipales[1]->Observaciones);?>" alt="">
-												</a>
-											</div>
-											<div class="article-body">
-												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[1]->ClienteOrignen);?></a></h4>
-												<ul class="article-meta">
-													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[1]->Fecha);?> </li>
-													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[1]->Bultos);?></li>
-													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[1]->valorDeclarado);?></li>
-													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[1]->CostoFlete);?></li>
-
-												</ul>
-											</div>
-										</article>
-										<!-- /ARTICLE -->
-									</div>
-									<!-- /Column 1 -->
-									
-									<!-- Column 2 -->
-									<div class="col-md-4 col-sm-6">
-										<!-- ARTICLE -->
-										<article class="article widget-article">
-											<div class="article-img">
-												<a href="#">
-													<img src="<?php print_r($noticiasPrincipales[2]->Observaciones);?>" alt="">
-												</a>
-											</div>
-											<div class="article-body">
-												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[2]->ClienteOrignen);?></a></h4>
-												<ul class="article-meta">
-													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[2]->Fecha);?> </li>
-													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[2]->Bultos);?></li>
-													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[2]->valorDeclarado);?></li>
-													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[2]->CostoFlete);?></li>
-
-												</ul>
-											</div>
-										</article>
-										<!-- /ARTICLE -->
-										
-										<!-- ARTICLE -->
-										<article class="article widget-article">
-											<div class="article-img">
-												<a href="#">
 													<img src="<?php print_r($noticiasPrincipales[3]->Observaciones);?>" alt="">
 												</a>
 											</div>
@@ -144,11 +80,7 @@
 											</div>
 										</article>
 										<!-- /ARTICLE -->
-									</div>
-									<!-- /Column 2 -->
-									
-									<!-- /Column 3 -->
-									<div class="col-md-4 hidden-sm">
+										
 										<!-- ARTICLE -->
 										<article class="article widget-article">
 											<div class="article-img">
@@ -168,7 +100,11 @@
 											</div>
 										</article>
 										<!-- /ARTICLE -->
-										
+									</div>
+									<!-- /Column 1 -->
+									
+									<!-- Column 2 -->
+									<div class="col-md-4 col-sm-6">
 										<!-- ARTICLE -->
 										<article class="article widget-article">
 											<div class="article-img">
@@ -183,6 +119,70 @@
 													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[5]->Bultos);?></li>
 													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[5]->valorDeclarado);?></li>
 													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[5]->CostoFlete);?></li>
+
+												</ul>
+											</div>
+										</article>
+										<!-- /ARTICLE -->
+										
+										<!-- ARTICLE -->
+										<article class="article widget-article">
+											<div class="article-img">
+												<a href="#">
+													<img src="<?php print_r($noticiasPrincipales[6]->Observaciones);?>" alt="">
+												</a>
+											</div>
+											<div class="article-body">
+												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[6]->ClienteOrignen);?></a></h4>
+												<ul class="article-meta">
+													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[6]->Fecha);?> </li>
+													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[6]->Bultos);?></li>
+													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[6]->valorDeclarado);?></li>
+													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[6]->CostoFlete);?></li>
+
+												</ul>
+											</div>
+										</article>
+										<!-- /ARTICLE -->
+									</div>
+									<!-- /Column 2 -->
+									
+									<!-- /Column 3 -->
+									<div class="col-md-4 hidden-sm">
+										<!-- ARTICLE -->
+										<article class="article widget-article">
+											<div class="article-img">
+												<a href="#">
+													<img src="<?php print_r($noticiasPrincipales[7]->Observaciones);?>" alt="">
+												</a>
+											</div>
+											<div class="article-body">
+												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[7]->ClienteOrignen);?></a></h4>
+												<ul class="article-meta">
+													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[7]->Fecha);?> </li>
+													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[7]->Bultos);?></li>
+													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[7]->valorDeclarado);?></li>
+													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[7]->CostoFlete);?></li>
+
+												</ul>
+											</div>
+										</article>
+										<!-- /ARTICLE -->
+										
+										<!-- ARTICLE -->
+										<article class="article widget-article">
+											<div class="article-img">
+												<a href="#">
+													<img src="<?php print_r($noticiasPrincipales[8]->Observaciones);?>" alt="">
+												</a>
+											</div>
+											<div class="article-body">
+												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[8]->ClienteOrignen);?></a></h4>
+												<ul class="article-meta">
+													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[8]->Fecha);?> </li>
+													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[8]->Bultos);?></li>
+													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[8]->valorDeclarado);?></li>
+													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[8]->CostoFlete);?></li>
 
 												</ul>
 											</div>
@@ -218,61 +218,57 @@
 							<!-- section title -->
 							<div class="col-md-12">
 								<div class="section-title">
-									<h2 class="title">Policiales</h2>
+									<h2 class="title">Mas Populares</h2>
 								</div>
 							</div>
 							<!-- /section title -->
-							
-							<!-- Column 1 -->
-							<div class="col-md-6 col-sm-6">
+								<div class="col-md-6 col-sm-6">
 								<!-- ARTICLE -->
 								<article class="article">
 									<div class="article-img">
 										<a href="#">
-											<img src="http://www.quepasasalta.com.ar/files/image/53/53108/5adddc4d64aa6.png" alt="">
+											<img src="<?php print_r($resumenNoticias[0]->Observaciones);?>" alt="">
 										</a>
 										<ul class="article-info">
 											<li class="article-type"><i class="fa fa-camera"></i></li>
 										</ul>
 									</div>
 									<div class="article-body">
-										<h3 class="article-title"><a href="#">La Policía y AFIP allanan los boliches La Roka, Salón y otros 6 domicilios: ¿Qué buscan?</a></h3>
+										<h3 class="article-title"><a href="#"><?php print_r($resumenNoticias[0]->ClienteOrignen);?></a></h3>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> Abril 24, 2018</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-																						<li><i class="fa fa-thumbs-up icon"></i> 2</li>
-											<li><i class="fa fa-thumbs-down icon"></i> 4</li>
+											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[8]->Fecha);?></li>
+											<li><i class="fa fa-comments"></i> <?php print_r($resumenNoticias[0]->Bultos);?></li>
+											<li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[0]->valorDeclarado);?></li>
+											<li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[0]->CostoFlete);?></li>
 
 										</ul>
-										<p>Populo tritani laboramus ex mei, no eum iuvaret ceteros euripidis, ne alia sadipscing mei. Te inciderint cotidieque pro, ei iisque docendi qui, ne accommodare theophrastus reprehendunt vel. Et commodo menandri eam.</p>
+										<p><?php print_r($resumenNoticias[0]->ClienteDestino);?></p>
 									</div>
 								</article>
 								<!-- /ARTICLE -->
 							</div>
-							<!-- /Column 1 -->
-							
 							<!-- /Column 2 -->
 							<div class="col-md-6 col-sm-6">
 								<!-- ARTICLE -->
 								<article class="article">
 									<div class="article-img">
 										<a href="#">
-											<img src="http://www.quepasasalta.com.ar/files/image/53/53176/5ade6a04e2e33.jpg" alt="">
+											<img src="<?php print_r($resumenNoticias[1]->Observaciones);?>" alt="">
 										</a>
 										<ul class="article-info">
 											<li class="article-type"><i class="fa fa-camera"></i></li>
 										</ul>
 									</div>
 									<div class="article-body">
-										<h3 class="article-title"><a href="#">Condenaron al hijo de 'Chirete' por amenazar a su ex con una pistola y disparar</a></h3>
+										<h3 class="article-title"><a href="#"><?php print_r($resumenNoticias[1]->ClienteOrignen);?></a></h3>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> Abril 24, 2018</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-																						<li><i class="fa fa-thumbs-up icon"></i> 2</li>
-											<li><i class="fa fa-thumbs-down icon"></i> 4</li>
+											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[8]->Fecha);?></li>
+											<li><i class="fa fa-comments"></i> <?php print_r($resumenNoticias[1]->Bultos);?></li>
+											<li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[1]->valorDeclarado);?></li>
+											<li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[1]->CostoFlete);?></li>
 
 										</ul>
-										<p>Populo tritani laboramus ex mei, no eum iuvaret ceteros euripidis, ne alia sadipscing mei. Te inciderint cotidieque pro, ei iisque docendi qui, ne accommodare theophrastus reprehendunt vel. Et commodo menandri eam.</p>
+										<p><?php print_r($resumenNoticias[1]->ClienteDestino);?></p>
 									</div>
 								</article>
 								<!-- /ARTICLE -->
@@ -289,21 +285,22 @@
 								<article class="article">
 									<div class="article-img">
 										<a href="#">
-											<img src="http://www.quepasasalta.com.ar/files/image/53/53108/5adddc4d64aa6.png" alt="">
+											<img src="<?php print_r($resumenNoticias[2]->Observaciones);?>" alt="">
 										</a>
 										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-file-text"></i></li>
+											<li class="article-type"><i class="fa fa-camera"></i></li>
 										</ul>
 									</div>
 									<div class="article-body">
-										<h4 class="article-title"><a href="#">La Policía y AFIP allanan los boliches La Roka, Salón y otros 6 domicilios: ¿Qué buscan?</a></h4>
+										<h3 class="article-title"><a href="#"><?php print_r($resumenNoticias[2]->ClienteOrignen);?></a></h3>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> Abril 24, 2018</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-																						<li><i class="fa fa-thumbs-up icon"></i> 2</li>
-											<li><i class="fa fa-thumbs-down icon"></i> 4</li>
+											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[8]->Fecha);?></li>
+											<li><i class="fa fa-comments"></i> <?php print_r($resumenNoticias[2]->Bultos);?></li>
+											<li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[2]->valorDeclarado);?></li>
+											<li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[2]->CostoFlete);?></li>
 
 										</ul>
+										
 									</div>
 								</article>
 								<!-- /ARTICLE -->
@@ -316,21 +313,22 @@
 								<article class="article">
 									<div class="article-img">
 										<a href="#">
-											<img src="http://www.quepasasalta.com.ar/files/image/53/53187/5ade8c577b5eb.jpg" alt="">
+											<img src="<?php print_r($resumenNoticias[3]->Observaciones);?>" alt="">
 										</a>
 										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-file-text"></i></li>
+											<li class="article-type"><i class="fa fa-camera"></i></li>
 										</ul>
 									</div>
 									<div class="article-body">
-										<h4 class="article-title"><a href="#">La lluvia se convirtió en diluvio y provocó un desastre en El Galpón y Metán</a></h4>
+										<h3 class="article-title"><a href="#"><?php print_r($resumenNoticias[3]->ClienteOrignen);?></a></h3>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> Abril 24, 2018</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-																						<li><i class="fa fa-thumbs-up icon"></i> 2</li>
-											<li><i class="fa fa-thumbs-down icon"></i> 4</li>
+											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[3]->Fecha);?></li>
+											<li><i class="fa fa-comments"></i> <?php print_r($resumenNoticias[3]->Bultos);?></li>
+											<li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[3]->valorDeclarado);?></li>
+											<li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[3]->CostoFlete);?></li>
 
 										</ul>
+										
 									</div>
 								</article>
 								<!-- /ARTICLE -->
@@ -343,21 +341,22 @@
 								<article class="article">
 									<div class="article-img">
 										<a href="#">
-											<img src="http://www.quepasasalta.com.ar/files/image/53/53176/5ade6a04e2e33.jpg" alt="">
+											<img src="<?php print_r($resumenNoticias[4]->Observaciones);?>" alt="">
 										</a>
 										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-file-text"></i></li>
+											<li class="article-type"><i class="fa fa-camera"></i></li>
 										</ul>
 									</div>
 									<div class="article-body">
-										<h4 class="article-title"><a href="#">Condenaron al hijo de 'Chirete' por amenazar a su ex con una pistola y disparar</a></h4>
+										<h3 class="article-title"><a href="#"><?php print_r($resumenNoticias[4]->ClienteOrignen);?></a></h3>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> Abril 24, 2018</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-																						<li><i class="fa fa-thumbs-up icon"></i> 2</li>
-											<li><i class="fa fa-thumbs-down icon"></i> 4</li>
+											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[4]->Fecha);?></li>
+											<li><i class="fa fa-comments"></i> <?php print_r($resumenNoticias[4]->Bultos);?></li>
+											<li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[4]->valorDeclarado);?></li>
+											<li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[4]->CostoFlete);?></li>
 
 										</ul>
+										
 									</div>
 								</article>
 								<!-- /ARTICLE -->

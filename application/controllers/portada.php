@@ -23,8 +23,13 @@ class Portada extends CI_Controller {
     list($dia, $mes, $ano) = explode("-", $hoy);
     $lafecha = $ano."-".$mes."-".$dia;
     $data['noticiasPrincipales'] = $this->pedido->getPedidoPedientes();
-    $data['noticiasMasLeidas'] = $this->pedido->getPedidoPedientes();
-    $data['resumenNoticias'] = $this->pedido->getPedidoPedientes();
+    $data['noticiasMasLeidas'] = $this->pedido->getNoticiasMasLeidas();
+    $data['resumenNoticias'] = $this->pedido->getNoticiasMasPopulares();
+
+    $zona_horaria = "-3"; //Para argentina, la zona horaria es GMT-3
+    $formato = "d M Y"; //El formato de tu fecha. Checa en http://www.php.net/date
+    $fecha = gmdate($formato,time()+($zona_horaria*3600));
+    $data['fechaActual'] = $fecha;  
     $this->layout->view('portada_view', $data);
   }
 

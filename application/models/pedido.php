@@ -13,9 +13,9 @@ class Pedido extends CI_Model {
 		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
 		$data = array(
 			'Fecha' => $ano."-".$mes."-".$dia,
-			'ClienteOrignen' => strtoupper($this->input->post('ClienteOrigen')),		
+			'ClienteOrignen' => $this->input->post('ClienteOrigen'),		
 			'Bultos' => $this->input->post('Bultos'),
-			'ClienteDestino' => strtoupper($this->input->post('ClienteDestino')),
+			'ClienteDestino' => $this->input->post('ClienteDestino'),
 			'valorDeclarado' => $this->input->post('valorDeclarado'),
 			'Contrareembolso' => $this->input->post('Contrareembolso'),
 			'CostoFlete' => $this->input->post('CostoFlete'),
@@ -28,10 +28,25 @@ class Pedido extends CI_Model {
 	
 	function getPedidoPedientes(){
 		$this -> db -> from('pedidos');
+		$this -> db-> order_by('Fecha desc');
 		$query = $this -> db -> get();
 		return $query->result();
 	}
 	
+	function getNoticiasMasLeidas(){
+		$this -> db -> from('pedidos');
+		$this -> db-> order_by('Bultos desc');
+		$query = $this -> db -> get();
+		return $query->result();
+	}
+
+	function getNoticiasMasPopulares(){
+		$this -> db -> from('pedidos');
+		$this -> db-> order_by('valorDeclarado desc');
+		$query = $this -> db -> get();
+		return $query->result();
+	}
+
 	function delPedido($identificador){
 		return $this->db->delete('pedidos', array('Numero' => $identificador));
 	}
@@ -62,9 +77,9 @@ class Pedido extends CI_Model {
 		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
 		$data = array(
 			'Fecha' => $ano."-".$mes."-".$dia,
-			'ClienteOrignen' => strtoupper($this->input->post('ClienteOrigen')),		
+			'ClienteOrignen' => $this->input->post('ClienteOrigen'),		
 			'Bultos' => $this->input->post('Bultos'),
-			'ClienteDestino' => strtoupper($this->input->post('ClienteDestino')),
+			'ClienteDestino' => $this->input->post('ClienteDestino'),
 			'valorDeclarado' => $this->input->post('valorDeclarado'),
 			'Contrareembolso' => $this->input->post('Contrareembolso'),
 			'CostoFlete' => $this->input->post('CostoFlete'),
