@@ -4,7 +4,7 @@ class Pedientes extends CI_Controller
 	public function __construct()
 	{
 		parent:: __construct();
-		$this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
+		$this->layout->placeholder("title", "Sistema de Gestion de Contenido");
 		$this->load->spark('markdown-extra/0.0.0');
 		$this->load->model('pedido','',TRUE);
 	}

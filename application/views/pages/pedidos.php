@@ -34,6 +34,13 @@ $(document).ready(function(){
 			guardar.push(($(this).attr('id').split('-')[1]));
 		}
 	});
+	$('#contenido').click(function(){
+		var idNoticia = $('input:checked:first').attr('id');
+		var $aux = $("form:first")
+        $aux.attr('action',"<?=base_url()?>index.php/contenidos/index/"+idNoticia);
+        $aux.submit();
+	});
+
 	$('#guardar').click(function(){
 		var agrego = $("#tablaCliente").attr("xagregar");
 		for (i = 0; i < guardar.length; i++)
@@ -94,19 +101,6 @@ $(document).ready(function(){
 		}
 	});
 
-	/*$('.tab').focusout(function(){
-		var elem = $("#"+$(this).attr('id')).val();
-		var donde = "#"+$(this).attr('id');
-		$.ajax({
-		       type: "POST",
-		       url: "<?=base_url()?>index.php/cheques/getCliente/"+elem,
-		       dataType:'json',
-		       success: function(response){
-		    		$(donde).val(response[0].Nombre);
-		       }
-		});
-	});*/
-
 	$('#eliminar').click(function(){
 		$('input:checked').each(function() {
 		    var elem = $(this).attr('id');
@@ -147,6 +141,7 @@ $(document).ready(function(){
 
 	<!--  <button type="button" id="agregar" class="btn btn-success">Agregar</button>-->
 	<button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
+	<button type="button" id="contenido" class="btn btn-success">Contenido</button>
 	<button type="button" id="guardar" class="btn btn-primary">Guardar</button>
 	<br> <br>
 	<dir id="pedidos"></dir>

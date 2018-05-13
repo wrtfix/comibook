@@ -9,10 +9,12 @@ class Imprimir extends CI_Controller
 		$this->load->model('gasto','',TRUE);
 		$this->load->model('cheque','',TRUE);
 		$this->load->spark('markdown-extra/0.0.0');
+		$this->load->helper(array('form', 'url'));
 	}
 
 	public function index($nombre=null,$fechaDesde=null,$fechaHasta=null)
 	{
+		
 		if($this->session->userdata('logged_in'))
 		{
 			$this->load->library('form_validation');
@@ -195,5 +197,26 @@ class Imprimir extends CI_Controller
 		}
 	}
 	
+	public function do_upload()
+    {
+            $config['upload_path']          = './uploads/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 100;
+            $config['max_width']            = 1024;
+            $config['max_height']           = 768;
+            $data['page'] = 'imprimir';
+            $this->load->library('upload', $config);
+            if ( ! $this->upload->do_upload('userfile'))
+            {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->layout->view('pages/imprimir', $error);
+            }
+            else
+            {
+                    $data = array('upload_data' => $this->upload->data());
+                    $data['results'] = $data;
+                    $this->layout->view('pages/imprimir', $data);
+            }
+    }
 
 }
