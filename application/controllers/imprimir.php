@@ -213,8 +213,7 @@ class Imprimir extends CI_Controller
             }
             else
             {
-                    $data = array('upload_data' => $this->upload->data());
-                    $data['results'] = $data;
+                    $data['results'] = $this->upload->data();
                     $this->layout->view('pages/imprimir', $data);
             }
     }

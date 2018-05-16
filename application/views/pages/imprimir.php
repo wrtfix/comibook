@@ -14,7 +14,7 @@
 <div class="alert alert-dismissable alert-success">
 	<button type="button" class="close" data-dismiss="alert">×</button>
 	<strong>Exito</strong>
-	<?php print_r($results);?>
+	<?php echo base_url().'uploads/'; print_r($results['file_name']);?>
 </div>
 <?php }?>
 

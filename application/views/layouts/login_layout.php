@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="<?=base_url()?>estilo/admin/font-awesome/css/font-awesome.min.css">
 
     <!-- Page Specific CSS -->
-    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
     <script src="<?=base_url()?>estilo/admin/js/jquery-1.10.2.js"></script>
     <script src="<?=base_url()?>estilo/admin/js/bootstrap.js"></script>
     

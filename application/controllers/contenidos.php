@@ -6,6 +6,7 @@ class Contenidos extends CI_Controller
 		parent:: __construct();
 		$this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
 		$this->load->model('contenido','',TRUE);
+		$this->load->model('gasto','',TRUE);
 		$this->load->spark('markdown-extra/0.0.0');
 	}
 
@@ -16,6 +17,8 @@ class Contenidos extends CI_Controller
 			$this->load->library('form_validation');
 			$data['page'] = 'contenido';
 			$data['agregados'] = $this->contenido->getContenido($idNoticia);
+			$data['menu'] = $this->gasto->getGastos();
+			$data['idNoticia'] = $idNoticia;
 			$this->layout->view('pages/contenido', $data);
 		}else
 		{
@@ -29,17 +32,19 @@ class Contenidos extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$this->load->library('form_validation');
-		 	$this->form_validation->set_rules('numero','numero','required|numeric');
-		   	$this->form_validation->set_rules('nombre','nombre','required');
-			
+			$this->form_validation->set_rules('contenido','contenido','required');
+			$this->form_validation->set_rules('idNoticia','idNoticia','required');
 	  		if ($this->form_validation->run() == FALSE) {
 	  			$this->output->set_status_header('400'); //Triggers the jQuery error callback
 	        } else {
-				$result = $this->cliente->addCliente();
+	        	$menuItems = $this->gasto->getGastos();
+                        $result = $this->contenido->addContenido();
+                        $result = $this->contenido->addRContenidoMenu($menuItems);
+                        $data['menu'] = $menuItems;
 	        }
-			$data['page'] = 'clientes';
-			$data['agregados'] =  $this->cliente->getClientes();
-			$this->layout->view('pages/clientes', $data);
+                $data['page'] = 'contenido';
+                $data['idNoticia'] = $this->input->post('idNoticia');
+                $this->layout->view('pages/contenido', $data);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);

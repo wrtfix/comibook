@@ -23,13 +23,13 @@ $(document).ready(function(){
 	
 	$("#titulo").append("Noticias del " + fecha);
 
-	$('.formulario').keypress(function(){
+	$('.formulario').blur(function(){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
 			cambios.push(($(this).attr('id').split('-')[1]));
 		}
 	});
 	
-	$('.guardar').keypress(function(){
+	$('.guardar').blur(function(){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), guardar )==-1){
 			guardar.push(($(this).attr('id').split('-')[1]));
 		}
@@ -162,7 +162,7 @@ $(document).ready(function(){
 			</thead>
 			<tbody>
 
-				<?php $cont=0; foreach($agregados as $item): $cont=$cont+1;?>
+				<?php $cont=0; foreach($agregados as $item): $cont++;?>
 				<tr>
 					<td><input type="checkbox" class="selec" id="<?php print_r($item->Numero);?>" value=""></td>
 					<td><input class="formulario tab" id="ClienteOrigen-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteOrignen);?>'/></td>

@@ -16,6 +16,23 @@ class Contenido extends CI_Model {
 		);
 		return $this->db->insert('contenido', $data);
 	}
+
+	function addRContenidoMenu($menuItems)
+	{
+		foreach($menuItems as $item) :
+                        $nose = $item->idGasto;
+                        $value =$this->input->post($nose);
+			if (!empty($value)){
+                            $data = array(
+                                    'idNoticia' => $this->input->post('idNoticia'),	
+                                    'idMenu' => $item->idGasto
+                            );		
+				$this->db->insert('rContenidoMenu', $data);
+			}
+		endforeach;
+
+		return true;
+	}
 		
 	function getContenido($idNoticia){
 		$this -> db -> from('contenido');

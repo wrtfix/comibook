@@ -26,22 +26,43 @@ class Pedido extends CI_Model {
 		return $this->db->insert('pedidos', $data);
 	}
 	
-	function getPedidoPedientes(){
-		$this -> db -> from('pedidos');
-		$this -> db-> order_by('Fecha desc');
-		$query = $this -> db -> get();
-		return $query->result();
+        function getPedidoPedientes($filter=null){
+            if ($filter==null){
+                $this -> db -> from('pedidos');
+                $this -> db-> order_by('numero desc');
+            }else{
+                $this->db->select('*')
+                ->from('pedidos')
+                ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
+                ->where('rContenidoMenu.idMenu ='.$filter);
+            }
+            $query = $this -> db -> get();
+            return $query->result();
 	}
-	
-	function getNoticiasMasLeidas(){
-		$this -> db -> from('pedidos');
-		$this -> db-> order_by('Bultos desc');
-		$query = $this -> db -> get();
-		return $query->result();
+        
+	function getNoticiasMasLeidas($filter=null){
+            if ($filter==null){
+                $this -> db -> from('pedidos');
+            }else{
+                $this->db->select('*')
+                ->from('pedidos')
+                ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
+                ->where('rContenidoMenu.idMenu ='.$filter);
+            }
+            $this -> db-> order_by('Bultos desc');
+            $query = $this -> db -> get();
+            return $query->result();
 	}
 
-	function getNoticiasMasPopulares(){
-		$this -> db -> from('pedidos');
+	function getNoticiasMasPopulares($filter=null){
+		if ($filter==null){
+                    $this -> db -> from('pedidos');
+                }else{
+                    $this->db->select('*')
+                    ->from('pedidos')
+                    ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
+                    ->where('rContenidoMenu.idMenu ='.$filter);
+                }
 		$this -> db-> order_by('valorDeclarado desc');
 		$query = $this -> db -> get();
 		return $query->result();

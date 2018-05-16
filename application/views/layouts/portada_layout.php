@@ -115,8 +115,9 @@
 							<a href="#" class="logo"><img src="<?=base_url()?>estilo/login/img/logo-alt.png" alt=""></a>
 						</div>
 						<ul class="main-nav nav navbar-nav">
-						<?php $cont=0; foreach($menu as $item): $cont=$cont+1;?>                  
-							<li><a href="#"><?php print_r($item->nombre);?></a></li>
+                                                    <li><a href="<?=base_url()?>">Portada</a></li>
+						<?php foreach($menu as $item): ?>                  
+							<li><a href="<?=base_url()?>index.php/portada/index/<?php print_r($item->idGasto);?>"><?php print_r($item->nombre);?></a></li>
 						<?php endforeach; ?>
 						</ul>
 					</nav>

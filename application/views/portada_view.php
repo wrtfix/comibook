@@ -1,7 +1,7 @@
 	<!-- SECTION -->
 		<div class="section">
 				<div class="visible-lg visible-md">
-					<img class="center-block" src="<?=base_url()?>estilo/login/img/ad-3.jpg" alt="">
+					<img class="center-block" src="<?php base_url()?>estilo/login/img/ad-3.jpg" alt="">
 				</div>
 				<br>
 			<!-- CONTAINER -->
@@ -28,7 +28,7 @@
 							<div id="tab1" class="tab-pane fade in active">
 								<!-- row -->
 								<div class="row">
-									<? for($cont = 0; $cont < 4; ++$cont) { ?>                  
+									<?php $cont = 0; while( $cont < 4 && $cont < count($noticiasPrincipales)) { ?>                  
 										<div class="col-md-3 col-sm-6">
 											<!-- ARTICLE -->
 											<article class="article">
@@ -44,7 +44,7 @@
 													<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen);?></a></h4>
 													<ul class="article-meta">
 														<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[$cont]->Fecha);?> </li>
-														<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos);?></li>
+														<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos);?></li>
 														<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->valorDeclarado);?></li>
 														<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->CostoFlete);?></li>
 
@@ -53,15 +53,17 @@
 											</article>
 											<!-- /ARTICLE -->
 										</div>
-									<? } ?>
+									<?php $cont++; } ?>
 								</div>
 								<!-- /row -->
 								
 								<!-- row -->
+
 								<div class="row">
 									<!-- Column 1 -->
 									<div class="col-md-4 col-sm-6">
 										<!-- ARTICLE -->
+										<?php if (3 < count($noticiasPrincipales)) { ?>
 										<article class="article widget-article">
 											<div class="article-img">
 												<a href="#">
@@ -72,16 +74,18 @@
 												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[3]->ClienteOrignen);?></a></h4>
 												<ul class="article-meta">
 													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[3]->Fecha);?> </li>
-													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[3]->Bultos);?></li>
+													<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[3]->Bultos);?></li>
 													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[3]->valorDeclarado);?></li>
 													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[3]->CostoFlete);?></li>
 
 												</ul>
 											</div>
 										</article>
+										<?php } ?>
 										<!-- /ARTICLE -->
 										
 										<!-- ARTICLE -->
+										<?php if (4 < count($noticiasPrincipales)) { ?>
 										<article class="article widget-article">
 											<div class="article-img">
 												<a href="#">
@@ -92,13 +96,14 @@
 												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[4]->ClienteOrignen);?></a></h4>
 												<ul class="article-meta">
 													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[4]->Fecha);?> </li>
-													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[4]->Bultos);?></li>
+													<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[4]->Bultos);?></li>
 													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[4]->valorDeclarado);?></li>
 													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[4]->CostoFlete);?></li>
 
 												</ul>
 											</div>
 										</article>
+										<?php } ?>
 										<!-- /ARTICLE -->
 									</div>
 									<!-- /Column 1 -->
@@ -106,6 +111,7 @@
 									<!-- Column 2 -->
 									<div class="col-md-4 col-sm-6">
 										<!-- ARTICLE -->
+										<?php if (5 < count($noticiasPrincipales)) { ?>
 										<article class="article widget-article">
 											<div class="article-img">
 												<a href="#">
@@ -116,7 +122,7 @@
 												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[5]->ClienteOrignen);?></a></h4>
 												<ul class="article-meta">
 													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[5]->Fecha);?> </li>
-													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[5]->Bultos);?></li>
+													<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[5]->Bultos);?></li>
 													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[5]->valorDeclarado);?></li>
 													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[5]->CostoFlete);?></li>
 
@@ -124,7 +130,7 @@
 											</div>
 										</article>
 										<!-- /ARTICLE -->
-										
+										<?php } if (6 < count($noticiasPrincipales)) { ?>
 										<!-- ARTICLE -->
 										<article class="article widget-article">
 											<div class="article-img">
@@ -136,7 +142,7 @@
 												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[6]->ClienteOrignen);?></a></h4>
 												<ul class="article-meta">
 													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[6]->Fecha);?> </li>
-													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[6]->Bultos);?></li>
+													<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[6]->Bultos);?></li>
 													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[6]->valorDeclarado);?></li>
 													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[6]->CostoFlete);?></li>
 
@@ -148,6 +154,7 @@
 									<!-- /Column 2 -->
 									
 									<!-- /Column 3 -->
+									<?php } if (7 < count($noticiasPrincipales)) { ?>
 									<div class="col-md-4 hidden-sm">
 										<!-- ARTICLE -->
 										<article class="article widget-article">
@@ -160,7 +167,7 @@
 												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[7]->ClienteOrignen);?></a></h4>
 												<ul class="article-meta">
 													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[7]->Fecha);?> </li>
-													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[7]->Bultos);?></li>
+													<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[7]->Bultos);?></li>
 													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[7]->valorDeclarado);?></li>
 													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[7]->CostoFlete);?></li>
 
@@ -170,6 +177,7 @@
 										<!-- /ARTICLE -->
 										
 										<!-- ARTICLE -->
+										<?php } if (8 < count($noticiasPrincipales)) { ?>
 										<article class="article widget-article">
 											<div class="article-img">
 												<a href="#">
@@ -180,13 +188,14 @@
 												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[8]->ClienteOrignen);?></a></h4>
 												<ul class="article-meta">
 													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[8]->Fecha);?> </li>
-													<li><i class="fa fa-comments"></i> <?php print_r($noticiasPrincipales[8]->Bultos);?></li>
+													<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[8]->Bultos);?></li>
 													<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[8]->valorDeclarado);?></li>
 													<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[8]->CostoFlete);?></li>
 
 												</ul>
 											</div>
 										</article>
+										<?php }  ?>
 										<!-- /ARTICLE -->
 									</div>
 									<!-- /Column 3 -->
@@ -224,8 +233,10 @@
 							<!-- /section title -->
 								<div class="col-md-6 col-sm-6">
 								<!-- ARTICLE -->
+								<?php if (0 < count($resumenNoticias)) { ?>
 								<article class="article">
 									<div class="article-img">
+
 										<a href="#">
 											<img src="<?php print_r($resumenNoticias[0]->Observaciones);?>" alt="">
 										</a>
@@ -236,8 +247,8 @@
 									<div class="article-body">
 										<h3 class="article-title"><a href="#"><?php print_r($resumenNoticias[0]->ClienteOrignen);?></a></h3>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[8]->Fecha);?></li>
-											<li><i class="fa fa-comments"></i> <?php print_r($resumenNoticias[0]->Bultos);?></li>
+											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[0]->Fecha);?></li>
+											<li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[0]->Bultos);?></li>
 											<li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[0]->valorDeclarado);?></li>
 											<li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[0]->CostoFlete);?></li>
 
@@ -245,6 +256,7 @@
 										<p><?php print_r($resumenNoticias[0]->ClienteDestino);?></p>
 									</div>
 								</article>
+								<?php } if (1 < count($resumenNoticias)) { ?>
 								<!-- /ARTICLE -->
 							</div>
 							<!-- /Column 2 -->
@@ -262,8 +274,8 @@
 									<div class="article-body">
 										<h3 class="article-title"><a href="#"><?php print_r($resumenNoticias[1]->ClienteOrignen);?></a></h3>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[8]->Fecha);?></li>
-											<li><i class="fa fa-comments"></i> <?php print_r($resumenNoticias[1]->Bultos);?></li>
+											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[1]->Fecha);?></li>
+											<li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[1]->Bultos);?></li>
 											<li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[1]->valorDeclarado);?></li>
 											<li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[1]->CostoFlete);?></li>
 
@@ -282,6 +294,7 @@
 							<!-- Column 1 -->
 							<div class="col-md-4 col-sm-4">
 								<!-- ARTICLE -->
+								<?php } if (2 < count($resumenNoticias)) { ?>
 								<article class="article">
 									<div class="article-img">
 										<a href="#">
@@ -294,8 +307,8 @@
 									<div class="article-body">
 										<h3 class="article-title"><a href="#"><?php print_r($resumenNoticias[2]->ClienteOrignen);?></a></h3>
 										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[8]->Fecha);?></li>
-											<li><i class="fa fa-comments"></i> <?php print_r($resumenNoticias[2]->Bultos);?></li>
+											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[2]->Fecha);?></li>
+											<li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[2]->Bultos);?></li>
 											<li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[2]->valorDeclarado);?></li>
 											<li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[2]->CostoFlete);?></li>
 
@@ -308,6 +321,7 @@
 							<!-- /Column 1 -->
 							
 							<!-- Column 2 -->
+							<?php } if (3 < count($resumenNoticias)) { ?>
 							<div class="col-md-4 col-sm-4">
 								<!-- ARTICLE -->
 								<article class="article">
@@ -323,7 +337,7 @@
 										<h3 class="article-title"><a href="#"><?php print_r($resumenNoticias[3]->ClienteOrignen);?></a></h3>
 										<ul class="article-meta">
 											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[3]->Fecha);?></li>
-											<li><i class="fa fa-comments"></i> <?php print_r($resumenNoticias[3]->Bultos);?></li>
+											<li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[3]->Bultos);?></li>
 											<li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[3]->valorDeclarado);?></li>
 											<li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[3]->CostoFlete);?></li>
 
@@ -336,6 +350,7 @@
 							<!-- /Column 2 -->
 							
 							<!-- Column 3 -->
+							<?php } if (4 < count($resumenNoticias)) { ?>
 							<div class="col-md-4 col-sm-4">
 								<!-- ARTICLE -->
 								<article class="article">
@@ -351,7 +366,7 @@
 										<h3 class="article-title"><a href="#"><?php print_r($resumenNoticias[4]->ClienteOrignen);?></a></h3>
 										<ul class="article-meta">
 											<li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[4]->Fecha);?></li>
-											<li><i class="fa fa-comments"></i> <?php print_r($resumenNoticias[4]->Bultos);?></li>
+											<li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[4]->Bultos);?></li>
 											<li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[4]->valorDeclarado);?></li>
 											<li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[4]->CostoFlete);?></li>
 
@@ -359,6 +374,7 @@
 										
 									</div>
 								</article>
+								<?php } ?>
 								<!-- /ARTICLE -->
 							</div>
 							<!-- /Column 3 -->
@@ -395,7 +411,7 @@
 							
 							<!-- ARTICLE -->
 							
-							<? for($cont = 0; $cont < 4; ++$cont) { ?>
+							<?php $cont = 0; while($cont < count($noticiasMasLeidas) && $cont < 4) { ?>          
 							<article class="article widget-article">
 										<div class="article-img">
 											<a href="#">
@@ -406,14 +422,14 @@
 											<h4 class="article-title"><a href="post.html"><?php print_r($noticiasMasLeidas[$cont]->ClienteOrignen);?></a></h4>
 											<ul class="article-meta">
 												<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasMasLeidas[$cont]->Fecha);?> </li>
-												<li><i class="fa fa-comments"></i> <?php print_r($noticiasMasLeidas[$cont]->Bultos);?></li>
+												<li><i class="fa fa-fire"></i> <?php print_r($noticiasMasLeidas[$cont]->Bultos);?></li>
 												<li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasMasLeidas[$cont]->valorDeclarado);?></li>
 												<li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasMasLeidas[$cont]->CostoFlete);?></li>
 
 											</ul>
 										</div>
 									</article>
-							<? } ?>
+							<?php $cont++; } ?>
 							<!-- /ARTICLE -->
 						</div>
 						<!-- /article widget -->

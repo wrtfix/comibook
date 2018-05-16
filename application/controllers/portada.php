@@ -13,7 +13,7 @@ class Portada extends CI_Controller {
   }
 
 
-  function index()
+  function index($filter=null)
   {
     $this->load->helper('form');
     $data['page'] = 'portada_view';
@@ -22,10 +22,10 @@ class Portada extends CI_Controller {
     $hoy = date("Y-m-d");
     list($dia, $mes, $ano) = explode("-", $hoy);
     $lafecha = $ano."-".$mes."-".$dia;
-    $data['noticiasPrincipales'] = $this->pedido->getPedidoPedientes();
-    $data['noticiasMasLeidas'] = $this->pedido->getNoticiasMasLeidas();
-    $data['resumenNoticias'] = $this->pedido->getNoticiasMasPopulares();
-
+    $data['noticiasPrincipales'] = $this->pedido->getPedidoPedientes($filter);
+    $data['noticiasMasLeidas'] = $this->pedido->getNoticiasMasLeidas($filter);
+    $data['resumenNoticias'] = $this->pedido->getNoticiasMasPopulares($filter);
+    
     $zona_horaria = "-3"; //Para argentina, la zona horaria es GMT-3
     $formato = "d M Y"; //El formato de tu fecha. Checa en http://www.php.net/date
     $fecha = gmdate($formato,time()+($zona_horaria*3600));
