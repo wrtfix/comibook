@@ -35,10 +35,13 @@ class Contenido extends CI_Model {
 	}
 		
 	function getContenido($idNoticia){
-		$this -> db -> from('contenido');
-		$this->db->where('idNoticia', $idNoticia);
-		$query = $this -> db -> get();
-		return $query->result();
+            $this->db->select('*');    
+            $this->db->from('rContenidoMenu');
+            $this->db->join('contenido', 'rContenidoMenu.idNoticia = contenido.idNoticia');
+            $this->db->join('pedidos', 'rContenidoMenu.idNoticia = pedidos.numero');
+            $this->db->where('rContenidoMenu.idNoticia ='.$idNoticia);
+            $query = $this->db->get();
+            return $query->result();
 	}
 	
 	function updateCliente($idContenido){

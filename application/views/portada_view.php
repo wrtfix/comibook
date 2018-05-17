@@ -41,7 +41,7 @@
 													</ul>
 												</div>
 												<div class="article-body">
-													<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen);?></a></h4>
+													<h4 class="article-title"><a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero);?>"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen);?></a></h4>
 													<ul class="article-meta">
 														<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[$cont]->Fecha);?> </li>
 														<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos);?></li>
