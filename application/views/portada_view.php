@@ -66,12 +66,12 @@
 										<?php if (3 < count($noticiasPrincipales)) { ?>
 										<article class="article widget-article">
 											<div class="article-img">
-												<a href="#">
+												<a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[3]->Numero);?>">
 													<img src="<?php print_r($noticiasPrincipales[3]->Observaciones);?>" alt="">
 												</a>
 											</div>
 											<div class="article-body">
-												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[3]->ClienteOrignen);?></a></h4>
+												<h4 class="article-title"><a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[3]->Numero);?>"><?php print_r($noticiasPrincipales[3]->ClienteOrignen);?></a></h4>
 												<ul class="article-meta">
 													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[3]->Fecha);?> </li>
 													<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[3]->Bultos);?></li>
@@ -88,7 +88,7 @@
 										<?php if (4 < count($noticiasPrincipales)) { ?>
 										<article class="article widget-article">
 											<div class="article-img">
-												<a href="#">
+												<a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[4]->Numero);?>">
 													<img src="<?php print_r($noticiasPrincipales[4]->Observaciones);?>" alt="">
 												</a>
 											</div>
@@ -114,7 +114,7 @@
 										<?php if (5 < count($noticiasPrincipales)) { ?>
 										<article class="article widget-article">
 											<div class="article-img">
-												<a href="#">
+												<a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[5]->Numero);?>">
 													<img src="<?php print_r($noticiasPrincipales[5]->Observaciones);?>" alt="">
 												</a>
 											</div>
@@ -134,12 +134,12 @@
 										<!-- ARTICLE -->
 										<article class="article widget-article">
 											<div class="article-img">
-												<a href="#">
+												<a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[6]->Numero);?>">
 													<img src="<?php print_r($noticiasPrincipales[6]->Observaciones);?>" alt="">
 												</a>
 											</div>
 											<div class="article-body">
-												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[6]->ClienteOrignen);?></a></h4>
+												<h4 class="article-title"><a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[6]->Numero);?>"><?php print_r($noticiasPrincipales[6]->ClienteOrignen);?></a></h4>
 												<ul class="article-meta">
 													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[6]->Fecha);?> </li>
 													<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[6]->Bultos);?></li>
@@ -159,12 +159,12 @@
 										<!-- ARTICLE -->
 										<article class="article widget-article">
 											<div class="article-img">
-												<a href="#">
+												<a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[7]->Numero);?>">
 													<img src="<?php print_r($noticiasPrincipales[7]->Observaciones);?>" alt="">
 												</a>
 											</div>
 											<div class="article-body">
-												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[7]->ClienteOrignen);?></a></h4>
+												<h4 class="article-title"><a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[7]->Numero);?>"><?php print_r($noticiasPrincipales[7]->ClienteOrignen);?></a></h4>
 												<ul class="article-meta">
 													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[7]->Fecha);?> </li>
 													<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[7]->Bultos);?></li>
@@ -180,12 +180,12 @@
 										<?php } if (8 < count($noticiasPrincipales)) { ?>
 										<article class="article widget-article">
 											<div class="article-img">
-												<a href="#">
+												<a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[5]->Numero);?>">
 													<img src="<?php print_r($noticiasPrincipales[8]->Observaciones);?>" alt="">
 												</a>
 											</div>
 											<div class="article-body">
-												<h4 class="article-title"><a href="post.html"><?php print_r($noticiasPrincipales[8]->ClienteOrignen);?></a></h4>
+												<h4 class="article-title"><a href="<?=base_url()?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[8]->Numero);?>"><?php print_r($noticiasPrincipales[8]->ClienteOrignen);?></a></h4>
 												<ul class="article-meta">
 													<li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[8]->Fecha);?> </li>
 													<li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[8]->Bultos);?></li>

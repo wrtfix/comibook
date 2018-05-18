@@ -10,6 +10,7 @@ class Portada extends CI_Controller {
     $this->load->model('gasto','',TRUE);
     $this->load->model('pedido','',TRUE);
     $this->load->model('contenido','',TRUE);
+    $this->load->model('comentarios','',TRUE);
 	  $this->layout->setLayout("layouts/portada_layout");
   }
 
@@ -39,11 +40,43 @@ class Portada extends CI_Controller {
   }
 
   function detalle($filter=null){
-      $data = self::getSetters($filter);
-      $data['noticia'] = $this->contenido->getContenido($filter);
+      $this->load->library('form_validation');
+      $data = self::getSetters(null);
+      $data['noticiasRelacionadas'] = $this->pedido->getNoticiasRelacionadas($filter);
+      $this->pedido->updateVisita($filter);
+      $result = $this->contenido->getContenido($filter);
+      $data['idNoticia'] = $filter;
+      $data['noticia'] = $result;
       $data['page'] = 'portada_detalle';
+      $data['comentarios'] = $this->comentarios->getComentarios($filter);
       $this->layout->view('portada_detalle', $data);
   }
+  
+  function addComentario(){
+        $this->load->library('form_validation');
+        $filter = $this->input->post('idNoticia');
+        $data = self::getSetters(null);
+        $data['noticiasRelacionadas'] = $this->pedido->getNoticiasRelacionadas($filter);
+        $result = $this->contenido->getContenido($filter);
+        $fecha = date("Y-m-d");
+        $this->form_validation->set_rules('numero','numero','required|numeric');
+        $this->form_validation->set_rules('comentario','comentario','required');
+        $this->form_validation->set_rules('nombe','nombre','required');
+        $this->form_validation->set_rules('email','email','required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->output->set_status_header('400'); //Triggers the jQuery error callback
+        } else {
+            $this->comentarios->addComentario($fecha);
+            $data['comentarios'] = $this->comentarios->getComentarios($filter);
+            $data['noticia'] = $result;
+            $data['idNoticia'] = $filter;
+            $data['page'] = 'portada_detalle';
+            $this->layout->view('portada_detalle', $data);
+        
+        }
+  }
+  
+  
 }
 
 ?>

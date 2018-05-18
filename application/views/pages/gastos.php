@@ -48,7 +48,7 @@ $(document).ready(function(){
  		$(":checked").parent().parent().remove();
 	});
 
-	$('.formulario').keypress(function(){
+	$('.formulario').blur(function(){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
 			cambios.push(($(this).attr('id').split('-')[1]));
 		}

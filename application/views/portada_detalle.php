@@ -9,9 +9,9 @@
 
 						<!-- breadcrumb -->
 						<ul class="article-breadcrumb">
-							<li><a href="#">Portada</a></li>
-							<li><a href="#">Policiales</a></li>
-							<li>La Policía y AFIP allanan los boliches La Roka, Salón y otros 6 domicilios: ¿Qué buscan?</li>
+							<!--<li><a href="#">Portada</a></li>
+							<li><a href="#">Policiales</a></li>-->
+							<li><?php print_r($noticia[0]->ClienteOrignen);?></li>
 						</ul>
 						<!-- /breadcrumb -->
 					
@@ -25,7 +25,7 @@
 								<img src="<?php print_r($noticia[0]->Observaciones);?>" alt="">
 							</div>
 							<div class="article-body">
-								<h1 class="article-title"><?php print_r($noticia[0]->Contenido);?></h1>
+								<h1 class="article-title"><?php print_r($noticia[0]->ClienteOrignen);?></h1>
 								<ul class="article-meta">
 									<li><i class="fa fa-clock-o"></i> <?php print_r($noticia[0]->Fecha);?></li>
 									<li><i class="fa fa-comments"></i> <?php print_r($noticia[0]->Bultos);?> </li>
@@ -37,12 +37,12 @@
 						<!-- /ARTICLE POST -->
 						
 						<!-- widget tags -->
-						<div class="widget-tags">
+						<!--<div class="widget-tags">
 							<ul>
 								<li><a href="#">Noticia</a></li>
 								<li><a href="#">Policiales</a></li>
 							</ul>
-						</div>
+						</div>-->
 						<!-- /widget tags -->
 						
 						<!-- article comments -->
@@ -52,36 +52,18 @@
 							</div>
 								
 							<!-- comment -->
-							<div class="media">
-								<div class="media-left">
-									<img src="img/av-1.jpg" alt="">
-								</div>
+							<?php foreach ($comentarios as $comentario){ ?>
+                                                        <div class="media">
 								<div class="media-body">
 									<div class="media-heading">
-										<h5>Roberto <span class="reply-time">Agosto 25, 2018 At 9:30 AM</span></h5>
+										<h5><?php print_r($comentario->Nombre) ?> <span class="reply-time"><?php print_r($comentario->Fecha) ?></span></h5>
 									</div>
-									<p>Espero que sea verdad lo que dice.</p>				
-									<a href="#" class="reply-btn">Reply</a>
-								</div>
-								
-							
-							</div>
-							<!-- /comment -->
-							
-							<!-- comment -->
-							<div class="media">
-								<div class="media-left">
-									<img src="img/av-2.jpg" alt="">
-								</div>
-								<div class="media-body">
-									<div class="media-heading">
-										<h5>Estefania <span class="reply-time">Agosto 25, 2018 At 9:31 AM</span></h5>
-									</div>
-									<p>Algo pasaba ahi adentro.</p>				
-									<a href="#" class="reply-btn">Reply</a>
+									<p><?php print_r($comentario->Comentario) ?></p>				
 								</div>
 							</div>
+                                                        <?php } ?>
 							<!-- /comment -->
+							
 						</div>
 						<!-- /article comments -->
 						
@@ -91,11 +73,12 @@
 								<h2 class="title">Dejar mi Comentario</h2>
 							</div>
 								
-							<form>
-								<input class="input" placeholder="Nombre" type="text">
-								<input class="input" placeholder="Email" type="email">
-								<textarea class="input" placeholder="Mensaje"></textarea>
-								<button class="input-btn">Enviar</button>
+							<?php echo form_open('portada/addComentario'); ?>
+								<input class="input" name="nombre" placeholder="Nombre" type="text">
+								<input class="input" name="email" placeholder="Email" type="email">
+                                                                <input class="hidden" name="idNoticia" value="<?php print_r($idNoticia);?>">
+                                                                <textarea class="input" name="comentario" placeholder="Mensaje"></textarea>
+                                                                <button type="submit" class="input-btn">Enviar</button>
 							</form>
 						</div>
 						<!-- /reply form -->
@@ -173,121 +156,4 @@
 		</div>
 		<!-- /AD SECTION -->
 		
-		<!-- SECTION -->
-		<div class="section">
-			<!-- CONTAINER -->
-			<div class="container">
-				<!-- ROW -->
-				<div class="row">
-					<!-- Main Column -->
-					<div class="col-md-12">
-						<!-- section title -->
-						<div class="section-title">
-							<h2 class="title">Relacionados</h2>
-						</div>
-						<!-- /section title -->
-						
-						<!-- row -->
-						<div class="row">
-							<!-- Column 1 -->
-							<div class="col-md-3 col-sm-6">
-								<!-- ARTICLE -->
-								<article class="article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-md-1.jpg" alt="">
-										</a>
-										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-camera"></i></li>
-										</ul>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Gran robo en oficinas del estado.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> Abril 3, 2018</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-							</div>
-							<!-- /Column 1 -->
-							
-							<!-- Column 2 -->
-							<div class="col-md-3 col-sm-6">
-								<!-- ARTICLE -->
-								<article class="article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-md-2.jpg" alt="">
-										</a>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">La peatonal mas segura.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> Abril 1, 2018</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-							</div>
-							<!-- /Column 2 -->
-							
-							<!-- Column 3 -->
-							<div class="col-md-3 col-sm-6">
-								<!-- ARTICLE -->
-								<article class="article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-md-3.jpg" alt="">
-										</a>
-										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-file-text"></i></li>
-										</ul>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Desapaerecio joven en cafayate.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> Abril 5, 2018</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-							</div>
-							<!-- /Column 3 -->
-							
-							<!-- Column 4 -->
-							<div class="col-md-3 col-sm-6">
-								<!-- ARTICLE -->
-								<article class="article">
-									<div class="article-img">
-										<a href="#">
-											<img src="./img/img-md-4.jpg" alt="">
-										</a>
-										<ul class="article-info">
-											<li class="article-type"><i class="fa fa-file-text"></i></li>
-										</ul>
-									</div>
-									<div class="article-body">
-										<h4 class="article-title"><a href="#">Reclaman mayor seguridad en dakart.</a></h4>
-										<ul class="article-meta">
-											<li><i class="fa fa-clock-o"></i> January 31, 2017</li>
-											<li><i class="fa fa-comments"></i> 33</li>
-										</ul>
-									</div>
-								</article>
-								<!-- /ARTICLE -->
-							</div>
-							<!-- Column 4 -->
-						</div>
-						<!-- /row -->
-					</div>
-					<!-- /Main Column -->
-				</div>
-				<!-- /ROW -->
-			</div>
-			<!-- /CONTAINER -->
-		</div>
-		<!-- /SECTION -->
+		

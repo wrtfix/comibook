@@ -67,6 +67,18 @@ class Pedido extends CI_Model {
 		$query = $this -> db -> get();
 		return $query->result();
 	}
+        
+        function getNoticiasRelacionadas($filter=null){
+		
+                $this->db->select('*')
+                ->from('pedidos')
+                ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
+                ->where('rContenidoMenu.idMenu ='.$filter);
+		
+		$query = $this -> db -> get();
+		return $query->result();
+	}
+
 
 	function delPedido($identificador){
 		return $this->db->delete('pedidos', array('Numero' => $identificador));
@@ -111,6 +123,10 @@ class Pedido extends CI_Model {
         return $this->db->update('pedidos', $data);
 	}
 	
+        function updateVisita($idNoticia){
+            return $this->db->query('UPDATE pedidos SET Bultos = Bultos + 1 where numero ='.$idNoticia);
+	}
+        
 	
 }
 ?>

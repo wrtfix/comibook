@@ -27,11 +27,16 @@ class Contenido extends CI_Model {
                                     'idNoticia' => $this->input->post('idNoticia'),	
                                     'idMenu' => $item->idGasto
                             );		
-				$this->db->insert('rContenidoMenu', $data);
+			$this->db->insert('rContenidoMenu', $data);
 			}
 		endforeach;
 
 		return true;
+	}
+        
+        function deleteRContenidoMenu($idNoticia)
+	{
+            return $this->db->delete('rContenidoMenu', array('idNoticia' => $idNoticia));
 	}
 		
 	function getContenido($idNoticia){
@@ -41,15 +46,34 @@ class Contenido extends CI_Model {
             $this->db->join('pedidos', 'rContenidoMenu.idNoticia = pedidos.numero');
             $this->db->where('rContenidoMenu.idNoticia ='.$idNoticia);
             $query = $this->db->get();
+            $result = $query->result();
+            //print_r($this->db->last_query());
+            return $result;
+	}
+        
+        function getContenidoNoticia($idNoticia){
+            $this->db->select('*');    
+            $this->db->from('contenido');
+            $this->db->where('contenido.idNoticia ='.$idNoticia);
+            $query = $this->db->get();
             return $query->result();
 	}
-	
-	function updateCliente($idContenido){
-		$data = array(
-			'Contenido' => $this->input->post('contenido')
-		);
-		$this->db->where('id', $idContenido);
-        return $this->db->update('clientes', $data);
+        
+        function getItemMenu($idNoticia){
+            $this->db->select('*');    
+            $this->db->from('gastos');
+            $this->db->join('(SELECT * from rContenidoMenu WHERE rContenidoMenu.idNoticia ='.$idNoticia.') AS B','B.idMenu = gastos.idGasto','left outer');
+            $query = $this->db->get();
+            $result = $query->result();
+            return $result;
+	}
+        
+        function update(){
+            $data = array(
+                    'Contenido' => $this->input->post('contenido')
+            );
+            $this->db->where('idContenido', $this->input->post('idContenido'));
+            return $this->db->update('contenido', $data);
 	}
 }
 ?>
