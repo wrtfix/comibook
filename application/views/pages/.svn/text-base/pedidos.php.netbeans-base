@@ -16,36 +16,24 @@ $(function() {
 
 $(document).ready(function(){
 
-	var fecha= '<?php if ($fechaSeleccionada!=null) echo $fechaSeleccionada; ?>';
+	var fecha= '<?if ($fechaSeleccionada!=null)echo $fechaSeleccionada?>';
 	if (fecha==''){
 		fecha = $("#datepicker").val();
 	}
 	
-	$("#titulo").append("Noticias del " + fecha);
+	$("#titulo").append("Pedidos del " + fecha);
 
-	$('.formulario').blur(function(){
+	$('.formulario').keypress(function(){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
 			cambios.push(($(this).attr('id').split('-')[1]));
 		}
 	});
 	
-	$('.guardar').blur(function(){
+	$('.guardar').keypress(function(){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), guardar )==-1){
 			guardar.push(($(this).attr('id').split('-')[1]));
 		}
 	});
-	$('#contenido').click(function(){
-	
-        var idNoticia = $('input:checked:first').attr('id');
-	if (idNoticia != undefined){
-            var $aux = $("form:first")
-            $aux.attr('action',"<?=base_url()?>index.php/contenidos/index/"+idNoticia);
-            $aux.submit();
-        }else{
-            alert("No es posible cargar el contenido de esta noticia sin haberla guardado previamente")
-        }
-	});
-
 	$('#guardar').click(function(){
 		var agrego = $("#tablaCliente").attr("xagregar");
 		for (i = 0; i < guardar.length; i++)
@@ -106,21 +94,29 @@ $(document).ready(function(){
 		}
 	});
 
+	$('.tab').focusout(function(){
+		var elem = $("#"+$(this).attr('id')).val();
+		var donde = "#"+$(this).attr('id');
+		$.ajax({
+		       type: "POST",
+		       url: "<?=base_url()?>index.php/cheques/getCliente/"+elem,
+		       dataType:'json',
+		       success: function(response){
+		    		$(donde).val(response[0].Nombre);
+		       }
+		});
+	});
+
 	$('#eliminar').click(function(){
-            var txt;
-            var r = confirm("Desea eliminar el contenido de esta noticia?");
-            if (r == true) {
-                $('input:checked').each(function() {
-                                var elem = $(this).attr('id');
-                                var id = $("#identificador").val();
-                                    $.ajax({
-                                           type: "POST",
-                                           url: "<?=base_url()?>index.php/pedidos/delPedido/"+elem
-                                    });
-                            });
-                            $("input:checkbox:checked").parent().parent().remove();
-            } 
-		
+		$('input:checked').each(function() {
+		    var elem = $(this).attr('id');
+		    var id = $("#identificador").val();
+			$.ajax({
+			       type: "POST",
+			       url: "<?=base_url()?>index.php/pedidos/delPedido/"+elem
+			});
+		});
+ 		$("input:checkbox:checked").parent().parent().remove();
 	});
 
 	
@@ -151,7 +147,6 @@ $(document).ready(function(){
 
 	<!--  <button type="button" id="agregar" class="btn btn-success">Agregar</button>-->
 	<button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
-	<button type="button" id="contenido" class="btn btn-success">Contenido</button>
 	<button type="button" id="guardar" class="btn btn-primary">Guardar</button>
 	<br> <br>
 	<dir id="pedidos"></dir>
@@ -160,26 +155,26 @@ $(document).ready(function(){
 			<thead>
 				<tr>
 					<th class="header">Seleccionar<i class=""></i></th>
-					<th class="header">Titulo<i class=""></i></th>
-					<th class="header headerSortDown">Visitas<i class=""></i></th>
-					<th class="header">Resumen<i class=""></i></th>
-					<th class="header">Likes<i class=""></i></th>
-					<th class="header" style="display: none;">Contrareembolso<i class=""></i></th>
-					<th class="header">UnLikes<i class=""></i></th>
-					<th class="header" style="display: none;">Pago?<i class=""></i></th>
-					<th class="header">Imagen<i class=""></i></th>
+					<th class="header">Cliente Origen<i class=""></i></th>
+					<th class="header headerSortDown">Bultos<i class=""></i></th>
+					<th class="header">Cliente Destino<i class=""></i></th>
+					<th class="header">Valor Declarado<i class=""></i></th>
+					<th class="header">Contrareembolso<i class=""></i></th>
+					<th class="header">Costo de Flete<i class=""></i></th>
+					<th class="header">Pago?<i class=""></i></th>
+					<th class="header">Observaciones<i class=""></i></th>
 				</tr>
 			</thead>
 			<tbody>
 
-				<?php $cont=0; foreach($agregados as $item): $cont++;?>
+				<?php $cont=0; foreach($agregados as $item): $cont=$cont+1;?>
 				<tr>
 					<td><input type="checkbox" class="selec" id="<?php print_r($item->Numero);?>" value=""></td>
 					<td><input class="formulario tab" id="ClienteOrigen-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteOrignen);?>'/></td>
 					<td><input class="formulario" id="Bultos-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Bultos);?>'/></td>
 					<td><input class="formulario tab" id="ClienteDestino-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteDestino);?>'/></td>
 					<td><input class="formulario" id="valorDeclarado-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->valorDeclarado);?>'/></td>
-					<td style="display: none;">
+					<td>
 					<!-- <input class="formulario" id="Contrareembolso-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ContraReembolso);?>'/>-->
 						<select class="pago" id="Contrareembolso-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' >
 	  							<option value="0" <?php if ($item->ContraReembolso==0) echo "selected"; ?>>No</option>
@@ -187,7 +182,7 @@ $(document).ready(function(){
 	  					</select>
 					</td>
 					<td><input class="formulario" id="CostoFlete-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->CostoFlete);?>'/></td>
-					<td style="display: none;">
+					<td>
 						<select class="pago" id="Pago-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' >
 	  							<option value="0" <?php if ($item->Pago==0) echo "selected"; ?>>No</option>
 	  							<option value="1" <?php if ($item->Pago==1) echo "selected"; ?>>Si</option>
@@ -203,7 +198,7 @@ $(document).ready(function(){
 					<td><input class="guardar" id="saveBultos-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
 					<td><input class="guardar tab" id="saveClienteDestino-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
 					<td><input class="guardar" id="savevalorDeclarado-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td style="display: none;">
+					<td>
 					<!-- <input class="guardar" id="saveContrareembolso-<?php echo $i;?>" style='width: 100%; border:none;' type='text' />-->
 					<select class="guardar" id="saveContrareembolso-<?php echo $i;?>" style='width: 100%; border:none;' >
   							<option value="0">No</option>
@@ -211,7 +206,7 @@ $(document).ready(function(){
   					</select>
 					</td>
 					<td><input class="guardar" id="saveCostoFlete-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td style="display: none;">
+					<td>
 					<!--  <input class="guardar" id="savePago-<?php echo $i;?>" style='width: 100%; border:none;' type='text' />-->
 					<select class="guardar" id="savePago-<?php echo $i;?>" style='width: 100%; border:none;' >
   							<option value="0">No</option>

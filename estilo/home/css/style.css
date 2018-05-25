@@ -563,7 +563,7 @@ textarea.input {
 }
 
 .article .article-info li {
-	display:inline-block;
+	/* display: block; */
 	margin-right:-2px;
 }
 
@@ -608,7 +608,7 @@ textarea.input {
 
 .article .article-meta li {
 	display:inline-block;
-	color:rgb(230, 20, 20);
+	color: rgb(230, 20, 21);
 	font-weight:400;
 	font-size:12.5px;
 	text-transform:uppercase;

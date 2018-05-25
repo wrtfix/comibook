@@ -17,6 +17,11 @@
 else 
     echo form_open('contenidos/update'); ?>
 <div class="page-header">
+    <h1><?php  print_r($noticiaSeleccionada[0]->ClienteOrignen); ?></h1>
+    <p><?php  print_r($noticiaSeleccionada[0]->ClienteDestino); ?></p>
+</div>
+
+<div class="page-header">
 	<h3> Opcion de menu </h3>
 </div>
 <?php $cont = 0; while($cont < count($menu)) { ?>

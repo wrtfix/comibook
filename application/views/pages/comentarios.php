@@ -1,5 +1,4 @@
 <script>
-cambios=[];
 $(document).ready(function(){
 	$('#eliminar').click(function(){
 		$('input:checked').each(function() {

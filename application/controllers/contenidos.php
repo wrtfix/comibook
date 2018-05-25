@@ -6,6 +6,7 @@ class Contenidos extends CI_Controller
 		parent:: __construct();
 		$this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
 		$this->load->model('contenido','',TRUE);
+                $this->load->model('pedido','',TRUE);
 		$this->load->model('gasto','',TRUE);
 		$this->load->spark('markdown-extra/0.0.0');
 	}
@@ -16,6 +17,7 @@ class Contenidos extends CI_Controller
 		{
 			$this->load->library('form_validation');
 			$data['page'] = 'contenido';
+                        $data['noticiaSeleccionada'] = $this->pedido->getNoticia($idNoticia);
 			$data['noticia'] = $this->contenido->getContenidoNoticia($idNoticia);
 			$data['menu'] = $this->contenido->getItemMenu($idNoticia);
 			$data['idNoticia'] = $idNoticia;
