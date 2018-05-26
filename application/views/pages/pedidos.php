@@ -35,16 +35,20 @@ $(document).ready(function(){
 		}
 	});
 	$('#contenido').click(function(){
-	
-        var idNoticia = $('input:checked:first').attr('id');
-	if (idNoticia != undefined){
-            var $aux = $("form:first")
-            $aux.attr('action',"<?=base_url()?>index.php/contenidos/index/"+idNoticia);
-            $aux.submit();
-        }else{
-            alert("No es posible cargar el contenido de esta noticia sin haberla guardado previamente")
-        }
+	    var idNoticia = $('input:checked:first').attr('id');
+            if (idNoticia != undefined){
+                var $aux = $("form:first")
+                $aux.attr('action',"<?=base_url()?>index.php/contenidos/index/"+idNoticia);
+                $aux.submit();
+            }else{
+                alert("No es posible cargar el contenido de esta noticia sin haberla guardado previamente");
+                if (guardar.length===0){
+                    location.reload();
+                }
+            }
 	});
+        
+        Object.observe(guardar, function(cambios) { console.log(cambios); });
 
 	$('#guardar').click(function(){
 		var agrego = $("#tablaCliente").attr("xagregar");
@@ -62,7 +66,8 @@ $(document).ready(function(){
 				   data: {fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones},
 			       type: "POST",
 			       url: "<?=base_url()?>index.php/pedidos/addPedido/",
-			       success: function(){
+			       success: function(data){
+                                   console.log(data);
 			    	   alert('Los cambios se guardaron con exito!');
 			    	   guardar = [];
 				   },
@@ -98,7 +103,7 @@ $(document).ready(function(){
 			       
 			});
 		}
-				
+		
 	});
 	$('.pago').click(function(){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
@@ -136,10 +141,13 @@ $(document).ready(function(){
 </div>
 <?php }?>
 <?php echo form_open('pedidos/addPedido'); ?>
+<div class="page-header">
+    <h3><div id="titulo"></div></h3>
+</div>
 <div class="row">
 
 
-	<h2><div id="titulo"></div></h2>
+	
 	<div id="datepicker"></div>
 	<br>
 	<div id="row" class="row">

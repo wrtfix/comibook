@@ -43,7 +43,7 @@
                                         <div class="article-body">
                                             <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[$cont]->Fecha); ?> </li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->Fecha), 'd-m-Y')); ?> </li>
                                                 <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos); ?></li>
                                                 <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->valorDeclarado); ?></li>
                                                 <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->CostoFlete); ?></li>
@@ -73,7 +73,7 @@
                                         <div class="article-body">
                                             <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[3]->Numero); ?>"><?php print_r($noticiasPrincipales[3]->ClienteOrignen); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[3]->Fecha); ?> </li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[3]->Fecha),'d-m-Y')); ?> </li>
                                                 <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[3]->Bultos); ?></li>
                                                 <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[3]->valorDeclarado); ?></li>
                                                 <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[3]->CostoFlete); ?></li>
@@ -95,7 +95,7 @@
                                         <div class="article-body">
                                             <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[4]->Numero); ?>"><?php print_r($noticiasPrincipales[4]->ClienteOrignen); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[4]->Fecha); ?> </li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[4]->Fecha),'d-m-Y')); ?> </li>
                                                 <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[4]->Bultos); ?></li>
                                                 <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[4]->valorDeclarado); ?></li>
                                                 <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[4]->CostoFlete); ?></li>
@@ -122,7 +122,7 @@
                                         <div class="article-body">
                                             <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[5]->Numero); ?>"><?php print_r($noticiasPrincipales[5]->ClienteOrignen); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[5]->Fecha); ?> </li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[5]->Fecha),'d-m-Y')); ?> </li>
                                                 <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[5]->Bultos); ?></li>
                                                 <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[5]->valorDeclarado); ?></li>
                                                 <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[5]->CostoFlete); ?></li>
@@ -143,7 +143,7 @@
                                         <div class="article-body">
                                             <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[6]->Numero); ?>"><?php print_r($noticiasPrincipales[6]->ClienteOrignen); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[6]->Fecha); ?> </li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[6]->Fecha),'d-m-Y')); ?> </li>
                                                 <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[6]->Bultos); ?></li>
                                                 <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[6]->valorDeclarado); ?></li>
                                                 <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[6]->CostoFlete); ?></li>
@@ -169,7 +169,7 @@
                                         <div class="article-body">
                                             <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[7]->Numero); ?>"><?php print_r($noticiasPrincipales[7]->ClienteOrignen); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[7]->Fecha); ?> </li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[7]->Fecha),'d-m-Y')); ?> </li>
                                                 <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[7]->Bultos); ?></li>
                                                 <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[7]->valorDeclarado); ?></li>
                                                 <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[7]->CostoFlete); ?></li>
@@ -191,7 +191,7 @@
                                         <div class="article-body">
                                             <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[8]->Numero); ?>"><?php print_r($noticiasPrincipales[8]->ClienteOrignen); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r($noticiasPrincipales[8]->Fecha); ?> </li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[8]->Fecha),'d-m-Y')); ?> </li>
                                                 <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[8]->Bultos); ?></li>
                                                 <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[8]->valorDeclarado); ?></li>
                                                 <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[8]->CostoFlete); ?></li>
@@ -252,7 +252,7 @@
                                 <div class="article-body">
                                     <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[0]->Numero); ?>"><?php print_r($resumenNoticias[0]->ClienteOrignen); ?></a></h3>
                                     <ul class="article-meta">
-                                        <li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[0]->Fecha); ?></li>
+                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[0]->Fecha),'d-m-Y')); ?></li>
                                         <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[0]->Bultos); ?></li>
                                         <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[0]->valorDeclarado); ?></li>
                                         <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[0]->CostoFlete); ?></li>
@@ -279,7 +279,7 @@
                                 <div class="article-body">
                                     <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[1]->Numero); ?>"><?php print_r($resumenNoticias[1]->ClienteOrignen); ?></a></h3>
                                     <ul class="article-meta">
-                                        <li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[1]->Fecha); ?></li>
+                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[1]->Fecha),'d-m-Y')); ?></li>
                                         <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[1]->Bultos); ?></li>
                                         <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[1]->valorDeclarado); ?></li>
                                         <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[1]->CostoFlete); ?></li>
@@ -312,7 +312,7 @@
                                 <div class="article-body">
                                     <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[2]->Numero); ?>"><?php print_r($resumenNoticias[2]->ClienteOrignen); ?></a></h3>
                                     <ul class="article-meta">
-                                        <li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[2]->Fecha); ?></li>
+                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[2]->Fecha),'d-m-Y')); ?></li>
                                         <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[2]->Bultos); ?></li>
                                         <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[2]->valorDeclarado); ?></li>
                                         <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[2]->CostoFlete); ?></li>
@@ -341,7 +341,7 @@
                                 <div class="article-body">
                                     <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[3]->Numero); ?>"><?php print_r($resumenNoticias[3]->ClienteOrignen); ?></a></h3>
                                     <ul class="article-meta">
-                                        <li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[3]->Fecha); ?></li>
+                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[3]->Fecha),'d-m-Y')); ?></li>
                                         <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[3]->Bultos); ?></li>
                                         <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[3]->valorDeclarado); ?></li>
                                         <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[3]->CostoFlete); ?></li>
@@ -370,7 +370,7 @@
                                 <div class="article-body">
                                     <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[4]->Numero); ?>"><?php print_r($resumenNoticias[4]->ClienteOrignen); ?></a></h3>
                                     <ul class="article-meta">
-                                        <li><i class="fa fa-clock-o"></i><?php print_r($resumenNoticias[4]->Fecha); ?></li>
+                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[4]->Fecha),'d-m-Y')); ?></li>
                                         <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[4]->Bultos); ?></li>
                                         <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[4]->valorDeclarado); ?></li>
                                         <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[4]->CostoFlete); ?></li>
@@ -398,9 +398,9 @@
                         <h2 class="title">Seguinos en:</h2>
                     </div>
                     <ul>
-                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i><br><span>Facebook</span></a></li>
-                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
-                        <li><a href="#" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
+                        <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url() ?>" class="facebook"><i class="fa fa-facebook"></i><br><span>Facebook</span></a></li>
+                        <li><a target="_blank" href="https://twitter.com/<?php print_r($twitterUser[0]->proviene);?>" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
+                        <li><a href="https://www.instagram.com/<?php print_r($instagramUser[0]->proviene);?>" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
                     </ul>
                 </div>
                 <!-- /social widget -->
@@ -427,7 +427,7 @@ while ($cont < count($noticiasMasLeidas) && $cont < 4) { ?>
                             <div class="article-body">
                                 <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasMasLeidas[$cont]->Numero); ?>"><?php print_r($noticiasMasLeidas[$cont]->ClienteOrignen); ?></a></h4>
                                 <ul class="article-meta">
-                                    <li><i class="fa fa-clock-o"></i> <?php print_r($noticiasMasLeidas[$cont]->Fecha); ?> </li>
+                                    <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasMasLeidas[$cont]->Fecha),'d-m-Y')); ?> </li>
                                     <li><i class="fa fa-fire"></i> <?php print_r($noticiasMasLeidas[$cont]->Bultos); ?></li>
                                     <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasMasLeidas[$cont]->valorDeclarado); ?></li>
                                     <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasMasLeidas[$cont]->CostoFlete); ?></li>

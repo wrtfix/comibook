@@ -46,8 +46,8 @@
                 <!-- ARTICLE POST -->
                 <article class="article article-post">
                     <div class="article-share">
-                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                        <a style="padding: 15px;" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url() ?>" class="facebook"><i class="fa fa-facebook"></i></a>
+                        <a style="padding: 15px;" target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($noticia[0]->ClienteOrignen);?>" class="twitter"><i class="fa fa-twitter"></i></a>
                     </div>
                     <div class="article-main-img">
                         <img src="<?php print_r($noticia[0]->Observaciones); ?>" alt="">
@@ -55,7 +55,7 @@
                     <div class="article-body">
                         <h1 class="article-title"><?php print_r($noticia[0]->ClienteOrignen); ?></h1>
                         <ul class="article-meta">
-                            <li><i class="fa fa-clock-o"></i> <?php print_r($noticia[0]->Fecha); ?></li>
+                            <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticia[0]->Fecha),'d-m-Y')); ?></li>
                             <li><i class="fa fa-comments"></i> <?php print_r($noticia[0]->Bultos); ?> </li>
                             <li><i id="like" class="fa fa-thumbs-up icon" data="<?php print_r($noticia[0]->valorDeclarado); ?>"> <?php print_r($noticia[0]->valorDeclarado); ?></i></li>
                             <li><i id="unlike" class="fa fa-thumbs-down icon" data="<?php print_r($noticia[0]->CostoFlete); ?>"><?php print_r($noticia[0]->CostoFlete); ?></i></li>
@@ -120,9 +120,9 @@
                         <h2 class="title">Seguinos en</h2>
                     </div>
                     <ul>
-                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i><br><span>Facebook</span></a></li>
-                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
-                        <li><a href="#" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
+                        <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url() ?>" class="facebook"><i class="fa fa-facebook"></i><br><span>Facebook</span></a></li>
+                        <li><a target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($twitterUser[0]->proviene);?>" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
+                        <li><a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->proviene);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
                     </ul>
                 </div>
                 <!-- /social widget -->
@@ -149,7 +149,7 @@
                             <div class="article-body">
                                 <h4 class="article-title"><a href="post.html"><?php print_r($noticiasMasLeidas[$cont]->ClienteOrignen); ?></a></h4>
                                 <ul class="article-meta">
-                                    <li><i class="fa fa-clock-o"></i> <?php print_r($noticiasMasLeidas[$cont]->Fecha); ?> </li>
+                                    <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasMasLeidas[$cont]->Fecha),'d-m-Y')); ?> </li>
                                     <li><i class="fa fa-fire"></i> <?php print_r($noticiasMasLeidas[$cont]->Bultos); ?></li>
                                     <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasMasLeidas[$cont]->valorDeclarado); ?></li>
                                     <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasMasLeidas[$cont]->CostoFlete); ?></li>

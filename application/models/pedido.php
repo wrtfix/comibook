@@ -34,7 +34,8 @@ class Pedido extends CI_Model {
                 $this->db->select('*')
                 ->from('pedidos')
                 ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
-                ->where('rContenidoMenu.idMenu ='.$filter);
+                ->where('rContenidoMenu.idMenu ='.$filter)
+                -> order_by('numero desc');
             }
             $query = $this -> db -> get();
             return $query->result();
@@ -47,7 +48,8 @@ class Pedido extends CI_Model {
                 $this->db->select('*')
                 ->from('pedidos')
                 ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
-                ->where('rContenidoMenu.idMenu ='.$filter);
+                ->where('rContenidoMenu.idMenu ='.$filter)
+                -> order_by('numero desc');
             }
             $this -> db-> order_by('Bultos desc');
             $query = $this -> db -> get();

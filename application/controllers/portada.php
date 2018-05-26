@@ -30,17 +30,18 @@ class Portada extends CI_Controller {
         
         //Manejo de configuracion
         $data['logo'] = $this->cheque->getCheque("SITE_IMAGE");
+        $data['twitterMessage'] = $this->cheque->getCheque("SHARE_TWITTER");
+        $data['twitterUser'] = $this->cheque->getCheque("USER_TWITTER");
+        $data['instagramUser'] = $this->cheque->getCheque("USER_INSTAGRAM");
         $data['menuColor'] = $this->cheque->getCheque("SITE_MENU_PRINCIPAL");
         $data['topBanner'] = $this->cheque->getCheque("TOP_BANNER");
         $data['downBanner'] = $this->cheque->getCheque("DOWN_BANNER");
         $data['leftBanner'] = $this->cheque->getCheque("LEFT_BANNER");
         
-        $zona_horaria = "-3";
-        $formato = "d M Y";
-        $fecha = gmdate($formato, time() + ($zona_horaria * 3600));
-        
-        setlocale(LC_ALL,"es_ES");
-        $data['fechaActual'] = strftime("%A %d de %B del %Y");
+        $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre');
+        $arrayDias = array( 'Domingo', 'Lunes', 'Martes','Miercoles', 'Jueves', 'Viernes', 'Sabado');
+     
+        $data['fechaActual'] = $arrayDias[date('w')].", ".date('d')." de ".$arrayMeses[date('m')-1]." de ".date('Y');
         return $data;
     }
 

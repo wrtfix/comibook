@@ -54,7 +54,14 @@
         <script src="<?= base_url() ?>estilo/login/js/jquery.min.js"></script>
         <script src="<?= base_url() ?>estilo/login/js/bootstrap.min.js"></script>
         <script src="<?= base_url() ?>estilo/login/js/owl.carousel.min.js"></script>
-        
+        <script src="<?= base_url() ?>estilo/login/js/jquery.marquee.min.js"></script>
+       
+        <style>
+        .marquee {
+            width: 500px;
+            overflow: hidden;
+          }
+        </style>
     </head>
     <body style=".article .article-meta li:{color: <?php print_r($menuColor[0]->proviene); ?>!important}">
         <!-- Header -->
@@ -65,14 +72,15 @@
                     <div class="header-links">
                         <ul>
                             <li><?php print_r($fechaActual); ?></li>
+                            <li><div class="marquee"><?php foreach ($noticiasPrincipales as $item): print_r($item->ClienteOrignen); echo "&nbsp"; endforeach;?></div></li>
                         </ul>
 
                     </div>
                     <div class="header-social">
                         <ul>
-                            <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="https://twitter.com/intent/tweet?text=Salta Chequeado" data-size="large"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="http://instagram.com/wrtfix?ref=badge"><i class="fa fa-instagram"></i></a></li>
+                            <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url() ?>" class="fb-xfbml-parse-ignore" ><i class="fa fa-facebook"></i></a></li>
+                            <li><a target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($twitterUser[0]->proviene);?>" data-size="large"><i class="fa fa-twitter"></i></a></li>
+                            <li><a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->proviene);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -122,6 +130,14 @@
         <div class="visible-lg visible-md">
         <img class="center-block" src="<?php print_r($topBanner[0]->proviene);?>" alt="">
         </div>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.0';
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
         
         <?php echo $content_for_layout ?> 
 
@@ -181,5 +197,21 @@
         
         <div id="back-to-top"></div>
         <script src="<?= base_url() ?>estilo/login/js/main.js"></script>
+         <script>
+        $('.marquee').marquee({
+		    //speed in milliseconds of the marquee
+		    duration: 20000,
+		    //gap in pixels between the tickers
+		    gap: 250,
+		    //time in milliseconds before the marquee will start animating
+		    delayBeforeStart: 0,
+		    //'left' or 'right'
+		    direction: 'left',
+		    //true or false - should the marquee be duplicated to show an effect of continues flow
+		    duplicated: true
+		});
+        </script>
+        
+        
         
 </body>

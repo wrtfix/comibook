@@ -55,7 +55,7 @@ $(document).ready(function(){
  		$(":checked").parent().parent().remove();
 	});
 
-	$('.formulario').keypress(function(event){
+	$('.formulario').blur(function(event){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
 			cambios.push(($(this).attr('id').split('-')[1]));
 		}
@@ -79,9 +79,11 @@ $(function() {
 <?php }?>
 
 <?php echo form_open('cheques/addCheques'); ?>
+    <div class="page-header">
+                 <h3>Configuracion</h3>
+    </div>
 <div class="row">
-                 <h2>Configuracion</h2>
-  
+
   
         </div>
             <button type="button" id="agregar" class="btn btn-success">Agregar</button>

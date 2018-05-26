@@ -44,6 +44,7 @@ class Contenidos extends CI_Controller
                         $result = $this->contenido->addRContenidoMenu($menuItems);
                         $data['menu'] = $this->contenido->getItemMenu($this->input->post('idNoticia'));;
 	        }
+                $data['noticiaSeleccionada'] = $this->pedido->getNoticia($this->input->post('idNoticia'));
                 $data['page'] = 'contenido';
                 $data['idNoticia'] = $this->input->post('idNoticia');
                 $this->layout->view('pages/contenido', $data);
@@ -62,6 +63,7 @@ class Contenidos extends CI_Controller
                 $menuItems = $this->gasto->getGastos();
                 $result = $this->contenido->addRContenidoMenu($menuItems);
                 $data['noticia'] = $this->contenido->getContenidoNoticia($this->input->post('idNoticia'));
+                $data['noticiaSeleccionada'] = $this->pedido->getNoticia($this->input->post('idNoticia'));
                 $data['menu'] = $this->contenido->getItemMenu($this->input->post('idNoticia'));
                 $data['idNoticia'] = $this->input->post('idNoticia');
                 $this->layout->view('pages/contenido', $data);

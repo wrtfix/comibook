@@ -86,10 +86,13 @@ $(document).ready(function(){
 </div>
 <?php }?>
 <?php echo form_open('gastos/addGasto'); ?>
-   <div class="row">
+<div class="page-header">
+    <h2>Menu</h2>
+</div>
+<div class="row">
             
               
-                 <h2>Menu</h2>
+                 
   
   <!--<div class="row">
           <div class="col-lg-4">
