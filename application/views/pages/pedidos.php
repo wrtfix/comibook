@@ -2,19 +2,21 @@
 cambios=[];
 guardar=[];
 
-$(function() {
-    $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy', onSelect: function(dateText, inst) { 
-        var dateAsString = dateText; //the first parameter of this function
-        var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
-        var $aux = $("form:first")
-        $aux.attr('action',"<?=base_url()?>index.php/pedidos/index/"+dateAsString);
-        $aux.submit();
-     } });
-    
-  });
+ $(function() {
+        $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy', onSelect: function(dateText, inst) { 
+            var dateAsString = dateText; //the first parameter of this function
+            var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
+            var $aux = $("form:first")
+            $aux.attr('action',"<?=base_url()?>index.php/pedidos/index/"+dateAsString);
+            $aux.submit();
+         } });
+
+      });
 
 
 $(document).ready(function(){
+    
+       
 
 	var fecha= '<?php if ($fechaSeleccionada!=null) echo $fechaSeleccionada; ?>';
 	if (fecha==''){
@@ -48,61 +50,43 @@ $(document).ready(function(){
             }
 	});
         
-        Object.observe(guardar, function(cambios) { console.log(cambios); });
-
+        $('#agregar').click(function(){
+		var agrego = $("#pedidos").attr("xagregar");
+		if (agrego=='false'){ 
+			$('#pedidos').append("<tr><td></td><td style='display: none;'><input name='fecha' id='fecha' type='input' value='"+fecha+"'></td><td><input name='ClienteOrigen' type='input' value=''></td><td><input name='Bultos' type='input' value=''></td><td><input name='ClienteDestino' type='input' value=''></td><td><input name='valorDeclarado' type='input' value=''></td><td style='display: none;'></td><td><input name='CostoFlete' type='input' value=''></td><td style='display: none;'></td><td><input name='Observaciones' type='input' value=''></td></tr>");
+			$("#pedidos").attr("xagregar","true");
+		}
+	});
 	$('#guardar').click(function(){
-		var agrego = $("#tablaCliente").attr("xagregar");
-		for (i = 0; i < guardar.length; i++)
-		{
-			var ClienteOrigen = $('#saveClienteOrigen-'+guardar[i]).val();
-			var Bultos = $('#saveBultos-'+guardar[i]).val();
-			var ClienteDestino = $('#saveClienteDestino-'+guardar[i]).val();
-			var valorDeclarado = $('#savevalorDeclarado-'+guardar[i]).val();
-			var Contrareembolso = $('#saveContrareembolso-'+guardar[i]).val();
-			var CostoFlete = $('#saveCostoFlete-'+guardar[i]).val();
-			var Pago = $('#savePago-'+guardar[i]).val();
-			var Observaciones = $('#saveObservaciones-'+guardar[i]).val();
-			$.ajax({
-				   data: {fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones},
-			       type: "POST",
-			       url: "<?=base_url()?>index.php/pedidos/addPedido/",
-			       success: function(data){
-                                   console.log(data);
-			    	   alert('Los cambios se guardaron con exito!');
-			    	   guardar = [];
-				   },
-				   error: function(){
-					   alert('ERROR : Verifique los campos ingresados');
-				   }
-				       
-			});
-		}
-		
+		var agrego = $("#pedidos").attr("xagregar");
+                if (agrego=='true'){ 
+			$("form:first").submit();
+		}else{
+                    for (i = 0; i < cambios.length; i++)
+                    {
+                            var ClienteOrigen = $('#ClienteOrigen-'+cambios[i]).val();
+                            var Bultos = $('#Bultos-'+cambios[i]).val();
+                            var ClienteDestino = $('#ClienteDestino-'+cambios[i]).val();
+                            var valorDeclarado = $('#valorDeclarado-'+cambios[i]).val();
+                            var Contrareembolso = $('#Contrareembolso-'+cambios[i]).val();
+                            var CostoFlete = $('#CostoFlete-'+cambios[i]).val();
+                            var Pago = $('#Pago-'+cambios[i]).val();
+                            var Observaciones = $('#Observaciones-'+cambios[i]).val();
+                            $.ajax({
+                                       data: {fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones},
+                                   type: "POST",
+                                   url: "<?=base_url()?>index.php/pedidos/updatePedido/"+cambios[i],
+                                   success: function(){
+                                       alert('Los cambios se guardaron con exito!');
+                                       cambios = [];
+                                       },
+                                       error: function(){
+                                               alert('ERROR : Verifique los campos ingresados');
+                                       }
 
-		for (i = 0; i < cambios.length; i++)
-		{
-			var ClienteOrigen = $('#ClienteOrigen-'+cambios[i]).val();
-			var Bultos = $('#Bultos-'+cambios[i]).val();
-			var ClienteDestino = $('#ClienteDestino-'+cambios[i]).val();
-			var valorDeclarado = $('#valorDeclarado-'+cambios[i]).val();
-			var Contrareembolso = $('#Contrareembolso-'+cambios[i]).val();
-			var CostoFlete = $('#CostoFlete-'+cambios[i]).val();
-			var Pago = $('#Pago-'+cambios[i]).val();
-			var Observaciones = $('#Observaciones-'+cambios[i]).val();
-			$.ajax({
-				   data: {fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones},
-			       type: "POST",
-			       url: "<?=base_url()?>index.php/pedidos/updatePedido/"+cambios[i],
-			       success: function(){
-			    	   alert('Los cambios se guardaron con exito!');
-			    	   cambios = [];
-				   },
-				   error: function(){
-					   alert('ERROR : Verifique los campos ingresados');
-				   }
-			       
-			});
-		}
+                            });
+                    }
+                }
 		
 	});
 	$('.pago').click(function(){
@@ -153,18 +137,17 @@ $(document).ready(function(){
 	<div id="row" class="row">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4"></div>
-
 	</div>
 
 
-	<!--  <button type="button" id="agregar" class="btn btn-success">Agregar</button>-->
+        <button type="button" id="agregar" class="btn btn-success">Agregar</button>
 	<button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
-	<button type="button" id="contenido" class="btn btn-success">Contenido</button>
+	<button type="button" id="contenido" class="btn btn-warning">Contenido</button>
 	<button type="button" id="guardar" class="btn btn-primary">Guardar</button>
 	<br> <br>
-	<dir id="pedidos"></dir>
-	<div class="table-responsive" id="pedidos">
-		<table class="table table-bordered table-hover tablesorter">
+	<dir ></dir>
+	<div class="table-responsive" >
+		<table class="table table-bordered table-hover tablesorter" id="pedidos" xagregar="false">
 			<thead>
 				<tr>
 					<th class="header">Seleccionar<i class=""></i></th>
@@ -204,32 +187,6 @@ $(document).ready(function(){
 					<td><input class="formulario" id="Observaciones-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Observaciones);?>'/></td>
 				</tr>
 				<?php endforeach;?>
-				<?php for ($i = 0; $i < 100; $i++) {?>
-				<tr>
-					<td><input type="checkbox" class="selec" value=""></td>
-					<td><input class="guardar tab" id="saveClienteOrigen-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td><input class="guardar" id="saveBultos-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td><input class="guardar tab" id="saveClienteDestino-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td><input class="guardar" id="savevalorDeclarado-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td style="display: none;">
-					<!-- <input class="guardar" id="saveContrareembolso-<?php echo $i;?>" style='width: 100%; border:none;' type='text' />-->
-					<select class="guardar" id="saveContrareembolso-<?php echo $i;?>" style='width: 100%; border:none;' >
-  							<option value="0">No</option>
-  							<option value="1">Si</option>
-  					</select>
-					</td>
-					<td><input class="guardar" id="saveCostoFlete-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-					<td style="display: none;">
-					<!--  <input class="guardar" id="savePago-<?php echo $i;?>" style='width: 100%; border:none;' type='text' />-->
-					<select class="guardar" id="savePago-<?php echo $i;?>" style='width: 100%; border:none;' >
-  							<option value="0">No</option>
-  							<option value="1">Si</option>
-  					</select>
-					
-					</td>
-					<td><input class="guardar" id="saveObservaciones-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
-				</tr>
-				<?php }?>
 			</tbody>
 		</table>
 	</div>

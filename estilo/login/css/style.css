@@ -195,6 +195,7 @@ textarea.input {
 
 .header-logo .logo > img {
 	max-height: 90px;
+	max-width: 80%;
 	padding: 10px;
 }
 

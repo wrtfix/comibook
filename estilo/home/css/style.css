@@ -167,7 +167,7 @@ textarea.input {
 .header-social ul li a {
 	display: block;
 	width: 30px;
-	height: 30px;
+	height: 15px;
 	line-height: 30px;
 	color: #222;
 	text-align: center;
@@ -195,6 +195,7 @@ textarea.input {
 
 .header-logo .logo > img {
 	max-height: 90px;
+        max-width: 80%;
 	padding: 10px;
 }
 

@@ -46,9 +46,16 @@ class Pedidos extends CI_Controller
 					
 		 	if ($this->form_validation->run() == FALSE) {
 				$this->output->set_status_header('400'); //Triggers the jQuery error callback
-	        } else {
-	        	$this->pedido->addPedido();
-	        }
+                        } else {
+                            $this->pedido->addPedido();
+                            $hoy = date("Y-m-d");
+                            list($dia, $mes, $ano) = explode("-", $hoy);
+                            $data['fechaSeleccionada'] =null;
+                            $lafecha = $ano."-".$mes."-".$dia;
+                            $data['page'] = 'pedidos';
+                            $data['agregados'] = $this->pedido->getPedidosPedientes(' ',$lafecha,$lafecha,"No");
+                            $this->layout->view('pages/pedidos', $data);
+                        }
 	    }else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);

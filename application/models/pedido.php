@@ -35,10 +35,11 @@ class Pedido extends CI_Model {
                 ->from('pedidos')
                 ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
                 ->where('rContenidoMenu.idMenu ='.$filter)
-                -> order_by('numero desc');
+                ->order_by('numero desc');
             }
             $query = $this -> db -> get();
-            return $query->result();
+            $result =$query->result();
+            return $result;
 	}
         
 	function getNoticiasMasLeidas($filter=null){
@@ -144,6 +145,51 @@ class Pedido extends CI_Model {
         function updateUnLike($idNoticia){
             return $this->db->query('UPDATE pedidos SET CostoFlete = CostoFlete + 1 where numero ='.$idNoticia);
 	}
+        
+        public function get_current_page_records($limit, $start,$filter) 
+        {   $this->db->limit($limit, $start);
+        
+            if ($filter==null){
+                $this -> db -> from('pedidos');
+                $this -> db-> order_by('numero desc');
+            }else{
+                $this->db->select('*')
+                ->from('pedidos')
+                ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
+                ->where('rContenidoMenu.idMenu ='.$filter)
+                ->order_by('numero desc');
+            }
+            $query = $this -> db -> get();
+            
+            
+            if ($query->num_rows() > 0) 
+            {
+                foreach ($query->result() as $row) 
+                {
+                    $data[] = $row;
+                }
+
+                return $data;
+            }
+
+            return false;
+        }
+     
+        public function get_total($filter) 
+        {
+            if ($filter==null){
+                $this->db->select('*');
+                $this -> db -> from('pedidos');
+                $this -> db-> order_by('numero desc');
+            }else{
+                $this->db->select('*')
+                ->from('pedidos')
+                ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
+                ->where('rContenidoMenu.idMenu ='.$filter)
+                ->order_by('numero desc');
+            }
+            return $this->db->count_all_results();
+        }
 	
 }
 ?>

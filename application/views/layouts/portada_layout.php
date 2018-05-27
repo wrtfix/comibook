@@ -58,8 +58,9 @@
        
         <style>
         .marquee {
-            width: 500px;
+            width: 100%;
             overflow: hidden;
+            background-color: white;
           }
         </style>
     </head>
@@ -67,23 +68,19 @@
         <!-- Header -->
         <header id="header">
             <!-- Top Header -->
-            <div id="top-header">
-                <div class="container">
-                    <div class="header-links">
-                        <ul>
-                            <li><?php print_r($fechaActual); ?></li>
-                            <li><div class="marquee"><?php foreach ($noticiasPrincipales as $item): print_r($item->ClienteOrignen); echo "&nbsp"; endforeach;?></div></li>
-                        </ul>
+            <div class="container">
+                    <div class="row ">
+                        <!-- Column 1 -->
+                        <div class="col-md-4 col-sm-6 justify-content-center">
+                            <?php print_r($fechaActual); ?>
+                        </div>
 
+                        <div style="text-align: right;">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url() ?>" class="fb-xfbml-parse-ignore" ><i class="fa fa-facebook"></i></a>
+                            <a target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($twitterUser[0]->proviene);?>" data-size="large"><i class="fa fa-twitter"></i></a>
+                            <a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->proviene);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i></a>
+                        </div>    
                     </div>
-                    <div class="header-social">
-                        <ul>
-                            <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url() ?>" class="fb-xfbml-parse-ignore" ><i class="fa fa-facebook"></i></a></li>
-                            <li><a target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($twitterUser[0]->proviene);?>" data-size="large"><i class="fa fa-twitter"></i></a></li>
-                            <li><a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->proviene);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
             <!-- /Top Header -->
 
@@ -104,7 +101,7 @@
                 <div class="container">
                     <nav id="main-nav" style="background:<?php print_r($menuColor[0]->proviene); ?>">
                         <div class="nav-logo">
-                            <a href="#" class="logo"><img src="<?php print_r($logo[0]->proviene);?>" alt=""></a>
+                            <a href="<?= base_url() ?>" class="logo"><img style="width: 80%" src="<?php print_r($logo[0]->proviene);?>" alt=""></a>
                         </div>
                         <ul class="main-nav nav navbar-nav">
                             <li><a href="<?= base_url() ?>">Portada</a></li>
@@ -122,13 +119,23 @@
                                     </form>
                             </div>-->
                     </div>
+                    
                 </div>
+                <div class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"> <?php print_r($item->ClienteOrignen); echo "&nbsp";?> | <?php endforeach;?></div>
             </div>
 
         </header>
-        <br>
-        <div class="visible-lg visible-md">
-        <img class="center-block" src="<?php print_r($topBanner[0]->proviene);?>" alt="">
+        <div class="container">
+            <!-- ROW -->
+            <div class="row">
+                <!-- Main Column -->
+                <div class="col-md-12">
+                    <article class="article article-post">
+                    <div class="article-main-img">
+                        <img class="center-block" style="height: 25%;" src="<?php print_r($topBanner[0]->proviene);?>" alt="">
+                    </article>
+                </div>
+            </div>
         </div>
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
@@ -200,7 +207,7 @@
          <script>
         $('.marquee').marquee({
 		    //speed in milliseconds of the marquee
-		    duration: 20000,
+		    duration: 30000,
 		    //gap in pixels between the tickers
 		    gap: 250,
 		    //time in milliseconds before the marquee will start animating

@@ -39,7 +39,7 @@
 
                 <!-- breadcrumb -->
                 <ul class="article-breadcrumb">
-                    <li><?php print_r($noticia[0]->ClienteOrignen); ?></li>
+                    <li style="color: rgb(0, 31, 128);"><?php print_r($noticia[0]->ClienteOrignen); ?></li>
                 </ul>
                 <!-- /breadcrumb -->
 
@@ -110,7 +110,7 @@
             <div class="col-md-4">
                 <!-- Ad widget -->
                 <div class="widget center-block hidden-xs">
-                    <img class="center-block" src="<?php print_r($leftBanner[0]->proviene);?>" alt="">
+                    <img style="width: 100%; height: 50%" class="center-block" src="<?php print_r($leftBanner[0]->proviene);?>" alt="">
                 </div>
                 <!-- /Ad widget -->
 

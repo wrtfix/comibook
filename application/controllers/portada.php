@@ -14,17 +14,20 @@ class Portada extends CI_Controller {
         $this->load->model('contenido', '', TRUE);
         $this->load->model('cheque', '', TRUE);
         $this->load->model('comentarios', '', TRUE);
+        
+        // load Pagination library
+        $this->load->library('pagination');
+        // load URL helper
+        $this->load->helper('url');
+        
         $this->layout->setLayout("layouts/portada_layout");
     }
 
     private function getSetters($filter) {
         $data['page'] = 'portada_view';
         $data['menu'] = $this->gasto->getGastos();
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $hoy = date("Y-m-d");
-        list($dia, $mes, $ano) = explode("-", $hoy);
-        $lafecha = $ano . "-" . $mes . "-" . $dia;
-        $data['noticiasPrincipales'] = $this->pedido->getPedidoPedientes($filter);
+        
+        $data['banner'] = $this->pedido->getPedidoPedientes(null);
         $data['noticiasMasLeidas'] = $this->pedido->getNoticiasMasLeidas($filter);
         $data['resumenNoticias'] = $this->pedido->getNoticiasMasPopulares($filter);
         
@@ -44,16 +47,122 @@ class Portada extends CI_Controller {
         $data['fechaActual'] = $arrayDias[date('w')].", ".date('d')." de ".$arrayMeses[date('m')-1]." de ".date('Y');
         return $data;
     }
-
-    function index($filter = null) {
+    
+    function index($filter=null) {
         $this->load->helper('form');
-        $data = self::getSetters($filter);
+        
+        $data = self::getSetters(null);
+        $limit_per_page = 10;
+        $start_index = 0;
+        $total_records = $this->pedido->get_total($filter);
+        
+        $this->session->set_userdata('filter', $filter);
+        
+        if ($total_records > 0) 
+        {
+            // get current page records
+            $data["noticiasPrincipales"] = $this->pedido->get_current_page_records($limit_per_page, $start_index,$filter);
+            $config['base_url'] = base_url() . 'index.php/portada/paginado';
+            $config['total_rows'] = $total_records;
+            $config['per_page'] = $limit_per_page;
+            $config["uri_segment"] = 3;
+            
+            $config['use_page_numbers'] = TRUE;
+            $config['reuse_query_string'] = TRUE;
+            $config['full_tag_open'] = '<div class="article-pagination"><ul>';
+            $config['full_tag_close'] = '</ul></div>';
+            
+            $config['cur_tag_open'] = '<li class="active"> <a href=#>';
+            $config['cur_tag_close'] = '</a></li>';
+            
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            
+            $config['first_link'] = 'Primera';
+            $config['first_tag_open'] = '<li>';
+            $config['first_tag_close'] = '</li>';
+             
+            $config['last_link'] = 'Ultima';
+            $config['last_tag_open'] = '<li>';
+            $config['last_tag_close'] = '</li>';
+             
+            $config['next_link'] = '>';
+            $config['next_tag_open'] = '<li>';
+            $config['next_tag_close'] = '</li>';
+ 
+            $config['prev_link'] = '<';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
+            $data['totalRecords'] = $total_records;
+            $this->pagination->initialize($config);
+             
+            // build paging links
+            $data["links"] = $this->pagination->create_links();
+        }
+        
         $this->layout->view('portada_view', $data);
     }
-
+    
+    function paginado() {
+        $this->load->helper('form');
+        $filter=$this->session->all_userdata()['filter'];
+        print_r($filter);
+        $data = self::getSetters($filter);
+        
+        $limit_per_page = 10;
+        $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $total_records = $this->pedido->get_total($filter);
+        
+        if ($total_records > 0) 
+        {
+            // get current page records
+            $data["noticiasPrincipales"] = $this->pedido->get_current_page_records($limit_per_page, $start_index,$filter);
+             
+            $config['base_url'] = base_url() . 'index.php/portada/paginado';
+            $config['total_rows'] = $total_records;
+            $config['per_page'] = $limit_per_page;
+            $config["uri_segment"] = 3;
+            
+            $config['use_page_numbers'] = TRUE;
+            $config['reuse_query_string'] = TRUE;
+            $config['full_tag_open'] = '<div class="article-pagination"><ul>';
+            $config['full_tag_close'] = '</ul></div>';
+            
+            $config['cur_tag_open'] = '<li class="active"> <a href=#>';
+            $config['cur_tag_close'] = '</a></li>';
+            
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            
+            $config['first_link'] = 'Primera';
+            $config['first_tag_open'] = '<li>';
+            $config['first_tag_close'] = '</li>';
+             
+            $config['last_link'] = 'Ultima';
+            $config['last_tag_open'] = '<li>';
+            $config['last_tag_close'] = '</li>';
+             
+            $config['next_link'] = '>';
+            $config['next_tag_open'] = '<li>';
+            $config['next_tag_close'] = '</li>';
+ 
+            $config['prev_link'] = '<';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
+            
+            $this->pagination->initialize($config);
+            $data['totalRecords'] = $total_records;
+            // build paging links
+            $data["links"] = $this->pagination->create_links();
+        }
+        
+        $this->layout->view('portada_view', $data);
+    }
+    
     function detalle($filter = null) {
         $this->load->library('form_validation');
         $data = self::getSetters(null);
+        
         $data['noticiasRelacionadas'] = $this->pedido->getNoticiasRelacionadas($filter);
         $this->pedido->updateVisita($filter);
         $result = $this->contenido->getContenido($filter);
