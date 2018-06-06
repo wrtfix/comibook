@@ -45,6 +45,7 @@ class Contenidos extends CI_Controller
                         $data['menu'] = $this->contenido->getItemMenu($this->input->post('idNoticia'));;
 	        }
                 $data['noticiaSeleccionada'] = $this->pedido->getNoticia($this->input->post('idNoticia'));
+                $data['noticia'] = $this->contenido->getContenidoNoticia($this->input->post('idNoticia'));
                 $data['page'] = 'contenido';
                 $data['idNoticia'] = $this->input->post('idNoticia');
                 $this->layout->view('pages/contenido', $data);
@@ -72,5 +73,9 @@ class Contenidos extends CI_Controller
                     $data['page'] = 'construccion';
                     $this->load->view('pages/construccion', $data);
 	    }
+
+        }
+        function delContenido($identificador){
+		return $this->db->delete('contenido', array('idContenido' => $identificador));
 	}
 }

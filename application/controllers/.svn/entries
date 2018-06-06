@@ -26,14 +26,14 @@ wrtfix
 
 fd2faac1-5694-9bca-c273-ba5fd94e9f6b
 
-index.html
+about.php
 file
 
 
 
 
 2016-01-10T03:03:26.201958Z
-0227cfd904e99656279202032b98d4a7
+d491840de1f3cd03836da8daa730cf6a
 2014-05-11T13:12:24.275784Z
 4
 wrtfix
@@ -58,10 +58,7 @@ wrtfix
 
 
 
-114
-
-febrero2014
-dir
+332
 
 backup.php
 file
@@ -97,6 +94,40 @@ wrtfix
 
 433
 
+cheques.php
+file
+
+
+
+
+2016-01-10T03:03:26.201958Z
+f79f05b574f191ca1133eecb7555a088
+2014-07-01T01:54:27.842614Z
+23
+wrtfix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2693
+
 clientes.php
 file
 
@@ -131,17 +162,14 @@ wrtfix
 
 1886
 
-pedidos.php
+configuracion.php
 file
 
 
 
+add
 
-2016-01-10T03:03:26.201958Z
-f0352cc00bece728947e8c597101eeaf
-2014-07-01T01:54:27.842614Z
-23
-wrtfix
+dc80006761f7973d02939c1b919e291a
 
 
 
@@ -153,51 +181,9 @@ wrtfix
 
 
 
-
-
-
-
-
-
-
-
-
-
-2297
-
-imprimir.php
-file
-
-
-
-
-2016-01-10T03:03:26.201958Z
-ba49eef7f46523d4890fca42f07090be
-2014-06-23T02:57:20.457423Z
-21
-wrtfix
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6886
+copied
+http://comibook.googlecode.com/svn/branches/ComiBook/application/controllers/gastos.php
+24
 
 construccion.php
 file
@@ -233,107 +219,8 @@ wrtfix
 
 358
 
-about.php
-file
-
-
-
-
-2016-01-10T03:03:26.201958Z
-d491840de1f3cd03836da8daa730cf6a
-2014-05-11T13:12:24.275784Z
-4
-wrtfix
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-332
-
-cheques.php
-file
-
-
-
-
-2016-01-10T03:03:26.201958Z
-f79f05b574f191ca1133eecb7555a088
-2014-07-01T01:54:27.842614Z
-23
-wrtfix
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2693
-
-pedientes.php
-file
-
-
-
-
-2016-01-10T03:03:26.201958Z
-fcf518d743efe68bfba1a646125c141d
-2014-06-23T02:57:20.457423Z
-21
-wrtfix
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-831
+febrero2014
+dir
 
 gastos.php
 file
@@ -368,4 +255,140 @@ wrtfix
 
 
 2157
+
+imprimir.php
+file
+
+
+
+
+2016-01-10T03:03:26.201958Z
+ba49eef7f46523d4890fca42f07090be
+2014-06-23T02:57:20.457423Z
+21
+wrtfix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6886
+
+index.html
+file
+
+
+
+
+2016-01-10T03:03:26.201958Z
+0227cfd904e99656279202032b98d4a7
+2014-05-11T13:12:24.275784Z
+4
+wrtfix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+114
+
+pedidos.php
+file
+
+
+
+
+2016-01-10T03:03:26.201958Z
+f0352cc00bece728947e8c597101eeaf
+2014-07-01T01:54:27.842614Z
+23
+wrtfix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2297
+
+pedientes.php
+file
+
+
+
+
+2016-01-10T03:03:26.201958Z
+fcf518d743efe68bfba1a646125c141d
+2014-06-23T02:57:20.457423Z
+21
+wrtfix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+831
 

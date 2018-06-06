@@ -21,5 +21,31 @@ Class User extends CI_Model
 		}
 
 	}
+        function updateUser($id){
+            $data = array(
+			'username' => $this->input->post('nombre'),
+			'password' => MD5($this->input->post('password')),		
+		);
+            $this->db->where('id', $id);
+            return $this->db->update('users', $data);
+        }
+        
+        function addUser(){
+            $data = array(
+			'username' => $this->input->post('username'),
+			'password' => MD5($this->input->post('password')),
+		);
+            return $this->db->insert('users', $data);
+        }
+        
+        function getUsers(){
+            $this -> db -> from('users');
+            $query = $this -> db -> get();
+            return $query->result();
+        }
+        
+        function delUser($id){
+            return $this->db->delete('users', array('id' => $id));
+        }
 }
 ?>

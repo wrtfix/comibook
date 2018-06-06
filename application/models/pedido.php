@@ -26,15 +26,17 @@ class Pedido extends CI_Model {
 		return $this->db->insert('pedidos', $data);
 	}
 	
-        function getPedidoPedientes($filter=null){
+        function getPedidoPedientes($filter=null,$fecha){
             if ($filter==null){
                 $this -> db -> from('pedidos');
                 $this -> db-> order_by('numero desc');
+                $this -> db-> where("fecha <=",$fecha);
             }else{
                 $this->db->select('*')
                 ->from('pedidos')
                 ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
                 ->where('rContenidoMenu.idMenu ='.$filter)
+                -> where("fecha <=",$fecha)
                 ->order_by('numero desc');
             }
             $query = $this -> db -> get();
@@ -42,14 +44,16 @@ class Pedido extends CI_Model {
             return $result;
 	}
         
-	function getNoticiasMasLeidas($filter=null){
+	function getNoticiasMasLeidas($filter=null, $fecha){
             if ($filter==null){
                 $this -> db -> from('pedidos');
+                $this -> db-> where("fecha <=",$fecha);
             }else{
                 $this->db->select('*')
                 ->from('pedidos')
                 ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
                 ->where('rContenidoMenu.idMenu ='.$filter)
+                ->where('pedidos.Fecha <= ',$fecha)
                 -> order_by('numero desc');
             }
             $this -> db-> order_by('Bultos desc');
@@ -57,27 +61,29 @@ class Pedido extends CI_Model {
             return $query->result();
 	}
 
-	function getNoticiasMasPopulares($filter=null){
+	function getNoticiasMasPopulares($filter=null,$fecha){
 		if ($filter==null){
                     $this -> db -> from('pedidos');
+                    $this -> db-> where("fecha <=",$fecha);
                 }else{
                     $this->db->select('*')
                     ->from('pedidos')
                     ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
-                    ->where('rContenidoMenu.idMenu ='.$filter);
+                    ->where('rContenidoMenu.idMenu ='.$filter)
+                    ->where('pedidos.Fecha <= ',$fecha);
                 }
 		$this -> db-> order_by('valorDeclarado desc');
 		$query = $this -> db -> get();
 		return $query->result();
 	}
         
-        function getNoticiasRelacionadas($filter=null){
+        function getNoticiasRelacionadas($filter=null,$fecha){
 		
                 $this->db->select('*')
                 ->from('pedidos')
                 ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
-                ->where('rContenidoMenu.idMenu ='.$filter);
-		
+                ->where('rContenidoMenu.idMenu ='.$filter)
+		->where('pedidos.Fecha <= ',$fecha);
 		$query = $this -> db -> get();
 		return $query->result();
 	}
@@ -146,17 +152,21 @@ class Pedido extends CI_Model {
             return $this->db->query('UPDATE pedidos SET CostoFlete = CostoFlete + 1 where numero ='.$idNoticia);
 	}
         
-        public function get_current_page_records($limit, $start,$filter) 
-        {   $this->db->limit($limit, $start);
+        public function get_current_page_records($limit, $start,$filter,$fecha) 
+        {   
+            $this->db->limit($limit, $start);
         
             if ($filter==null){
                 $this -> db -> from('pedidos');
+                $this -> db-> where("fecha <=",$fecha);
                 $this -> db-> order_by('numero desc');
+                
             }else{
                 $this->db->select('*')
                 ->from('pedidos')
                 ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
                 ->where('rContenidoMenu.idMenu ='.$filter)
+                ->where('pedidos.Fecha <= ',$fecha)
                 ->order_by('numero desc');
             }
             $query = $this -> db -> get();
@@ -175,20 +185,24 @@ class Pedido extends CI_Model {
             return false;
         }
      
-        public function get_total($filter) 
+        public function get_total($filter,$fecha) 
         {
             if ($filter==null){
                 $this->db->select('*');
                 $this -> db -> from('pedidos');
+                $this -> db-> where("fecha <=",$fecha);
                 $this -> db-> order_by('numero desc');
             }else{
                 $this->db->select('*')
                 ->from('pedidos')
                 ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
                 ->where('rContenidoMenu.idMenu ='.$filter)
+                ->where('pedidos.Fecha <= ',$fecha)
                 ->order_by('numero desc');
             }
-            return $this->db->count_all_results();
+            $result = $this->db->count_all_results();
+            
+            return $result;
         }
 	
 }

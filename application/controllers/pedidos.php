@@ -6,6 +6,8 @@ class Pedidos extends CI_Controller
 		parent:: __construct();
 		$this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
 		$this->load->model('pedido','',TRUE);
+                $this->load->model('contenido','',TRUE);
+                $this->load->model('imagen','',TRUE);
 		$this->load->spark('markdown-extra/0.0.0');
 	}
 
@@ -25,8 +27,8 @@ class Pedidos extends CI_Controller
 				$lafecha = $ano."-".$mes."-".$dia;
 			}
 			$data['page'] = 'pedidos';
-			
-			$data['agregados'] = $this->pedido->getPedidosPedientes(' ',$lafecha,$lafecha,"No");
+                        $data['imagenes'] = $this->imagen->getImagenes();
+                        $data['agregados'] = $this->pedido->getPedidosPedientes(' ',$lafecha,$lafecha,"No");
 			$this->layout->view('pages/pedidos', $data);
 		}else{
 			$data['page'] = 'construccion';
@@ -87,6 +89,9 @@ class Pedidos extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$this->pedido->delPedido($id);
+                        $this->contenido->deleteRContenidoMenu($id);
+                        $this->contenido->delContenido($id);
+                        $this->comentarios->deleteComentarioNoticia($id);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);

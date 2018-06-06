@@ -30,6 +30,9 @@ class Comentarios extends CI_Model {
 	function deleteComentario($idComentario){
 		return $this->db->delete('comentarios', array('idComentario' => $idComentario));
 	}
+        function deleteComentarioNoticia($idNoticia){
+		return $this->db->delete('comentarios', array('idNoticia' => $idNoticia));
+	}
 	
 }
 ?>

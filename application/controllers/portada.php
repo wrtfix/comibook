@@ -23,13 +23,13 @@ class Portada extends CI_Controller {
         $this->layout->setLayout("layouts/portada_layout");
     }
 
-    private function getSetters($filter) {
+    private function getSetters($filter,$lafecha) {
         $data['page'] = 'portada_view';
         $data['menu'] = $this->gasto->getGastos();
         
-        $data['banner'] = $this->pedido->getPedidoPedientes(null);
-        $data['noticiasMasLeidas'] = $this->pedido->getNoticiasMasLeidas($filter);
-        $data['resumenNoticias'] = $this->pedido->getNoticiasMasPopulares($filter);
+        $data['banner'] = $this->pedido->getPedidoPedientes(null,$lafecha);
+        $data['noticiasMasLeidas'] = $this->pedido->getNoticiasMasLeidas($filter,$lafecha);
+        $data['resumenNoticias'] = $this->pedido->getNoticiasMasPopulares($filter,$lafecha);
         
         //Manejo de configuracion
         $data['logo'] = $this->cheque->getCheque("SITE_IMAGE");
@@ -40,6 +40,7 @@ class Portada extends CI_Controller {
         $data['topBanner'] = $this->cheque->getCheque("TOP_BANNER");
         $data['downBanner'] = $this->cheque->getCheque("DOWN_BANNER");
         $data['leftBanner'] = $this->cheque->getCheque("LEFT_BANNER");
+        $data['imageCarrusel'] = $this->cheque->getCheque("CARRUSEL_IMAGE");
         
         $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre');
         $arrayDias = array( 'Domingo', 'Lunes', 'Martes','Miercoles', 'Jueves', 'Viernes', 'Sabado');
@@ -51,17 +52,25 @@ class Portada extends CI_Controller {
     function index($filter=null) {
         $this->load->helper('form');
         
-        $data = self::getSetters(null);
+        $hoy = date("Y-m-d");
+        list($dia, $mes, $ano) = explode("-", $hoy);
+        $lafecha = $ano."-".$mes."-".$dia;
+        
+        $data = self::getSetters(null,$hoy);
         $limit_per_page = 10;
         $start_index = 0;
-        $total_records = $this->pedido->get_total($filter);
+        $total_records = $this->pedido->get_total($filter,$hoy);
         
         $this->session->set_userdata('filter', $filter);
         
         if ($total_records > 0) 
         {
             // get current page records
-            $data["noticiasPrincipales"] = $this->pedido->get_current_page_records($limit_per_page, $start_index,$filter);
+            $hoy = date("Y-m-d");
+            list($dia, $mes, $ano) = explode("-", $hoy);
+            $lafecha = $ano."-".$mes."-".$dia;
+            $data["noticiasPrincipales"] = $this->pedido->get_current_page_records($limit_per_page, $start_index,$filter,$hoy);
+            
             $config['base_url'] = base_url() . 'index.php/portada/paginado';
             $config['total_rows'] = $total_records;
             $config['per_page'] = $limit_per_page;
@@ -106,17 +115,21 @@ class Portada extends CI_Controller {
     function paginado() {
         $this->load->helper('form');
         $filter=$this->session->all_userdata()['filter'];
-        print_r($filter);
-        $data = self::getSetters($filter);
+        
+        $hoy = date("Y-m-d");
+        list($dia, $mes, $ano) = explode("-", $hoy);
+        $lafecha = $ano."-".$mes."-".$dia;
+        $data = self::getSetters($filter,$hoy);
         
         $limit_per_page = 10;
         $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $total_records = $this->pedido->get_total($filter);
+        $total_records = $this->pedido->get_total($filter,$hoy);
         
         if ($total_records > 0) 
         {
             // get current page records
-            $data["noticiasPrincipales"] = $this->pedido->get_current_page_records($limit_per_page, $start_index,$filter);
+            
+            $data["noticiasPrincipales"] = $this->pedido->get_current_page_records($limit_per_page, $start_index,$filter,$hoy);
              
             $config['base_url'] = base_url() . 'index.php/portada/paginado';
             $config['total_rows'] = $total_records;
@@ -161,9 +174,12 @@ class Portada extends CI_Controller {
     
     function detalle($filter = null) {
         $this->load->library('form_validation');
-        $data = self::getSetters(null);
+        $hoy = date("Y-m-d");
+        list($dia, $mes, $ano) = explode("-", $hoy);
+        $lafecha = $ano."-".$mes."-".$dia;
+        $data = self::getSetters(null,$hoy);
         
-        $data['noticiasRelacionadas'] = $this->pedido->getNoticiasRelacionadas($filter);
+        $data['noticiasRelacionadas'] = $this->pedido->getNoticiasRelacionadas($filter,$hoy);
         $this->pedido->updateVisita($filter);
         $result = $this->contenido->getContenido($filter);
         $data['idNoticia'] = $filter;

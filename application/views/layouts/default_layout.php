@@ -85,7 +85,7 @@
             <li><a href="<?=base_url()?>index.php/gastos/index"><i class="fa fa-wrench"></i> Menu </a></li>
             <li><a href="<?=base_url()?>index.php/imprimir/index"><i class="fa fa-bar-chart-o"></i> Imagenes</a></li>
             <li><a href="<?=base_url()?>index.php/backup/index"><i class="fa fa-desktop"></i> Copia de Seguridad </a></li>
-            <!--<li><a href="<?=base_url()?>index.php/about/index"><i class="fa fa-globe"></i> Acerca de...</a></li>-->
+            <li><a href="<?=base_url()?>index.php/configuracion/index"><i class="fa fa-globe"></i> Usuarios </a></li>
             <li><a onclick="return confirm('Realmente desea salir?')" href="<?=base_url()?>index.php/home/logout"><i class="fa fa-power-off"></i> Salir </a></li>
           </ul>
 

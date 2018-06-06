@@ -123,8 +123,29 @@
                 </div>
                 <div class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"> <?php print_r($item->ClienteOrignen); echo "&nbsp";?> | <?php endforeach;?></div>
             </div>
-
         </header>
+        
+        <?php if (!empty($imageCarrusel) && $imageCarrusel[0]->proviene=='true'){ ?>
+                <div id="owl-carousel-1" class="owl-carousel owl-theme center-owl-nav">
+                    <!-- ARTICLE -->
+                    <?php foreach ($banner as $item): ?>
+                    <article class="article thumb-article">
+                            <div class="article-img" >
+                                    <img src="<?php print_r($item->Observaciones); ?>" alt="">
+                            </div>
+                            <div class="article-body">
+                                    <h2 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"><?php print_r($item->ClienteOrignen); ?></a></h2>
+                                    <ul class="article-meta">
+                                            <li><i class="fa fa-clock-o"></i> <?php print_r($item->Fecha); ?> </li>
+                                            <li><i class="fa fa-fire"></i> <?php print_r($item->Bultos); ?></li>
+                                    </ul>
+                            </div>
+                    </article>
+                    <?php endforeach; ?>
+                    <!-- /ARTICLE -->
+
+		</div>
+        <?php } ?>
         <div class="container">
             <!-- ROW -->
             <div class="row">

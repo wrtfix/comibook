@@ -36,6 +36,19 @@ $(document).ready(function(){
 			guardar.push(($(this).attr('id').split('-')[1]));
 		}
 	});
+        $('#tab2').click(function(){
+            $("#screenSelImagen").show();
+            $("#screenUrlImagen").hide();
+            $("#tab1").removeAttr('class');
+            $("#tab2").attr('class','active');
+	});
+        $('#tab1').click(function(){
+            $("#screenSelImagen").hide();
+            $("#screenUrlImagen").show();
+            $("#tab2").removeAttr('class');
+            $("#tab1").attr('class','active');
+	});
+        
 	$('#contenido').click(function(){
 	    var idNoticia = $('input:checked:first').attr('id');
             if (idNoticia != undefined){
@@ -53,10 +66,25 @@ $(document).ready(function(){
         $('#agregar').click(function(){
 		var agrego = $("#pedidos").attr("xagregar");
 		if (agrego=='false'){ 
-			$('#pedidos').append("<tr><td></td><td style='display: none;'><input name='fecha' id='fecha' type='input' value='"+fecha+"'></td><td><input name='ClienteOrigen' type='input' value=''></td><td><input name='Bultos' type='input' value=''></td><td><input name='ClienteDestino' type='input' value=''></td><td><input name='valorDeclarado' type='input' value=''></td><td style='display: none;'></td><td><input name='CostoFlete' type='input' value=''></td><td style='display: none;'></td><td><input name='Observaciones' type='input' value=''></td></tr>");
+			$('#pedidos').append("<tr><td></td><td style='display: none;'><input name='fecha' id='fecha' type='input' value='"+fecha+"'></td><td><input name='ClienteOrigen' type='input' value=''></td><td><input name='Bultos' type='input' value=''></td><td><input name='ClienteDestino' type='input' value=''></td><td><input name='valorDeclarado' type='input' value=''></td><td style='display: none;'></td><td><input name='CostoFlete' type='input' value=''></td><td style='display: none;'></td><td><input id='NewObservaciones' name='Observaciones' type='hidden' value=''><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#imageModal' >Imagen</button></td></tr>");
 			$("#pedidos").attr("xagregar","true");
 		}
 	});
+        $("#validarImagen").click(function(){
+            var url =  $("#imageURL").val();
+            $("#setImage").attr('src',url);
+            
+        });
+        $('#selectImagen').click(function(){
+		var idNoticia = $('input:checked:first').attr('id');
+                var url =  $("#imageURL").val();
+                if (url == ''){
+                    $("#NewObservaciones").val(idNoticia);
+                }else{
+                    $("#NewObservaciones").val(url);
+                }
+	});
+        
 	$('#guardar').click(function(){
 		var agrego = $("#pedidos").attr("xagregar");
                 if (agrego=='true'){ 
@@ -190,6 +218,47 @@ $(document).ready(function(){
 			</tbody>
 		</table>
 	</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <ul class="nav nav-tabs">
+            <li id="tab1" class="active"><a href="#">Imagen desde URL</a></li>
+            <li id="tab2"><a href="#">Seleccionar Imagen</a></li>
+        </ul>
+        <div class="modal-body" >
+            <div id="screenSelImagen" style="display:none;">
+            <table class="table table-bordered table-hover tablesorter" id="tablaGastos" xagregar="false">
+            <thead>
+              <tr>
+                <th class="header">Seleccionar<i class=""></i></th>                    
+                <th class="header">Imagen<i class=""></i></th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php foreach($imagenes as $item): ?>                  
+            <tr>
+              <td><input type="checkbox" id="<?php echo base_url().'uploads/'; print_r($item->nombre);?>" class="fila" ></td>
+              <td><img width="50%" height="50%" src="<?php echo base_url().'uploads/'; print_r($item->nombre);?>"/></td>
+            </tr>
+            <?php endforeach; ?>
+            </tbody>
+            </table>
+        </div>
+        <div id="screenUrlImagen">
+            URL: <input type="text" id="imageURL" > <button type="button" class="btn btn-primary" id="validarImagen">Validar</button><br><br>
+            <div id="imagenResult"><center><img width="50%" height="50%" src="" id="setImage"/></center></div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="selectImagen">Seleccionar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 
