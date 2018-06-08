@@ -33,6 +33,7 @@ class Portada extends CI_Controller {
         
         //Manejo de configuracion
         $data['logo'] = $this->cheque->getCheque("SITE_IMAGE");
+        $data['logoUpside'] = $this->cheque->getCheque("SITE_IMAGE_UPSIDE");
         $data['twitterMessage'] = $this->cheque->getCheque("SHARE_TWITTER");
         $data['twitterUser'] = $this->cheque->getCheque("USER_TWITTER");
         $data['instagramUser'] = $this->cheque->getCheque("USER_INSTAGRAM");
@@ -41,6 +42,7 @@ class Portada extends CI_Controller {
         $data['downBanner'] = $this->cheque->getCheque("DOWN_BANNER");
         $data['leftBanner'] = $this->cheque->getCheque("LEFT_BANNER");
         $data['imageCarrusel'] = $this->cheque->getCheque("CARRUSEL_IMAGE");
+        
         
         $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre');
         $arrayDias = array( 'Domingo', 'Lunes', 'Martes','Miercoles', 'Jueves', 'Viernes', 'Sabado');

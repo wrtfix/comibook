@@ -9,11 +9,6 @@
 
         <!-- You can use Open Graph tags to customize link previews.
         Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-        <meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
-        <meta property="og:type"          content="website" />
-        <meta property="og:title"         content="Your Website Title" />
-        <meta property="og:description"   content="Your description" />
-        <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
 
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CLato:300,400" rel="stylesheet"> 
@@ -65,6 +60,13 @@
         </style>
     </head>
     <body style=".article .article-meta li:{color: <?php print_r($menuColor[0]->proviene); ?>!important}">
+        
+        <meta property="og:url"           content="<?= base_url() ?>" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="<?= $this->layout->placeholder("title"); ?>" />
+        <meta property="og:description"   content="Portal de noticias" />
+        <meta property="og:image"         content="<?php print_r($logo[0]->proviene);?>" />
+        
         <!-- Header -->
         <header id="header">
             <!-- Top Header -->
@@ -101,7 +103,7 @@
                 <div class="container">
                     <nav id="main-nav" style="background:<?php print_r($menuColor[0]->proviene); ?>">
                         <div class="nav-logo">
-                            <a href="<?= base_url() ?>" class="logo"><img style="width: 80%" src="<?php print_r($logo[0]->proviene);?>" alt=""></a>
+                            <a href="<?= base_url() ?>" class="logo"><img style="width: 80%" src="<?php if(!empty($logoUpside[0]->proviene)) print_r($logoUpside[0]->proviene); else print_r($logo[0]->proviene);?>" alt=""></a>
                         </div>
                         <ul class="main-nav nav navbar-nav">
                             <li><a href="<?= base_url() ?>">Portada</a></li>
