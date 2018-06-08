@@ -36,9 +36,6 @@
                                                     <img src="<?php print_r($noticiasPrincipales[$cont]->Observaciones); ?>" alt="">
                                                 <?php }?>
                                             </a>
-                                            <ul class="article-info">
-                                                <li class="article-type"><i class="fa fa-camera"></i></li>
-                                            </ul>
                                         </div>
                                         <div class="article-body">
                                             <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen); ?></a></h4>
@@ -249,9 +246,6 @@
                                     <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[0]->Numero); ?>">
                                         <img src="<?php print_r($resumenNoticias[0]->Observaciones); ?>" alt="">
                                     </a>
-                                    <ul class="article-info">
-                                        <li class="article-type"><i class="fa fa-camera"></i></li>
-                                    </ul>
                                 </div>
                                 <div class="article-body">
                                     <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[0]->Numero); ?>"><?php print_r($resumenNoticias[0]->ClienteOrignen); ?></a></h3>
@@ -276,9 +270,6 @@
                                     <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[1]->Numero); ?>">
                                         <img src="<?php print_r($resumenNoticias[1]->Observaciones); ?>" alt="">
                                     </a>
-                                    <ul class="article-info">
-                                        <li class="article-type"><i class="fa fa-camera"></i></li>
-                                    </ul>
                                 </div>
                                 <div class="article-body">
                                     <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[1]->Numero); ?>"><?php print_r($resumenNoticias[1]->ClienteOrignen); ?></a></h3>
@@ -309,9 +300,6 @@
                                     <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[2]->Numero); ?>">
                                         <img src="<?php print_r($resumenNoticias[2]->Observaciones); ?>" alt="">
                                     </a>
-                                    <ul class="article-info">
-                                        <li class="article-type"><i class="fa fa-camera"></i></li>
-                                    </ul>
                                 </div>
                                 <div class="article-body">
                                     <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[2]->Numero); ?>"><?php print_r($resumenNoticias[2]->ClienteOrignen); ?></a></h3>
@@ -338,9 +326,6 @@
                                     <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[3]->Numero); ?>">
                                         <img src="<?php print_r($resumenNoticias[3]->Observaciones); ?>" alt="">
                                     </a>
-                                    <ul class="article-info">
-                                        <li class="article-type"><i class="fa fa-camera"></i></li>
-                                    </ul>
                                 </div>
                                 <div class="article-body">
                                     <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[3]->Numero); ?>"><?php print_r($resumenNoticias[3]->ClienteOrignen); ?></a></h3>
@@ -367,9 +352,6 @@
                                     <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[4]->Numero); ?>">
                                         <img src="<?php print_r($resumenNoticias[4]->Observaciones); ?>" alt="">
                                     </a>
-                                    <ul class="article-info">
-                                        <li class="article-type"><i class="fa fa-camera"></i></li>
-                                    </ul>
                                 </div>
                                 <div class="article-body">
                                     <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[4]->Numero); ?>"><?php print_r($resumenNoticias[4]->ClienteOrignen); ?></a></h3>
@@ -453,3 +435,4 @@ while ($cont < count($noticiasMasLeidas) && $cont < 4) { ?>
     <!-- /CONTAINER -->
 </div>
 <!-- /SECTION -->
+
