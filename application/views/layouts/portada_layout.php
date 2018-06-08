@@ -7,6 +7,13 @@
         <meta name="description" content="">
         <meta name="author" content="jorge carlos mendiola" >
 
+        <meta property="og:url"           content="<?= base_url() ?>" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="<?= $this->layout->placeholder("title"); ?>" />
+        <meta property="og:description"   content="Portal de noticias" />
+        <meta property="og:image"         content="<?php print_r($logo[0]->proviene);?>" />
+        <meta property="fb:admins"         content="234034364037945" />
+
         <!-- You can use Open Graph tags to customize link previews.
         Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
 
@@ -58,27 +65,28 @@
             background-color: white;
           }
         </style>
+        
     </head>
     <body style=".article .article-meta li:{color: <?php print_r($menuColor[0]->proviene); ?>!important}">
-        
+
         <meta property="og:url"           content="<?= base_url() ?>" />
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="<?= $this->layout->placeholder("title"); ?>" />
         <meta property="og:description"   content="Portal de noticias" />
         <meta property="og:image"         content="<?php print_r($logo[0]->proviene);?>" />
-        
+
         <!-- Header -->
         <header id="header">
             <!-- Top Header -->
             <div class="container">
                     <div class="row ">
                         <!-- Column 1 -->
-                        <div class="col-md-4 col-sm-6 justify-content-center">
+                        <div class="col-xs-8 col-sm-4 justify-content-center">
                             <?php print_r($fechaActual); ?>
                         </div>
 
-                        <div style="text-align: right;">
-                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url() ?>" class="fb-xfbml-parse-ignore" ><i class="fa fa-facebook"></i></a>
+                        <div style="text-align: right;margin-right: 13px;">
+                            <a target="_blank" href="https://www.facebook.com/sharer.php?u=<?= base_url() ?>&summary=Portal&title=Titulo&description=Portal&picture=<?php print_r($logo[0]->proviene);?>" class="fb-xfbml-parse-ignore" ><i class="fa fa-facebook"></i></a>
                             <a target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($twitterUser[0]->proviene);?>" data-size="large"><i class="fa fa-twitter"></i></a>
                             <a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->proviene);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i></a>
                         </div>    
@@ -245,3 +253,4 @@
         
         
 </body>
+
