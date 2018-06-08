@@ -79,7 +79,7 @@
                             <?php print_r($fechaActual); ?>
                         </div>
 
-                        <div style="text-align: right;">
+                        <div style="text-align: right;margin-right: 13px;">
                             <a target="_blank" href="https://www.facebook.com/sharer.php?u=<?= base_url() ?>&summary=Portal&title=Titulo&description=Portal&picture=<?php print_r($logo[0]->proviene);?>" class="fb-xfbml-parse-ignore" ><i class="fa fa-facebook"></i></a>
                             <a target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($twitterUser[0]->proviene);?>" data-size="large"><i class="fa fa-twitter"></i></a>
                             <a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->proviene);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i></a>
