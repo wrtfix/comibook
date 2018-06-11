@@ -25,14 +25,6 @@ class Home extends CI_Controller {
   function logout()
   {
     $this->session->unset_userdata('logged_in');
-    try{
-      session_destroy();
-    
-    } catch (Exception $e) {
-      echo 'Excepción capturada: ',  $e->getMessage(), "\n";
-    }
-
- 
     redirect('login', 'refresh');
   }
 
