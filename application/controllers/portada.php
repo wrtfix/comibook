@@ -201,9 +201,12 @@ class Portada extends CI_Controller {
     }
 
     function addComentario() {
+        $hoy = date("Y-m-d");
+        list($dia, $mes, $ano) = explode("-", $hoy);
+        $lafecha = $ano."-".$mes."-".$dia;
         $this->load->library('form_validation');
         $filter = $this->input->post('idNoticia');
-        $data = self::getSetters(null);
+        $data = self::getSetters(null,$lafecha);
         $result = $this->contenido->getContenido($filter);
         $fecha = date("Y-m-d");
 
