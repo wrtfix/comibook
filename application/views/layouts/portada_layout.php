@@ -131,7 +131,7 @@
                     </div>
                     
                 </div>
-                <div class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"> <?php print_r($item->ClienteOrignen); echo "&nbsp";?> | <?php endforeach;?></div>
+                <div style="display:none;"class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"> <?php print_r($item->ClienteOrignen); echo "&nbsp";?> | <?php endforeach;?></div>
             </div>
         </header>
         
@@ -236,7 +236,9 @@
         <div id="back-to-top"></div>
         <script src="<?= base_url() ?>estilo/login/js/main.js"></script>
          <script>
-        $('.marquee').marquee({
+         $(document).ready(function(){
+             $('.marquee').show();
+             $('.marquee').marquee({
 		    //speed in milliseconds of the marquee
 		    duration: 30000,
 		    //gap in pixels between the tickers
@@ -248,6 +250,7 @@
 		    //true or false - should the marquee be duplicated to show an effect of continues flow
 		    duplicated: true
 		});
+         });
         </script>
         
         
