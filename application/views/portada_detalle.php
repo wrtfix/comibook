@@ -50,7 +50,7 @@
                         <a style="padding: 15px;" target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($noticia[0]->ClienteOrignen);?>" class="twitter"><i class="fa fa-twitter"></i></a>
                     </div>
                     <div class="article-main-img">
-                        <img src="<?php print_r($noticia[0]->Observaciones); ?>" alt="">
+                        <img src="<?php print_r($noticia[0]->Observaciones); ?>" alt=""/>
                     </div>
                     <div class="article-body">
                         <h1 class="article-title"><?php print_r($noticia[0]->ClienteOrignen); ?></h1>

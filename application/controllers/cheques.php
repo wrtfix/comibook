@@ -35,17 +35,8 @@ class Cheques extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$this->load->library('form_validation');
-			$this->form_validation->set_rules('banco','banco','required');
-		   	$this->form_validation->set_rules('importe','importe','numeric');
-		   	$this->form_validation->set_rules('origen','origen','required');
-		   	$this->form_validation->set_rules('fecha','fecha','');
-		   	$this->form_validation->set_rules('vencimiento','vencimiento','');
-		   	if ($this->form_validation->run() == FALSE) {
-				$this->output->set_status_header('400'); //Triggers the jQuery error callback
-	        } else {		
-				$result = $this->cheque->addCheque();	
-	        }
-			$data['page'] = 'cheques';
+			$result = $this->cheque->addCheque();	
+	        	$data['page'] = 'cheques';
 			$data['agregados'] =  $this->cheque->getCheques();
 			$this->layout->view('pages/cheques', $data);
 		}else{
@@ -75,17 +66,9 @@ class Cheques extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$this->load->library('form_validation');
-			$this->form_validation->set_rules('banco','banco','required');
-		   	$this->form_validation->set_rules('importe','importe','required|numeric');
-		   	$this->form_validation->set_rules('proviene','proviene','required');
-		   	$this->form_validation->set_rules('fecha','fecha','required');
-		   	$this->form_validation->set_rules('fechavto','vencimiento','required');
-		   	if ($this->form_validation->run() == FALSE) {
-				$this->output->set_status_header('400'); //Triggers the jQuery error callback
-	        } else {		
-				$result = $this->cheque->updateCheques($id);
+		   		$result = $this->cheque->updateCheques($id);
 	        }
-	    }else{
+        	else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);
 	    }

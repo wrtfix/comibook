@@ -98,7 +98,7 @@
             <div id="center-header">
                 <div class="container">
                     <div class="header-logo">
-                        <a href="<?= base_url() ?>" class="logo"><img src="<?php print_r($logo[0]->proviene);?>" alt=""></a>
+                        <?php if(!empty($logo[0]->proviene)) {?><a href="<?= base_url() ?>" class="logo"><img src="<?php print_r($logo[0]->proviene);?>" alt=""></a> <?php } ?>
                     </div>
                     <div class="header-ads">
                         <img src="https://www.meteored.com.ar/wimages/foto5e6b69604898650032923b629caac3c7.png">
@@ -121,13 +121,6 @@
                         </ul>
                     </nav>
                     <div class="button-nav">
-<!--                            <button class="search-collapse-btn"><i class="fa fa-search"></i></button>-->
-                            <button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
-                            <!--<div class="search-form">
-                                    <form>
-                                            <input class="input" type="text" name="search" placeholder="Buscar">
-                                    </form>
-                            </div>-->
                     </div>
                     
                 </div>
@@ -158,24 +151,20 @@
         <?php } ?>
         <div class="container">
             <!-- ROW -->
+            <?php if (!empty($topBanner[0]->proviene)) { ?>
             <div class="row">
                 <!-- Main Column -->
                 <div class="col-md-12">
+                    
                     <article class="article article-post">
                     <div class="article-main-img">
                         <img class="center-block" style="height: 25%;" src="<?php print_r($topBanner[0]->proviene);?>" alt="">
                     </article>
+                    
                 </div>
             </div>
+            <?php } ?>
         </div>
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.0';
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
         
         <?php echo $content_for_layout ?> 
 
