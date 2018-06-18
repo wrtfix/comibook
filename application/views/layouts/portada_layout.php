@@ -124,7 +124,7 @@
                     </div>
                     
                 </div>
-                <div style="display:none;"class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"> <?php print_r($item->ClienteOrignen); echo "&nbsp";?> | <?php endforeach;?></div>
+                <div style="display:none;"class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"> <?php print_r($item->ClienteOrignen); echo "&nbsp";?> | <?php endforeach;?> </a></div>
             </div>
         </header>
         
