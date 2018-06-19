@@ -10,7 +10,7 @@
         <meta property="og:url"           content="<?= base_url() ?>" />
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="<?= $this->layout->placeholder("title"); ?>" />
-        <meta property="og:description"   content="Portal de noticias" />
+        <meta property="og:description"   content="Portal de noticias de salta" />
         <meta property="og:image"         content="<?php print_r($logo[0]->proviene);?>" />
         <meta property="fb:admins"         content="234034364037945" />
 
@@ -69,12 +69,6 @@
     </head>
     <body style=".article .article-meta li:{color: <?php print_r($menuColor[0]->proviene); ?>!important}">
 
-        <meta property="og:url"           content="<?= base_url() ?>" />
-        <meta property="og:type"          content="website" />
-        <meta property="og:title"         content="<?= $this->layout->placeholder("title"); ?>" />
-        <meta property="og:description"   content="Portal de noticias" />
-        <meta property="og:image"         content="<?php print_r($logo[0]->proviene);?>" />
-
         <!-- Header -->
         <header id="header">
             <!-- Top Header -->
@@ -98,7 +92,7 @@
             <div id="center-header">
                 <div class="container">
                     <div class="header-logo">
-                        <?php if(!empty($logo[0]->proviene)) {?><a href="<?= base_url() ?>" class="logo"><img src="<?php print_r($logo[0]->proviene);?>" alt=""></a> <?php } ?>
+                        <a href="<?= base_url() ?>" class="logo"><img src="<?php print_r($logo[0]->proviene);?>" alt=""></a> 
                     </div>
                     <div class="header-ads">
                         <img src="https://www.meteored.com.ar/wimages/foto5e6b69604898650032923b629caac3c7.png">
@@ -121,6 +115,13 @@
                         </ul>
                     </nav>
                     <div class="button-nav">
+<!--                            <button class="search-collapse-btn"><i class="fa fa-search"></i></button>-->
+                            <button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
+                            <!--<div class="search-form">
+                                    <form>
+                                            <input class="input" type="text" name="search" placeholder="Buscar">
+                                    </form>
+                            </div>-->
                     </div>
                     
                 </div>
@@ -162,8 +163,9 @@
                     </article>
                     
                 </div>
+                        <?php } ?>
             </div>
-            <?php } ?>
+            
         </div>
         
         <?php echo $content_for_layout ?> 
