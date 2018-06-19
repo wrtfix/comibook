@@ -10,8 +10,8 @@
             <!-- Main Column -->
             <div class="col-md-12">
                 <!-- section title -->
-                <div class="section-title">
-                    <h2 class="title">Noticias recientes</h2>
+                <div class="section-title" >
+                    <h2 class="title" style="background:<?php print_r($menuColor[0]->proviene); ?>">Noticias recientes</h2>
                     <!-- tab nav -->
                     <ul class="tab-nav pull-right">
                     </ul>
