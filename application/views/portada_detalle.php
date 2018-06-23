@@ -46,7 +46,7 @@
                 <!-- ARTICLE POST -->
                 <article class="article article-post">
                     <div class="article-share">
-                        <a style="padding: 15px;" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url() ?>" class="facebook"><i class="fa fa-facebook"></i></a>
+                        <a style="padding: 15px;" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= $ogurl; ?>" class="facebook"><i class="fa fa-facebook"></i></a>
                         <a style="padding: 15px;" target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($noticia[0]->ClienteOrignen);?>" class="twitter"><i class="fa fa-twitter"></i></a>
                     </div>
                     <div class="article-main-img">

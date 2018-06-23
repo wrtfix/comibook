@@ -23,7 +23,7 @@ class Portada extends CI_Controller {
         $this->layout->setLayout("layouts/portada_layout");
     }
 
-    private function getSetters($filter,$lafecha) {
+    private function getSetters($filter,$lafecha,$url,$title,$description,$imagen) {
         $data['page'] = 'portada_view';
         $data['menu'] = $this->gasto->getGastos();
         
@@ -43,6 +43,13 @@ class Portada extends CI_Controller {
         $data['leftBanner'] = $this->cheque->getCheque("LEFT_BANNER");
         $data['imageCarrusel'] = $this->cheque->getCheque("CARRUSEL_IMAGE");
         
+        $data['ogurl'] = $url; 
+        $data['ogtype'] = "website";
+        $data['ogtitle'] = $title;
+        $data['ogdescription']=$description;
+        $data['ogimage'] = $imagen;
+        $data['fbapp_id'] ="257134421689708";
+        
         
         $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre');
         $arrayDias = array( 'Domingo', 'Lunes', 'Martes','Miercoles', 'Jueves', 'Viernes', 'Sabado');
@@ -58,7 +65,7 @@ class Portada extends CI_Controller {
         list($dia, $mes, $ano) = explode("-", $hoy);
         $lafecha = $ano."-".$mes."-".$dia;
         
-        $data = self::getSetters(null,$hoy);
+        $data = self::getSetters(null,$hoy,base_url(),"Salta chequeado facebook","Prueba de salta chequeado facebook description","http://blog.linio.com.mx/wp-content/uploads/2017/12/mundial-futbol-725x375.jpg");
         $limit_per_page = 10;
         $start_index = 0;
         $total_records = $this->pedido->get_total($filter,$hoy);
@@ -111,6 +118,8 @@ class Portada extends CI_Controller {
             $data["links"] = $this->pagination->create_links();
         }
         
+        
+        
         $this->layout->view('portada_view', $data);
     }
     
@@ -121,7 +130,7 @@ class Portada extends CI_Controller {
         $hoy = date("Y-m-d");
         list($dia, $mes, $ano) = explode("-", $hoy);
         $lafecha = $ano."-".$mes."-".$dia;
-        $data = self::getSetters($filter,$hoy);
+        $data = self::getSetters($filter,$hoy,base_url(),"Salta chequeado facebook","Prueba de salta chequeado facebook description","http://blog.linio.com.mx/wp-content/uploads/2017/12/mundial-futbol-725x375.jpg");
         
         $limit_per_page = 10;
         $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
@@ -175,15 +184,18 @@ class Portada extends CI_Controller {
     }
     
     function detalle($filter = null) {
+        
+        
         $this->load->library('form_validation');
         $hoy = date("Y-m-d");
         list($dia, $mes, $ano) = explode("-", $hoy);
         $lafecha = $ano."-".$mes."-".$dia;
-        $data = self::getSetters(null,$hoy);
+        $result = $this->contenido->getContenido($filter);
+        $data = self::getSetters(null,$hoy,base_url()."index.php/portada/detalle/".$filter,$result[0]->ClienteOrignen,$result[0]->ClienteDestino, $result[0]->Observaciones);
         
         $data['noticiasRelacionadas'] = $this->pedido->getNoticiasRelacionadas($filter,$hoy);
         $this->pedido->updateVisita($filter);
-        $result = $this->contenido->getContenido($filter);
+        
         $data['idNoticia'] = $filter;
         $data['noticia'] = $result;
         $data['page'] = 'portada_detalle';

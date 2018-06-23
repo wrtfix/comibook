@@ -385,7 +385,7 @@
                         <h2 class="title">Seguinos en:</h2>
                     </div>
                     <ul>
-                        <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url() ?>" class="facebook"><i class="fa fa-facebook"></i><br><span>Facebook</span></a></li>
+                        <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= $ogurl; ?>" class="facebook"><i class="fa fa-facebook"></i><br><span>Facebook</span></a></li>
                         <li><a target="_blank" href="https://twitter.com/<?php print_r($twitterUser[0]->proviene);?>" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
                         <li><a href="https://www.instagram.com/<?php print_r($instagramUser[0]->proviene);?>" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
                     </ul>
