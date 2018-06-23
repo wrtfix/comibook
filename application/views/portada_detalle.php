@@ -69,7 +69,7 @@
                 <!-- article comments -->
                 <div class="article-comments">
                     <div class="section-title">
-                        <h2 class="title">Comentarios</h2>
+                        <h2 class="title"  style="background:<?php print_r($menuColor[0]->proviene); ?>">Comentarios</h2>
                     </div>
 
                     <!-- comment -->
@@ -91,7 +91,7 @@
                 <!-- reply form -->
                 <div class="article-reply-form">
                     <div class="section-title">
-                        <h2 class="title">Dejar mi Comentario</h2>
+                        <h2 class="title"  style="background:<?php print_r($menuColor[0]->proviene); ?>">Dejar mi Comentario</h2>
                     </div>
 
                     <?php echo form_open('portada/addComentario'); ?>

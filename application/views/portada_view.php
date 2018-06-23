@@ -233,7 +233,7 @@
                     <!-- section title -->
                     <div class="col-md-12">
                         <div class="section-title">
-                            <h2 class="title">Mas Populares</h2>
+                            <h2 class="title"  style="background:<?php print_r($menuColor[0]->proviene); ?>">Mas Populares</h2>
                         </div>
                     </div>
                     <!-- /section title -->
