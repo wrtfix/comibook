@@ -44,6 +44,25 @@ class Pedido extends CI_Model {
             return $result;
 	}
         
+        function getPedidoPedientesMax($filter=null,$fecha,$max){
+            $this -> db ->limit($max, 0);
+            if ($filter==null){
+                $this -> db -> from('pedidos');
+                $this -> db-> order_by('numero desc');
+                $this -> db-> where("fecha <=",$fecha);
+            }else{
+                $this->db->select('*')
+                ->from('pedidos')
+                ->join('rContenidoMenu', 'pedidos.numero = rContenidoMenu.idNoticia')
+                ->where('rContenidoMenu.idMenu ='.$filter)
+                -> where("fecha <=",$fecha)
+                ->order_by('numero desc');
+            }
+            $query = $this -> db -> get();
+            $result =$query->result();
+            return $result;
+	}
+        
 	function getNoticiasMasLeidas($filter=null, $fecha){
             if ($filter==null){
                 $this -> db -> from('pedidos');

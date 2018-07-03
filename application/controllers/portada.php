@@ -27,7 +27,7 @@ class Portada extends CI_Controller {
         $data['page'] = 'portada_view';
         $data['menu'] = $this->gasto->getGastos();
         
-        $data['banner'] = $this->pedido->getPedidoPedientes(null,$lafecha);
+        $data['banner'] = $this->pedido->getPedidoPedientesMax(null,$lafecha,$this->cheque->getCheque("MARQUE_MAX_ROWS")[0]->proviene);
         $data['noticiasMasLeidas'] = $this->pedido->getNoticiasMasLeidas($filter,$lafecha);
         $data['resumenNoticias'] = $this->pedido->getNoticiasMasPopulares($filter,$lafecha);
         
@@ -42,13 +42,14 @@ class Portada extends CI_Controller {
         $data['downBanner'] = $this->cheque->getCheque("DOWN_BANNER");
         $data['leftBanner'] = $this->cheque->getCheque("LEFT_BANNER");
         $data['imageCarrusel'] = $this->cheque->getCheque("CARRUSEL_IMAGE");
+        $data['styleCustom'] = $this->cheque->getCheque("CUSTOM_STYLE");
         
         $data['ogurl'] = $url; 
         $data['ogtype'] = "website";
         $data['ogtitle'] = $title;
         $data['ogdescription']=$description;
         $data['ogimage'] = $imagen;
-        $data['fbapp_id'] ="257134421689708";
+        $data['fbapp_id'] = $this->cheque->getCheque("FACEBOOK_KEY")[0]->proviene;
         
         
         $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre');
@@ -65,7 +66,12 @@ class Portada extends CI_Controller {
         list($dia, $mes, $ano) = explode("-", $hoy);
         $lafecha = $ano."-".$mes."-".$dia;
         
-        $data = self::getSetters(null,$hoy,base_url(),"Salta chequeado facebook","Prueba de salta chequeado facebook description","http://blog.linio.com.mx/wp-content/uploads/2017/12/mundial-futbol-725x375.jpg");
+        $socialTitle = $this->cheque->getCheque("SOCIAL_TITLE");
+        $socialDescription = $this->cheque->getCheque("SOCIAL_DESCRIPTION");
+        $socialImage = $this->cheque->getCheque("SOCIAL_IMAGE");
+        
+        $data = self::getSetters(null,$hoy,base_url(),$socialTitle[0]->proviene,$socialDescription[0]->proviene,$socialImage[0]->proviene);
+        
         $limit_per_page = 10;
         $start_index = 0;
         $total_records = $this->pedido->get_total($filter,$hoy);
@@ -130,7 +136,12 @@ class Portada extends CI_Controller {
         $hoy = date("Y-m-d");
         list($dia, $mes, $ano) = explode("-", $hoy);
         $lafecha = $ano."-".$mes."-".$dia;
-        $data = self::getSetters($filter,$hoy,base_url(),"Salta chequeado facebook","Prueba de salta chequeado facebook description","http://blog.linio.com.mx/wp-content/uploads/2017/12/mundial-futbol-725x375.jpg");
+        
+        $socialTitle = $this->cheque->getCheque("SOCIAL_TITLE");
+        $socialDescription = $this->cheque->getCheque("SOCIAL_DESCRIPTION");
+        $socialImage = $this->cheque->getCheque("SOCIAL_IMAGE");
+        
+        $data = self::getSetters(null,$hoy,base_url(),$socialTitle[0]->proviene,$socialDescription[0]->proviene,$socialImage[0]->proviene);
         
         $limit_per_page = 10;
         $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
