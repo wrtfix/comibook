@@ -8,13 +8,23 @@ class Pedidos extends CI_Controller
 		$this->load->model('pedido','',TRUE);
                 $this->load->model('contenido','',TRUE);
                 $this->load->model('imagen','',TRUE);
+                $this->load->model('cheque', '', TRUE);
 		$this->load->spark('markdown-extra/0.0.0');
 	}
 
+        private function  eliminarContenidoAntiguo(){
+            $fecha = date('Y-m-d');
+            $days = $this->cheque->getCheque("REMOVE_NEWS_OLD_DAY")[0]->proviene;
+            $nuevafecha = strtotime ( '-'.$days.'day' , strtotime ( $fecha ) ) ;
+            $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+            list($diaBorrar, $mesBorrar, $anoBorrar) = explode("-", $nuevafecha);
+            $this->pedido->delNotificFecha($nuevafecha);
+        }
 	public function index($fecha=null)
 	{
 		if($this->session->userdata('logged_in'))
 		{
+                        self::eliminarContenidoAntiguo();
 			$this->load->library('form_validation');
 			date_default_timezone_set('America/Argentina/Buenos_Aires');
 			$hoy = date("Y-m-d");

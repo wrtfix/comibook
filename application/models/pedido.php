@@ -223,6 +223,11 @@ class Pedido extends CI_Model {
             
             return $result;
         }
+        
+        function delNotificFecha($fecha){
+            $this->db->where('fecha <=', $fecha);
+            $this->db->delete('pedidos');
+	}
 	
 }
 ?>

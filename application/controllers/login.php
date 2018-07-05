@@ -9,7 +9,7 @@ class Login extends CI_Controller {
     $this->load->spark('markdown-extra/0.0.0');
     $this->load->model('gasto','',TRUE);
     $this->load->model('pedido','',TRUE);
-	  $this->layout->setLayout("layouts/login_layout");
+    $this->layout->setLayout("layouts/login_layout");
   }
 
 
