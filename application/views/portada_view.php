@@ -426,6 +426,30 @@ while ($cont < count($noticiasMasLeidas) && $cont < 4) { ?>
 } ?>
                     <!-- /ARTICLE -->
                 </div>
+<?php if (count($comentarios)>0) { ?>                        
+                                <div class="widget">
+                            
+                    <div class="widget-title">
+                        <h2 class="title">Comentarios</h2>
+                    </div>
+
+
+                    <!-- /owl carousel 3 -->
+
+                    <!-- ARTICLE -->
+
+<?php foreach ($comentarios as $comentario): ?>                         
+                    <article class="article widget-article">
+                            <div class="article-body">
+                                <h4 class="article-title"><?php print_r($comentario->Nombre); ?></a></h4>
+                                <p><?php print_r($comentario->Comentario); ?></p>
+                                
+                            </div>
+                        </article>
+<?php endforeach; ?>
+                    <!-- /ARTICLE -->
+                </div>
+<?php } ?>
                 <!-- /article widget -->
             </div>
             <!-- /Aside Column -->

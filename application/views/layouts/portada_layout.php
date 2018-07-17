@@ -61,6 +61,15 @@
         <script src="<?= base_url() ?>estilo/login/js/owl.carousel.min.js"></script>
         <script src="<?= base_url() ?>estilo/login/js/jquery.marquee.min.js"></script>
        
+        <!-- Anuncios de google -->
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-9057244181464070",
+            enable_page_level_ads: true
+          });
+        </script>
+        
         <style>
         .marquee {
             width: 100%;
@@ -140,7 +149,7 @@
                     <?php foreach ($banner as $item): ?>
                     <article class="article thumb-article">
                             <div class="article-img" >
-                                    <img src="<?php print_r($item->Observaciones); ?>" alt="">
+                                <img src="<?php print_r($item->Observaciones); ?>" alt="" style="width:100%; height: 30%">
                             </div>
                             <div class="article-body">
                                     <h2 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"><?php print_r($item->ClienteOrignen); ?></a></h2>

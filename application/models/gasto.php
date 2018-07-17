@@ -23,7 +23,7 @@ class Gasto extends CI_Model {
 	
 	function getGastos(){
 		$this -> db -> from('gastos');
-                $this -> db-> order_by('idGasto desc');
+                $this -> db-> order_by('importe desc');
 		$query = $this -> db -> get();
 		return $query->result();
 	}

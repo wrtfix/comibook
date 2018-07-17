@@ -56,7 +56,9 @@
                         <h1 class="article-title"><?php print_r($noticia[0]->ClienteOrignen); ?></h1>
                         <ul class="article-meta">
                             <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticia[0]->Fecha),'d-m-Y')); ?></li>
-                            <li><i class="fa fa-comments"></i> <?php print_r($noticia[0]->Bultos); ?> </li>
+                            <li> ¿Que te parecio la noticia?</li>
+                            <li><i class="fa fa-fire"></i> <?php print_r($noticia[0]->Bultos); ?> </li>
+                            
                             <li><i id="like" class="fa fa-thumbs-up icon" data="<?php print_r($noticia[0]->valorDeclarado); ?>"> <?php print_r($noticia[0]->valorDeclarado); ?></i></li>
                             <li><i id="unlike" class="fa fa-thumbs-down icon" data="<?php print_r($noticia[0]->CostoFlete); ?>"><?php print_r($noticia[0]->CostoFlete); ?></i></li>
                         </ul>

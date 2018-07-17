@@ -31,6 +31,9 @@ class Portada extends CI_Controller {
         $data['noticiasMasLeidas'] = $this->pedido->getNoticiasMasLeidas($filter,$lafecha);
         $data['resumenNoticias'] = $this->pedido->getNoticiasMasPopulares($filter,$lafecha);
         
+        
+        $data['comentarios'] = $this->comentarios->getUltimosComentarios($this->cheque->getCheque("MAX_COMMENTS")[0]->proviene);
+        
         //Manejo de configuracion
         $data['logo'] = $this->cheque->getCheque("SITE_IMAGE");
         $data['logoUpside'] = $this->cheque->getCheque("SITE_IMAGE_UPSIDE");

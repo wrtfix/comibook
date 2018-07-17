@@ -26,6 +26,17 @@ class Comentarios extends CI_Model {
 		$query = $this -> db -> get();
 		return $query->result();
 	}
+        
+        function getUltimosComentarios($cantidad){
+            
+		$this -> db -> from('comentarios');
+                $this-> db ->limit($cantidad,0);
+                $this -> db-> order_by('fecha desc');
+		$query = $this -> db -> get();
+                $result = $query->result();
+                
+		return $result;
+	}
 	
 	function deleteComentario($idComentario){
 		return $this->db->delete('comentarios', array('idComentario' => $idComentario));
