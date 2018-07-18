@@ -64,6 +64,7 @@ class Portada extends CI_Controller {
     
     function index($filter=null) {
         $this->load->helper('form');
+        $this->load->library('recaptcha');
         
         $hoy = date("Y-m-d");
         list($dia, $mes, $ano) = explode("-", $hoy);
@@ -198,8 +199,7 @@ class Portada extends CI_Controller {
     }
     
     function detalle($filter = null) {
-        
-        
+        $this->load->library('recaptcha');
         $this->load->library('form_validation');
         $hoy = date("Y-m-d");
         list($dia, $mes, $ano) = explode("-", $hoy);
@@ -227,6 +227,7 @@ class Portada extends CI_Controller {
     }
 
     function addComentario() {
+        
         $hoy = date("Y-m-d");
         list($dia, $mes, $ano) = explode("-", $hoy);
         $lafecha = $ano."-".$mes."-".$dia;
@@ -236,7 +237,19 @@ class Portada extends CI_Controller {
         $result = $this->contenido->getContenido($filter);
         $fecha = date("Y-m-d");
 
-        $this->comentarios->addComentario($fecha);
+        // Load the library
+        $this->load->library('recaptcha');
+
+        // Catch the user's answer
+        $captcha_answer = $this->input->post('g-recaptcha-response');
+
+        // Verify user's answer
+        $response = $this->recaptcha->verifyResponse($captcha_answer);
+
+        // Processing ...
+        if ($response['success']) {
+            $this->comentarios->addComentario($fecha);
+        }
         $data['comentarios'] = $this->comentarios->getComentarios($filter);
         $data['noticia'] = $result;
         $data['idNoticia'] = $filter;

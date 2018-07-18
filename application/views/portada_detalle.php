@@ -101,6 +101,10 @@
                     <input class="input" name="email" placeholder="Email" type="email">
                     <input class="hidden" name="idNoticia"  id="idNoticia" value="<?php print_r($idNoticia); ?>">
                     <textarea class="input" name="comentario" placeholder="Mensaje"></textarea>
+                    <p>
+                        <?php echo $this->recaptcha->render(); ?>
+                    </p>
+                    
                     <button type="submit" class="input-btn">Enviar</button>
                     </form>
                 </div>
