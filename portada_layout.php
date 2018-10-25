@@ -1,5 +1,4 @@
-<html>
-<head>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title><?= $this->layout->placeholder("title"); ?></title>
@@ -8,14 +7,16 @@
         <meta name="description" content="">
         <meta name="author" content="jorge carlos mendiola" >
 
-        <meta property="og:url"           content="<?= $ogurl; ?>" />
-        <meta property="og:type"          content="<?= $ogtype; ?>" />
-        <meta property="og:title"         content="<?= $ogtitle; ?>" />
-        <meta property="og:description"   content="<?= $ogdescription; ?>" />
-        <meta property="og:image"         content="<?= $ogimage; ?>" />
-        <meta property="fb:app_id"        content="<?= $fbapp_id; ?>" />
+        <meta property="og:url"           content="<?= base_url() ?>" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="<?= $this->layout->placeholder("title"); ?>" />
+        <meta property="og:description"   content="Portal de noticias" />
+        <meta property="og:image"         content="<?php print_r($logo[0]->proviene);?>" />
+        <meta property="fb:admins"         content="234034364037945" />
 
-        
+        <!-- You can use Open Graph tags to customize link previews.
+        Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CLato:300,400" rel="stylesheet"> 
 
@@ -57,26 +58,22 @@
         <script src="<?= base_url() ?>estilo/login/js/owl.carousel.min.js"></script>
         <script src="<?= base_url() ?>estilo/login/js/jquery.marquee.min.js"></script>
        
-        <!-- Anuncios de google -->
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-9057244181464070",
-            enable_page_level_ads: true
-          });
-        </script>
-        
         <style>
         .marquee {
             width: 100%;
             overflow: hidden;
             background-color: white;
           }
-          <?= $styleCustom[0]->valor?>
         </style>
         
     </head>
-    <body style=".article .article-meta li:{color: <?php print_r($menuColor[0]->valor); ?>!important}">
+    <body style=".article .article-meta li:{color: <?php print_r($menuColor[0]->proviene); ?>!important}">
+
+        <meta property="og:url"           content="<?= base_url() ?>" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="<?= $this->layout->placeholder("title"); ?>" />
+        <meta property="og:description"   content="Portal de noticias" />
+        <meta property="og:image"         content="<?php print_r($logo[0]->proviene);?>" />
 
         <!-- Header -->
         <header id="header">
@@ -85,26 +82,23 @@
                     <div class="row ">
                         <!-- Column 1 -->
                         <div class="col-xs-8 col-sm-4 justify-content-center">
-                            <?php print_r($fechaActual); ?>  <?php if ($login[0]->valor == 'true' ) { ?> 
-                                | <a href="<?=base_url()?>index.php/login/"> Ingresar </a> 
-                            <?php } ?>
+                            <?php print_r($fechaActual); ?>
                         </div>
 
                         <div style="text-align: right;margin-right: 13px;">
-                            <a target="_blank" href="https://www.facebook.com/sharer.php?u=<?= $ogurl; ?>" class="fb-xfbml-parse-ignore" ><i class="fa fa-facebook"></i></a>
-                            <a target="_blank" href="https://twitter.com/intent/tweet?text=<?= $ogtitle; ?> <?= $ogurl; ?>" data-size="large"><i class="fa fa-twitter"></i></a>
-                            <a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->valor);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i></a>
+                            <a target="_blank" href="https://www.facebook.com/sharer.php?u=<?= base_url() ?>&summary=Portal&title=Titulo&description=Portal&picture=<?php print_r($logo[0]->proviene);?>" class="fb-xfbml-parse-ignore" ><i class="fa fa-facebook"></i></a>
+                            <a target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($twitterUser[0]->proviene);?>" data-size="large"><i class="fa fa-twitter"></i></a>
+                            <a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->proviene);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i></a>
                         </div>    
                     </div>
             </div>
-            
             <!-- /Top Header -->
 
             <!-- Center Header -->
             <div id="center-header">
                 <div class="container">
                     <div class="header-logo">
-                        <a href="<?= base_url() ?>" class="logo"><img src="<?php print_r($logo[0]->valor);?>" alt=""></a> 
+                        <?php if(!empty($logo[0]->proviene)) {?><a href="<?= base_url() ?>" class="logo"><img src="<?php print_r($logo[0]->proviene);?>" alt=""></a> <?php } ?>
                     </div>
                     <div class="header-ads">
                         <img src="https://www.meteored.com.ar/wimages/foto5e6b69604898650032923b629caac3c7.png">
@@ -113,41 +107,34 @@
             </div>
             <!-- /Center Header -->
 
-            <div id="nav-header" style="background:<?php print_r($menuColor[0]->valor); ?>">
+            <div id="nav-header" style="background:<?php print_r($menuColor[0]->proviene); ?>">
                 <div class="container">
-                    <nav id="main-nav" style="background:<?php print_r($menuColor[0]->valor); ?>">
+                    <nav id="main-nav" style="background:<?php print_r($menuColor[0]->proviene); ?>">
                         <div class="nav-logo">
-                            <a href="<?= base_url() ?>" class="logo"><img style="width: 80%" src="<?php if(!empty($logoUpside[0]->valor)) print_r($logoUpside[0]->valor); else print_r($logo[0]->valor);?>" alt=""></a>
+                            <a href="<?= base_url() ?>" class="logo"><img style="width: 80%" src="<?php if(!empty($logoUpside[0]->proviene)) print_r($logoUpside[0]->proviene); else print_r($logo[0]->proviene);?>" alt=""></a>
                         </div>
                         <ul class="main-nav nav navbar-nav">
                             <li><a href="<?= base_url() ?>">Portada</a></li>
                             <?php foreach ($menu as $item): ?>                  
-                                <li><a href="<?= base_url() ?>index.php/portada/index/<?php print_r($item->idMenu); ?>"><?php print_r($item->nombre); ?></a></li>
+                                <li><a href="<?= base_url() ?>index.php/portada/index/<?php print_r($item->idGasto); ?>"><?php print_r($item->nombre); ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </nav>
                     <div class="button-nav">
-<!--                            <button class="search-collapse-btn"><i class="fa fa-search"></i></button>-->
-                            <button class="nav-collapse-btn"><i class="fa fa-bars"></i></button>
-                            <!--<div class="search-form">
-                                    <form>
-                                            <input class="input" type="text" name="search" placeholder="Buscar">
-                                    </form>
-                            </div>-->
                     </div>
                     
                 </div>
-                <div style="display:none;"class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"> <?php print_r($item->ClienteOrignen); echo "&nbsp";?> | <?php endforeach;?> </a></div>
+                <div style="display:none;"class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"> <?php print_r($item->ClienteOrignen); echo "&nbsp";?> | <?php endforeach;?></div>
             </div>
         </header>
         
-        <?php if (!empty($imageCarrusel) && $imageCarrusel[0]->valor=='true'){ ?>
+        <?php if (!empty($imageCarrusel) && $imageCarrusel[0]->proviene=='true'){ ?>
                 <div id="owl-carousel-1" class="owl-carousel owl-theme center-owl-nav">
                     <!-- ARTICLE -->
                     <?php foreach ($banner as $item): ?>
                     <article class="article thumb-article">
                             <div class="article-img" >
-                                <img src="<?php print_r($item->Observaciones); ?>" alt="" style="width:100%; height: 30%">
+                                    <img src="<?php print_r($item->Observaciones); ?>" alt="">
                             </div>
                             <div class="article-body">
                                     <h2 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"><?php print_r($item->ClienteOrignen); ?></a></h2>
@@ -164,20 +151,19 @@
         <?php } ?>
         <div class="container">
             <!-- ROW -->
-            <?php if (!empty($topBanner[0]->valor)) { ?>
+            <?php if (!empty($topBanner[0]->proviene)) { ?>
             <div class="row">
                 <!-- Main Column -->
                 <div class="col-md-12">
                     
                     <article class="article article-post">
                     <div class="article-main-img">
-                        <img class="center-block" style="height: 25%;" src="<?php print_r($topBanner[0]->valor);?>" alt="">
+                        <img class="center-block" style="height: 25%;" src="<?php print_r($topBanner[0]->proviene);?>" alt="">
                     </article>
                     
                 </div>
-                        <?php } ?>
             </div>
-            
+            <?php } ?>
         </div>
         
         <?php echo $content_for_layout ?> 
@@ -198,7 +184,7 @@
 
          <!-- AD SECTION -->
         <div class="visible-lg visible-md">
-            <img class="center-block" src="<?php print_r($downBanner[0]->valor);?>" alt="">
+            <img class="center-block" src="<?php print_r($downBanner[0]->proviene);?>" alt="">
         </div>
          <br>
         <!-- /AD SECTION -->
@@ -260,4 +246,3 @@
         
 </body>
 
-        </html>

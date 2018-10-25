@@ -9,10 +9,10 @@ class Portada extends CI_Controller {
         parent::__construct();
         $this->layout->placeholder("title", "Salta Chequeado");
         $this->load->spark('markdown-extra/0.0.0');
-        $this->load->model('gasto', '', TRUE);
+        $this->load->model('menus', '', TRUE);
         $this->load->model('pedido', '', TRUE);
         $this->load->model('contenido', '', TRUE);
-        $this->load->model('cheque', '', TRUE);
+        $this->load->model('configuraciones', '', TRUE);
         $this->load->model('comentarios', '', TRUE);
         
         // load Pagination library
@@ -25,34 +25,34 @@ class Portada extends CI_Controller {
 
     private function getSetters($filter,$lafecha,$url,$title,$description,$imagen) {
         $data['page'] = 'portada_view';
-        $data['menu'] = $this->gasto->getGastos();
+        $data['menu'] = $this->menus->getMenu();
         
-        $data['banner'] = $this->pedido->getPedidoPedientesMax(null,$lafecha,$this->cheque->getCheque("MARQUE_MAX_ROWS")[0]->proviene);
+        $data['banner'] = $this->pedido->getPedidoPedientesMax(null,$lafecha,$this->configuraciones->getConfiguracion("MARQUE_MAX_ROWS")[0]->valor);
         $data['noticiasMasLeidas'] = $this->pedido->getNoticiasMasLeidas($filter,$lafecha);
         $data['resumenNoticias'] = $this->pedido->getNoticiasMasPopulares($filter,$lafecha);
         
-        
-        $data['comentarios'] = $this->comentarios->getUltimosComentarios($this->cheque->getCheque("MAX_COMMENTS")[0]->proviene);
+        $data['comentarios'] = $this->comentarios->getUltimosComentarios($this->configuraciones->getConfiguracion("MAX_COMMENTS")[0]->valor);
         
         //Manejo de configuracion
-        $data['logo'] = $this->cheque->getCheque("SITE_IMAGE");
-        $data['logoUpside'] = $this->cheque->getCheque("SITE_IMAGE_UPSIDE");
-        $data['twitterMessage'] = $this->cheque->getCheque("SHARE_TWITTER");
-        $data['twitterUser'] = $this->cheque->getCheque("USER_TWITTER");
-        $data['instagramUser'] = $this->cheque->getCheque("USER_INSTAGRAM");
-        $data['menuColor'] = $this->cheque->getCheque("SITE_MENU_PRINCIPAL");
-        $data['topBanner'] = $this->cheque->getCheque("TOP_BANNER");
-        $data['downBanner'] = $this->cheque->getCheque("DOWN_BANNER");
-        $data['leftBanner'] = $this->cheque->getCheque("LEFT_BANNER");
-        $data['imageCarrusel'] = $this->cheque->getCheque("CARRUSEL_IMAGE");
-        $data['styleCustom'] = $this->cheque->getCheque("CUSTOM_STYLE");
+        $data['logo'] = $this->configuraciones->getConfiguracion("SITE_IMAGE");
+        $data['logoUpside'] = $this->configuraciones->getConfiguracion("SITE_IMAGE_UPSIDE");
+        $data['twitterMessage'] = $this->configuraciones->getConfiguracion("SHARE_TWITTER");
+        $data['twitterUser'] = $this->configuraciones->getConfiguracion("USER_TWITTER");
+        $data['instagramUser'] = $this->configuraciones->getConfiguracion("USER_INSTAGRAM");
+        $data['menuColor'] = $this->configuraciones->getConfiguracion("SITE_MENU_PRINCIPAL");
+        $data['topBanner'] = $this->configuraciones->getConfiguracion("TOP_BANNER");
+        $data['downBanner'] = $this->configuraciones->getConfiguracion("DOWN_BANNER");
+        $data['leftBanner'] = $this->configuraciones->getConfiguracion("LEFT_BANNER");
+        $data['imageCarrusel'] = $this->configuraciones->getConfiguracion("CARRUSEL_IMAGE");
+        $data['styleCustom'] = $this->configuraciones->getConfiguracion("CUSTOM_STYLE");
+        $data['login'] = $this->configuraciones->getConfiguracion("SHOW_LOGIN");
         
         $data['ogurl'] = $url; 
         $data['ogtype'] = "website";
         $data['ogtitle'] = $title;
         $data['ogdescription']=$description;
         $data['ogimage'] = $imagen;
-        $data['fbapp_id'] = $this->cheque->getCheque("FACEBOOK_KEY")[0]->proviene;
+        $data['fbapp_id'] = $this->configuraciones->getConfiguracion("FACEBOOK_KEY")[0]->valor;
         
         
         $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre');
@@ -70,18 +70,18 @@ class Portada extends CI_Controller {
         list($dia, $mes, $ano) = explode("-", $hoy);
         $lafecha = $ano."-".$mes."-".$dia;
         
-        $socialTitle = $this->cheque->getCheque("SOCIAL_TITLE");
-        $socialDescription = $this->cheque->getCheque("SOCIAL_DESCRIPTION");
-        $socialImage = $this->cheque->getCheque("SOCIAL_IMAGE");
+        $socialTitle = $this->configuraciones->getConfiguracion("SOCIAL_TITLE");
+        $socialDescription = $this->configuraciones->getConfiguracion("SOCIAL_DESCRIPTION");
+        $socialImage = $this->configuraciones->getConfiguracion("SOCIAL_IMAGE");
         
-        $data = self::getSetters(null,$hoy,base_url(),$socialTitle[0]->proviene,$socialDescription[0]->proviene,$socialImage[0]->proviene);
+        $data = self::getSetters(null,$hoy,base_url(),$socialTitle[0]->valor,$socialDescription[0]->valor,$socialImage[0]->valor);
         
         $limit_per_page = 10;
         $start_index = 0;
         $total_records = $this->pedido->get_total($filter,$hoy);
         
         $this->session->set_userdata('filter', $filter);
-        
+        $data['totalRecords'] = $total_records;
         if ($total_records > 0) 
         {
             // get current page records
@@ -128,8 +128,6 @@ class Portada extends CI_Controller {
             $data["links"] = $this->pagination->create_links();
         }
         
-        
-        
         $this->layout->view('portada_view', $data);
     }
     
@@ -141,16 +139,16 @@ class Portada extends CI_Controller {
         list($dia, $mes, $ano) = explode("-", $hoy);
         $lafecha = $ano."-".$mes."-".$dia;
         
-        $socialTitle = $this->cheque->getCheque("SOCIAL_TITLE");
-        $socialDescription = $this->cheque->getCheque("SOCIAL_DESCRIPTION");
-        $socialImage = $this->cheque->getCheque("SOCIAL_IMAGE");
+        $socialTitle = $this->configuraciones->getConfiguracion("SOCIAL_TITLE");
+        $socialDescription = $this->configuraciones->getConfiguracion("SOCIAL_DESCRIPTION");
+        $socialImage = $this->configuraciones->getConfiguracion("SOCIAL_IMAGE");
         
-        $data = self::getSetters(null,$hoy,base_url(),$socialTitle[0]->proviene,$socialDescription[0]->proviene,$socialImage[0]->proviene);
+        $data = self::getSetters(null,$hoy,base_url(),$socialTitle[0]->valor,$socialDescription[0]->valor,$socialImage[0]->valor);
         
         $limit_per_page = 10;
         $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $total_records = $this->pedido->get_total($filter,$hoy);
-        
+        $data['totalRecords'] = $total_records;
         if ($total_records > 0) 
         {
             // get current page records
@@ -195,6 +193,7 @@ class Portada extends CI_Controller {
             $data["links"] = $this->pagination->create_links();
         }
         
+
         $this->layout->view('portada_view', $data);
     }
     

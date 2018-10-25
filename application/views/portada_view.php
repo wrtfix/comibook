@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <!-- section title -->
                 <div class="section-title" >
-                    <h2 class="title" style="background:<?php print_r($menuColor[0]->proviene); ?>">Noticias recientes</h2>
+                    <h2 class="title" style="background:<?php print_r($menuColor[0]->valor); ?>">Noticias recientes</h2>
                     <!-- tab nav -->
                     <ul class="tab-nav pull-right">
                     </ul>
@@ -26,7 +26,7 @@
                         <!-- row -->
                         <div class="row">
                             <?php $cont = 0; 
-                            while ($cont < 4 && $cont < count($noticiasPrincipales)) { ?>                  
+                            while (!empty($noticiasPrincipales)  &&  $cont < 4 ) { ?>                  
                                 <div class="col-md-3 col-sm-6">
                                     <!-- ARTICLE -->
                                     <article class="article">
@@ -60,7 +60,7 @@
                             <!-- Column 1 -->
                             <div class="col-md-4 col-sm-6">
                                 <!-- ARTICLE -->
-<?php  if ($cont < count($noticiasPrincipales)) { ?>
+<?php  if (!empty($noticiasPrincipales) && $cont < count($noticiasPrincipales)) { ?>
                                     <article class="article widget-article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
@@ -82,7 +82,7 @@
                                 <!-- /ARTICLE -->
 
                                 <!-- ARTICLE -->
-<?php $cont++; if ($cont < count($noticiasPrincipales)) { ?>
+<?php $cont++; if (!empty($noticiasPrincipales) &&  $cont < count($noticiasPrincipales)) { ?>
                                     <article class="article widget-article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
@@ -109,7 +109,7 @@
                             <!-- Column 2 -->
                             <div class="col-md-4 col-sm-6">
                                 <!-- ARTICLE -->
-<?php $cont++; if ($cont < count($noticiasPrincipales)) { ?>
+<?php $cont++; if (!empty($noticiasPrincipales) &&  $cont < count($noticiasPrincipales)) { ?>
                                     <article class="article widget-article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
@@ -129,7 +129,7 @@
                                         </div>
                                     </article>
                                     <!-- /ARTICLE -->
-<?php } $cont++; if ($cont < count($noticiasPrincipales)) { ?>
+<?php } $cont++; if (!empty($noticiasPrincipales) &&  $cont < count($noticiasPrincipales)) { ?>
                                     <!-- ARTICLE -->
                                     <article class="article widget-article">
                                         <div class="article-img">
@@ -154,7 +154,7 @@
                                 <!-- /Column 2 -->
 
                                 <!-- /Column 3 -->
-<?php }$cont++; if ($cont < count($noticiasPrincipales)) { ?>
+<?php }$cont++; if (!empty($noticiasPrincipales) &&  $cont < count($noticiasPrincipales)) { ?>
                                 <div class="col-md-4 hidden-sm">
                                     <!-- ARTICLE -->
                                     <article class="article widget-article">
@@ -178,7 +178,7 @@
                                     <!-- /ARTICLE -->
 
                                     <!-- ARTICLE -->
-<?php } $cont++; if ($cont < count($noticiasPrincipales)) { ?>
+<?php } $cont++; if (!empty($noticiasPrincipales) &&  $cont < count($noticiasPrincipales)) { ?>
                                     <article class="article widget-article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
@@ -233,7 +233,7 @@
                     <!-- section title -->
                     <div class="col-md-12">
                         <div class="section-title">
-                            <h2 class="title"  style="background:<?php print_r($menuColor[0]->proviene); ?>">Mas Populares</h2>
+                            <h2 class="title"  style="background:<?php print_r($menuColor[0]->valor); ?>">Mas Populares</h2>
                         </div>
                     </div>
                     <!-- /section title -->
@@ -386,8 +386,8 @@
                     </div>
                     <ul>
                         <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= $ogurl; ?>" class="facebook"><i class="fa fa-facebook"></i><br><span>Facebook</span></a></li>
-                        <li><a target="_blank" href="https://twitter.com/<?php print_r($twitterUser[0]->proviene);?>" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
-                        <li><a href="https://www.instagram.com/<?php print_r($instagramUser[0]->proviene);?>" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
+                        <li><a target="_blank" href="https://twitter.com/<?php print_r($twitterUser[0]->valor);?>" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
+                        <li><a href="https://www.instagram.com/<?php print_r($instagramUser[0]->valor);?>" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
                     </ul>
                 </div>
                 <!-- /social widget -->

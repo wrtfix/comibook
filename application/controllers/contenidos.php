@@ -6,8 +6,8 @@ class Contenidos extends CI_Controller
 		parent:: __construct();
 		$this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
 		$this->load->model('contenido','',TRUE);
-                $this->load->model('pedido','',TRUE);
-		$this->load->model('gasto','',TRUE);
+                $this->load->model('noticia','',TRUE);
+		$this->load->model('menus','',TRUE);
 		$this->load->spark('markdown-extra/0.0.0');
 	}
 
@@ -17,7 +17,7 @@ class Contenidos extends CI_Controller
 		{
 			$this->load->library('form_validation');
 			$data['page'] = 'contenido';
-                        $data['noticiaSeleccionada'] = $this->pedido->getNoticia($idNoticia);
+                        $data['noticiaSeleccionada'] = $this->noticia->getNoticia($idNoticia);
 			$data['noticia'] = $this->contenido->getContenidoNoticia($idNoticia);
 			$data['menu'] = $this->contenido->getItemMenu($idNoticia);
 			$data['idNoticia'] = $idNoticia;
@@ -39,12 +39,12 @@ class Contenidos extends CI_Controller
 	  		if ($this->form_validation->run() == FALSE) {
 	  			$this->output->set_status_header('400'); //Triggers the jQuery error callback
 	        } else {
-	        	$menuItems = $this->gasto->getGastos();
+	        	$menuItems = $this->menus->getMenu();
                         $result = $this->contenido->addContenido();
                         $result = $this->contenido->addRContenidoMenu($menuItems);
                         $data['menu'] = $this->contenido->getItemMenu($this->input->post('idNoticia'));;
 	        }
-                $data['noticiaSeleccionada'] = $this->pedido->getNoticia($this->input->post('idNoticia'));
+                $data['noticiaSeleccionada'] = $this->noticia->getNoticia($this->input->post('idNoticia'));
                 $data['noticia'] = $this->contenido->getContenidoNoticia($this->input->post('idNoticia'));
                 $data['page'] = 'contenido';
                 $data['idNoticia'] = $this->input->post('idNoticia');
@@ -61,10 +61,10 @@ class Contenidos extends CI_Controller
                 $this->load->library('form_validation');
                 $result = $this->contenido->update();
                 $result = $this->contenido->deleteRContenidoMenu($this->input->post('idNoticia'));
-                $menuItems = $this->gasto->getGastos();
+                $menuItems = $this->menus->getMenu();
                 $result = $this->contenido->addRContenidoMenu($menuItems);
                 $data['noticia'] = $this->contenido->getContenidoNoticia($this->input->post('idNoticia'));
-                $data['noticiaSeleccionada'] = $this->pedido->getNoticia($this->input->post('idNoticia'));
+                $data['noticiaSeleccionada'] = $this->noticia->getNoticia($this->input->post('idNoticia'));
                 $data['menu'] = $this->contenido->getItemMenu($this->input->post('idNoticia'));
                 $data['idNoticia'] = $this->input->post('idNoticia');
                 $this->layout->view('pages/contenido', $data);
@@ -76,6 +76,7 @@ class Contenidos extends CI_Controller
 
         }
         function delContenido($identificador){
-		return $this->db->delete('contenido', array('idContenido' => $identificador));
+		$result = $this->db->delete('contenido', array('idContenido' => $identificador));
+                return $result;
 	}
 }

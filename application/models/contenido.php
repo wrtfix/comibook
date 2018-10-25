@@ -25,7 +25,7 @@ class Contenido extends CI_Model {
 			if (!empty($value)){
                             $data = array(
                                     'idNoticia' => $this->input->post('idNoticia'),	
-                                    'idMenu' => $item->idGasto
+                                    'idMenu' => $item->idMenu
                             );		
 			$this->db->insert('rContenidoMenu', $data);
 			}
@@ -43,11 +43,10 @@ class Contenido extends CI_Model {
             $this->db->select('*');    
             $this->db->from('rContenidoMenu');
             $this->db->join('contenido', 'rContenidoMenu.idNoticia = contenido.idNoticia');
-            $this->db->join('pedidos', 'rContenidoMenu.idNoticia = pedidos.numero');
+            $this->db->join('noticias', 'rContenidoMenu.idNoticia = noticias.idNoticia');
             $this->db->where('rContenidoMenu.idNoticia ='.$idNoticia);
             $query = $this->db->get();
             $result = $query->result();
-            //print_r($this->db->last_query());
             return $result;
 	}
         
@@ -61,8 +60,8 @@ class Contenido extends CI_Model {
         
         function getItemMenu($idNoticia){
             $this->db->select('*');    
-            $this->db->from('gastos');
-            $this->db->join('(SELECT * from rContenidoMenu WHERE rContenidoMenu.idNoticia ='.$idNoticia.') AS B','B.idMenu = gastos.idGasto','left outer');
+            $this->db->from('menu');
+            $this->db->join('(SELECT * from rContenidoMenu WHERE rContenidoMenu.idNoticia ='.$idNoticia.') AS B','B.idMenu = menu.idMenu','left outer');
             $query = $this->db->get();
             $result = $query->result();
             return $result;

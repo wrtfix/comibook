@@ -1,12 +1,12 @@
 <?php 
-class Configuracion extends CI_Controller 
+class Usuario extends CI_Controller 
 {
 	public function __construct()
 	{
 		parent:: __construct();
 		$this->layout->placeholder("title", "Sistema de Gestion de Contenidos");
 		$this->load->model('user','',TRUE);
-                $this->load->spark('markdown-extra/0.0.0');
+		$this->load->spark('markdown-extra/0.0.0');
 	}
 
 	public function index()
@@ -15,7 +15,7 @@ class Configuracion extends CI_Controller
 		{
 			$this->load->library('form_validation');
 			$data['agregados'] = $this->user->getUsers();
-			$this->layout->view('pages/backoffice/configuracion', $data);
+			$this->layout->view('pages/backoffice/usuarios', $data);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);
@@ -25,10 +25,10 @@ class Configuracion extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$this->load->library('form_validation');
-			$data['page'] = 'configuracion';
-                        $this->user->addUser();
+			$data['page'] = 'usuarios';
+			$this->user->addUser();
 			$data['agregados'] = $this->user->getUsers();
-                        $this->layout->view('pages/backoffice/configuracion', $data);
+            $this->layout->view('pages/backoffice/usuarios', $data);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);
@@ -40,8 +40,8 @@ class Configuracion extends CI_Controller
 		{
 			$this->load->library('form_validation');
 			$this->user->delUser($id);
-                        $data['agregados'] = $this->user->getUsers();
-			$this->layout->view('pages/backoffice/configuracion', $data);
+			$data['agregados'] = $this->user->getUsers();
+			$this->layout->view('pages/backoffice/usuarios', $data);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);

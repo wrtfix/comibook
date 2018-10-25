@@ -19,15 +19,15 @@
 else 
     echo form_open('contenidos/update'); ?>
 <div class="page-header">
-    <h1><?php  print_r($noticiaSeleccionada[0]->ClienteOrignen); ?></h1>
-    <p><?php  print_r($noticiaSeleccionada[0]->ClienteDestino); ?></p>
+    <h1><?php  print_r($noticiaSeleccionada[0]->titulo); ?></h1>
+    <p><?php  print_r($noticiaSeleccionada[0]->resumen); ?></p>
 </div>
 
 <div class="page-header">
 	<h3> Opcion de menu </h3>
 </div>
 <?php $cont = 0; while($cont < count($menu)) { ?>
-        <input type="checkbox" name="<?php print_r($menu[$cont]->idGasto); ?>" <?php if ($menu[$cont]->idRContenidoMenu != null) echo 'checked'; ?> > <?php print_r($menu[$cont]->nombre); ?><br>
+        <input type="checkbox" name="<?php print_r($menu[$cont]->idMenu); ?>" <?php if ($menu[$cont]->idRContenidoMenu != null) echo 'checked'; ?> > <?php print_r($menu[$cont]->nombre); ?><br>
 <?php $cont++;}?>
         
 <input type="hidden" name="idNoticia" value="<?php print_r($idNoticia); ?>" >

@@ -71,7 +71,7 @@
                 <!-- article comments -->
                 <div class="article-comments">
                     <div class="section-title">
-                        <h2 class="title"  style="background:<?php print_r($menuColor[0]->proviene); ?>">Comentarios</h2>
+                        <h2 class="title"  style="background:<?php print_r($menuColor[0]->valor); ?>">Comentarios</h2>
                     </div>
 
                     <!-- comment -->
@@ -93,7 +93,7 @@
                 <!-- reply form -->
                 <div class="article-reply-form">
                     <div class="section-title">
-                        <h2 class="title"  style="background:<?php print_r($menuColor[0]->proviene); ?>">Dejar mi Comentario</h2>
+                        <h2 class="title"  style="background:<?php print_r($menuColor[0]->valor); ?>">Dejar mi Comentario</h2>
                     </div>
 
                     <?php echo form_open('portada/addComentario'); ?>
@@ -116,7 +116,7 @@
             <div class="col-md-4">
                 <!-- Ad widget -->
                 <div class="widget center-block hidden-xs">
-                    <img style="width: 100%; height: 50%" class="center-block" src="<?php print_r($leftBanner[0]->proviene);?>" alt="">
+                    <img style="width: 100%; height: 50%" class="center-block" src="<?php print_r($leftBanner[0]->valor);?>" alt="">
                 </div>
                 <!-- /Ad widget -->
 
@@ -127,8 +127,8 @@
                     </div>
                     <ul>
                         <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= base_url() ?>" class="facebook"><i class="fa fa-facebook"></i><br><span>Facebook</span></a></li>
-                        <li><a target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($twitterUser[0]->proviene);?>" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
-                        <li><a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->proviene);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
+                        <li><a target="_blank" href="https://twitter.com/intent/tweet?text=<?php print_r($twitterUser[0]->valor);?>" class="twitter"><i class="fa fa-twitter"></i><br><span>Twitter</span></a></li>
+                        <li><a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->valor);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i><br><span>Instagram</span></a></li>
                     </ul>
                 </div>
                 <!-- /social widget -->
