@@ -78,25 +78,34 @@
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
+            <?php $cont = 0; while($cont < count($this->session->userdata('logged_in')['menu']))  { print_r($this->session->userdata('logged_in')['menu'][$cont]->code); $cont++;}?>
             
-            
-            
-            <li><a href="<?=base_url()?>index.php/backoffice/configuracion/index"><i class="fa fa-fw fa-gear"></i> Configuracion </a></li>
-            <li><a href="<?=base_url()?>index.php/backoffice/menu/index"><i class="fa fa-wrench"></i> Menu </a></li>
-            <li><a href="<?=base_url()?>index.php/backoffice/usuario/index"><i class="fa fa-globe"></i> Usuarios </a></li>
-            <li><a href="<?=base_url()?>index.php/backup/index"><i class="fa fa-desktop"></i> Copia de Seguridad </a></li>
-            
-            <li><a href="<?=base_url()?>index.php/noticias/index"><i class="fa fa-fw fa-edit"></i> Noticias</a></li>
-            <li><a href="<?=base_url()?>index.php/imprimir/index"><i class="fa fa-bar-chart-o"></i> Imagenes</a></li>
-            
-            <li><a href="<?=base_url()?>index.php/pedidos/index"><i class="fa fa-fw fa-edit"></i> Pedidos</a></li>
-            <li><a href="<?=base_url()?>index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
-            <li><a href="<?=base_url()?>index.php/cheques/index"><i class="fa fa-fw fa-gear"></i> Cheque </a></li>
-            <li><a href="<?=base_url()?>index.php/gastos/index"><i class="fa fa-wrench"></i> Gasto </a></li>
-            <li><a href="<?=base_url()?>index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
-            
-            
-            
+<!--            <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i> Sistema<b class="caret"></b></a>
+                  <ul class="dropdown-menu multi-level">
+                      <li><a href="<?=base_url()?>index.php/backoffice/configuracion/index"><i class="fa fa-fw fa-gear"></i> Configuracion </a></li>
+                      <li><a href="<?=base_url()?>index.php/backoffice/menu/index"><i class="fa fa-wrench"></i> Menu </a></li>
+                      <li><a href="<?=base_url()?>index.php/backoffice/usuario/index"><i class="fa fa-globe"></i> Usuarios </a></li>
+                      <li><a href="<?=base_url()?>index.php/backup/index"><i class="fa fa-desktop"></i> Copia de Seguridad </a></li>
+                  </ul>
+            </li>
+            <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-edit"></i> CMS<b class="caret"></b></a>
+                  <ul class="dropdown-menu multi-level">
+                    <li><a href="<?=base_url()?>index.php/noticias/index"><i class="fa fa-fw fa-edit"></i> Noticias</a></li>
+                    <li><a href="<?=base_url()?>index.php/imprimir/index"><i class="fa fa-bar-chart-o"></i> Imagenes</a></li>
+                  </ul>
+            </li>
+            <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i> Logistica<b class="caret"></b></a>
+                  <ul class="dropdown-menu multi-level">
+                    <li><a href="<?=base_url()?>index.php/pedidos/index"><i class="fa fa-fw fa-edit"></i> Pedidos</a></li>
+                    <li><a href="<?=base_url()?>index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
+                    <li><a href="<?=base_url()?>index.php/cheques/index"><i class="fa fa-fw fa-gear"></i> Cheque </a></li>
+                    <li><a href="<?=base_url()?>index.php/gastos/index"><i class="fa fa-wrench"></i> Gasto </a></li>
+                    <li><a href="<?=base_url()?>index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
+                  </ul>
+            </li>-->
             <li><a onclick="return confirm('Realmente desea salir?')" href="<?=base_url()?>index.php/home/logout"><i class="fa fa-power-off"></i> Salir </a></li>
           </ul>
 

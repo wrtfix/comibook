@@ -15,7 +15,7 @@ class Menu extends CI_Controller
 		{
 			$this->load->library('form_validation');
 			$data['page'] = 'menu';
-			$data['agregados'] =  $this->menus->getMenu();
+			$data['agregados'] =  $this->menus->getMenuConfig();
 			$this->layout->view('pages/backoffice/menu', $data);
 		}else{
 			$data['page'] = 'construccion';
@@ -29,7 +29,7 @@ class Menu extends CI_Controller
 			$this->load->library('form_validation');
 			$result = $this->menus->addMenu();
 			$data['page'] = 'menu';
-			$data['agregados'] =  $this->menus->getMenu();
+			$data['agregados'] =  $this->menus->getMenuConfig();
 			$this->layout->view('pages/backoffice/menu', $data);
 		}else{
 			$data['page'] = 'construccion';
@@ -43,7 +43,7 @@ class Menu extends CI_Controller
 			$this->load->library('form_validation');
 			$result = $this->menus->delMenu($id);	
 			$data['page'] = 'menu';
-			$data['agregados'] =  $this->menus->getMenu();
+			$data['agregados'] =  $this->menus->getMenuConfig();
 			$this->layout->view('pages/backoffice/menu', $data);
 		}else{
 			$data['page'] = 'construccion';
@@ -60,6 +60,7 @@ class Menu extends CI_Controller
 			$this->load->view('pages/construccion', $data);
 	    }
 	}
-	
+        
 
+        
 }

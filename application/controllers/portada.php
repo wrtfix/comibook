@@ -46,6 +46,7 @@ class Portada extends CI_Controller {
         $data['imageCarrusel'] = $this->configuraciones->getConfiguracion("CARRUSEL_IMAGE");
         $data['styleCustom'] = $this->configuraciones->getConfiguracion("CUSTOM_STYLE");
         $data['login'] = $this->configuraciones->getConfiguracion("SHOW_LOGIN");
+        $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
         
         $data['ogurl'] = $url; 
         $data['ogtype'] = "website";

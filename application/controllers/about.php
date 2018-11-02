@@ -7,6 +7,7 @@ class About extends CI_Controller
 		parent:: __construct();
 		$this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
 		$this->load->spark('markdown-extra/0.0.0');
+                $this->load->model('menus','',TRUE);
 	}
 
 	public function index()
@@ -14,7 +15,7 @@ class About extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$session_data = $this->session->userdata('logged_in');
-      		$data['username'] = $session_data['username'];
+                        $data['username'] = $session_data['username'];
 
 			$data['page'] = 'about';
 			$this->layout->view('pages/about', $data);

@@ -209,7 +209,7 @@
                 <!-- /tab content -->
             </div>
             <!-- /Main Column -->
-        <?php if ($totalRecords > 8) {echo $links; }?>
+        <?php if (!empty($noticiasPrincipales) && $totalRecords > 8) {echo $links; }?>
         </div>
         <!-- /ROW -->
     

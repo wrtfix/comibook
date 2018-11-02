@@ -9,6 +9,7 @@ class VerifyLogin extends CI_Controller {
     $this->load->spark('markdown-extra/0.0.0');
     $this->layout->setLayout("layouts/login_layout");
     $this->load->model('user','',TRUE);
+    $this->load->model('menus','',TRUE);
   }
 
   function index()
@@ -52,7 +53,8 @@ class VerifyLogin extends CI_Controller {
       {
         $sess_array = array(
           'id' => $row->id,
-          'username' => $row->username
+          'username' => $row->username,
+          'menu' =>  $this->menus->getUsuarioMenu($row->id)
         );
         $this->session->set_userdata('logged_in', $sess_array);
       }

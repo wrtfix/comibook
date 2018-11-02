@@ -34,12 +34,21 @@ Class User extends CI_Model
             $data = array(
 			'username' => $this->input->post('username'),
 			'password' => MD5($this->input->post('password')),
+			'email' =>  $this->input->post('email'),
+			'telefono' =>  $this->input->post('tel')
 		);
             return $this->db->insert('users', $data);
         }
         
         function getUsers(){
             $this -> db -> from('users');
+            $query = $this -> db -> get();
+            return $query->result();
+        }
+        
+        function getUser($idUsuario){
+            $this -> db -> from('users');
+            $this->db->where('id', $idUsuario);
             $query = $this -> db -> get();
             return $query->result();
         }

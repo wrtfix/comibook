@@ -88,6 +88,9 @@
                             <?php print_r($fechaActual); ?>  <?php if ($login[0]->valor == 'true' ) { ?> 
                                 | <a href="<?=base_url()?>index.php/login/"> Ingresar </a> 
                             <?php } ?>
+                            <?php if ($registrarse[0]->valor == 'true' ) { ?> 
+                                | <a href="<?=base_url()?>index.php/registrarse/"> Registrarse </a> 
+                            <?php } ?>
                         </div>
 
                         <div style="text-align: right;margin-right: 13px;">

@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$('#agregar').click(function(){
 		var agrego = $("#tablaMenu").attr("xagregar");
 		if (agrego=='false'){ 
-			$('#tablaMenu').append("<tr><td></td><td><input  name='grupo' id='grupo' type='input' value=''></td><td><input name='nombre' type='input' value=''></td><td><input name='peso' type='input' value=''></td></tr>");
+			$('#tablaMenu').append("<tr><td></td><td><input  name='grupo' id='grupo' type='input' value=''></td><td><input name='nombre' type='input' value=''></td><td><input name='peso' type='input' value=''></td> <td><input name='code' type='input' value=''></td> </tr>");
 			$("#tablaMenu").attr("xagregar","true");
 		}
 	});
@@ -17,8 +17,9 @@ $(document).ready(function(){
 				var nombre = $('#nombre-'+cambios[i]).val();
 				var grupo = $('#grupo-'+cambios[i]).val();
 				var peso = $('#peso-'+cambios[i]).val();
+                                var code = $('#code-'+cambios[i]).val();
 				$.ajax({
-					   data: {nombre:nombre,grupo:grupo,peso:peso},
+					   data: {nombre:nombre,grupo:grupo,peso:peso,code:code},
 				       type: "POST",
 				       url: "<?=base_url()?>index.php/backoffice/menu/updateMenu/"+cambios[i],
 				       success: function(){
@@ -82,8 +83,9 @@ $(document).ready(function(){
                   <tr>
                     <th class="header">Seleccionar<i class=""></i></th>                    
                     <th class="header">Grupo<i class=""></i></th>
-  					<th class="header">Nombre<i class=""></i></th>
+                    <th class="header">Nombre<i class=""></i></th>
                     <th class="header headerSortDown">Peso<i class=""></i></th>
+                    <th class="header headerSortDown">Code<i class=""></i></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,6 +95,7 @@ $(document).ready(function(){
                   <td><input class="formulario" id="grupo-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->grupo);?>'/></td>
                   <td><input class="formulario" id="nombre-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre);?>'/></td>
                   <td><input class="formulario" id="peso-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->peso);?>'/></td>
+                  <td><input class="formulario" id="code-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->code);?>'/></td>
                 </tr>
                 <?php endforeach; ?>
                 </tbody>

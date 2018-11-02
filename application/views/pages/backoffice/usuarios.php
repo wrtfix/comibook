@@ -54,12 +54,30 @@
         });
         
         $(".fechaInput").datepicker({dateFormat: 'dd-mm-yy'});
+        
+        $('#permisos').click(function(){
+	    var idUsuario = $('input:checked:first').attr('id');
+            if (idUsuario != undefined){
+                var $aux = $("form:first")
+                $aux.attr('action',"<?=base_url()?>index.php/backoffice/rol/index/"+idUsuario);
+                $aux.submit();
+            }else{
+                alert("No es posible cargar el contenido de esta noticia sin haberla guardado previamente");
+                if (guardar.length===0){
+                    location.reload();
+                }
+            }
+	});
+        
+        
     });
 
     $(function () {
         $("#fechaDesde").datepicker({dateFormat: 'dd-mm-yy'});
         $("#fechaHasta").datepicker({dateFormat: 'dd-mm-yy'});
     });
+    
+
 </script>
 <?php if (validation_errors()) { ?>
     <div class="alert alert-dismissable alert-danger">
@@ -77,7 +95,7 @@
     <button type="button" id="agregar" class="btn btn-success">Agregar</button>
     <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
     <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-
+    <button type="button" id="permisos" class="btn btn-warning">Dar permisos</button>
 
     <br>
     <br>
