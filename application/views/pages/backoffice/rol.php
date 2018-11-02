@@ -10,6 +10,7 @@ else
 <div class="page-header">
 	<h3> Opciones de menu </h3>
 </div>
+
 <?php $cont = 0; while($cont < count($menu)) { ?>
         <input type="checkbox" name="<?php print_r($menu[$cont]->idMenu); ?>" <?php if ($menu[$cont]->idRUsuarioMenu != null) echo 'checked'; ?> > <?php print_r($menu[$cont]->grupo); ?><br>
 <?php $cont++;}?>

@@ -31,21 +31,21 @@
                                     <!-- ARTICLE -->
                                     <article class="article">
                                         <div class="article-img">
-                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
-                                                <?php if ($noticiasPrincipales[$cont]->Observaciones!=''){ ?>
-                                                    <img src="<?php print_r($noticiasPrincipales[$cont]->Observaciones); ?>" alt="">
+                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
+                                                <?php if ($noticiasPrincipales[$cont]->urlImage!=''){ ?>
+                                                    <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
                                                 <?php }?>
                                             </a>
                                         </div>
                                         <div class="article-body">
-                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen); ?></a></h4>
+                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>"><?php print_r($noticiasPrincipales[$cont]->titulo); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->Fecha), 'd-m-Y')); ?> </li>
-                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos); ?></li>
-                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->valorDeclarado); ?></li>
-                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->CostoFlete); ?></li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->fecha), 'd-m-Y')); ?> </li>
+                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->visitas); ?></li>
+                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->likes); ?></li>
+                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->unLikes); ?></li>
                                             </ul>
-                                            <p><?php print_r($noticiasPrincipales[$cont]->ClienteDestino); ?></p>
+                                            <p><?php print_r($noticiasPrincipales[$cont]->resumen); ?></p>
                                         </div>
                                     </article>
                                     <!-- /ARTICLE -->
@@ -63,19 +63,19 @@
 <?php  if (!empty($noticiasPrincipales) && $cont < count($noticiasPrincipales)) { ?>
                                     <article class="article widget-article">
                                         <div class="article-img">
-                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->Observaciones); ?>" alt="">
+                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
                                             </a>
                                         </div>
                                         <div class="article-body">
-                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen); ?></a></h4>
+                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>"><?php print_r($noticiasPrincipales[$cont]->titulo); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->Fecha),'d-m-Y')); ?> </li>
-                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos); ?></li>
-                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->valorDeclarado); ?></li>
-                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->CostoFlete); ?></li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->fecha),'d-m-Y')); ?> </li>
+                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->visitas); ?></li>
+                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->likes); ?></li>
+                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->unLikes); ?></li>
                                             </ul>
-                                            <p><?php print_r($noticiasPrincipales[$cont]->ClienteDestino); ?></p>
+                                            <p><?php print_r($noticiasPrincipales[$cont]->resumen); ?></p>
                                         </div>
                                     </article>
 <?php } ?>
@@ -85,20 +85,20 @@
 <?php $cont++; if (!empty($noticiasPrincipales) &&  $cont < count($noticiasPrincipales)) { ?>
                                     <article class="article widget-article">
                                         <div class="article-img">
-                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->Observaciones); ?>" alt="">
+                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
                                             </a>
                                         </div>
                                         <div class="article-body">
-                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen); ?></a></h4>
+                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>"><?php print_r($noticiasPrincipales[$cont]->titulo); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->Fecha),'d-m-Y')); ?> </li>
-                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos); ?></li>
-                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->valorDeclarado); ?></li>
-                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->CostoFlete); ?></li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->fecha),'d-m-Y')); ?> </li>
+                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->visitas); ?></li>
+                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->likes); ?></li>
+                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->unLikes); ?></li>
 
                                             </ul>
-                                            <p><?php print_r($noticiasPrincipales[$cont]->ClienteDestino); ?></p>
+                                            <p><?php print_r($noticiasPrincipales[$cont]->resumen); ?></p>
                                         </div>
                                     </article>
 <?php } ?>
@@ -112,20 +112,20 @@
 <?php $cont++; if (!empty($noticiasPrincipales) &&  $cont < count($noticiasPrincipales)) { ?>
                                     <article class="article widget-article">
                                         <div class="article-img">
-                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->Observaciones); ?>" alt="">
+                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
                                             </a>
                                         </div>
                                         <div class="article-body">
-                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen); ?></a></h4>
+                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>"><?php print_r($noticiasPrincipales[$cont]->titulo); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->Fecha),'d-m-Y')); ?> </li>
-                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos); ?></li>
-                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->valorDeclarado); ?></li>
-                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->CostoFlete); ?></li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->fecha),'d-m-Y')); ?> </li>
+                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->visitas); ?></li>
+                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->likes); ?></li>
+                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->unLikes); ?></li>
 
                                             </ul>
-                                            <p><?php print_r($noticiasPrincipales[$cont]->ClienteDestino); ?></p>
+                                            <p><?php print_r($noticiasPrincipales[$cont]->resumen); ?></p>
                                         </div>
                                     </article>
                                     <!-- /ARTICLE -->
@@ -133,20 +133,20 @@
                                     <!-- ARTICLE -->
                                     <article class="article widget-article">
                                         <div class="article-img">
-                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->Observaciones); ?>" alt="">
+                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
                                             </a>
                                         </div>
                                         <div class="article-body">
-                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen); ?></a></h4>
+                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>"><?php print_r($noticiasPrincipales[$cont]->titulo); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->Fecha),'d-m-Y')); ?> </li>
-                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos); ?></li>
-                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->valorDeclarado); ?></li>
-                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->CostoFlete); ?></li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->fecha),'d-m-Y')); ?> </li>
+                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->visitas); ?></li>
+                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->likes); ?></li>
+                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->unLikes); ?></li>
 
                                             </ul>
-                                            <p><?php print_r($noticiasPrincipales[$cont]->ClienteDestino); ?></p>
+                                            <p><?php print_r($noticiasPrincipales[$cont]->resumen); ?></p>
                                         </div>
                                     </article>
                                     <!-- /ARTICLE -->
@@ -159,20 +159,20 @@
                                     <!-- ARTICLE -->
                                     <article class="article widget-article">
                                         <div class="article-img">
-                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->Observaciones); ?>" alt="">
+                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
                                             </a>
                                         </div>
                                         <div class="article-body">
-                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen); ?></a></h4>
+                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>"><?php print_r($noticiasPrincipales[$cont]->titulo); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->Fecha),'d-m-Y')); ?> </li>
-                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos); ?></li>
-                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->valorDeclarado); ?></li>
-                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->CostoFlete); ?></li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->fecha),'d-m-Y')); ?> </li>
+                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->visitas); ?></li>
+                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->likes); ?></li>
+                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->unLikes); ?></li>
 
                                             </ul>
-                                            <p><?php print_r($noticiasPrincipales[$cont]->ClienteDestino); ?></p>
+                                            <p><?php print_r($noticiasPrincipales[$cont]->resumen); ?></p>
                                         </div>
                                     </article>
                                     <!-- /ARTICLE -->
@@ -181,20 +181,20 @@
 <?php } $cont++; if (!empty($noticiasPrincipales) &&  $cont < count($noticiasPrincipales)) { ?>
                                     <article class="article widget-article">
                                         <div class="article-img">
-                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->Observaciones); ?>" alt="">
+                                            <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
                                             </a>
                                         </div>
                                         <div class="article-body">
-                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->Numero); ?>"><?php print_r($noticiasPrincipales[$cont]->ClienteOrignen); ?></a></h4>
+                                            <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>"><?php print_r($noticiasPrincipales[$cont]->titulo); ?></a></h4>
                                             <ul class="article-meta">
-                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->Fecha),'d-m-Y')); ?> </li>
-                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->Bultos); ?></li>
-                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->valorDeclarado); ?></li>
-                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->CostoFlete); ?></li>
+                                                <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasPrincipales[$cont]->fecha),'d-m-Y')); ?> </li>
+                                                <li><i class="fa fa-fire"></i> <?php print_r($noticiasPrincipales[$cont]->visitas); ?></li>
+                                                <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasPrincipales[$cont]->likes); ?></li>
+                                                <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasPrincipales[$cont]->unLikes); ?></li>
 
                                             </ul>
-                                            <p><?php print_r($noticiasPrincipales[$cont]->ClienteDestino); ?></p>
+                                            <p><?php print_r($noticiasPrincipales[$cont]->resumen); ?></p>
                                         </div>
                                     </article>
 <?php } ?>
@@ -243,20 +243,20 @@
                             <article class="article">
                                 <div class="article-img">
 
-                                    <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[0]->Numero); ?>">
-                                        <img src="<?php print_r($resumenNoticias[0]->Observaciones); ?>" alt="">
+                                    <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[0]->idNoticia); ?>">
+                                        <img src="<?php print_r($resumenNoticias[0]->urlImage); ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="article-body">
-                                    <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[0]->Numero); ?>"><?php print_r($resumenNoticias[0]->ClienteOrignen); ?></a></h3>
+                                    <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[0]->idNoticia); ?>"><?php print_r($resumenNoticias[0]->titulo); ?></a></h3>
                                     <ul class="article-meta">
-                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[0]->Fecha),'d-m-Y')); ?></li>
-                                        <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[0]->Bultos); ?></li>
-                                        <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[0]->valorDeclarado); ?></li>
-                                        <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[0]->CostoFlete); ?></li>
+                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[0]->fecha),'d-m-Y')); ?></li>
+                                        <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[0]->visitas); ?></li>
+                                        <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[0]->likes); ?></li>
+                                        <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[0]->unLikes); ?></li>
 
                                     </ul>
-                                    <p><?php print_r($resumenNoticias[0]->ClienteDestino); ?></p>
+                                    <p><?php print_r($resumenNoticias[0]->resumen); ?></p>
                                 </div>
                             </article>
 <?php } if (1 < count($resumenNoticias)) { ?>
@@ -267,20 +267,20 @@
                             <!-- ARTICLE -->
                             <article class="article">
                                 <div class="article-img">
-                                    <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[1]->Numero); ?>">
-                                        <img src="<?php print_r($resumenNoticias[1]->Observaciones); ?>" alt="">
+                                    <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[1]->idNoticia); ?>">
+                                        <img src="<?php print_r($resumenNoticias[1]->urlImage); ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="article-body">
-                                    <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[1]->Numero); ?>"><?php print_r($resumenNoticias[1]->ClienteOrignen); ?></a></h3>
+                                    <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[1]->idNoticia); ?>"><?php print_r($resumenNoticias[1]->titulo); ?></a></h3>
                                     <ul class="article-meta">
-                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[1]->Fecha),'d-m-Y')); ?></li>
-                                        <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[1]->Bultos); ?></li>
-                                        <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[1]->valorDeclarado); ?></li>
-                                        <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[1]->CostoFlete); ?></li>
+                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[1]->fecha),'d-m-Y')); ?></li>
+                                        <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[1]->visitas); ?></li>
+                                        <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[1]->likes); ?></li>
+                                        <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[1]->unLikes); ?></li>
 
                                     </ul>
-                                    <p><?php print_r($resumenNoticias[1]->ClienteDestino); ?></p>
+                                    <p><?php print_r($resumenNoticias[1]->resumen); ?></p>
                                 </div>
                             </article>
                             <!-- /ARTICLE -->
@@ -297,20 +297,20 @@
 <?php } if (2 < count($resumenNoticias)) { ?>
                             <article class="article">
                                 <div class="article-img">
-                                    <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[2]->Numero); ?>">
-                                        <img src="<?php print_r($resumenNoticias[2]->Observaciones); ?>" alt="">
+                                    <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[2]->idNoticia); ?>">
+                                        <img src="<?php print_r($resumenNoticias[2]->urlImage); ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="article-body">
-                                    <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[2]->Numero); ?>"><?php print_r($resumenNoticias[2]->ClienteOrignen); ?></a></h3>
+                                    <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[2]->idNoticia); ?>"><?php print_r($resumenNoticias[2]->titulo); ?></a></h3>
                                     <ul class="article-meta">
-                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[2]->Fecha),'d-m-Y')); ?></li>
-                                        <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[2]->Bultos); ?></li>
-                                        <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[2]->valorDeclarado); ?></li>
-                                        <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[2]->CostoFlete); ?></li>
+                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[2]->fecha),'d-m-Y')); ?></li>
+                                        <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[2]->visitas); ?></li>
+                                        <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[2]->likes); ?></li>
+                                        <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[2]->unLikes); ?></li>
 
                                     </ul>
-                                    <p><?php print_r($resumenNoticias[2]->ClienteDestino); ?></p>
+                                    <p><?php print_r($resumenNoticias[2]->resumen); ?></p>
                                 </div>
                             </article>
                             <!-- /ARTICLE -->
@@ -323,20 +323,20 @@
                             <!-- ARTICLE -->
                             <article class="article">
                                 <div class="article-img">
-                                    <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[3]->Numero); ?>">
-                                        <img src="<?php print_r($resumenNoticias[3]->Observaciones); ?>" alt="">
+                                    <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[3]->idNoticia); ?>">
+                                        <img src="<?php print_r($resumenNoticias[3]->urlImage); ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="article-body">
-                                    <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[3]->Numero); ?>"><?php print_r($resumenNoticias[3]->ClienteOrignen); ?></a></h3>
+                                    <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[3]->idNoticia); ?>"><?php print_r($resumenNoticias[3]->titulo); ?></a></h3>
                                     <ul class="article-meta">
-                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[3]->Fecha),'d-m-Y')); ?></li>
-                                        <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[3]->Bultos); ?></li>
-                                        <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[3]->valorDeclarado); ?></li>
-                                        <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[3]->CostoFlete); ?></li>
+                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[3]->fecha),'d-m-Y')); ?></li>
+                                        <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[3]->visitas); ?></li>
+                                        <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[3]->likes); ?></li>
+                                        <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[3]->unLikes); ?></li>
 
                                     </ul>
-                                    <p><?php print_r($resumenNoticias[3]->ClienteDestino); ?></p>
+                                    <p><?php print_r($resumenNoticias[3]->resumen); ?></p>
                                 </div>
                             </article>
                             <!-- /ARTICLE -->
@@ -349,20 +349,20 @@
                             <!-- ARTICLE -->
                             <article class="article">
                                 <div class="article-img">
-                                    <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[4]->Numero); ?>">
-                                        <img src="<?php print_r($resumenNoticias[4]->Observaciones); ?>" alt="">
+                                    <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[4]->idNoticia); ?>">
+                                        <img src="<?php print_r($resumenNoticias[4]->urlImage); ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="article-body">
-                                    <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[4]->Numero); ?>"><?php print_r($resumenNoticias[4]->ClienteOrignen); ?></a></h3>
+                                    <h3 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[4]->idNoticia); ?>"><?php print_r($resumenNoticias[4]->titulo); ?></a></h3>
                                     <ul class="article-meta">
-                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[4]->Fecha),'d-m-Y')); ?></li>
-                                        <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[4]->Bultos); ?></li>
-                                        <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[4]->valorDeclarado); ?></li>
-                                        <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[4]->CostoFlete); ?></li>
+                                        <li><i class="fa fa-clock-o"></i><?php print_r(date_format(date_create($resumenNoticias[4]->fecha),'d-m-Y')); ?></li>
+                                        <li><i class="fa fa-fire"></i> <?php print_r($resumenNoticias[4]->visitas); ?></li>
+                                        <li><i class="fa fa-thumbs-up icon"></i><?php print_r($resumenNoticias[4]->likes); ?></li>
+                                        <li><i class="fa fa-thumbs-down icon"></i><?php print_r($resumenNoticias[4]->unLikes); ?></li>
 
                                     </ul>
-                                    <p><?php print_r($resumenNoticias[4]->ClienteDestino); ?></p>
+                                    <p><?php print_r($resumenNoticias[4]->resumen); ?></p>
                                 </div>
                             </article>
 <?php } ?>
@@ -407,17 +407,17 @@
 while ($cont < count($noticiasMasLeidas) && $cont < 4) { ?>          
                         <article class="article widget-article">
                             <div class="article-img">
-                                <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasMasLeidas[$cont]->Numero); ?>">
-                                    <img src="<?php print_r($noticiasMasLeidas[$cont]->Observaciones); ?>" alt="">
+                                <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasMasLeidas[$cont]->idNoticia); ?>">
+                                    <img src="<?php print_r($noticiasMasLeidas[$cont]->urlImage); ?>" alt="">
                                 </a>
                             </div>
                             <div class="article-body">
-                                <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasMasLeidas[$cont]->Numero); ?>"><?php print_r($noticiasMasLeidas[$cont]->ClienteOrignen); ?></a></h4>
+                                <h4 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasMasLeidas[$cont]->idNoticia); ?>"><?php print_r($noticiasMasLeidas[$cont]->titulo); ?></a></h4>
                                 <ul class="article-meta">
-                                    <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasMasLeidas[$cont]->Fecha),'d-m-Y')); ?> </li>
-                                    <li><i class="fa fa-fire"></i> <?php print_r($noticiasMasLeidas[$cont]->Bultos); ?></li>
-                                    <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasMasLeidas[$cont]->valorDeclarado); ?></li>
-                                    <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasMasLeidas[$cont]->CostoFlete); ?></li>
+                                    <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasMasLeidas[$cont]->fecha),'d-m-Y')); ?> </li>
+                                    <li><i class="fa fa-fire"></i> <?php print_r($noticiasMasLeidas[$cont]->visitas); ?></li>
+                                    <li><i class="fa fa-thumbs-up icon"></i><?php print_r($noticiasMasLeidas[$cont]->likes); ?></li>
+                                    <li><i class="fa fa-thumbs-down icon"></i><?php print_r($noticiasMasLeidas[$cont]->unLikes); ?></li>
 
                                 </ul>
                             </div>

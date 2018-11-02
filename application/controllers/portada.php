@@ -10,7 +10,7 @@ class Portada extends CI_Controller {
         $this->layout->placeholder("title", "Salta Chequeado");
         $this->load->spark('markdown-extra/0.0.0');
         $this->load->model('menus', '', TRUE);
-        $this->load->model('pedido', '', TRUE);
+        $this->load->model('noticia', '', TRUE);
         $this->load->model('contenido', '', TRUE);
         $this->load->model('configuraciones', '', TRUE);
         $this->load->model('comentarios', '', TRUE);
@@ -27,9 +27,9 @@ class Portada extends CI_Controller {
         $data['page'] = 'portada_view';
         $data['menu'] = $this->menus->getMenu();
         
-        $data['banner'] = $this->pedido->getPedidoPedientesMax(null,$lafecha,$this->configuraciones->getConfiguracion("MARQUE_MAX_ROWS")[0]->valor);
-        $data['noticiasMasLeidas'] = $this->pedido->getNoticiasMasLeidas($filter,$lafecha);
-        $data['resumenNoticias'] = $this->pedido->getNoticiasMasPopulares($filter,$lafecha);
+        $data['banner'] = $this->noticia->getPedidoPedientesMax(null,$lafecha,$this->configuraciones->getConfiguracion("MARQUE_MAX_ROWS")[0]->valor);
+        $data['noticiasMasLeidas'] = $this->noticia->getNoticiasMasLeidas($filter,$lafecha);
+        $data['resumenNoticias'] = $this->noticia->getNoticiasMasPopulares($filter,$lafecha);
         
         $data['comentarios'] = $this->comentarios->getUltimosComentarios($this->configuraciones->getConfiguracion("MAX_COMMENTS")[0]->valor);
         
@@ -79,7 +79,7 @@ class Portada extends CI_Controller {
         
         $limit_per_page = 10;
         $start_index = 0;
-        $total_records = $this->pedido->get_total($filter,$hoy);
+        $total_records = $this->noticia->get_total($filter,$hoy);
         
         $this->session->set_userdata('filter', $filter);
         $data['totalRecords'] = $total_records;
@@ -89,7 +89,7 @@ class Portada extends CI_Controller {
             $hoy = date("Y-m-d");
             list($dia, $mes, $ano) = explode("-", $hoy);
             $lafecha = $ano."-".$mes."-".$dia;
-            $data["noticiasPrincipales"] = $this->pedido->get_current_page_records($limit_per_page, $start_index,$filter,$hoy);
+            $data["noticiasPrincipales"] = $this->noticia->get_current_page_records($limit_per_page, $start_index,$filter,$hoy);
             
             $config['base_url'] = base_url() . 'index.php/portada/paginado';
             $config['total_rows'] = $total_records;
@@ -148,13 +148,13 @@ class Portada extends CI_Controller {
         
         $limit_per_page = 10;
         $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $total_records = $this->pedido->get_total($filter,$hoy);
+        $total_records = $this->noticia->get_total($filter,$hoy);
         $data['totalRecords'] = $total_records;
         if ($total_records > 0) 
         {
             // get current page records
             
-            $data["noticiasPrincipales"] = $this->pedido->get_current_page_records($limit_per_page, $start_index,$filter,$hoy);
+            $data["noticiasPrincipales"] = $this->noticia->get_current_page_records($limit_per_page, $start_index,$filter,$hoy);
              
             $config['base_url'] = base_url() . 'index.php/portada/paginado';
             $config['total_rows'] = $total_records;
@@ -207,8 +207,8 @@ class Portada extends CI_Controller {
         $result = $this->contenido->getContenido($filter);
         $data = self::getSetters(null,$hoy,base_url()."index.php/portada/detalle/".$filter,$result[0]->ClienteOrignen,$result[0]->ClienteDestino, $result[0]->Observaciones);
         
-        $data['noticiasRelacionadas'] = $this->pedido->getNoticiasRelacionadas($filter,$hoy);
-        $this->pedido->updateVisita($filter);
+        $data['noticiasRelacionadas'] = $this->noticia->getNoticiasRelacionadas($filter,$hoy);
+        $this->noticia->updateVisita($filter);
         
         $data['idNoticia'] = $filter;
         $data['noticia'] = $result;
@@ -218,12 +218,12 @@ class Portada extends CI_Controller {
     }
     
     function like() {
-        $this->pedido->updateLike($this->input->post('idNoticia'));
+        $this->noticia->updateLike($this->input->post('idNoticia'));
     }
     
         
     function unlike() {
-        $this->pedido->updateUnLike($this->input->post('idNoticia'));
+        $this->noticia->updateUnLike($this->input->post('idNoticia'));
     }
 
     function addComentario() {

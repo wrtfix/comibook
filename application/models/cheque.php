@@ -10,13 +10,13 @@ class Cheque extends CI_Model {
 
 	function addCheque()
 	{
-		//list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
-		//list($dia2, $mes2, $ano2) = explode("-", $this->input->post('vencimiento'));
+		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
+		list($dia2, $mes2, $ano2) = explode("-", $this->input->post('vencimiento'));
 		$data = array(
 			'banco' => strtoupper($this->input->post('banco')),
 			'importe' => $this->input->post('importe'),		
-		//	'fecha' => $ano."-".$mes."-".$dia,
-		//	'fechavto' => $ano2."-".$mes2."-".$dia2,
+			'fecha' => $ano."-".$mes."-".$dia,
+			'fechavto' => $ano2."-".$mes2."-".$dia2,
 			'proviene' => $this->input->post('origen'),
 			'entregado' => $this->input->post('destino'),
 		);
@@ -33,9 +33,19 @@ class Cheque extends CI_Model {
 	function delCheques($identificador){
 		return $this->db->delete('cheques', array('id' => $identificador));
 	}
-	function getCheque($nombre){
+	function getCheque($nombre,$fechaDesde,$fechaHasta){
 		$this -> db -> from('cheques');
-		$this -> db -> like("banco",$nombre);
+		if ($nombre !=' ')
+			$this -> db -> like("proviene",$nombre);
+		if ($fechaDesde !=' ' && $fechaHasta !=' '){
+			list($dia, $mes, $ano) = explode("-", $fechaDesde);
+			list($dia2, $mes2, $ano2) = explode("-", $fechaHasta);
+			if ($nombre !=' ')
+				return $this->db->query("select * from cheques where fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "' AND nombre like '".$nombre."'")->result();
+			else{ 				
+				return $this->db->query("select * from cheques where fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "'")->result();
+			}
+		}
 		$query = $this -> db -> get();
 		return $query->result();
 	}

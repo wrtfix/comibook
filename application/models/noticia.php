@@ -185,6 +185,27 @@ class Noticia extends CI_Model {
             $this->db->where('fecha <=', $fecha);
             $this->db->delete('noticias');
 	}
+        
+        
+        function getPedidoPedientesMax($filter=null,$fecha,$max){
+            $this -> db ->limit($max, 0);
+            if ($filter==null){
+                $this -> db -> from('noticias');
+                $this -> db-> order_by('idNoticia desc');
+                $this -> db-> where("fecha <=",$fecha);
+            }else{
+                $this->db->select('*')
+                ->from('noticias')
+                ->join('rContenidoMenu', 'noticias.idNoticia = rContenidoMenu.idNoticia')
+                ->where('rContenidoMenu.idMenu ='.$filter)
+                -> where("fecha <=",$fecha)
+                ->order_by('idNoticia desc');
+            }
+            $query = $this -> db -> get();
+            $result =$query->result();
+            return $result;
+	}
+
 	
 }
 ?>

@@ -1,109 +1,61 @@
-<?php
-
-class Pedido extends CI_Model {
-
-	function __construct()
+<?php 
+class Imprimir extends CI_Controller 
+{
+	public function __construct()
 	{
-		parent::__construct();
-		$this->load->database();
+		parent:: __construct();
+		$this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
+		$this->load->model('pedido','',TRUE);
+		$this->load->model('gasto','',TRUE);
+		$this->load->model('cheque','',TRUE);
+		$this->load->spark('markdown-extra/0.0.0');
 	}
 
-	function addPedido()
+	public function index($nombre=null,$fechaDesde=null,$fechaHasta=null)
 	{
-		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
-		$data = array(
-			'Fecha' => $ano."-".$mes."-".$dia,
-			'ClienteOrignen' => strtoupper($this->input->post('ClienteOrigen')),		
-			'Bultos' => $this->input->post('Bultos'),
-			'ClienteDestino' => strtoupper($this->input->post('ClienteDestino')),
-			'valorDeclarado' => $this->input->post('valorDeclarado'),
-			'Contrareembolso' => $this->input->post('Contrareembolso'),
-			'CostoFlete' => $this->input->post('CostoFlete'),
-			'Pago' => $this->input->post('Pago'),
-			'Observaciones' => strtoupper($this->input->post('Observaciones')),
-		);
-		
-		return $this->db->insert('pedidos', $data);
-	}
-	
-	function getPedidoPedientes(){
-		$this -> db -> from('pedidos');
-		$this -> db -> like('pago','0');
-		$query = $this -> db -> get();
-		return $query->result();
-	}
-	
-	function delPedido($identificador){
-		return $this->db->delete('pedidos', array('Numero' => $identificador));
-	}
-	function getPedidosPedientes($nombre,$fechaDesde,$fechaHasta,$pediente){
-		$this -> db -> from('pedidos');
-		if (!empty($nombre) && empty($fechaDesde)  && empty($fechaHasta) && $pediente != 'No' ){
-			return $this->db->query("select * from pedidos where Pago like '0' and ClienteOrignen like '%".$nombre."%' OR ClienteDestino like '%".$nombre."%'")->result();
-		}
-		
-		$pen="";
-		if ($pediente != 'No'){
-			$pen = "Pago like '0' and" ;
-			$this -> db -> where("Pago",0);
-		}
-		if (!empty($fechaDesde) && !empty($fechaHasta)){
-			list($dia, $mes, $ano) = explode("-", $fechaDesde);
-			list($dia2, $mes2, $ano2) = explode("-", $fechaHasta);
-			if (!empty($nombre)){
-				return $this->db->query("select * from pedidos where ".$pen." fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "' AND ( ClienteOrignen like '%".$nombre."%' OR ClienteDestino like '%".$nombre."%')")->result();
-			}else{ 	
-				return $this->db->query("select * from pedidos where ".$pen." fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "'")->result();
+		$this->load->library('form_validation');
+		$data['page'] = 'imprimir';
+		$hoy = date("Y-m-d");
+		list($dia, $mes, $ano) = explode("-", $hoy);
+		$lafecha = $ano."-".$mes."-".$dia;
+		if ($nombre==null && $fechaDesde==null && $fechaHasta==null){
+			$data['agregados'] = $this->pedido->getPedidosPedientes(' ',$lafecha,$lafecha,"No");
+			$data['gasto'] = $this->gasto->getGastoTotal($hoy,$hoy);
+			$data['cheque'] = $this->cheque->getChequeTotal($hoy,$hoy);
+			$data['nombre'] = "%20";
+				$data['fechaDesde'] = "%20";
+				$data['fechaHasta'] = "%20";
+		}else{
+			$n = str_replace("%20"," ",$nombre);
+			$desde = str_replace("%20"," ",$fechaDesde);
+			$hasta = str_replace("%20"," ",$fechaHasta);
+			$data['agregados'] = $this->pedido->getPedidosPedientes($n,$desde,$hasta,"No");
+			$data['nombre'] = $nombre;
+			if ($desde !=" " && $hasta !=" "){
+				list($dia, $mes, $ano) = explode("-", $desde);
+				$fd = $ano ."-".$mes."-".$dia;
+				list($dia2, $mes2, $ano2) = explode("-", $hasta);
+				$fh = $ano2."-".$mes2."-".$dia2;
+				$fechaDesde = $fd;
+				$fechaHasta = $fh;
+				$data['gasto'] = $this->gasto->getGastoTotal($fd,$fh);
+				$data['cheque'] = $this->cheque->getChequeTotal($fd,$fh);
+				$data['fechaDesde'] = $desde;
+				$data['fechaHasta'] = $hasta;
+			}else{
+				$data['gasto'] =null;
+				$data['cheque'] =null;
+				$data['fechaDesde'] = "%20";
+				$data['fechaHasta'] = "%20";
+				
 			}
+			
 		}
-		
-		$this->db->order_by("numero", "desc"); 
-		$query = $this -> db -> get();
-		
-		return $query->result();
-	}
-	
-	function getPedidos($fecha,$ids=null){
-		$this -> db -> from('pedidos');
-		list($dia, $mes, $ano) = explode("-", $fecha);
-                $consulta = "select * from pedidos where fecha = '".$ano."-".$mes."-".$dia. "'";
-                if ($ids !=null){
-                    $listaIds = str_replace(",","' OR Numero='",$ids);
-                    $consulta = $consulta ." AND Numero='".$listaIds."'" ;
-                }
-                $consulta = $consulta." order by numero";
-		return $this->db->query($consulta)->result();
+		$this->layout->view('pages/imprimir', $data);
 	}
 	
 	
-	function updatePedidos($id){
-		echo $this->input->post('fecha');
-		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
-		
-		$data = array(
-			'Fecha' => $ano."-".$mes."-".$dia,
-			'ClienteOrignen' => strtoupper($this->input->post('ClienteOrigen')),		
-			'Bultos' => $this->input->post('Bultos'),
-			'ClienteDestino' => strtoupper($this->input->post('ClienteDestino')),
-			'valorDeclarado' => $this->input->post('valorDeclarado'),
-			'Contrareembolso' => $this->input->post('Contrareembolso'),
-			'CostoFlete' => $this->input->post('CostoFlete'),
-			'Pago' => $this->input->post('Pago'),
-			'Observaciones' => strtoupper($this->input->post('Observaciones')),
-		);
-		$this->db->where('Numero', $id);
-        return $this->db->update('pedidos', $data);
-	}
-        
-        function addComentario($id){
-            $data = array(
-                    'Comentarios' => strtoupper($this->input->post('comentarios')),
-            );
-            $this->db->where('Numero', $id);
-            return $this->db->update('pedidos', $data);
-	}
-        
-        public function generarPDF($fecha){
+	public function generarPDF($nombre=null,$fechaDesde=null,$fechaHasta=null){
 			$this->load->library('TemplatePdf');
 			// Creacion del PDF
 		
@@ -120,13 +72,12 @@ class Pedido extends CI_Model {
 				$pedidos = $this->pedido->getPedidosPedientes(' ',$lafecha,$lafecha,"No");
 				$gastos = $this->gasto->getGastoTotal($hoy,$hoy);
 				$cheques = $this->cheque->getChequeTotal($hoy,$hoy);
-				$this->TemplatePdf->setTitulos('Liquidacion','Correspondiente al dia '.$lafecha);
+				$this->TemplatePdf->setTitulos('Liquidacion','Correspondiente al dia '.$lafecha);//espero que ande :P
 			}else{
-				$n = str_replace("null"," ",$nombre);
-				$h = str_replace("%20"," ",$n);
-				$desde = str_replace("null"," ",$fechaDesde);
-				$hasta = str_replace("null"," ",$fechaHasta);
-				$pedidos = $this->pedido->getPedidosPedientes($h,$desde,$hasta,"No");
+				$n = str_replace("%20"," ",$nombre);
+				$desde = str_replace("%20"," ",$fechaDesde);
+				$hasta = str_replace("%20"," ",$fechaHasta);
+				$pedidos = $this->pedido->getPedidosPedientes($n,$desde,$hasta,"No");
 				if ($desde !=" " && $hasta !=" "){
 					list($dia, $mes, $ano) = explode("-", $desde);
 					$fd = $ano ."-".$mes."-".$dia;
@@ -200,7 +151,7 @@ class Pedido extends CI_Model {
 				$this->TemplatePdf->Ln(5);
 				$total=$total+$item->CostoFlete;
 			}
-			/*$this->TemplatePdf->SetFillColor(229, 229, 229); 
+			$this->TemplatePdf->SetFillColor(229, 229, 229); 
 			$this->TemplatePdf->Ln(5);
 			$this->TemplatePdf->Cell(20,5,"Saldo en mano: $".$total,0,0,'L',0);
 			if ($cheques !=null && $cheques[0]->importe!=''){
@@ -214,9 +165,9 @@ class Pedido extends CI_Model {
 			if ($gastos!=null)
 				$resta = $total - $gastos[0]->importe;
 			else 
-				$resta = $total; */
+				$resta = $total; 
 			$this->TemplatePdf->Ln(5);
-			$this->TemplatePdf->Cell(20,5,"Total: $".$total,0,0,'L',0);
+			$this->TemplatePdf->Cell(20,5,"Total: $".$resta,0,0,'L',0);
 			
 			
 			/*
@@ -232,6 +183,5 @@ class Pedido extends CI_Model {
 	
 	}
 	
-	
+
 }
-?>

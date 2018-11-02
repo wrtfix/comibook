@@ -87,8 +87,7 @@
                         <div class="col-xs-8 col-sm-4 justify-content-center">
                             <?php print_r($fechaActual); ?>  <?php if ($login[0]->valor == 'true' ) { ?> 
                                 | <a href="<?=base_url()?>index.php/login/"> Ingresar </a> 
-                            <?php } ?>
-                            <?php if ($registrarse[0]->valor == 'true' ) { ?> 
+                            <?php } if ($registrarse[0]->valor == 'true' ) { ?> 
                                 | <a href="<?=base_url()?>index.php/registrarse/"> Registrarse </a> 
                             <?php } ?>
                         </div>
@@ -140,7 +139,7 @@
                     </div>
                     
                 </div>
-                <div style="display:none;"class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"> <?php print_r($item->ClienteOrignen); echo "&nbsp";?> | <?php endforeach;?> </a></div>
+                <div style="display:none;"class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->idNoticia); ?>"> <?php print_r($item->titulo); echo "&nbsp";?> | <?php endforeach;?> </a></div>
             </div>
         </header>
         
@@ -150,13 +149,13 @@
                     <?php foreach ($banner as $item): ?>
                     <article class="article thumb-article">
                             <div class="article-img" >
-                                <img src="<?php print_r($item->Observaciones); ?>" alt="" style="width:100%; height: 30%">
+                                <img src="<?php print_r($item->urlImage); ?>" alt="" style="width:100%; height: 30%">
                             </div>
                             <div class="article-body">
-                                    <h2 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->Numero); ?>"><?php print_r($item->ClienteOrignen); ?></a></h2>
+                                    <h2 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->idNoticia); ?>"><?php print_r($item->titulo); ?></a></h2>
                                     <ul class="article-meta">
-                                            <li><i class="fa fa-clock-o"></i> <?php print_r($item->Fecha); ?> </li>
-                                            <li><i class="fa fa-fire"></i> <?php print_r($item->Bultos); ?></li>
+                                            <li><i class="fa fa-clock-o"></i> <?php print_r($item->fecha); ?> </li>
+                                            <li><i class="fa fa-fire"></i> <?php print_r($item->visitas); ?></li>
                                     </ul>
                             </div>
                     </article>

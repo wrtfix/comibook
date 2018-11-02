@@ -7,7 +7,7 @@ class Noticias extends CI_Controller
             $this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
             $this->load->model('noticia','',TRUE);
             $this->load->model('contenido','',TRUE);
-            $this->load->model('imagen','',TRUE);
+            $this->load->model('imagenes','',TRUE);
             $this->load->model('configuraciones', '', TRUE);
             $this->load->spark('markdown-extra/0.0.0');
 	}
@@ -38,7 +38,7 @@ class Noticias extends CI_Controller
                             $lafecha = $ano."-".$mes."-".$dia;
                     }
                     $data['page'] = 'noticias';
-                    $data['imagenes'] = $this->imagen->getImagenes();
+                    $data['imagenes'] = $this->imagenes->getImagenes();
                     $data['agregados'] = $this->noticia->getNoticiaFecha(null,$lafecha,$lafecha,"No");
                     $this->layout->view('pages/noticias', $data);
             }else{

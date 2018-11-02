@@ -2,21 +2,28 @@
 $(document).ready(function(){
 $('#buscar').click(function(){
 	var $aux = $("form:first");
-	var nombre = $('#nombreBusqueda').val();
-	var fechaDesde = $('#desde').val();
-	var fechaHasta = $('#hasta').val();
-	if (fechaDesde==''){
-		fechaDesde = '%20';
-	}
-	if (fechaHasta==''){
-		fechaHasta = '%20';
-	}
-	if (nombre==''){
-		nombre = '%20';
-	}
-	$aux.attr('action',"<?=base_url()?>index.php/pedientes/index/"+nombre+"/"+fechaDesde+"/"+fechaHasta);
+	nombre = nombre.replace(".", "");
 	$aux.submit();
 });
+
+        $("#impresion").click(function(){
+            var $aux = $("form:first")
+            $aux.attr('action',"<?=base_url()?>index.php/pedientes/generarPDF/");
+            $aux.submit();
+        });
+
+$('.tab').focusout(function(){
+		var elem = $("#"+$(this).attr('id')).val();
+		var donde = "#"+$(this).attr('id');
+		$.ajax({
+		       type: "POST",
+		       url: "<?=base_url()?>index.php/cheques/getCliente/"+elem,
+		       dataType:'json',
+		       success: function(response){
+		    		$(donde).val(response[0].Nombre);
+		       }
+		});
+	});
 
 });
   $(function() {
@@ -25,7 +32,7 @@ $('#buscar').click(function(){
   });
 
 </script>
-<?php echo form_open('pedientes/addCheques'); ?>
+<?php echo form_open('pedientes/index'); ?>
  <div class="row">
             
               
@@ -34,25 +41,26 @@ $('#buscar').click(function(){
   <div class="row">
           <div class="col-lg-4">
             <div class="checkbox">
-                  <label>Fecha desde <input id="desde" class="">
+                  <label>Fecha desde <input name="desde"  id="desde" class=""/>
                   </label>
                 </div>
 </div>
 <div class="col-lg-4">
   <div class="checkbox">
-                  <label>Fecha hasta <input id="hasta" class="">
+                  <label>Fecha hasta <input name="hasta" id="hasta" class=""/>
                   </label>
                 </div>
           </div>
   <div class="col-lg-4">
 <div class="checkbox">
-                  <label>Nombre <input id="nombreBusqueda"class="">
+                  <label>Nombre <input name="nombreBusqueda" id="nombreBusqueda" class="tab"/>
                   </label>
               </div>
 </div>
         </div>
 
-            <button type="button" class="btn btn-default" id="buscar">Buscar</button>
+                 <button type="submit" class="btn btn-default" id="buscar">Buscar</button>
+            <a href="#" id="impresion" class="btn btn-primary">Imprimir</a>
             <br>
             <br>
             <div class="table-responsive">
@@ -60,7 +68,8 @@ $('#buscar').click(function(){
                 <thead>
                   <tr>
                     <th class="header">Fecha<i class=""></i></th>
-  					<th class="header">Nombre<i class=""></i></th>
+  					        <th class="header">Cliente origen<i class=""></i></th>
+                    <th class="header">Cliente destino<i class=""></i></th>
                     <th class="header headerSortDown">Importe en $<i class=""></i></th>
                   </tr>
                 </thead>
@@ -69,6 +78,7 @@ $('#buscar').click(function(){
                 <tr>
                   <td><?php list($dia, $mes, $ano) = explode("-", $item->Fecha); echo $ano."-".$mes."-".$dia;?></td>                  
 				  <td><?php print_r($item->ClienteOrignen);?></td>
+          <td><?php print_r($item->ClienteDestino);?></td>
                   <td><?php print_r($item->CostoFlete);?></td>
                  </tr>
                  <?php endforeach; ?>
