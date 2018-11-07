@@ -77,12 +77,12 @@ $(function() {
 	<div class="row">
 		<div class="col-lg-4">
 			<div class="checkbox">
-				<label> Fecha desde <input name="desde" id="desde" class=""> </label>
+                            <label> Fecha desde <input name="desde" id="desde" class="" value="<?php (!empty($fechaDesde) && $fechaDesde !='null') ? print_r($fechaDesde) : "";  ?>"> </label>
 			</div>
 		</div>
 		<div class="col-lg-4">
 			<div class="checkbox">
-				<label> Fecha hasta <input name="hasta" id="hasta" class=""> </label>
+				<label> Fecha hasta <input name="hasta" id="hasta" class="" value="<?php (!empty($fechaHasta) && $fechaHasta !='null') ? print_r($fechaHasta) : "";  ?>"> </label>
 			</div>
 		</div>
 		<div class="col-lg-4">
