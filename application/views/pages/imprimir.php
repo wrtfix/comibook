@@ -77,17 +77,17 @@ $(function() {
 	<div class="row">
 		<div class="col-lg-4">
 			<div class="checkbox">
-                            <label> Fecha desde <input name="desde" id="desde" class="" value="<?php (!empty($fechaDesde) && $fechaDesde !='null') ? print_r($fechaDesde) : "";  ?>"> </label>
+                            <label> Fecha desde <input name="desde" id="desde" class="" autocomplete="off" value="<?php (!empty($fechaDesde) && $fechaDesde !='null') ? print_r($fechaDesde) : "";  ?>"> </label>
 			</div>
 		</div>
 		<div class="col-lg-4">
 			<div class="checkbox">
-				<label> Fecha hasta <input name="hasta" id="hasta" class="" value="<?php (!empty($fechaHasta) && $fechaHasta !='null') ? print_r($fechaHasta) : "";  ?>"> </label>
+				<label> Fecha hasta <input name="hasta" id="hasta" class="" autocomplete="off" value="<?php (!empty($fechaHasta) && $fechaHasta !='null') ? print_r($fechaHasta) : "";  ?>"> </label>
 			</div>
 		</div>
 		<div class="col-lg-4">
 			<div class="checkbox">
-				<label> Nombre <input name="nombreBusqueda" id="nombreBusqueda" class="tab"> </label>
+                            <label> Nombre <input name="nombreBusqueda" id="nombreBusqueda" autocomplete="off" class="tab" value="<?php (!empty($nombre) && $nombre != 'null')? print_r($nombre) : "" ?>"> </label>
 			</div>
 		</div>
 	</div>
