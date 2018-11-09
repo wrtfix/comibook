@@ -158,14 +158,14 @@ class Pedidos extends CI_Controller {
                 $this->TemplateRemitoPdf->SetFont('Arial', 'B', 8);
                 $this->TemplateRemitoPdf->Cell(5);
                 if (count($clienteOrigen) > 0) {
-                    $this->TemplateRemitoPdf->Cell(100, 10, "Telefono " . $clienteOrigen[0]->Telefono, 0, 0, 'L');
+                    $this->TemplateRemitoPdf->Cell(100, 10, "Localidad " . $clienteOrigen[0]->Localidad, 0, 0, 'L');
                 } else {
-                    $this->TemplateRemitoPdf->Cell(100, 10, "Telefono ", 0, 0, 'L');
+                    $this->TemplateRemitoPdf->Cell(100, 10, "Localidad ", 0, 0, 'L');
                 }
                 if (count($clienteDestino) > 0) {
-                    $this->TemplateRemitoPdf->Cell(100, 10, "Telefono " . $clienteDestino[0]->Telefono, 0, 0, 'L');
+                    $this->TemplateRemitoPdf->Cell(100, 10, "Localidad " . $clienteDestino[0]->Localidad, 0, 0, 'L');
                 } else {
-                    $this->TemplateRemitoPdf->Cell(100, 10, "Telefono ", 0, 0, 'L');
+                    $this->TemplateRemitoPdf->Cell(100, 10, "Localidad ", 0, 0, 'L');
                 }
 
 
@@ -185,28 +185,50 @@ class Pedidos extends CI_Controller {
 
                 $this->TemplateRemitoPdf->SetFont('Arial', 'B', 9);
                 $this->TemplateRemitoPdf->Cell(5);
-                $this->TemplateRemitoPdf->Cell(30, 25, $item->Bultos, 'B', 0, 'C', 0);
-                if ($item->Comentarios != "")
-                    $this->TemplateRemitoPdf->Cell(130, 25, $item->Comentarios, 'B', 0, 'C', 0);
-                else
-                    $this->TemplateRemitoPdf->Cell(130, 25, "Bulto \n Sobre", 'B', 0, 'C', 0);
-
-                $this->TemplateRemitoPdf->Cell(30, 25, $item->CostoFlete, 'B', 0, 'C', 0);
+                $this->TemplateRemitoPdf->Cell(30, 25, $item->Bultos, 0, 0, 'C');
+                
+                
+                $comentarioBulto = $item->Bultos > 1 ? 'Bultos ' : 'Bulto ';
+                $comentarioContrareembolso = $item->ContraReembolso == 1 ? 'Contra reembolso $'.$item->CostoFlete : '';
+                
+                if ($item->Comentarios != ""){
+                    $this->TemplateRemitoPdf->Cell(130, 25, $comentarioBulto.$comentarioContrareembolso.$item->Comentarios, 0, 0, 'C');
+                } else
+                    $this->TemplateRemitoPdf->Cell(130, 25, $comentarioBulto.$comentarioContrareembolso , 0, 0, 'C');
+                
+                if (strpos($item->Observaciones, 'F/O') !== false ){
+                    $this->TemplateRemitoPdf->Cell(30, 25, '', 0, 0, 'C');
+                } else {
+                    if (strpos($item->Observaciones, 'F/D') !== false ){
+                        $this->TemplateRemitoPdf->Cell(30, 25, $item->CostoFlete, 0, 0, 'C');
+                    }else{
+                        $this->TemplateRemitoPdf->Cell(30, 25, '', 0, 0, 'C');
+                    }
+                }
                 $this->TemplateRemitoPdf->Ln(15);
-                $this->TemplateRemitoPdf->Cell(190, 40, "Total $: " . $item->CostoFlete, 0, 0, 'R');
+                if (strpos($item->Observaciones, 'F/O') !== false ){
+                    $this->TemplateRemitoPdf->Cell(190, 40, "", 0, 0, 'R');
+                }else{
+                    if (strpos($item->Observaciones, 'F/D') !== false ){
+                        $this->TemplateRemitoPdf->Cell(190, 40, "Total $: " . $item->CostoFlete, 0, 0, 'R');
+                    }else{
+                        $this->TemplateRemitoPdf->Cell(190, 40, '', 0, 0, 'R');
+                    }
+                }
+                
                 $this->TemplateRemitoPdf->Ln(25);
                 $this->TemplateRemitoPdf->Cell(5);
-                $this->TemplateRemitoPdf->Cell(60, 10, "", 'B', 0, 'C', 0);
+                $this->TemplateRemitoPdf->Cell(60, 10, "", 0, 0, 'L');
                 $this->TemplateRemitoPdf->Cell(5);
-                $this->TemplateRemitoPdf->Cell(60, 10, "", 'B', 0, 'C', 0);
+                $this->TemplateRemitoPdf->Cell(60, 10, "", 0, 0, 'L');
                 $this->TemplateRemitoPdf->Cell(5);
                 $this->TemplateRemitoPdf->Cell(60, 10, "", 'B', 0, 'C', 0);
                 $this->TemplateRemitoPdf->Ln(10);
-                $this->TemplateRemitoPdf->Cell(62, 10, "Remitente", 0, 0, 'C');
+                $this->TemplateRemitoPdf->Cell(62, 10, "", 0, 0, 'C');
                 $this->TemplateRemitoPdf->Cell(5);
-                $this->TemplateRemitoPdf->Cell(62, 10, "Destinatario", 0, 0, 'C');
+                $this->TemplateRemitoPdf->Cell(62, 10, "", 0, 0, 'C');
                 $this->TemplateRemitoPdf->Cell(5);
-                $this->TemplateRemitoPdf->Cell(62, 10, "Transporte", 0, 0, 'C');
+                $this->TemplateRemitoPdf->Cell(62, 10, "Firma", 0, 0, 'C');
                 $this->TemplateRemitoPdf->Ln(10);
             }
             $nombre = "remitos" . $lafecha . '.pdf';
