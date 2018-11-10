@@ -165,6 +165,17 @@ $(document).ready(function(){
             $aux.submit();
         });
         
+        $("#planilla").click(function(){
+            $('input:checked').each(function() {
+		    var elem = $(this).attr('id');
+                    remitos.push(elem);
+                });
+            $("#remitosIds").val(remitos);
+            var $aux = $("form:first");
+            $aux.attr('action',"<?=base_url()?>index.php/pedidos/generarPlanilla/"+fecha);
+            $aux.submit();
+        });
+        
         $("#comentario").hide();
        
 });
@@ -203,6 +214,7 @@ $(document).ready(function(){
 	<button type="button" id="guardar" class="btn btn-primary">Guardar</button>
         <a id="impresion" class="btn btn-success">Generar remitos</a>
         <button type="button" id="addComment" class="btn btn-info">Describir remitos</button>
+        <button type="button" id="planilla" class="btn btn-warning">Generar planilla</button>
         
 	
 	<?php function mostrarTotal($total){ echo "En Caja: $<input type='text' disabled id='calcularTotal' value='".number_format($total,2)."'/>"; } ?>
