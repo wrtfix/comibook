@@ -5,11 +5,14 @@ class VerifyLogin extends CI_Controller {
   function __construct()
   {
     parent::__construct();
-    $this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
-    $this->load->spark('markdown-extra/0.0.0');
-    $this->layout->setLayout("layouts/login_layout");
+    
     $this->load->model('user','',TRUE);
     $this->load->model('menus','',TRUE);
+    $this->load->model('configuraciones', '', TRUE);
+    
+    $this->layout->placeholder("title", $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor);
+    $this->load->spark('markdown-extra/0.0.0');
+    $this->layout->setLayout("layouts/login_layout_2");
   }
 
   function index()
@@ -24,6 +27,7 @@ class VerifyLogin extends CI_Controller {
     {
       //Field validation failed.  User redirected to login page
       $data['page'] = 'login_view';
+      $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
       $this->layout->view('login_view', $data);
       //$this->load->view('login_view');
     }
@@ -31,6 +35,8 @@ class VerifyLogin extends CI_Controller {
     {
       //Go to private area
       $data['page'] = 'about';
+      $data['textoAcercaDe'] = $this->configuraciones->getConfiguracion("ABOUT_MESSAGE");
+      $data['tituloAcercaDe'] = $this->configuraciones->getConfiguracion("SITE_NAME");
       $this->layout->setLayout("layouts/default_layout");
       $this->layout->view('pages/about', $data);
       //redirect('home', 'refresh');

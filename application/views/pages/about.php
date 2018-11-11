@@ -1,4 +1,4 @@
 <div class="page-header">
-<h3> Acerca de CMS</h3>
+<h3> <?php print_r($tituloAcercaDe[0]->valor); ?></h3>
 </div>
-<p> Sistema de gestion de contenidos para diario de salta</p>
+<p> <?php print_r($textoAcercaDe[0]->valor); ?></p>

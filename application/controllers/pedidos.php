@@ -279,11 +279,11 @@ class Pedidos extends CI_Controller {
 
             $this->load->library('TemplatePdf');
             $this->TemplatePdf = new TemplatePdf();
-            $this->TemplatePdf->setTitulos('Diego Lopez', 'Servicio diario - Puerta a puerta - Cargas generales - Mudanzas - Tramites - Tandil - Azul - Olavarria | 0249 - 15 4698546 / 15 4390602'); 
+            $this->TemplatePdf->setTitulos('Fecha: '.$fecha, ''); 
             
-            $columnas = array('Fecha', 'Cliente Origen', 'Bultos', 'Cliente Destino', 'Valor declarado', 'Costo de Flete', 'Contrareembolso', 'Pago?', 'Observaciones');
-            $alineacion = array('C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C');
-            $ancho = array(20, 40, 15, 45, 30, 45, 30, 15, 40);
+            $columnas = array('Origen', 'Bultos', 'Destino', 'Valor declarado', 'Costo de Flete', 'Contrareembolso', 'Pago?');
+            $alineacion = array('C', 'C', 'C', 'C', 'C', 'C', 'C');
+            $ancho = array(60, 15, 75, 30, 45, 30, 15);
             $this->TemplatePdf->setTabla($columnas, $ancho, $alineacion);
 
             $this->TemplatePdf->AddPage();
@@ -292,10 +292,9 @@ class Pedidos extends CI_Controller {
 
             $x = 1;
             foreach ($pedidos as $item) {
-                $this->TemplatePdf->Cell(20, 5, $item->Fecha, 'LRB', 0, 'C', 0);
-                $this->TemplatePdf->Cell(40, 5, $item->ClienteOrignen, 'B', 0, 'C', 0);
+                $this->TemplatePdf->Cell(60, 5, $item->ClienteOrignen, 'LRB', 0, 'C', 0);
                 $this->TemplatePdf->Cell(15, 5, $item->Bultos, 'LRB', 0, 'C', 0);
-                $this->TemplatePdf->Cell(45, 5, $item->ClienteDestino, 'LRB', 0, 'C', 0);
+                $this->TemplatePdf->Cell(75, 5, $item->ClienteDestino, 'LRB', 0, 'C', 0);
                 $this->TemplatePdf->Cell(30, 5, $item->valorDeclarado, 'LRB', 0, 'C', 0);
                 if (strpos($item->Observaciones, 'F/O') !== false ){
                     $this->TemplatePdf->Cell(45, 5, $item->CostoFlete, 'LRB', 0, 'C', 0);
@@ -311,8 +310,6 @@ class Pedidos extends CI_Controller {
                     $this->TemplatePdf->Cell(15, 5, 'No', 'LRB', 0, 'C', 0);
                 else
                     $this->TemplatePdf->Cell(15, 5, 'Si', 'LRB', 0, 'C', 0);
-                $this->TemplatePdf->Cell(40, 5, $item->Observaciones, 'LRB', 0, 'C', 0);
-                //Se agrega un salto de linea
                 $this->TemplatePdf->Ln(5);
             }
             

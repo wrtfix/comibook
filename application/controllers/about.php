@@ -8,6 +8,7 @@ class About extends CI_Controller
 		$this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
 		$this->load->spark('markdown-extra/0.0.0');
                 $this->load->model('menus','',TRUE);
+                $this->load->model('configuraciones', '', TRUE);
 	}
 
 	public function index()
@@ -16,7 +17,9 @@ class About extends CI_Controller
 		{
 			$session_data = $this->session->userdata('logged_in');
                         $data['username'] = $session_data['username'];
-
+                        $data['textoAcercaDe'] = $this->configuraciones->getConfiguracion("ABOUT_MESSAGE");
+                        $data['tituloAcercaDe'] = $this->configuraciones->getConfiguracion("SITE_NAME");
+                        
 			$data['page'] = 'about';
 			$this->layout->view('pages/about', $data);
 		}else{

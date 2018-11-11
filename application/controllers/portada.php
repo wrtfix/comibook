@@ -7,14 +7,16 @@ class Portada extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->layout->placeholder("title", "Salta Chequeado");
-        $this->load->spark('markdown-extra/0.0.0');
+        
+        
         $this->load->model('menus', '', TRUE);
         $this->load->model('noticia', '', TRUE);
         $this->load->model('contenido', '', TRUE);
         $this->load->model('configuraciones', '', TRUE);
         $this->load->model('comentarios', '', TRUE);
-
+        
+        $this->layout->placeholder("title", $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor);
+        $this->load->spark('markdown-extra/0.0.0');
         // load Pagination library
         $this->load->library('pagination');
         // load URL helper
@@ -132,7 +134,7 @@ class Portada extends CI_Controller {
 
             $this->layout->view('portada_view', $data);
         } else {
-            $this->layout->setLayout("layouts/login_layout");
+            $this->layout->setLayout("layouts/login_layout_2");
             $data['page'] = 'login_view';
             $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
             date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -225,7 +227,7 @@ class Portada extends CI_Controller {
             $data['comentarios'] = $this->comentarios->getComentarios($filter);
             $this->layout->view('portada_detalle', $data);
         } else {
-            $this->layout->setLayout("layouts/login_layout");
+            $this->layout->setLayout("layouts/login_layout_2");
             $data['page'] = 'login_view';
             $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
             date_default_timezone_set('America/Argentina/Buenos_Aires');
