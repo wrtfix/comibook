@@ -46,7 +46,7 @@ $(document).ready(function(){
  		$(":checked").parent().parent().remove();
 	});
 
-	$('.formulario').keypress(function(event){
+	$('.formulario').keydown(function(event){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
 			cambios.push(($(this).attr('id').split('-')[1]));
 		}
@@ -92,8 +92,9 @@ $(document).ready(function(){
 				<?php $cont=0; foreach($agregados as $item): $cont=$cont+1;?>
                 <tr>
                   <td><input type="checkbox" id="<?php print_r($item->id);?>" class="fila tab"></td>
-  				  <td><input class="formulario" id="atributo-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->atributo);?>'/></td>
-                  <td><input class="formulario tab" id="valor-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->valor);?>'/></td>
+                  <td><input class="formulario" id="atributo-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->atributo);?>'/></td>
+                  <!--<td><input class="formulario tab" id="valor-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->valor);?>'/></td>-->
+                  <td><textarea class="formulario tab" id="valor-<?php print_r($item->id);?>" style='width: 100%; border:none;'><?php print_r($item->valor);?></textarea></td>
                   <td><input class="formulario tab" id="descripcion-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->descripcion);?>'/></td>
                   </tr>
                   <?php endforeach; ?>

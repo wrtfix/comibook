@@ -95,7 +95,8 @@ $(document).ready(function(){
                   <td><input class="formulario" id="grupo-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->grupo);?>'/></td>
                   <td><input class="formulario" id="nombre-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre);?>'/></td>
                   <td><input class="formulario" id="peso-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->peso);?>'/></td>
-                  <td><input class="formulario" id="code-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->code);?>'/></td>
+                  <!--<td><input class="formulario" id="code-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->code);?>'/></td>-->
+                  <td><textarea class="formulario" id="code-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;'/><?php print_r($item->code);?> </textarea></td>
                 </tr>
                 <?php endforeach; ?>
                 </tbody>

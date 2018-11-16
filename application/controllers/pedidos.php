@@ -191,7 +191,7 @@ class Pedidos extends CI_Controller {
                 
                 
                 $comentarioBulto = $item->Bultos > 1 ? 'Bultos ' : 'Bulto ';
-                $comentarioContrareembolso = $item->ContraReembolso == 1 ? 'Contra reembolso $'.$item->CostoFlete : '';
+                $comentarioContrareembolso = $item->ContraReembolso == 1 ? 'Contra reembolso $'.$item->valorDeclarado : '';
                 $comentario = $item->Comentarios;
 
                 $this->TemplateRemitoPdf->Cell(130, 10, $comentarioBulto, 2, 0, 'C');
@@ -303,13 +303,13 @@ class Pedidos extends CI_Controller {
                 }
                 
                 if ($item->ContraReembolso == 0)
-                    $this->TemplatePdf->Cell(30, 5, 'No', 'LRB', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(30, 5, '', 'LRB', 0, 'C', 0);
                 else
-                    $this->TemplatePdf->Cell(30, 5, 'Si', 'LRB', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(30, 5, '', 'LRB', 0, 'C', 0);
                 if ($item->Pago == 0)
-                    $this->TemplatePdf->Cell(15, 5, 'No', 'LRB', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(15, 5, '', 'LRB', 0, 'C', 0);
                 else
-                    $this->TemplatePdf->Cell(15, 5, 'Si', 'LRB', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(15, 5, '', 'LRB', 0, 'C', 0);
                 $this->TemplatePdf->Ln(5);
             }
             

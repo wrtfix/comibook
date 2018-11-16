@@ -23,6 +23,10 @@
     <script src="<?=base_url()?>estilo/admin/js/jquery-1.10.2.js"></script>
     <script src="<?=base_url()?>estilo/admin/js/bootstrap.js"></script>
     
+            <link href="<?=base_url()?>estilo/admin/js/plugins/morris/morris.css" rel="stylesheet">
+        <script src="<?=base_url()?>estilo/admin/js/plugins/morris/raphael.min.js"></script>
+        <script src="<?=base_url()?>estilo/admin/js/plugins/morris/morris.min.js"></script>
+    
     <!--<link href="<?=base_url()?>estilo/admin/css/lib/bootstrap-responsive.min.css" rel="stylesheet">-->
  <link href="<?=base_url()?>estilo/admin/css/custom.css" rel="stylesheet">
 <link href="<?=base_url()?>estilo/admin/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
@@ -34,7 +38,8 @@
   	<link data-jsfiddle="common" rel="stylesheet" media="screen" href="<?=base_url()?>estilo/admin/js/handsontable/jquery.handsontable.full.css">
 	<!-- Fin de Tabla dinamica -->
         
-        
+            <!-- Morris Charts JavaScript -->
+
         
 	<script type="text/javascript">
 
