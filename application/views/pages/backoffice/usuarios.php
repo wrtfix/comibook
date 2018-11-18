@@ -17,11 +17,11 @@
             } else {
                 for (i = 0; i < cambios.length; i++) {
                     var nombre = $('#nombre-' + cambios[i]).val();
-                    var importe = $('#importe-' + cambios[i]).val();
+                    var password = $('#password-' + cambios[i]).val();
                     $.ajax({
-                        data: {nombre: nombre, fecha: fecha, password: importe},
+                        data: {nombre: nombre, password: password},
                         type: "POST",
-                        url: "<?= base_url() ?>index.php/gastos/updateGasto/" + cambios[i],
+                        url: "<?= base_url() ?>index.php/backoffice/usuario/updateUser/" + cambios[i],
                         success: function () {
                             alert('Los cambios se guardaron con exito!');
                             cambios = [];
@@ -114,7 +114,7 @@
                     <tr>
                         <td><input type="checkbox" id="<?php print_r($item->id); ?>" class="fila" ></td>
                         <td><input class="formulario" name="username" id="nombre-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->username); ?>'/></td>
-                        <td><input class="formulario" name="password" id="importe-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='password' value='<?php print_r($item->password); ?>'/></td>
+                        <td><input class="formulario" name="password" id="password-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='password' value='<?php print_r($item->password); ?>'/></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
