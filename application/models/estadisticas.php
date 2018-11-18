@@ -47,7 +47,6 @@ class Estadisticas extends CI_Model {
             $realAno = $dia;
             if ($realMes==0){
                 $realAno = $realAno - 1;
-                print_r($realAno);
                 $realMes=12;
             }
             $consulta = "select sum(CostoFlete) as recaudado from pedidos where YEAR(fecha) = '" . $realAno . "' AND MONTH(fecha) = '" . $realMes . "'";
@@ -68,7 +67,6 @@ class Estadisticas extends CI_Model {
             $realAno = $dia;
             if ($realMes==0){
                 $realAno = $realAno - 1;
-                print_r($realAno);
                 $realMes=12;
             }
             $consulta = "select count(*) as recaudado from pedidos where YEAR(fecha) = '" . $realAno . "' AND MONTH(fecha) = '" . $realMes . "'";
@@ -82,25 +80,34 @@ class Estadisticas extends CI_Model {
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $hoy = date("Y-m-d");
         list($dia, $mes, $ano) = explode("-", $hoy);
-        $result = [];
+        $result=[];
         $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
-        for ($j=2014; $j<2018; $j++){
+        for ($j=2014; $j<2019; $j++){
             for ($i=0; $i<12; $i++){
-                $realMes = $mes - $i;
-                $realAno = $dia;
-                if ($realMes==0){
-                    $realAno = $realAno - 1;
-                    print_r($realAno);
-                    $realMes=12;
-                }
-                $consulta = "select count(*) as recaudado from pedidos where YEAR(fecha) = '" . $realAno . "' AND MONTH(fecha) = '" . $realMes . "'";
+                $consulta = "select count(*) as recaudado from pedidos where YEAR(fecha) = '" . $j . "' AND MONTH(fecha) = '" . $i . "'";
                 $aux = $this->db->query($consulta)->result();
-                array_push($result, ['mes'=>$arrayMeses[date($realMes-1)].$j,'total'=>$this->db->query($consulta)->result()[0]->recaudado]);
+                array_push($result, ['mes'=>$arrayMeses[date($i)],'ano'=>$j ,'total'=>$this->db->query($consulta)->result()[0]->recaudado]);
             }
         }
         return json_encode($result);
     }
 
+    
+    function getHistoricoGanadoMensual(){
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $hoy = date("Y-m-d");
+        list($dia, $mes, $ano) = explode("-", $hoy);
+        $result=[];
+        $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+        for ($j=2014; $j<2019; $j++){
+            for ($i=0; $i<12; $i++){
+                $consulta = "select sum(CostoFlete) as recaudado from pedidos where YEAR(fecha) = '" . $j . "' AND MONTH(fecha) = '" . $i . "'";
+                $aux = $this->db->query($consulta)->result();
+                array_push($result, ['mes'=>$j.$arrayMeses[date($i)],'ano'=>$j ,'total'=>$this->db->query($consulta)->result()[0]->recaudado]);
+            }
+        }
+        return json_encode($result);
+    }
 }
 
 ?>
