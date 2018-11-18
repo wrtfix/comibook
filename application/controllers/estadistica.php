@@ -24,6 +24,9 @@ class Estadistica extends CI_Controller
                         $data['cantidadGastos'] = $this->estadisticas->getGastoTotal()[0]->gastos;
                         $data['moviminetoAnual'] = $this->estadisticas->getMovimientoAnual();
                         $data['pedidosAnual'] = $this->estadisticas->getPedidosAnual();
+                        $data['historicoMensual'] = $this->estadisticas->getHistoricoMensual();
+                        $data['historicoGanadoMensual'] = $this->estadisticas->getHistoricoGanadoMensual();
+                        
                         
                         $data['tituloAcercaDe'] = $this->configuraciones->getConfiguracion("SITE_NAME");
                         
