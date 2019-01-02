@@ -1,3 +1,4 @@
+
 <?php if (empty($items)) 
     echo form_open('backoffice/rol/addMenu'); 
 else 
@@ -16,6 +17,6 @@ else
 <?php $cont++;}?>
         
 <input type="hidden" name="idUsuario" value="<?php print_r($idUsuario); ?>" >
-    
+<hr>    
 <button type="submit" id="guardar" class="btn btn-danger">Guardar</button>
 </form>

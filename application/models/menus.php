@@ -94,10 +94,16 @@ class Menus extends CI_Model {
         
         function getCountMenu($idUsuario){
             $this -> db -> from('rUsuarioMenu');
-            $this -> db-> order_by('idMenu like '.$idUsuario);
+            $this -> db-> where('idUsuario like '.$idUsuario);
             $query = $this -> db -> get();
             return count($query->result());
         }
+        
+                
+        function deleteRUsuarioMenu($idUsuario)
+	{
+            return $this->db->delete('rUsuarioMenu', array('idUsuario' => $idUsuario));
+	}
 	
 }
 ?>

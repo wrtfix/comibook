@@ -58,6 +58,18 @@ class Usuario extends CI_Controller
                     $this->load->view('pages/construccion', $data);
 	    }
 	}
-	
+        
+        public function perfil()
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$this->load->library('form_validation');
+                        $data['agregados'] = $this->user->getUser($this->session->userdata('logged_in')['id']);
+			$this->layout->view('pages/backoffice/perfil', $data);
+		}else{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
+		}
+	}
 
 }

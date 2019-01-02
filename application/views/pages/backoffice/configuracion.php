@@ -45,6 +45,30 @@ $(document).ready(function(){
 		});
  		$(":checked").parent().parent().remove();
 	});
+        
+        $('#update').click(function(){
+                $.ajax({
+                       type: "POST",
+                       url: "<?=base_url()?>index.php/backoffice/configuracion/update/",
+                       success: function(){
+                           console.log('hola');
+                       }
+                       
+                });
+        });
+        
+        $('#sendEmail').click(function(){
+                $.ajax({
+                       type: "POST",
+                       url: "<?=base_url()?>index.php/backoffice/configuracion/testSendEmail/",
+                       success: function(){
+                           console.log('hola');
+                       }
+                       
+                });
+        });
+
+	
 
 	$('.formulario').keydown(function(event){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
@@ -76,6 +100,8 @@ $(document).ready(function(){
             <button type="button" id="agregar" class="btn btn-success">Agregar</button>
             <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
             <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
+            <button type="button" id="update" class="btn btn-warning">Actualizar Sistema</button>
+            <button type="button" id="sendEmail" class="btn btn-default">Test email</button>
             <br>
             <br>
             <div class="table-responsive">

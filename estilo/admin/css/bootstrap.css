@@ -587,7 +587,7 @@ h6,
 ul,
 ol {
   margin-top: 0;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 ul ul,
@@ -4586,7 +4586,9 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
   .navbar-right {
     float: right !important;
-  }
+  
+    padding-top: 3px;
+}
 }
 
 .navbar-form {

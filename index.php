@@ -17,8 +17,8 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  *
- */
-	define('ENVIRONMENT', 'development');
+ */                
+define('ENVIRONMENT', 'production');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -27,7 +27,7 @@
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
-
+                
 if (defined('ENVIRONMENT'))
 {
 	switch (ENVIRONMENT)

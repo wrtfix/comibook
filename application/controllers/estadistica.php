@@ -9,6 +9,7 @@ class Estadistica extends CI_Controller
                 $this->load->model('configuraciones', '', TRUE);
                 $this->layout->placeholder("title", $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor);
                 $this->load->spark('markdown-extra/0.0.0');
+                ini_set('memory_limit', '-1');
 	}
 
 	public function index()

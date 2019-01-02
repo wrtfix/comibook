@@ -14,6 +14,21 @@ class Backup extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$data['page'] = 'backup';
+                        $this->load->library('form_validation');		
+			$this->layout->view('pages/backup', $data);
+		}else{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
+
+		}
+	}
+        
+        public function generar()
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$data['page'] = 'backup';
+                        $this->load->library('form_validation');
 			$data['agregados'] =  $this->backups->generarBackUp();
 			$this->layout->view('pages/backup', $data);
 		}else{
@@ -22,6 +37,11 @@ class Backup extends CI_Controller
 
 		}
 	}
+        
+        public function restaurar(){
+	    $this->backups->restoreDataBase();
+            $this->layout->view('pages/backup', $data);
+        }
         
         
 

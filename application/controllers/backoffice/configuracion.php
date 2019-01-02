@@ -65,5 +65,33 @@ class Configuracion extends CI_Controller
 			$this->load->view('pages/construccion', $data);
 	    }
 	}
+        
+        public function update(){
+		if($this->session->userdata('logged_in'))
+		{
+                    $this->load->library('github_updater');
+                    $data["resultado"] = $this->github_updater->update() ? 'SUCCESS' : 'FAILED';
+                    $this->layout->view('pages/backoffice/configuracion', $data);
+		}else{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
+		}
+	}
+        
+        public function testSendEmail(){
+            if($this->session->userdata('logged_in'))
+		{
+                    $this->load->library('email');
+                    $emailFrom = $this->configuraciones->getConfiguracion("EMAIL_FROM")[0]->valor;
+                    $emailTo = $this->configuraciones->getConfiguracion("EMAIL_TO")[0]->valor;
+                    $password = $this->configuraciones->getConfiguracion("EMAIL_PASSWORD")[0]->valor;
+                    $body = $this->configuraciones->getConfiguracion("ABOUT_MESSAGE")[0]->valor;
+                    $title = $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor;
+                    $data["resultado"] = $this->email->send($emailFrom,$emailTo,$title,$body,$emailFrom,$password);
+                    }else{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
+		}
+        }
 	
 }

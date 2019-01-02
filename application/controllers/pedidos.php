@@ -8,6 +8,7 @@ class Pedidos extends CI_Controller {
         $this->load->model('pedido', '', TRUE);
         $this->load->model('cliente', '', TRUE);
         $this->load->spark('markdown-extra/0.0.0');
+        ini_set('memory_limit', '-1');
     }
 
     public function index($fecha = null) {
@@ -107,7 +108,7 @@ class Pedidos extends CI_Controller {
                 
                 
                 $this->TemplateRemitoPdf->SetFont('Arial', 'B', 5);
-                $this->TemplateRemitoPdf->Cell(200, 8, "Desarrollado por One more code - wrtfix@gmail.com - 249 - 4609270", 'B', 0, 'L', 0);
+                $this->TemplateRemitoPdf->Cell(200, 8, "Desarrollado por One more code - wrtfix@gmail.com - 249 - 4609270", 'T', 0, 'T', 0);
                 $this->TemplateRemitoPdf->Ln('15');
 
                 $this->TemplateRemitoPdf->SetFont('Arial', 'B', 13);
@@ -206,7 +207,7 @@ class Pedidos extends CI_Controller {
                     }
                 }
                 
-                if ($comentarioContrareembolso){
+                if ($comentarioContrareembolso && $comentario != ""){
                     $this->TemplateRemitoPdf->Ln(5);
                     $this->TemplateRemitoPdf->Cell(5);
                     $this->TemplateRemitoPdf->Cell(30, 10, '', 0, 0, 'C');
@@ -245,6 +246,10 @@ class Pedidos extends CI_Controller {
                 $this->TemplateRemitoPdf->Cell(5);
                 $this->TemplateRemitoPdf->Cell(62, 10, "Firma", 0, 0, 'C');
                 $this->TemplateRemitoPdf->Ln(10);
+                
+                $this->TemplateRemitoPdf->Cell(200, 8, "", 'T', 0, 'T', 0);
+                $this->TemplateRemitoPdf->Ln('10');
+                
                 if ($cont >= 2){
                     $this->TemplateRemitoPdf->AddPage();
                     $cont = 0;
@@ -297,15 +302,15 @@ class Pedidos extends CI_Controller {
                 $this->TemplatePdf->Cell(75, 5, $item->ClienteDestino, 'LRB', 0, 'C', 0);
                 $this->TemplatePdf->Cell(30, 5, $item->valorDeclarado, 'LRB', 0, 'C', 0);
                 if (strpos($item->Observaciones, 'F/O') !== false ){
-                    $this->TemplatePdf->Cell(45, 5, $item->CostoFlete, 'LRB', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(45, 5, "", 'LRB', 0, 'C', 0);
                 }else{
-                        $this->TemplatePdf->Cell(45, 5, "", 'LRB', 0, 'C', 0);
+                        $this->TemplatePdf->Cell(45, 5, $item->CostoFlete, 'LRB', 0, 'C', 0);
                 }
                 
                 if ($item->ContraReembolso == 0)
-                    $this->TemplatePdf->Cell(30, 5, '', 'LRB', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(30, 5, 'No', 'LRB', 0, 'C', 0);
                 else
-                    $this->TemplatePdf->Cell(30, 5, '', 'LRB', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(30, 5, 'Si', 'LRB', 0, 'C', 0);
                 if ($item->Pago == 0)
                     $this->TemplatePdf->Cell(15, 5, '', 'LRB', 0, 'C', 0);
                 else

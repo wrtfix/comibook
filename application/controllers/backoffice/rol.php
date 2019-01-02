@@ -18,7 +18,7 @@ class Rol extends CI_Controller
 			$data['page'] = 'rol';
 			$data['menu'] = $this->menus->getUsuarioMenuConfig($idUsuario);
                         $data['usuarioSeleccionado'] = $this->user->getUser($idUsuario);
-                        $data['$items'] = $this->menus->getCountMenu($idUsuario);
+                        $data['items'] = $this->menus->getCountMenu($idUsuario);
 			$data['idUsuario'] = $idUsuario;
 			$this->layout->view('pages/backoffice/rol', $data);
 		}else
@@ -51,15 +51,12 @@ class Rol extends CI_Controller
             if($this->session->userdata('logged_in'))
             {
                 $this->load->library('form_validation');
-                $result = $this->contenido->update();
-                $result = $this->contenido->deleteRContenidoMenu($this->input->post('idNoticia'));
+                $result = $this->menus->deleteRUsuarioMenu($this->input->post('idUsuario'));
                 $menuItems = $this->menus->getMenu();
-                $result = $this->contenido->addRContenidoMenu($menuItems);
-                $data['noticia'] = $this->contenido->getContenidoNoticia($this->input->post('idNoticia'));
-                $data['noticiaSeleccionada'] = $this->noticia->getNoticia($this->input->post('idNoticia'));
-                $data['menu'] = $this->contenido->getItemMenu($this->input->post('idNoticia'));
-                $data['idNoticia'] = $this->input->post('idNoticia');
-                $this->layout->view('pages/contenido', $data);
+                $result = $this->menus->addRUsuarioMenu($menuItems);
+                $data['menu'] = $this->menus->getUsuarioMenu($this->input->post('idUsuario'));
+                $data['idUsuario'] = $this->input->post('idUsuario');
+                $this->layout->view('pages/backoffice/rol', $data);
                     
 	    }else{
                     $data['page'] = 'construccion';

@@ -24,7 +24,7 @@ class Backups extends CI_Model {
 
     function restoreDataBase() {
         ob_start();
-        readgzfile($path_al_archivo);
+        readgzfile("/opt/lampp/htdocs/saltaChequeado/application/controllers/copia_de_seguridad.gz");
         $data = ob_get_clean();
         ob_end_clean();
 
