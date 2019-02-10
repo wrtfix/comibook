@@ -164,9 +164,10 @@ $(function () {
                 <ul class="dropdown-menu multi-level">
                    <li><a href="/saltaChequeado/index.php/backoffice/configuracion/index"><i class="fa fa-fw fa-gear"></i> Configuracion </a></li>
                    <li><a href="/saltaChequeado/index.php/backoffice/menu/index"><i class="fa fa-wrench"></i> Menu </a></li>
-                   <li><a href="/saltaChequeado/index.php/backoffice/usuario/index"><i class="fa fa-globe"></i> Usuarios </a></li>
-                   <li><a href="/saltaChequeado/index.php/backup/index"><i class="fa fa-desktop"></i> Copia de Seguridad </a></li>
-                   <li> <a href="/saltaChequeado/index.php/estadistica/index"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
+                   <li><a href="/saltaChequeado/index.php/backoffice/ambiente/index"><i class="fa fa-globe"></i> Ambiente </a></li>
+                   <li><a href="/saltaChequeado/index.php/backoffice/usuario/index"><i class="fa fa-user"></i> Usuarios </a></li>
+                   <li><a href="/saltaChequeado/index.php/backup/index"><i class="fa fa-desktop"></i> Actualizaciones </a></li>
+                   
                 </ul>
              </li>
             <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '20' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
@@ -180,24 +181,50 @@ $(function () {
              </li>
             <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
              <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-edit"></i> Turnos<b class="caret"></b></a> 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-check"></i> Turnos<b class="caret"></b></a> 
                 <ul class="dropdown-menu multi-level">
-                   <li><a href="/saltaChequeado/index.php/turno/agenda/index"><i class="fa fa-fw fa-edit"></i> Agenda</a></li>
+                    <li><a href="/saltaChequeado/index.php/turnera/consultorio/index"><i class="fa fa-fw fa-gear"></i> Consultorio </a></li>
+                   <li><a href="/saltaChequeado/index.php/turnera/agenda/index"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
                 </ul>
              </li>
              <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '40'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
              <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i> Logistica<b class="caret"></b></a> 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-ambulance"></i> Logistica<b class="caret"></b></a> 
                 <ul class="dropdown-menu multi-level">
-                   <li><a href="/saltaChequeado/index.php/pedidos/index"><i class="fa fa-fw fa-edit"></i> Pedidos</a></li>
+                   <li><a href="/saltaChequeado/index.php/pedidos/index"><i class="fa fa-fw fa-book"></i> Pedidos</a></li>
                    <li><a href="/saltaChequeado/index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
-                   <li><a href="/saltaChequeado/index.php/cheques/index"><i class="fa fa-fw fa-gear"></i> Cheque </a></li>
-                   <li><a href="/saltaChequeado/index.php/gastos/index"><i class="fa fa-wrench"></i> Gasto </a></li>
+                   <li><a href="/saltaChequeado/index.php/cheques/index"><i class="fa fa-fw fa-money"></i> Cheques </a></li>
+                   <li><a href="/saltaChequeado/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
                    <li><a href="/saltaChequeado/index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>
                    <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
+                   <?php if ($this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
+                        <li> <a href="/saltaChequeado/index.php/estadistica/index"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
+                   <?php } ?>
+                </ul>
+             </li>
+            <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '50'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
+             <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-home"></i> Kiosko<b class="caret"></b></a> 
+                <ul class="dropdown-menu multi-level">
+                   <li><a href="/saltaChequeado/index.php/producto/index"><i class="fa fa-gift"></i> Productos</a></li>
+                   <li><a href="/saltaChequeado/index.php/ventas/index"><i class="fa fa-fw fa-coffee"></i> Ventas</a></li>
+                   <li><a href="/saltaChequeado/index.php/stock/index"><i class="fa fa-flash"></i> Stock</a></li>
+                   <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
+                   <!--<li><a href="/saltaChequeado/index.php/provedores/index"><i class="fa fa-ambulance"></i> Provedores</a></li>-->
+<!--                   <li><a href="/saltaChequeado/index.php/solicitudes/index"><i class="fa fa-edit"></i> Solicitudes</a></li>-->
+                </ul>
+             </li>
+            <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '51' ) { ?>
+             <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-home"></i> Kiosko<b class="caret"></b></a> 
+                <ul class="dropdown-menu multi-level">
+                   <li><a href="/saltaChequeado/index.php/ventas/index"><i class="fa fa-fw fa-coffee"></i> Ventas</a></li>
+                   <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
+                   <!--<li><a href="/saltaChequeado/index.php/solicitudes/index"><i class="fa fa-edit"></i> Generar Solicitudes</a></li>-->
                 </ul>
              </li>
              <?php } ?>
+             
             <li><a href="<?=base_url()?>index.php/about/index"><i class="fa fa-info-circle"></i> Acerca de...</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -205,6 +232,8 @@ $(function () {
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i> <?php print_r($this->session->userdata('logged_in')['username']);?> <b class="caret"></b></a> 
                 <ul class="dropdown-menu multi-level">
                    <li><a href="<?=base_url()?>index.php/backoffice/usuario/perfil"><i class="fa fa-fw fa-user"></i> Perfil</a></li>
+                   <li><a href="https://wa.me/5492494609270"><i class="fa fa-fw fa-question"></i> Ayuda</a></li>
+                   
                    <li class="divider"></li>
                    <li><a onclick="return confirm('Realmente desea salir?')" href="<?=base_url()?>index.php/home/logout"><i class="fa fa-power-off"></i> Salir </a></li>
                 </ul>

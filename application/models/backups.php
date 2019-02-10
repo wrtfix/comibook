@@ -47,10 +47,40 @@ class Backups extends CI_Model {
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             
-            } else {
-
+        } else {
+            
         }
     }
+
+    function addScript($nombre) {
+        $data = array(
+            'nombre' => $nombre
+        );
+        return $this->db->insert('databaseLog', $data);
+    }
+
+    function getDatabaseLogs() {
+        $this->db->from('databaseLog');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function delDatabaseLog($nombre) {
+        return $this->db->delete('databaseLog', array('nombre' => $nombre));
+    }
+    
+    function ejecutarSQL($nombre) {
+        $sql = file_get_contents("/opt/lampp/htdocs/saltaChequeado/database/".$nombre);
+        
+        $sqls = explode(';', $sql);
+        array_pop($sqls);
+
+        foreach($sqls as $statement){
+            $statment = $statement . ";";
+            $this->db->query($statement);   
+        }
+    }
+    
 
 }
 
