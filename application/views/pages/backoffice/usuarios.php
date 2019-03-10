@@ -62,7 +62,21 @@
                 $aux.attr('action',"<?=base_url()?>index.php/backoffice/rol/index/"+idUsuario);
                 $aux.submit();
             }else{
-                alert("No es posible cargar el contenido de esta noticia sin haberla guardado previamente");
+                alert("No es posible cargar dar permisos a un usuario sin haberla seleccionado previamente");
+                if (guardar.length===0){
+                    location.reload();
+                }
+            }
+	});
+        
+        $('#permisosAmbiente').click(function(){
+	    var idUsuario = $('input:checked:first').attr('id');
+            if (idUsuario != undefined){
+                var $aux = $("form:first")
+                $aux.attr('action',"<?=base_url()?>index.php/backoffice/usuarioAmbiente/index/"+idUsuario);
+                $aux.submit();
+            }else{
+                alert("No es posible cargar dar permisos a un usuario sin haberla seleccionado previamente");
                 if (guardar.length===0){
                     location.reload();
                 }
@@ -95,7 +109,8 @@
     <button type="button" id="agregar" class="btn btn-success">Agregar</button>
     <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
     <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-    <button type="button" id="permisos" class="btn btn-warning">Dar permisos</button>
+    <button type="button" id="permisos" class="btn btn-warning">Menus</button>
+    <button type="button" id="permisosAmbiente" class="btn btn-warning">Ambientes</button>
 
     <br>
     <br>

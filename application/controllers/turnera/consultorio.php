@@ -57,5 +57,18 @@ class Consultorio extends CI_Controller
                     $this->load->view('pages/construccion', $data);
 	    }
 	}
+        
+        public function selectConsultrio()
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$this->load->library('form_validation');
+			$data['agregados'] = $this->consultorios->getConsultorios();
+			$this->layout->view('pages/turnera/consultorios', $data);
+		}else{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
+		}
+	}
                 
 }

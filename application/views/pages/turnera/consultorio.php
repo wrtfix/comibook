@@ -71,13 +71,18 @@
 	});
         
         $('#agenda').click(function(){
-	    var idUsuario = $('input:checked:first').attr('id');
-            if (idUsuario != undefined){
-                var $aux = $("form:first")
+	    var idConsultorio = $('input:checked:first').attr('id');
+            if (idConsultorio != undefined){
+                var $aux = $("form:first");
+                $aux.append(jQuery('<input>', {
+                    'name': 'idConsultorio',
+                    'value': idConsultorio,
+                    'type': 'hidden'
+                }));
                 $aux.attr('action',"<?=base_url()?>index.php/turnera/agenda/index/");
                 $aux.submit();
             }else{
-                alert("No es posible cargar el contenido de esta noticia sin haberla guardado previamente");
+                alert("Debe seleccionar una agenda");
                 if (guardar.length===0){
                     location.reload();
                 }

@@ -20,9 +20,14 @@ class Agenda extends CI_Controller {
             if ($fecha != null) {
                 $data['fechaSeleccionada'] = $fecha;
                 $lafecha = $fecha;
+                list($newDia, $newMes, $newAno) = explode("-", $lafecha);
+                $datetime = DateTime::createFromFormat('Y-m-d', $newAno."-".$newMes."-".$newDia);
+                $nombreDia = $datetime->format('D');
             } else {
                 $data['fechaSeleccionada'] = null;
                 $lafecha = $ano . "-" . $mes . "-" . $dia;
+                $datetime = DateTime::createFromFormat('Y-m-d', $hoy);
+                $nombreDia = $datetime->format('D');
             }
             $data['page'] = 'pedidos';
 

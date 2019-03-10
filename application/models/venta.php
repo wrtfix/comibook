@@ -64,7 +64,7 @@ class Venta extends CI_Model {
     function getVentas($fecha, $ids = null) {
         $this->db->from('ventas');
         list($dia, $mes, $ano) = explode("-", $fecha);
-        $consulta = "select v.idProducto, v.idVenta, v.idCliente, v.cantidad, v.total, v.cobrado, v.rendido, v.entregado,  p.nombre as ProductoNombre, c.Nombre  as ClienteNombre , p.precio FROM `ventas` v INNER JOIN clientes c on v.idCliente = c.Id INNER JOIN productos p on v.idProducto = p.idProducto where fecha = '" . $ano . "-" . $mes . "-" . $dia . "' ";
+        $consulta = "select v.idProducto, v.idVenta, v.idCliente, v.cantidad, v.total, v.cobrado, v.rendido, v.entregado,  p.nombre as ProductoNombre, c.Nombre  as ClienteNombre , p.precio, sum(v.cantidad) FROM `ventas` v INNER JOIN clientes c on v.idCliente = c.Id INNER JOIN productos p on v.idProducto = p.idProducto where fecha = '" . $ano . "-" . $mes . "-" . $dia . "' ";
         if ($ids != null) {
             $listaIds = str_replace(",", "' OR idVenta='", $ids);
             $consulta = $consulta . " AND idVenta='" . $listaIds . "'";

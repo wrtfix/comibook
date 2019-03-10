@@ -8,6 +8,7 @@ class VerifyLogin extends CI_Controller {
     
     $this->load->model('user','',TRUE);
     $this->load->model('menus','',TRUE);
+    $this->load->model('ambientes','',TRUE);
     $this->load->model('configuraciones', '', TRUE);
     
     $this->layout->placeholder("title", $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor);
@@ -51,16 +52,17 @@ class VerifyLogin extends CI_Controller {
     
     //query the database
     $result = $this->user->login($username, $password);
-    
     if($result)
     {
       $sess_array = array();
       foreach($result as $row)
       {
         $sess_array = array(
-           'id'=>$row->id,
+          'id'=>$row->id,
           'username' => $row->username,
-          'menu' =>  $this->menus->getUsuarioMenu($row->id)
+          'menu' =>  $this->menus->getUsuarioMenu($row->id),
+          'idAmbiente' => $row->idAmbiente,
+          'cantAmbientes'=> $this->ambientes->getUsuarioAmbiente($row->id)
         );
         $this->session->set_userdata('logged_in', $sess_array);
         

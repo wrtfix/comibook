@@ -11,7 +11,7 @@ $(function() {
         var dateAsString = dateText; //the first parameter of this function
         var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
         var $aux = $("form:first")
-        $aux.attr('action',"<?=base_url()?>index.php/pedidos/index/"+dateAsString);
+        $aux.attr('action',"<?=base_url()?>index.php/turnera/agenda/index/"+dateAsString);
         $aux.submit();
      } });
     

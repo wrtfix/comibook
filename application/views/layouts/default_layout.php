@@ -184,7 +184,7 @@ $(function () {
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-check"></i> Turnos<b class="caret"></b></a> 
                 <ul class="dropdown-menu multi-level">
                     <li><a href="/saltaChequeado/index.php/turnera/consultorio/index"><i class="fa fa-fw fa-gear"></i> Consultorio </a></li>
-                   <li><a href="/saltaChequeado/index.php/turnera/agenda/index"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
+                   <li><a href="/saltaChequeado/index.php/turnera/consultorio/selectConsultrio"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
                 </ul>
              </li>
              <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '40'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
@@ -211,7 +211,7 @@ $(function () {
                    <li><a href="/saltaChequeado/index.php/stock/index"><i class="fa fa-flash"></i> Stock</a></li>
                    <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
                    <!--<li><a href="/saltaChequeado/index.php/provedores/index"><i class="fa fa-ambulance"></i> Provedores</a></li>-->
-<!--                   <li><a href="/saltaChequeado/index.php/solicitudes/index"><i class="fa fa-edit"></i> Solicitudes</a></li>-->
+                   <li><a href="/saltaChequeado/index.php/solicitudes/index"><i class="fa fa-edit"></i> Solicitudes</a></li>
                 </ul>
              </li>
             <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '51' ) { ?>
@@ -220,20 +220,21 @@ $(function () {
                 <ul class="dropdown-menu multi-level">
                    <li><a href="/saltaChequeado/index.php/ventas/index"><i class="fa fa-fw fa-coffee"></i> Ventas</a></li>
                    <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
-                   <!--<li><a href="/saltaChequeado/index.php/solicitudes/index"><i class="fa fa-edit"></i> Generar Solicitudes</a></li>-->
+                   <li><a href="/saltaChequeado/index.php/solicitudes/index"><i class="fa fa-edit"></i> Generar Solicitudes</a></li>
                 </ul>
              </li>
              <?php } ?>
-             
             <li><a href="<?=base_url()?>index.php/about/index"><i class="fa fa-info-circle"></i> Acerca de...</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <li>
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i> <?php print_r($this->session->userdata('logged_in')['username']);?> <b class="caret"></b></a> 
                 <ul class="dropdown-menu multi-level">
+                    <?php if (count($this->session->userdata('logged_in')['cantAmbientes']) > 1) { ?>
+                   <li><a href="<?=base_url()?>index.php/backoffice/elegirAmbiente/index/<?php print_r($this->session->userdata('logged_in')['id']);?>"><i class="fa fa-fw fa-home"></i> Ambiente </a></li>
+                    <?php } ?>
                    <li><a href="<?=base_url()?>index.php/backoffice/usuario/perfil"><i class="fa fa-fw fa-user"></i> Perfil</a></li>
                    <li><a href="https://wa.me/5492494609270"><i class="fa fa-fw fa-question"></i> Ayuda</a></li>
-                   
                    <li class="divider"></li>
                    <li><a onclick="return confirm('Realmente desea salir?')" href="<?=base_url()?>index.php/home/logout"><i class="fa fa-power-off"></i> Salir </a></li>
                 </ul>
@@ -243,12 +244,20 @@ $(function () {
         </div>
         
       </nav>
-
+       
       <div id="page-wrapper">
 
         <div class="row">
           <div class="col-lg-12">
-            <div class="span9 content"><?php echo $content_for_layout ?> </div>
+            <div class="span9 content">
+                <?php if (!empty($exito)) { ?>
+                <div class="alert alert-dismissable alert-info">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                        Se guardaron los datos correctamente
+                </div>
+                <?php } ?>
+                <?php echo $content_for_layout ?> 
+            </div>
           </div>
         </div>
 

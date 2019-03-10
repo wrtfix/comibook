@@ -1,84 +1,113 @@
 <script>
-$(document).ready(function () {
+    cambios = [];
+    $(document).ready(function () {
+        $('#agregar').click(function () {
+            var agrego = $("#tablaCliente").attr("xagregar");
+            if (agrego == 'false') {
+                $('#tablaCliente').append("<tr><td></td><td><select name='dia'> <option value='MON'>Lunes</option> <option value='TUE'>Martes</option> <option value='WED'>Miercoles</option> <option value='THU'>Jueves</option> <option value='FRI'>Viernes</option> <option value='SAT'>Sabado</option> <option value='SUN'>Domingo</option> </select></td><td><input name='horaDesde' type='time' value=''></td><td><input name='horaHasta' type='time' value=''></td></tr>");
+                $("#tablaCliente").attr("xagregar", "true");
+            }
+        });
         $('#guardar').click(function () {
-                $("form").submit();
+            var agrego = $("#tablaCliente").attr("xagregar");
+            if (agrego == 'true') {
+                $("form:first").submit();
+            } else {
+                for (i = 0; i < cambios.length; i++) {
+                    var dia = $('#dia-' + cambios[i]).val();
+                    var horaDesde = $('#horaDesde-' + cambios[i]).val();
+                    var horaHasta = $('#horaHasta-' + cambios[i]).val();
+                    $.ajax({
+                        data: {dia: dia, horaDesde: horaDesde, horaHasta: horaHasta},
+                        type: "POST",
+                        url: "<?= base_url() ?>index.php/turnera/horario/updateHorario/" + cambios[i],
+                        success: function () {
+                            alert('Los cambios se guardaron con exito!');
+                            cambios = [];
+                        },
+                        error: function () {
+                            alert('ERROR : Verifique los campos ingresados');
+                        }
+
+                    });
+                }
+
+            }
+
         });
-        
-        
-        $('#addDay').click(function () {
-                $("#day").append("<div class='col-lg-8 ' id='day'> <div class='col-md-4'> <input type='checkbox' class='selec' id=' value='> Dia</div> <div class='col-md-pull-2'> <select name='dia'> <option value='lun'>Lunes</option> <option value='mar'>Martes</option> <option value='mier'>Miercoles</option> <option value='jue'>Jueves</option> <option value='vie'>Viernes</option> <option value='sab'>Sabado</option> <option value='dom'>Domingo</option> </select> </div> <div class='col-md-4'> Hora Desde </div> <div class='col-md-pull-2'> <input type='time' min='0' max='24' name='horaDesde' /> </div> <div class='col-md-4'> Hora hasta </div> <div class='col-md-pull-2'> <input type='time' min='0' max='24' name='horaHasta' /> </div> </div>");
+
+        $('#eliminar').click(function () {
+            $('input:checked').each(function () {
+                var elem = $(this).attr('id');
+                var id = $("#identificador").val();
+                $.ajax({
+                    type: "POST",
+                    url: "<?= base_url() ?>index.php/turnera/horario/delHorario/" + elem
+                });
+            });
+            $(":checked").parent().parent().parent().remove();
         });
-        
-        $('#deleteDay').click(function () {
- 		$("input:checkbox:checked").remove();
-	});
-        
-        
-});
+
+        $('.formulario').change(function () {
+            if (jQuery.inArray(($(this).attr('id').split('-')[1]), cambios) == -1) {
+                cambios.push(($(this).attr('id').split('-')[1]));
+            }
+        });
+
+
+    });
+
 </script>
-
-
-
-<br>
-<div class="alert alert-dismissable alert-info">
+<?php if (validation_errors()) { ?>
+    <div class="alert alert-dismissable alert-danger">
         <button type="button" class="close" data-dismiss="alert">×</button>
-        En esta seccion usted debera configurar los horarios de atencion para sus profesionales.
-</div>
-
-
-
-<div class="page-header">
-    <h3> Agenda </h3>
-</div>
-
+        <strong>ERROR</strong>
+        <?php echo validation_errors(); ?>
+    </div>
+<?php } ?>
 <?php echo form_open('turnera/horario/addHorario'); ?>
+<div class='row'>
 
-<button type="button" id="guardar" class="btn btn-primary">Guardar</button> <br> <br>
-
-<div class="row">
-    
-    <div class="col-lg-4">
-        <label> Cantidad de desacansos </label>
-        <div class="checkbox">
-            <input name="idConsultorio" id="desde" class="" autocomplete="off" value="<?php print_r($idConsultorio); ?>" type="hidden">  
-            <input name="descanso" id="desde" class="" autocomplete="off" value="" type="number"> 
-        </div>
-        <label> Intervalo de tiempo</label>
-        <div class="checkbox">
-            <input name="intervalo" id="desde" class="" autocomplete="off" value="" type="number"> 
-        </div>
-        
-        <label> Dias laborales </label>
-        <button type="button" id="addDay" class="btn btn-danger"> + </button>
-        <button type="button" id="deleteDay" class="btn btn-primary"> - </button>
-        
-        <div class="checkbox">
-            <div class="col-lg-8 " id="day"> 
-                <div class="col-md-4"> <input type="checkbox" class="selec" id="" value=""> Dia</div> 
-                <div class="col-md-pull-2"> 
-                    <select name="dia">
-                        <option value="lun">Lunes</option>
-                        <option value="mar">Martes</option>
-                        <option value="mier">Miercoles</option>
-                        <option value="jue">Jueves</option>
-                        <option value="vie">Viernes</option>
-                        <option value="sab">Sabado</option>
-                        <option value="dom">Domingo</option>
-                      </select>
-                </div>
-                <div class="col-md-4"> Hora Desde </div> 
-                <div class="col-md-pull-2"> <input type="time" min="0" max="24" name="horaDesde" /> </div> 
-                <div class="col-md-4"> Hora hasta </div> 
-                <div class="col-md-pull-2"> <input type="time" min="0" max="24" name="horaHasta" /> </div>
-            </div>
-        </div>
-        
-        
+    <div class="page-header">
+        <h2>Horarios</h2>
     </div>
-    <div class="col-lg-4">
-        
-    </div>
-    <div class="col-lg-4">
 
+    <button type='button' id='agregar' class='btn btn-success'>Agregar</button>
+    <button type='button' id="eliminar" class='btn btn-danger'>Eliminar</button>
+    <button type='button' id='guardar' class='btn btn-primary'>Guardar</button>
+    <br> <br>
+    <input name="idConsultorio" id="desde" class="" autocomplete="off" value="<?php print_r($idConsultorio); ?>" type="hidden">  
+    <div class='table-responsive'>
+        <table class='table table-bordered table-hover tablesorter' id='tablaCliente' xagregar="false">
+            <thead>
+                <tr>
+                    <th class='header'>Eliminar<i class=''></i></th>
+                    <th class='header'>Dias laborales <i class=''></i></th>
+                    <th class='header'>Hora desde<i class=''></i></th>
+                    <th class='header'>Hora hasta<i class=''></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $cont = 0;
+                foreach ($agregados as $item): $cont = $cont + 1; ?>
+                    <tr>
+                        <td><input type="checkbox" id="<?php print_r($item->idDia); ?>" class="fila"></td>
+                        <td>
+                            <select class="formulario" id="dia-<?php print_r($item->idDia); ?>"> 
+                                <option value="MON" <?php if ($item->nombre=='MON') echo "selected"; ?>>Lunes</option> 
+                                <option value="TUE" <?php if ($item->nombre=='TUE') echo "selected"; ?>>Martes</option> 
+                                <option value="WED" <?php if ($item->nombre=='WED') echo "selected"; ?>>Miercoles</option> 
+                                <option value="THU" <?php if ($item->nombre=='THU') echo "selected"; ?>>Jueves</option> 
+                                <option value="FRI" <?php if ($item->nombre=='FRI') echo "selected"; ?>>Viernes</option> 
+                                <option value="SAT" <?php if ($item->nombre=='SAT') echo "selected"; ?>>Sabado</option> 
+                                <option value="SUN" <?php if ($item->nombre=='SUN') echo "selected"; ?>>Domingo</option> 
+                            </select> 
+                        </td>
+                        <td><input class="formulario" id="horaDesde-<?php print_r($item->idDia); ?>" name=""style='width: 100%; border:none;' type='time' value='<?php echo $item->horaDesde; ?>'/></td>
+                        <td><input class="formulario" id="horaHasta-<?php print_r($item->idDia); ?>" style='width: 100%; border:none;' type='time' value='<?php echo $item->horaHasta; ?>'/></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 </div>

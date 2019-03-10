@@ -58,7 +58,7 @@ class Configuracion extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
 			$this->load->library('form_validation');
-		   		$result = $this->configuraciones->updateConfiguracion($id);
+                        $result = $this->configuraciones->updateConfiguracion($id);
 	        }
         	else{
 			$data['page'] = 'construccion';

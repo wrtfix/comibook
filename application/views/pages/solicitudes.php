@@ -88,56 +88,7 @@ $(document).ready(function(){
 			cambios.push(($(this).attr('id').split('-')[1]));
 		}
 	});
-
-	$('.tab').focusout(function(){
-		var elem = $("#"+$(this).attr('id')).val();
-		var donde = "#"+$(this).attr('id');
-		$.ajax({
-		       type: "POST",
-		       url: "<?=base_url()?>index.php/stock/getProductoStock/"+elem,
-		       dataType:'json',
-		       success: function(response){
-		    		if (response !='')
-                                    $(donde).val(response[0].nombre);
-		       }
-		});
-	});
-        
-        $('.tabCliente').focusout(function(){
-		var elem = $("#"+$(this).attr('id')).val();
-		var donde = "#"+$(this).attr('id');
-		$.ajax({
-		       type: "POST",
-		       url: "<?=base_url()?>index.php/cheques/getCliente/"+elem,
-		       dataType:'json',
-		       success: function(response){
-		    		if (response !='')
-                                    $(donde).val(response[0].Nombre);
-		       }
-		});
-	});
-        
-	$('.suma').focusout(function(){
-		var elem = $("#"+$(this).attr('id')).val();
-		var donde = "#"+$(this).attr('id');
-		$("#calcularTotal").val(parseFloat($("#calcularTotal").val())+parseFloat(elem));
-		
-	});
-
-	$('#eliminar').click(function(){
-		$('input:checked').each(function() {
-		    var elem = $(this).attr('id');
-		    var id = $("#identificador").val();
-			$.ajax({
-			       type: "POST",
-			       url: "<?=base_url()?>index.php/solicitud/delSolicitud/"+elem
-			});
-		});
- 		$("input:checkbox:checked").parent().parent().remove();
-		location.reload();	
-	});
-        
-       
+            
 });
 
 </script>
