@@ -146,16 +146,16 @@ $(document).ready(function(){
 				<tr>
 					<td><input type="checkbox" class="selec" value=""></td>
                                         <td><input class="guardar" id="saveHorario-<?php echo $i;?>" style='width: 100%; border:none;' type='text' value="<?php print_r(date( 'H:i:s', $current )); ?>" /></td>
-					<td><input class="guardar tab" id="saveCliente-<?php echo $i;?>" style='width: 100%; border:none;' type='text' data-idTurno="<?php print_r($turno->idTurno); ?>" value="<?php print_r($turno->Nombre); ?>"/> <input id="saveClienteValue-<?php echo $i;?>" type='hidden' /> </td>
-					<td width="50px" ><input class="guardar" id="saveMonto-<?php echo $i;?>" style='width: 50px; border:none;' type='text' /></td>
+					<td><input class="guardar tab" id="saveCliente-<?php echo $i;?>" style='width: 100%; border:none;' type='text' data-idTurno="<?php print_r($turno->idTurno); ?>" value="<?php print_r($turno->Nombre); ?>"/> <input id="saveClienteValue-<?php echo $i;?>" type='hidden' value="<?php print_r($turno->idPaciente); ?>" /> </td>
+					<td width="50px" ><input class="guardar" id="saveMonto-<?php echo $i;?>" style='width: 50px; border:none;' type='text' value="<?php print_r($turno->monto); ?>" /></td>
 					<td>
 					<select class="guardar" id="savePago-<?php echo $i;?>" style='width: 100%; border:none;' >
-  							<option value="0">No</option>
-  							<option value="1">Si</option>
+  							<option value="0" <?php if ($turno->pago==0) echo "selected"; ?>>No</option>
+  							<option value="1" <?php if ($turno->pago==1) echo "selected"; ?>>Si</option>
   					</select>
 					
 					</td>
-					<td><input class="guardar" id="saveObservaciones-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
+					<td><input class="guardar" id="saveObservaciones-<?php echo $i;?>" style='width: 100%; border:none;' type='text' value="<?php print_r($turno->observaciones); ?>"/></td>
 				</tr>
                                 
                                 <?php $current = strtotime( '+'.$horario[0]->intervalo.' minute', $current ); $i = $i + 1;} } ?>

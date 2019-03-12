@@ -15,6 +15,9 @@ class Turnos extends CI_Model {
             'fecha' => $ano."-".$mes."-".$dia,
             'idPaciente' => $this->input->post('idPaciente'),
             'idConsultorio' => $this->input->post('idConsultorio'),
+            'monto' => $this->input->post('monto'),
+            'pago' => $this->input->post('pago'),
+            'observaciones' => $this->input->post('observaciones')
         );
         if ($idTurno == '') {
             return $this->db->insert('turno', $data);
