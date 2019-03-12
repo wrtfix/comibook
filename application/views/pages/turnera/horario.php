@@ -4,7 +4,7 @@
         $('#agregar').click(function () {
             var agrego = $("#tablaCliente").attr("xagregar");
             if (agrego == 'false') {
-                $('#tablaCliente').append("<tr><td></td><td><select name='dia'> <option value='MON'>Lunes</option> <option value='TUE'>Martes</option> <option value='WED'>Miercoles</option> <option value='THU'>Jueves</option> <option value='FRI'>Viernes</option> <option value='SAT'>Sabado</option> <option value='SUN'>Domingo</option> </select></td><td><input name='horaDesde' type='time' value=''></td><td><input name='horaHasta' type='time' value=''></td></tr>");
+                $('#tablaCliente').append("<tr><td></td><td><select name='dia'> <option value='MON'>Lunes</option> <option value='TUE'>Martes</option> <option value='WED'>Miercoles</option> <option value='THU'>Jueves</option> <option value='FRI'>Viernes</option> <option value='SAT'>Sabado</option> <option value='SUN'>Domingo</option> </select></td><td><input name='horaDesde' type='time' value=''></td><td><input name='horaHasta' type='time' value=''></td><td><input name='intervalo' type='number' value=''></td></tr>");
                 $("#tablaCliente").attr("xagregar", "true");
             }
         });
@@ -17,8 +17,9 @@
                     var dia = $('#dia-' + cambios[i]).val();
                     var horaDesde = $('#horaDesde-' + cambios[i]).val();
                     var horaHasta = $('#horaHasta-' + cambios[i]).val();
+                    var intervalo = $('#intervalo-' + cambios[i]).val();
                     $.ajax({
-                        data: {dia: dia, horaDesde: horaDesde, horaHasta: horaHasta},
+                        data: {dia: dia, horaDesde: horaDesde, horaHasta: horaHasta, intervalo:intervalo},
                         type: "POST",
                         url: "<?= base_url() ?>index.php/turnera/horario/updateHorario/" + cambios[i],
                         success: function () {
@@ -44,8 +45,8 @@
                     type: "POST",
                     url: "<?= base_url() ?>index.php/turnera/horario/delHorario/" + elem
                 });
+                $("#table-"+elem).remove();
             });
-            $(":checked").parent().parent().parent().remove();
         });
 
         $('.formulario').change(function () {
@@ -85,12 +86,13 @@
                     <th class='header'>Dias laborales <i class=''></i></th>
                     <th class='header'>Hora desde<i class=''></i></th>
                     <th class='header'>Hora hasta<i class=''></i></th>
+                    <th class='header'>Intervalos<i class=''></i></th>
                 </tr>
             </thead>
             <tbody>
                 <?php $cont = 0;
                 foreach ($agregados as $item): $cont = $cont + 1; ?>
-                    <tr>
+                    <tr id="table-<?php print_r($item->idDia); ?>">
                         <td><input type="checkbox" id="<?php print_r($item->idDia); ?>" class="fila"></td>
                         <td>
                             <select class="formulario" id="dia-<?php print_r($item->idDia); ?>"> 
@@ -105,6 +107,7 @@
                         </td>
                         <td><input class="formulario" id="horaDesde-<?php print_r($item->idDia); ?>" name=""style='width: 100%; border:none;' type='time' value='<?php echo $item->horaDesde; ?>'/></td>
                         <td><input class="formulario" id="horaHasta-<?php print_r($item->idDia); ?>" style='width: 100%; border:none;' type='time' value='<?php echo $item->horaHasta; ?>'/></td>
+                        <td><input class="formulario" id="intervalo-<?php print_r($item->idDia); ?>" style='width: 100%; border:none;' type='number' value='<?php echo $item->intervalo; ?>'/></td>                        
                     </tr>
                 <?php endforeach; ?>
             </tbody>

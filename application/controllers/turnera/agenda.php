@@ -6,6 +6,8 @@ class Agenda extends CI_Controller {
         parent:: __construct();
         $this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
         $this->load->model('pedido', '', TRUE);
+        $this->load->model('turnos', '', TRUE);
+        $this->load->model('horarios', '', TRUE);
         $this->load->model('cliente', '', TRUE);
         $this->load->spark('markdown-extra/0.0.0');
         ini_set('memory_limit', '-1');
@@ -30,8 +32,10 @@ class Agenda extends CI_Controller {
                 $nombreDia = $datetime->format('D');
             }
             $data['page'] = 'pedidos';
-
-            //$data['agregados'] = $this->pedido->getPedidos($lafecha);
+            $idConsultorio = $this->input->post('idConsultorio');
+            $data['turnos'] = $this->turnos->getTurnos($idConsultorio, $lafecha);
+            $data['horario'] = $this->horarios->getHorarioDia($idConsultorio, $nombreDia);
+            $data['idConsultorio'] = $idConsultorio;
             $this->layout->view('pages/turnera/agenda', $data);
         } else {
             $data['page'] = 'construccion';
@@ -39,10 +43,10 @@ class Agenda extends CI_Controller {
         }
     }
 
-    public function addPedido() {
+    public function insertOrUpdateAgenda() {
         if ($this->session->userdata('logged_in')) {
             $this->load->library('form_validation');
-            $this->pedido->addPedido();
+            $this->turnos->addTurno();
         } else {
             $data['page'] = 'construccion';
             $this->load->view('pages/construccion', $data);

@@ -77,5 +77,16 @@ class Clientes extends CI_Controller {
             $this->load->view('pages/construccion', $data);
         }
     }
+    
+    public function getClientes(){
+         if ($this->session->userdata('logged_in')) {
+             $respuesta =   json_encode($this->cliente->getClientes());
+             print_r($respuesta);
+             return $respuesta;
+         } else {
+            $data['page'] = 'construccion';
+            $this->load->view('pages/construccion', $data);
+        }
+    }
 
 }

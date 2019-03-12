@@ -185,6 +185,7 @@ $(function () {
                 <ul class="dropdown-menu multi-level">
                     <li><a href="/saltaChequeado/index.php/turnera/consultorio/index"><i class="fa fa-fw fa-gear"></i> Consultorio </a></li>
                    <li><a href="/saltaChequeado/index.php/turnera/consultorio/selectConsultrio"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
+                   <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Pacientes</a></li>
                 </ul>
              </li>
              <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '40'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>

@@ -4,7 +4,7 @@ Class Consultorios extends CI_Model
         function updateConsultorio($id){
             $data = array(
 			'nombre' => $this->input->post('nombre'),
-			'telefono' => $this->input->post('password'),
+			'telefono' => $this->input->post('telefono'),
                         'horario' => $this->input->post('horario'),
 		);
             $this->db->where('idConsultorio', $id);
