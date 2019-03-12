@@ -107,6 +107,11 @@ function wireUpEvents() {
 $(document).ready(function() {
   wireUpEvents();
 });
+
+
+function showInfo(msg){
+    $("#resultadoOperacion").append('<div class="alert alert-dismissable alert-info"> <button type="button" class="close" data-dismiss="alert">×</button>'+msg+'</div>');
+}
 	
 	
 $(function () {
@@ -257,6 +262,7 @@ $(function () {
                         Se guardaron los datos correctamente
                 </div>
                 <?php } ?>
+                <div id="resultadoOperacion"></div>
                 <?php echo $content_for_layout ?> 
             </div>
           </div>

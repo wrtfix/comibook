@@ -51,7 +51,7 @@ $(document).ready(function(){
 			    type: "POST",
 			    url: "<?=base_url()?>index.php/turnera/agenda/insertOrUpdateAgenda/",
 			    success: function(){
-                                $("#resultado").html("Los cambios se guardaron con exito");
+                                showInfo("Los cambios se guardaron con exito");
                             },
                             error: function(){
                                 alert('ERROR : Verifique los campos ingresados');
@@ -127,7 +127,6 @@ $(document).ready(function(){
 			</thead>
 			<tbody>
                                 <?php 
-                                mostrarTotal($total); 
                                 function getTurnos($turnos, $horario) {
                                     foreach($turnos as $turno):
                                         $current = strtotime( $turno->hora );
@@ -140,8 +139,10 @@ $(document).ready(function(){
                                 $current = strtotime( $horario[0]->horaDesde );
                                 $last = strtotime( $horario[0]->horaHasta );
                                 $i = 0;
+                                $total=0; 
                                 while( $current <= $last ) { 
                                     $turno = getTurnos($turnos,$current);
+                                    $total = $total + $turno->monto;
                                 ?>
 				<tr>
 					<td><input type="checkbox" class="selec" value=""></td>
@@ -158,7 +159,9 @@ $(document).ready(function(){
 					<td><input class="guardar" id="saveObservaciones-<?php echo $i;?>" style='width: 100%; border:none;' type='text' value="<?php print_r($turno->observaciones); ?>"/></td>
 				</tr>
                                 
-                                <?php $current = strtotime( '+'.$horario[0]->intervalo.' minute', $current ); $i = $i + 1;} } ?>
+                                <?php $current = strtotime( '+'.$horario[0]->intervalo.' minute', $current ); $i = $i + 1;} } 
+                                mostrarTotal($total);
+                                ?>
 			</tbody>
 		</table>
 	</div>
