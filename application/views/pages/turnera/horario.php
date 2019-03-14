@@ -72,10 +72,14 @@
     <div class="page-header">
         <h2>Horarios</h2>
     </div>
-
-    <button type='button' id='agregar' class='btn btn-success'>Agregar</button>
-    <button type='button' id="eliminar" class='btn btn-danger'>Eliminar</button>
-    <button type='button' id='guardar' class='btn btn-primary'>Guardar</button>
+    
+    
+    <div class="btn-group">
+        <button type='button' id='agregar' class='btn btn-success'>Agregar</button>
+        <button type='button' id="eliminar" class='btn btn-danger'>Eliminar</button>
+        <button type='button' id='guardar' class='btn btn-primary'>Guardar</button>
+    </div>
+    
     <br> <br>
     <input name="idConsultorio" id="desde" class="" autocomplete="off" value="<?php print_r($idConsultorio); ?>" type="hidden">  
     <div class='table-responsive'>

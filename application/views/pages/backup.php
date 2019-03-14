@@ -46,10 +46,13 @@
 <?php echo form_open_multipart('backup/do_upload'); ?>
 <input type="file" name="userfile" size="20" />
 <br /><br />
-<input type="submit" value="Subir script" class="btn btn-primary"/>
-<button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
-<button type="button" id="generar" class="btn btn-warning">Generar</button>
-<button type="button" id="ejecutar" class="btn btn-info">Ejecutar</button>
+<div class="btn-group">
+    <input type="submit" value="Subir script" class="btn btn-primary"/>
+    <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
+    <button type="button" id="generar" class="btn btn-warning">Generar</button>
+    <button type="button" id="ejecutar" class="btn btn-info">Ejecutar</button>
+</div>
+
 </form>
 
 <?php if (validation_errors()) { ?>

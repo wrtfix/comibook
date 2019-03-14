@@ -86,10 +86,12 @@ $(document).ready(function(){
 
   
         </div>
-            <button type="button" id="agregar" class="btn btn-success">Agregar</button>
-            <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
-            <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-            <button type="button" id="sendEmail" class="btn btn-default">Test email</button>
+            <div class="btn-group">
+                <button type="button" id="agregar" class="btn btn-success">Agregar</button>
+                <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
+                <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
+                <button type="button" id="sendEmail" class="btn btn-default">Test email</button>
+            </div>
             <br>
             <br>
             <div class="table-responsive">

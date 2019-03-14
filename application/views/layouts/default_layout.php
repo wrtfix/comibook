@@ -28,8 +28,8 @@
         <script src="<?=base_url()?>estilo/admin/js/plugins/morris/morris.min.js"></script>
     
     <!--<link href="<?=base_url()?>estilo/admin/css/lib/bootstrap-responsive.min.css" rel="stylesheet">-->
- <link href="<?=base_url()?>estilo/admin/css/custom.css" rel="stylesheet">
-<link href="<?=base_url()?>estilo/admin/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+        <link href="<?=base_url()?>estilo/admin/css/custom.css" rel="stylesheet">
+        <link href="<?=base_url()?>estilo/admin/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 	<script src="<?=base_url()?>estilo/admin/js/jquery-1.10.2.js"></script>
 	<script src="<?=base_url()?>estilo/admin/js/jquery-ui-1.10.4.custom.js"></script>
 	
@@ -39,9 +39,9 @@
 	<!-- Fin de Tabla dinamica -->
         
             <!-- Morris Charts JavaScript -->
-
         
 	<script type="text/javascript">
+        
 
 /**
  * This javascript file checks for the brower/browser tab action.
@@ -109,8 +109,8 @@ $(document).ready(function() {
 });
 
 
-function showInfo(msg){
-    $("#resultadoOperacion").append('<div class="alert alert-dismissable alert-info"> <button type="button" class="close" data-dismiss="alert">×</button>'+msg+'</div>');
+function showInfo(msg,type){
+    $("#resultadoOperacion").append('<div class="alert alert-dismissable alert-'+type+'"> <button type="button" class="close" data-dismiss="alert">×</button>'+msg+'</div>');
 }
 	
 	

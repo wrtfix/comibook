@@ -30,7 +30,7 @@ class UsuarioAmbiente extends CI_Controller {
 
     public function add() {
 
-        if ($this->session->userdata('logged_in')) {
+        if ($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000') {
             $this->load->library('form_validation');
             $idUsuario = $this->input->post('idUsuario');
             $menuItems = $this->ambientes->getUsuarioAmbienteConfig($idUsuario);
@@ -51,7 +51,7 @@ class UsuarioAmbiente extends CI_Controller {
     }
 
     public function update() {
-        if ($this->session->userdata('logged_in')) {
+        if ($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000') {
             $this->load->library('form_validation');
             $result = $this->ambientes->deleteRUsuarioAmbiente($this->input->post('idUsuario'));
             $menuItems = $this->ambientes->getUsuarioAmbienteConfig($this->input->post('idUsuario'));

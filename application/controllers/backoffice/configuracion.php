@@ -11,7 +11,7 @@ class Configuracion extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$data['page'] = 'configuraciones';
@@ -24,7 +24,7 @@ class Configuracion extends CI_Controller
 	}
 	
 	public function addConfiguracion(){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$result = $this->configuraciones->addConfiguracion();	
@@ -39,7 +39,7 @@ class Configuracion extends CI_Controller
 	}
 	
 	public function delConfiguracion($id){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000' )
 		{
 			$this->load->library('form_validation');
 			$result = $this->configuraciones->delConfiguracion($id);	
@@ -55,7 +55,7 @@ class Configuracion extends CI_Controller
 	
 	
 	public function updateConfiguracion($id){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
                         $result = $this->configuraciones->updateConfiguracion($id);
@@ -67,7 +67,7 @@ class Configuracion extends CI_Controller
 	}
         
         public function update(){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
                     $this->load->library('github_updater');
                     $data["resultado"] = $this->github_updater->update() ? 'SUCCESS' : 'FAILED';
@@ -79,7 +79,7 @@ class Configuracion extends CI_Controller
 	}
         
         public function testSendEmail(){
-            if($this->session->userdata('logged_in'))
+            if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
                     $this->load->library('email');
                     $emailFrom = $this->configuraciones->getConfiguracion("EMAIL_FROM")[0]->valor;

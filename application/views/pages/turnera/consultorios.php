@@ -1,4 +1,4 @@
-<?    echo form_open('turnera/agenda/index'); ?>
+<?php    echo form_open('turnera/agenda/index'); ?>
 
 <div class="page-header">
 	<h3> Seleccione Consultorio </h3>

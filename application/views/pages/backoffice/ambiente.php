@@ -66,10 +66,12 @@ $(document).ready(function(){
     <h2>Ambiente</h2>
 </div>
 <div class="row">
-                
-            <button type="button" id="agregar" class="btn btn-success">Agregar</button>
-            <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
-            <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
+    <div class="btn-group">
+        <button type="button" id="agregar" class="btn btn-success">Agregar</button>
+        <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
+        <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
+    </div>
+        
             
             
             <br>

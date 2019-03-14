@@ -11,7 +11,7 @@ class Usuario extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$data['agregados'] = $this->user->getUsers();
@@ -22,7 +22,7 @@ class Usuario extends CI_Controller
 		}
 	}
 	public function addUser(){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$data['page'] = 'usuarios';
@@ -36,7 +36,7 @@ class Usuario extends CI_Controller
 	}
 	
 	public function delUser($id){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$this->user->delUser($id);
@@ -61,7 +61,7 @@ class Usuario extends CI_Controller
         
         public function perfil()
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
                         $data['agregados'] = $this->user->getUser($this->session->userdata('logged_in')['id']);

@@ -11,7 +11,7 @@ class Ambiente extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$data['page'] = 'ambiente';
@@ -24,7 +24,7 @@ class Ambiente extends CI_Controller
 	}
 
 	public function addAmbiente(){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$result = $this->ambientes->addAmbiente();
@@ -38,7 +38,7 @@ class Ambiente extends CI_Controller
 	}
 	
 	public function delAmbiente($id){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$result = $this->ambientes->delAmbiente($id);	
@@ -52,7 +52,7 @@ class Ambiente extends CI_Controller
 	}
 	
 	public function updateAmbiente($id){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$result = $this->menus->updateAmbiente($id);
 	    }else{

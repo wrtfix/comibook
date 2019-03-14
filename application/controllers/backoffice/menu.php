@@ -11,7 +11,7 @@ class Menu extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$data['page'] = 'menu';
@@ -24,7 +24,7 @@ class Menu extends CI_Controller
 	}
 
 	public function addMenu(){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$result = $this->menus->addMenu();
@@ -38,7 +38,7 @@ class Menu extends CI_Controller
 	}
 	
 	public function delMenu($id){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
 			$result = $this->menus->delMenu($id);	
@@ -52,7 +52,7 @@ class Menu extends CI_Controller
 	}
 	
 	public function updateMenu($id){
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$result = $this->menus->updateMenu($id);
 	    }else{

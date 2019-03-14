@@ -111,12 +111,14 @@
     <h2>Consultorios</h2>
 </div>
 <div class="row">
-
-    <button type="button" id="agregar" class="btn btn-success">Agregar</button>
-    <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
-    <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-    <button type="button" id="permisos" class="btn btn-warning">Configuracion</button>
-    <button type="button" id="agenda" class="btn btn-default">Agenda</button>
+    <div class="btn-group">
+        <button type="button" id="agregar" class="btn btn-success">Agregar</button>
+        <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
+        <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
+        <button type="button" id="permisos" class="btn btn-warning">Configuracion</button>
+        <button type="button" id="agenda" class="btn btn-default">Agenda</button>
+    </div>
+    
 
     <br>
     <br>

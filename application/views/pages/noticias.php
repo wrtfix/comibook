@@ -165,11 +165,13 @@ $(document).ready(function(){
 		<div class="col-lg-4"></div>
 	</div>
 
-
-        <button type="button" id="agregar" class="btn btn-success">Agregar</button>
-	<button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
-	<button type="button" id="contenido" class="btn btn-warning">Contenido</button>
-	<button type="button" id="guardar" class="btn btn-primary">Guardar</button>
+        <div class="btn-group">
+            <button type="button" id="agregar" class="btn btn-success">Agregar</button>
+            <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
+            <button type="button" id="contenido" class="btn btn-warning">Contenido</button>
+            <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
+        </div>
+        
 	<br> <br>
 	<dir ></dir>
 	<div class="table-responsive" >

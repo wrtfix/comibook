@@ -105,12 +105,14 @@
     <h2>Usuarios</h2>
 </div>
 <div class="row">
-
-    <button type="button" id="agregar" class="btn btn-success">Agregar</button>
-    <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
-    <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-    <button type="button" id="permisos" class="btn btn-warning">Menus</button>
-    <button type="button" id="permisosAmbiente" class="btn btn-warning">Ambientes</button>
+    <div class="btn-group">
+        <button type="button" id="agregar" class="btn btn-success">Agregar</button>
+        <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
+        <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
+        <button type="button" id="permisos" class="btn btn-warning">Menus</button>
+        <button type="button" id="permisosAmbiente" class="btn btn-secondary">Ambientes</button>
+    </div>
+    
 
     <br>
     <br>

@@ -14,7 +14,7 @@ class Rol extends CI_Controller {
     }
 
     public function index($idUsuario = null) {
-        if ($this->session->userdata('logged_in')) {
+        if ($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000') {
             $this->load->library('form_validation');
             $data['page'] = 'rol';
             $data['menu'] = $this->menus->getUsuarioMenuConfig($idUsuario);
@@ -30,7 +30,7 @@ class Rol extends CI_Controller {
 
     public function addMenu() {
 
-        if ($this->session->userdata('logged_in')) {
+        if ($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000') {
             $this->load->library('form_validation');
             $idUsuario = $this->input->post('idUsuario');
             $menuItems = $this->menus->getUsuarioMenuConfig($idUsuario);
@@ -50,7 +50,7 @@ class Rol extends CI_Controller {
     }
 
     public function update() {
-        if ($this->session->userdata('logged_in')) {
+        if ($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000') {
             $this->load->library('form_validation');
             $result = $this->menus->deleteRUsuarioMenu($this->input->post('idUsuario'));
             $menuItems = $this->menus->getUsuarioMenuConfig($this->input->post('idUsuario'));

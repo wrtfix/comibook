@@ -51,9 +51,11 @@ $(document).ready(function(){
 <input type="file" name="userfile" size="20" />
 
 <br /><br />
+<div class="btn-group">
+    <input type="submit" value="Subir" class="btn btn-primary"/>
+    <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
+</div>
 
-<input type="submit" value="Subir" class="btn btn-primary"/>
-<button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
 
 </form>
 

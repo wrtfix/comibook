@@ -51,7 +51,9 @@ class Estadisticas extends CI_Model {
             }
             $consulta = "select sum(CostoFlete) as recaudado from pedidos where YEAR(fecha) = '" . $realAno . "' AND MONTH(fecha) = '" . $realMes . "'";
             $aux = $this->db->query($consulta)->result();
-            array_push($result, ['mes'=>$arrayMeses[date($realMes-1)],'total'=>$this->db->query($consulta)->result()[0]->recaudado]);
+            if ($realMes > 0){
+                array_push($result, ['mes'=>$arrayMeses[date($realMes-1)],'total'=>$this->db->query($consulta)->result()[0]->recaudado]);
+            }
         }
         return json_encode($result);
     }
@@ -71,7 +73,10 @@ class Estadisticas extends CI_Model {
             }
             $consulta = "select count(*) as recaudado from pedidos where YEAR(fecha) = '" . $realAno . "' AND MONTH(fecha) = '" . $realMes . "'";
             $aux = $this->db->query($consulta)->result();
-            array_push($result, ['mes'=>$arrayMeses[date($realMes-1)],'total'=>$this->db->query($consulta)->result()[0]->recaudado]);
+            if ($realMes > 0){
+                array_push($result, ['mes'=>$arrayMeses[date($realMes-1)],'total'=>$this->db->query($consulta)->result()[0]->recaudado]);
+            }
+            
         }
         return json_encode($result);
     }

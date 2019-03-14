@@ -51,10 +51,10 @@ $(document).ready(function(){
 			    type: "POST",
 			    url: "<?=base_url()?>index.php/turnera/agenda/insertOrUpdateAgenda/",
 			    success: function(){
-                                showInfo("Los cambios se guardaron con exito");
+                                showInfo("Los cambios se guardaron con exito",'info');
                             },
                             error: function(){
-                                alert('ERROR : Verifique los campos ingresados');
+                                showInfo("ERROR : Verifique los campos ingresados",'error');
                             }
 				       
 			});
@@ -111,7 +111,7 @@ $(document).ready(function(){
 	<br>
 	<button type="button" id="guardar" class="btn btn-primary">Guardar</button>        
 	
-	<?php function mostrarTotal($total){ echo "En Caja: $<input type='text' disabled id='calcularTotal' value='".number_format($total,2)."'/>"; } ?>
+	<?php function mostrarTotal($total){ echo "<p> En Caja: $<input type='text' disabled id='calcularTotal' value='".number_format($total,2)."'/> </p>"; } ?>
 	<dir id="pedidos"></dir>
 	<div class="table-responsive" id="pedidos">
 		<table class="table table-bordered table-hover tablesorter">
@@ -135,34 +135,49 @@ $(document).ready(function(){
                                         }
                                     endforeach;
                                 }
+                                $i = 0;
                                 if (!empty($horario)){
                                 $current = strtotime( $horario[0]->horaDesde );
                                 $last = strtotime( $horario[0]->horaHasta );
-                                $i = 0;
+                                
                                 $total=0; 
                                 while( $current <= $last ) { 
                                     $turno = getTurnos($turnos,$current);
-                                    $total = $total + $turno->monto;
+                                    if($turno) {
+                                        $total = $total + $turno->monto;
+                                    }
+                                        
                                 ?>
 				<tr>
 					<td><input type="checkbox" class="selec" value=""></td>
                                         <td><input class="guardar" id="saveHorario-<?php echo $i;?>" style='width: 100%; border:none;' type='text' value="<?php print_r(date( 'H:i:s', $current )); ?>" /></td>
-					<td><input class="guardar tab" id="saveCliente-<?php echo $i;?>" style='width: 100%; border:none;' type='text' data-idTurno="<?php print_r($turno->idTurno); ?>" value="<?php print_r($turno->Nombre); ?>"/> <input id="saveClienteValue-<?php echo $i;?>" type='hidden' value="<?php print_r($turno->idPaciente); ?>" /> </td>
-					<td width="50px" ><input class="guardar" id="saveMonto-<?php echo $i;?>" style='width: 50px; border:none;' type='text' value="<?php print_r($turno->monto); ?>" /></td>
+					<td><input class="guardar tab" id="saveCliente-<?php echo $i;?>" style='width: 100%; border:none;' type='text' data-idTurno="<?php $turno != null ? print_r($turno->idTurno) : ''; ?>" value="<?php $turno != null ? print_r($turno->Nombre): ''; ?>"/> <input id="saveClienteValue-<?php echo $i;?>" type='hidden' value="<?php $turno != null ? print_r($turno->idPaciente) : '';  ?>" /> </td>
+					<td width="50px" ><input class="guardar" id="saveMonto-<?php echo $i;?>" style='width: 50px; border:none;' type='text' value="<?php $turno != null ? print_r($turno->monto): ''; ?>" /></td>
 					<td>
 					<select class="guardar" id="savePago-<?php echo $i;?>" style='width: 100%; border:none;' >
-  							<option value="0" <?php if ($turno->pago==0) echo "selected"; ?>>No</option>
-  							<option value="1" <?php if ($turno->pago==1) echo "selected"; ?>>Si</option>
+  							<option value="0" <?php if ($turno != null && $turno->pago==0) echo "selected";?>>No</option>
+  							<option value="1" <?php if ($turno != null && $turno->pago==1) echo "selected";?>>Si</option>
   					</select>
 					
 					</td>
-					<td><input class="guardar" id="saveObservaciones-<?php echo $i;?>" style='width: 100%; border:none;' type='text' value="<?php print_r($turno->observaciones); ?>"/></td>
+					<td><input class="guardar" id="saveObservaciones-<?php echo $i;?>" style='width: 100%; border:none;' type='text' value="<?php $turno != null ? print_r($turno->observaciones) : ''; ?>"/></td>
 				</tr>
                                 
                                 <?php $current = strtotime( '+'.$horario[0]->intervalo.' minute', $current ); $i = $i + 1;} } 
                                 mostrarTotal($total);
+                                
                                 ?>
+                                
+                                
 			</tbody>
 		</table>
+            <?php if ($i==0){ ?>
+            <div id="noResults" style="display: flex; justify-content: center;">
+                <p>
+                   Este dia no fue configurado como parte de su agenda si desea hacerlo haga click <a href="<?=base_url()?>turnera/horario/index/<?php echo $idConsultorio ?>">aqui</a>
+                </p>
+                
+            </div>
+            <?php } ?>
 	</div>
 </div>
