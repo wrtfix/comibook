@@ -134,11 +134,23 @@ class Portada extends CI_Controller {
 
             $this->layout->view('portada_view', $data);
         } else {
-            $this->layout->setLayout("layouts/login_layout_2");
-            $data['page'] = 'login_view';
-            $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
-            date_default_timezone_set('America/Argentina/Buenos_Aires');
-            $this->layout->view('login_view', $data);
+            
+            $paginaNoticias = $this->configuraciones->getConfiguracion("SHOW_HOME_PAGE");
+             if ($paginaNoticias[0]->valor != 'false') {
+                    
+                $this->layout->setLayout("layouts/login_layout_3");
+                $data['page'] = 'login_view';
+                $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $this->layout->view('home_views', $data);
+             }else{
+                $this->layout->setLayout("layouts/login_layout_2");
+                $data['page'] = 'login_view';
+                $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $this->layout->view('login_view', $data);   
+             }
+            
         }
     }
 

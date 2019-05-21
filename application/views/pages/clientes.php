@@ -26,7 +26,66 @@ function buscarAFIP(){
 }
 
 $(document).ready(function(){
+    
+//        Inicio de customizacion de columnas 
+        var columnasVisibles = [{"checkCuit":"ture"}, {"checkNumero":"true"}, {"checkNombre":"true"}, {"checkDomicilio":"true"}, {"checkTelefono":"true"}, {"checkLocalidad":"true"}];
+
+        function aplicarConfiguracionColumnas(){
+            console.log(columnasVisibles);
+            for (var i=0; i<columnasVisibles.length; i++){
+                var obj = columnasVisibles[i];
+                var elem = Object.keys(obj)[0];
+                if (obj[Object.keys(obj)[0]] == 'false'){
+                    $('.'+elem).hide();
+                    $('#'+elem).hide();
+                }else{
+                    $('.'+elem).show();
+                    $('#'+elem).show();
+                }
+            }
+            $('.columnas').hide();
+        }
+        
+        function configuracionColumnas(visible){
+            for (var i=0; i<columnasVisibles.length; i++){
+                var obj = columnasVisibles[i];
+                var elem = Object.keys(obj)[0];
+                    if (visible){
+                        $('.'+elem).show();
+                    }else {
+                        $('.'+elem).hide();
+                    }
+            }
+            
+        }
+    
+        $('#guardarColumnas').click(function(){
+            columnasVisibles = [];
+            $('.columnas').each(function() {
+                var elem = $(this).attr('id');
+                var value = $('#'+elem+':checked').length >0;
+                var config = new Object();
+                config[elem] = value.toString();
+                columnasVisibles.push((config));
+            });            
+            $("#columnas").show();
+            $(this).hide();
+            aplicarConfiguracionColumnas();
+        });
+        
+        $('#columnas').click(function(){
+            $('.columnas').toggle();
+            configuracionColumnas(true);
+            $("#guardarColumnas").show();
+            $(this).hide();
+	});
+        
+        aplicarConfiguracionColumnas();
+        
+//      Fin de customizacion de columnas 
+    
 	$('#agregar').click(function(){
+                configuracionColumnas(true);
 		var agrego = $("#tablaCliente").attr("xagregar");
 		if (agrego=='false'){ 
 			$('#tablaCliente').append("<tr><td></td><td> <select id='documento'> <option value='cuil'>CUIL/CUIT</option> <option value='dni' selected>DNI</option> </select> <input name='cuit' id='numeroAFIP' type='input' value=''> <button type='button' onclick='buscarAFIP()' class='btn btn-default'>Buscar</button>  </td><td><input name='numero' type='input' value=''></td><td><input name='nombre' id='nombreAFIP' type='input' value=''></td><td><input name='domicilio' id='domicilioAFIP' type='input' value=''></td><td><input name='telefono' type='input' value=''></td><td><input name='localidad' id='localidadAFIP' type='input' value=''></td></tr>");
@@ -61,6 +120,7 @@ $(document).ready(function(){
 			}
 			
 		}
+                aplicarConfiguracionColumnas();
 			
 	});
 
@@ -81,6 +141,9 @@ $(document).ready(function(){
 			cambios.push(($(this).attr('id').split('-')[1]));
 		}
 	});
+        
+        
+        
 	$('#buscar').click(function(){
 		var $aux = $("form:first");
 		var nombre = $('#busquedaNombre').val();
@@ -155,20 +218,22 @@ $(document).ready(function(){
             <button type='button' id='agregar' class='btn btn-success'>Agregar</button>
             <button type='button' id="eliminar" class='btn btn-danger'>Eliminar</button>
             <button type='button' id='guardar' class='btn btn-primary'>Guardar</button>
-        </div>
+            <!--<button type='button' id='columnas' class='btn btn-warning'>Columnas</button>-->
+            <!--<button type='button' id='guardarColumnas' class='btn btn-warning' style="display:none">Guadar Columnas</button>-->
+        </div>    
 	
         <br> <br>
 	<div class='table-responsive'>
 		<table class='table table-bordered table-hover tablesorter' id='tablaCliente' xagregar="false">
 			<thead>
 				<tr>
-					<th class='header'>Eliminar<i class=''></i></th>
-                                        <th class='header'>Cuit/Cuil<i class=''></i></th>
-					<th class='header'>Número<i class=''></i></th>
-					<th class='header'>Nombre<i class=''></i></th>
-					<th class='header headerSortDown'>Domicilio<i class=''></i></th>
-					<th class='header'>Teléfono<i class=''></i></th>
-					<th class='header'>Localidad<i class=''></i></th>
+					<th class='header'>Eliminar </th>
+                                        <th class='header checkCuit'><input type="checkbox" id="checkCuit" class="columnas"> Cuit/Cuil</th>
+					<th class='header checkNumero'><input type="checkbox" id="checkNumero" class="columnas"> Número</th>
+					<th class='header checkNombre'><input type="checkbox" id="checkNombre" class="columnas"> Nombre</th>
+					<th class='header headerSortDown checkDomicilio'><input type="checkbox" id="checkDomicilio" class="columnas"> Domicilio</th>
+                                        <th class='header checkTelefono' > <input type="checkbox" id="checkTelefono" class="columnas">Teléfono</th>
+					<th class='header checkLocalidad'><input type="checkbox" id="checkLocalidad" class="columnas"> Localidad </th>
 					
 				</tr>
 			</thead>
@@ -176,12 +241,12 @@ $(document).ready(function(){
 				<?php $cont=0; foreach($agregados as $item): $cont=$cont+1;?>
 				<tr>
 					<td><input type="checkbox" id="<?php print_r($item->Id);?>" class="fila"></td>
-					<td><input class="formulario" id="cuit-<?php print_r($item->Id);?>" style='width: 100%; border:none;' type='text' value='<?php echo $item->Cuit;?>'/></td>
-                                        <td><input class="formulario" id="numero-<?php print_r($item->Id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Numero);?>'/></td>
-					<td><input class="formulario" id="nombre-<?php print_r($item->Id);?>" name=""style='width: 100%; border:none;' type='text' value='<?php echo $item->Nombre;?>'/></td>
-					<td><input class="formulario" id="domicilio-<?php print_r($item->Id);?>" style='width: 100%; border:none;' type='text' value='<?php echo $item->Domicilio;?>'/></td>
-					<td><input class="formulario" id="telefono-<?php print_r($item->Id);?>" style='width: 100%; border:none;' type='text' value='<?php echo $item->Telefono;?>'/></td>
-					<td><input class="formulario" id="localidad-<?php print_r($item->Id);?>" style='width: 100%; border:none;' type='text' value='<?php echo $item->Localidad;?>'/></td>
+                                        <td class="checkCuit"><input class="formulario " id="cuit-<?php print_r($item->Id);?>" style='width: 100%; border:none;' type='text' value='<?php echo $item->Cuit;?>'/></td>
+                                        <td class="checkNumero"><input class="formulario " id="numero-<?php print_r($item->Id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Numero);?>'/></td>
+                                        <td class="checkNombre"><input class="formulario " id="nombre-<?php print_r($item->Id);?>" name=""style='width: 100%; border:none;' type='text' value='<?php echo $item->Nombre;?>'/></td>
+                                        <td class="checkDomicilio"><input class="formulario " id="domicilio-<?php print_r($item->Id);?>" style='width: 100%; border:none;' type='text' value='<?php echo $item->Domicilio;?>'/></td>
+                                        <td class="checkTelefono" style="display:none"><input class="formulario" id="telefono-<?php print_r($item->Id);?>" style='width: 100%; border:none;' type='text' value='<?php echo $item->Telefono;?>'/></td>
+                                        <td class="checkLocalidad"><input class="formulario " id="localidad-<?php print_r($item->Id);?>" style='width: 100%; border:none;' type='text' value='<?php echo $item->Localidad;?>'/></td>
 				</tr>
 				<?php endforeach; ?>
 			</tbody>

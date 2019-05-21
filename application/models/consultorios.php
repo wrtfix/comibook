@@ -4,6 +4,8 @@ Class Consultorios extends CI_Model
         function updateConsultorio($id){
             $data = array(
 			'nombre' => $this->input->post('nombre'),
+                        'direccion' => $this->input->post('direccion'),
+                        'especialidad' => $this->input->post('especialidad'),
 			'telefono' => $this->input->post('telefono'),
                         'horario' => $this->input->post('horario'),
 		);
@@ -14,6 +16,8 @@ Class Consultorios extends CI_Model
         function addConsultorio(){
             $data = array(
 			'nombre' => $this->input->post('nombre'),
+                        'direccion' => $this->input->post('direccion'),
+                        'especialidad' => $this->input->post('especialidad'),
 			'telefono' => $this->input->post('telefono'),
 			'horario' =>  $this->input->post('horario'),
 		);

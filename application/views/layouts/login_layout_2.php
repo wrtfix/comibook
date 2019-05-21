@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="jorge carlos mendiola" >
-
+    
+    
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>estilo/login2/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>estilo/login2/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>estilo/login2/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>estilo/login2/vendor/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>estilo/login2/css/util.css">
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>estilo/login2/css/main.css">
+
 
 </head>
 <body>

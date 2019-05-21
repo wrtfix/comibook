@@ -168,6 +168,7 @@ $(function () {
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i> Sistema<b class="caret"></b></a> 
                 <ul class="dropdown-menu multi-level">
                    <li><a href="/saltaChequeado/index.php/backoffice/configuracion/index"><i class="fa fa-fw fa-gear"></i> Configuracion </a></li>
+                   <li><a href="/saltaChequeado/index.php/backoffice/literales/index"><i class="fa fa-fw fa-flag"></i> Literales </a></li>
                    <li><a href="/saltaChequeado/index.php/backoffice/menu/index"><i class="fa fa-wrench"></i> Menu </a></li>
                    <li><a href="/saltaChequeado/index.php/backoffice/ambiente/index"><i class="fa fa-globe"></i> Ambiente </a></li>
                    <li><a href="/saltaChequeado/index.php/backoffice/usuario/index"><i class="fa fa-user"></i> Usuarios </a></li>

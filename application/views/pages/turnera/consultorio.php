@@ -4,7 +4,7 @@
         $('#agregar').click(function () {
             var agrego = $("#tablaConsultorios").attr("xagregar");
             if (agrego == 'false') {
-                $('#tablaConsultorios').append("<tr><td></td><td><input name='nombre' type='input' value=''></td><td><input name='telefono' type='input' value=''></td><td><input name='horario' type='input' value=''></td></tr>");
+                $('#tablaConsultorios').append("<tr><td></td><td><input name='nombre' type='input' value=''></td><td><input name='especialidad' type='input' value=''></td><td><input name='direccion' type='input' value=''></td><td><input name='telefono' type='input' value=''></td><td><input name='horario' type='input' value=''></td></tr>");
                 $("#tablaConsultorios").attr("xagregar", "true");
                 $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
             }
@@ -82,7 +82,7 @@
                 $aux.attr('action',"<?=base_url()?>index.php/turnera/agenda/index/");
                 $aux.submit();
             }else{
-                alert("Debe seleccionar una agenda");
+                showInfo("Debe seleccionar una agenda",'warning');
                 if (guardar.length===0){
                     location.reload();
                 }
@@ -129,6 +129,8 @@
                     <th class="header">Seleccionar<i class=""></i></th>                    
                     <th class="header">Nombre<i class=""></i></th>
                     <th class="header">Especialidad<i class=""></i></th>
+                    <th class="header">Direccion<i class=""></i></th>
+                    <th class="header">Telefono<i class=""></i></th>
                     <th class="header">Horario de atencion<i class=""></i></th>
                 </tr>
             </thead>
@@ -138,6 +140,8 @@
                     <tr>
                         <td><input type="checkbox" id="<?php print_r($item->idConsultorio); ?>" class="fila" ></td>
                         <td><input class="formulario" name="nombre" id="nombre-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre); ?>'/></td>
+                        <td><input class="formulario" name="especialidad" id="especialidad-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->especialidad); ?>'/></td>
+                        <td><input class="formulario" name="direccion" id="direccion-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->direccion); ?>'/></td>
                         <td><input class="formulario" name="telefono" id="telefono-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->telefono); ?>'/></td>
                         <td><input class="formulario" name="horario" id="horario-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->horario); ?>'/></td>
                     </tr>
