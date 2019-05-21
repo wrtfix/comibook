@@ -21,8 +21,8 @@ class Googlelogin extends CI_Controller {
 
     public function login() {
 
-        $clientId = '843809696133-ls9boeo13vb1b7nie9h3f3mumvm14737.apps.googleusercontent.com'; //Google client ID
-        $clientSecret = 'j2lln7jbIG9txfsds_0u_TDn'; //Google client secret
+        $clientId = $this->configuraciones->getConfiguracion("GOOGLE_CLIEN_ID")[0]->valor; //Google client ID
+        $clientSecret = $this->configuraciones->getConfiguracion("GOOGLE_CLIEN_SECRET")[0]->valor; //Google client secret
         $redirectURL = base_url() . 'googlelogin/login';
 
         //https://curl.haxx.se/docs/caextract.html
