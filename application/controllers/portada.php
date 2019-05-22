@@ -141,12 +141,14 @@ class Portada extends CI_Controller {
                 $this->layout->setLayout("layouts/login_layout_3");
                 $data['page'] = 'login_view';
                 $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
+                $data['loginGoogle'] = $this->configuraciones->getConfiguracion("GOOGLE_LOGIN");
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $this->layout->view('home_views', $data);
              }else{
                 $this->layout->setLayout("layouts/login_layout_2");
                 $data['page'] = 'login_view';
                 $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
+                $data['loginGoogle'] = $this->configuraciones->getConfiguracion("GOOGLE_LOGIN");
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $this->layout->view('login_view', $data);   
              }
