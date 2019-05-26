@@ -64,6 +64,7 @@ $(document).ready(function(){
 			cambios.push(($(this).attr('id').split('-')[1]));
 		}
 	});
+        
 
 });
 
@@ -82,19 +83,21 @@ $(document).ready(function(){
     <div class="page-header">
                  <h3>Configuracion</h3>
     </div>
-<div class="row">
-
-  
-        </div>
-            <div class="btn-group">
+<div class="btn-group">
                 <button type="button" id="agregar" class="btn btn-success">Agregar</button>
                 <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
                 <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
                 <button type="button" id="sendEmail" class="btn btn-default">Test email</button>
             </div>
+<div class="row">
+
+  
+        
+            
             <br>
             <br>
-            <div class="table-responsive">
+            
+            <div class="table-responsive desktop">
               <table class="table table-bordered table-hover tablesorter" id="tablaConfiguracion" xagregar="false">
                 <thead>
                   <tr>
@@ -117,6 +120,30 @@ $(document).ready(function(){
 				</tbody>
               </table>
             </div>
+            <div class="col-sm-4 mobile">
+            
+            <?php $cont=0; foreach($agregados as $item): $cont=$cont+1;?>
+            <div  class="panel panel-green">
+                    <div class="col-lg-6 panel-body">
+                            <div class="form-group">
+                                <label>Clave</label>
+                                <input class="form-control" id="atributo-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->atributo);?>'/>
+                                <p class="help-block"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Valor</label>
+                                <textarea class="form-control formulario tab" id="valor-<?php print_r($item->id);?>" style='width: 100%; border:none;'><?php print_r($item->valor);?></textarea>
+                                <p class="help-block"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Descripcion</label>
+                                <input class="form-control formulario tab" id="descripcion-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->descripcion);?>'/>
+                                <p class="help-block"></p>
+                            </div>
+                    </div>
+            </div>
+            <?php endforeach; ?>
+                </div>
           </div>
           
 

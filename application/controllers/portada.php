@@ -137,11 +137,17 @@ class Portada extends CI_Controller {
             
             $paginaNoticias = $this->configuraciones->getConfiguracion("SHOW_HOME_PAGE");
              if ($paginaNoticias[0]->valor != 'false') {
+                 
+                $this->load->library('facebook', array( 'app_id'  => '436221990500814', 'app_secret' => '42c02b550c0c719b9a0e1ccc65664d2d', 'default_graph_version' => 'v2.5'));
+                $callbackurltoyourwebsite = base_url() . 'login/facebookLogin';
+                $data['facebook_login_link'] = $this->facebook->loginURL($callbackurltoyourwebsite);
                     
                 $this->layout->setLayout("layouts/login_layout_3");
                 $data['page'] = 'login_view';
                 $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
                 $data['loginGoogle'] = $this->configuraciones->getConfiguracion("GOOGLE_LOGIN");
+                $data['loginFacebook'] = $this->configuraciones->getConfiguracion("FACEBOOK_LOGIN");
+                
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $this->layout->view('home_views', $data);
              }else{

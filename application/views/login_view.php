@@ -33,6 +33,11 @@
                 <?php if ($loginGoogle[0]->valor == 'true') { ?> 
                     <a class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10" href="<?=base_url()?>googlelogin/login"><img src="<?=base_url()?>estilo/login/img/google-btn.png" alt=""/></a>
                 <?php } ?>
+                    
+                <?php if ($loginFacebook[0]->valor == 'true') { ?>     
+                    <a class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10" href="<?php print_r($facebook_login_link);?>"><img src="<?=base_url()?>estilo/login/img/flogin.gif" alt=""/></a>
+                <?php } ?>
+                    
                 <?php if ($registrarse[0]->valor == 'true') { ?> 
                     <a href="<?= base_url() ?>index.php/registrarse/index" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
                         Registrarse
@@ -40,7 +45,8 @@
                     </a>
                 <?php } ?>
             </div>
-            </form>
-        </div>
+        
     </div>
+        
 </div>
+
