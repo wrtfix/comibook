@@ -224,9 +224,9 @@ $(document).ready(function(){
 			<thead>
 				<tr>
 					<th class="header">Selec.<i class=""></i></th>
-					<th class="header">Cliente <br> Origen<i class=""></i></th>
+					<th class="header">Proveedor<i class=""></i></th>
 					<th class="header headerSortDown" width="50px">Bultos<i class=""></i></th>
-					<th class="header">Cliente <br> Destino<i class=""></i></th>
+					<th class="header">Cliente<i class=""></i></th>
 					<th class="header"  width="50px">Valor <br> Declarado<i class=""></i></th>
 					<th class="header">Contrare.<i class=""></i></th>
 					<th class="header">Costo <br> de Flete<i class=""></i></th>

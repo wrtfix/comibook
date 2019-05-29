@@ -244,6 +244,15 @@ $(function () {
                         <li> <a href="/saltaChequeado/index.php/estadistica/index"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
                    <?php } ?>
                 </ul>
+                            <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '41' ) { ?>
+             <li>
+                   <li><a href="/saltaChequeado/index.php/pedidos/index"><i class="fa fa-fw fa-book"></i> Pedidos</a></li>
+                   <li><a href="/saltaChequeado/index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
+                   <li><a href="/saltaChequeado/index.php/cheques/index"><i class="fa fa-fw fa-money"></i> Cheques </a></li>
+                   <li><a href="/saltaChequeado/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
+                   <li><a href="/saltaChequeado/index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>
+                   <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
+                   <li> <a href="/saltaChequeado/index.php/estadistica/index"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
              </li>
             <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '50'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
              <li>
