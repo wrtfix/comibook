@@ -61,6 +61,19 @@ $(document).ready(function(){
 			cambios.push(($(this).attr('id').split('-')[1]));
 		}
 	});
+        
+        $("#imprimirSeleccion").click(function(){
+            var remitos = [];
+            $('input:checked').each(function() {
+		    var elem = $(this).attr('id');
+                    remitos.push(elem);
+                });
+            $("#remitosIds").val(remitos);
+            console.log(remitos);
+            var $aux = $("form:first");
+            $aux.attr('action',"<?=base_url()?>index.php/imprimir/generarPDF/");
+            $aux.submit();
+        });
 	
 });
 $(function() {
@@ -69,6 +82,7 @@ $(function() {
   });
 </script>
 <?php echo form_open('imprimir/index'); ?>
+<input name="remitosIds" id="remitosIds" value="" style='width: 100%; border:none;' type='hidden' />
 <div class="row">
 
 
@@ -94,13 +108,15 @@ $(function() {
 
         <button type="submit" id="buscar" class="btn btn-default">Buscar</button>
 	<a id="impresion" class="btn btn-primary">Imprimir</a>
+        <button type="button" id="imprimirSeleccion" class="btn btn-warning">Imprimir seleccion</button>
 	<button type="button" id="guardar" class="btn btn-danger">Guardar</button>
 	<br> <br>
 	<div class="table-responsive">
 		<table class="table table-bordered table-hover tablesorter">
 			<thead>
 				<tr>
-					<th class="header">Fecha<i class=""></i></th>
+					<th class="header">Seleccionar<i class=""></i></th>
+                                        <th class="header">Fecha<i class=""></i></th>
 					<th class="header">Cliente Origen<i class=""></i></th>
 					<th class="header headerSortDown">Bultos<i class=""></i></th>
 					<th class="header">Cliente Destino<i class=""></i></th>
@@ -114,7 +130,7 @@ $(function() {
 			<tbody>
 			<?php $total =0; $cont=0; foreach($agregados as $item): $cont=$cont+1;?>
 				<tr>
-
+                                        <td><input type="checkbox" class="selec" id="<?php print_r($item->Numero);?>" value=""></td>
 					<td>
 <input class="formulario tab" id="Fecha-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Fecha);?>'/></td>
 					<td><input class="formulario tab" id="ClienteOrigen-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteOrignen);?>'/></td>

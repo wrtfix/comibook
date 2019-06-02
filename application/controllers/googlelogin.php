@@ -49,10 +49,10 @@ class Googlelogin extends CI_Controller {
 //            print_r($userProfile);
 
             $sess_array = array(
-                'id' => '1',
-                'username' => 'wrtfix',
-                'menu' => '1',
-                'idAmbiente' => '1',
+                'id' => '8',
+                'username' => 'admin',
+                'menu' => '1000',
+                'idAmbiente' => '3',
                 'cantAmbientes' => '1',
             );
             $this->session->set_userdata('logged_in', $sess_array);
