@@ -8,12 +8,8 @@
                     <a class="close" data-dismiss="alert" href="#">×</a><?php echo validation_errors(); ?>
                 </div>
             <?php } ?>
-            <?php if ($userAdd != null) { ?>
-                <div class="alert alert-info alert-dismissable">
-                    <a class="close" data-dismiss="alert" href="#">×</a><?php echo $userAdd; ?>
-                </div>
-            <?php } ?>
-            <?php echo form_open('registrarse'); ?>
+            
+            <?php echo form_open('registrarse/addUser'); ?>
             <div class="wrap-input100 validate-input" data-validate="El usuario es requerido">
                 <span class="label-input100">Nombre de Usuario</span> 
                 <input class="input100" type="text" name="username" placeholder="">

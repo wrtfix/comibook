@@ -25,10 +25,12 @@ class Registrarse extends CI_Controller {
     
     public function addUser(){
         $this->load->library('recaptcha');
+        $this->load->library('form_validation');
+        $data['userAdd'] = null;
         $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|is_unique[users.username]');
         $this->form_validation->set_rules('password', 'Password', 'required|matches[passconf]');
         $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
-        $data['userAdd'] = null;
+        
 
         // Catch the user's answer
         $captcha_answer = $this->input->post('g-recaptcha-response');
@@ -39,12 +41,13 @@ class Registrarse extends CI_Controller {
         // Processing ...
         if ($response['success']) {
             $this->user->addUser();
-            $data['userAdd'] = 'El usuario se registro correctamente';
+            $data['userStateAdd'] = 'El usuario se registro correctamente';
+            $this->layout->view('login_view', $data);
+        }else{
             $data['page'] = 'registrarse';
             $this->layout->view('pages/registrarse', $data);
         }
-        $data['page'] = 'registrarse';
-        $this->layout->view('pages/registrarse', $data);
+        
     }
 
 }

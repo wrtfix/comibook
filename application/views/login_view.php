@@ -8,6 +8,11 @@
                     <a class="close" data-dismiss="alert" href="#">×</a><?php echo validation_errors(); ?>
                 </div>
             <?php } ?>
+            <?php if ($userStateAdd != null) { ?>
+                <div class="alert alert-info alert-dismissable">
+                    <a class="close" data-dismiss="alert" href="#">×</a><?php echo $userStateAdd; ?>
+                </div>
+            <?php } ?>
             <!--<form class="login100-form validate-form">-->
             <?php echo form_open('verifylogin'); ?>
             <span class="login100-form-title p-b-59">
