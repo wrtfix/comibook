@@ -51,7 +51,7 @@ class Googlelogin extends CI_Controller {
             $sess_array = array(
                 'id' => '8',
                 'username' => 'admin',
-                'menu' => '1000',
+                'menu' => $this->menus->getUsuarioMenu(8),
                 'idAmbiente' => '3',
                 'cantAmbientes' => '1',
             );

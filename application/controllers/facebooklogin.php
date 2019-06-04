@@ -73,9 +73,9 @@ class Facebooklogin extends CI_Controller {
             try {
                 $accessToken = $oAuth2Client->getLongLivedAccessToken($accessToken);
                 $sess_array = array(
-                'id' => '1',
-                'username' => 'wrtfix',
-                'menu' => '1',
+                'id' => '8',
+                'username' => 'admin',
+                'menu' => $this->menus->getUsuarioMenu(8),
                 'idAmbiente' => '1',
                 'cantAmbientes' => '1',
                 );
