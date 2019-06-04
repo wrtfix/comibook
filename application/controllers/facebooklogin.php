@@ -64,7 +64,7 @@ class Facebooklogin extends CI_Controller {
 
         $oAuth2Client = $fb->getOAuth2Client();
         $tokenMetadata = $oAuth2Client->debugToken($accessToken);
-        $tokenMetadata->validateAppId('436221990500814'); // Replace {app-id} with your app id
+        $tokenMetadata->validateAppId($this->configuraciones->getConfiguracion("FACEBOOK_KEY")[0]->valor); // Replace {app-id} with your app id
         
         $tokenMetadata->validateExpiration();
 
