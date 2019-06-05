@@ -63,6 +63,8 @@ class Imprimir extends CI_Controller {
     }
 
     public function generarPDF() {
+        
+        $remitosIds = $this->input->post('remitosIds');
 
         if ($this->session->userdata('logged_in')) {
             $this->load->library('TemplatePdf');
@@ -136,28 +138,52 @@ class Imprimir extends CI_Controller {
 
             $x = 1;
             $total = 0;
+            $str_arr = preg_split ("/\,/", $remitosIds);
             foreach ($pedidos as $item) {
                 // se imprime el numero actual y despues se incrementa el valor de $x en uno
                 //$this->PdfAgencia->Cell(15,5,$x++,'BL',0,'C',0);
                 // Se imprimen los datos de cada ciudad
-                $this->TemplatePdf->Cell(20, 5, $item->Fecha, 'B', 0, 'C', 0);
-                $this->TemplatePdf->Cell(40, 5, $item->ClienteOrignen, 'B', 0, 'C', 0);
-                $this->TemplatePdf->Cell(15, 5, $item->Bultos, 'B', 0, 'C', 0);
-                $this->TemplatePdf->Cell(45, 5, $item->ClienteDestino, 'B', 0, 'C', 0);
-                $this->TemplatePdf->Cell(30, 5, $item->valorDeclarado, 'B', 0, 'C', 0);
-                $this->TemplatePdf->Cell(45, 5, $item->CostoFlete, 'B', 0, 'C', 0);
-                if ($item->ContraReembolso == 0)
-                    $this->TemplatePdf->Cell(30, 5, 'No', 'B', 0, 'C', 0);
-                else
-                    $this->TemplatePdf->Cell(30, 5, 'Si', 'B', 0, 'C', 0);
-                if ($item->Pago == 0)
-                    $this->TemplatePdf->Cell(15, 5, 'No', 'B', 0, 'C', 0);
-                else
-                    $this->TemplatePdf->Cell(15, 5, 'Si', 'B', 0, 'C', 0);
-                $this->TemplatePdf->Cell(40, 5, $item->Observaciones, 'B', 0, 'C', 0);
-                //Se agrega un salto de linea
-                $this->TemplatePdf->Ln(5);
-                $total = $total + $item->CostoFlete;
+                if ($remitosIds !=null){
+                    if (in_array($item->Numero, $str_arr)){
+                        $this->TemplatePdf->Cell(20, 5, $item->Fecha, 'B', 0, 'C', 0);
+                        $this->TemplatePdf->Cell(40, 5, $item->ClienteOrignen, 'B', 0, 'C', 0);
+                        $this->TemplatePdf->Cell(15, 5, $item->Bultos, 'B', 0, 'C', 0);
+                        $this->TemplatePdf->Cell(45, 5, $item->ClienteDestino, 'B', 0, 'C', 0);
+                        $this->TemplatePdf->Cell(30, 5, $item->valorDeclarado, 'B', 0, 'C', 0);
+                        $this->TemplatePdf->Cell(45, 5, $item->CostoFlete, 'B', 0, 'C', 0);
+                        if ($item->ContraReembolso == 0)
+                            $this->TemplatePdf->Cell(30, 5, 'No', 'B', 0, 'C', 0);
+                        else
+                            $this->TemplatePdf->Cell(30, 5, 'Si', 'B', 0, 'C', 0);
+                        if ($item->Pago == 0)
+                            $this->TemplatePdf->Cell(15, 5, 'No', 'B', 0, 'C', 0);
+                        else
+                            $this->TemplatePdf->Cell(15, 5, 'Si', 'B', 0, 'C', 0);
+                        $this->TemplatePdf->Cell(40, 5, $item->Observaciones, 'B', 0, 'C', 0);
+                        //Se agrega un salto de linea
+                        $this->TemplatePdf->Ln(5);
+                        $total = $total + $item->CostoFlete;
+                    }
+                }else {
+                    $this->TemplatePdf->Cell(20, 5, $item->Fecha, 'B', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(40, 5, $item->ClienteOrignen, 'B', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(15, 5, $item->Bultos, 'B', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(45, 5, $item->ClienteDestino, 'B', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(30, 5, $item->valorDeclarado, 'B', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(45, 5, $item->CostoFlete, 'B', 0, 'C', 0);
+                    if ($item->ContraReembolso == 0)
+                        $this->TemplatePdf->Cell(30, 5, 'No', 'B', 0, 'C', 0);
+                    else
+                        $this->TemplatePdf->Cell(30, 5, 'Si', 'B', 0, 'C', 0);
+                    if ($item->Pago == 0)
+                        $this->TemplatePdf->Cell(15, 5, 'No', 'B', 0, 'C', 0);
+                    else
+                        $this->TemplatePdf->Cell(15, 5, 'Si', 'B', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(40, 5, $item->Observaciones, 'B', 0, 'C', 0);
+                    //Se agrega un salto de linea
+                    $this->TemplatePdf->Ln(5);
+                    $total = $total + $item->CostoFlete;
+                }
             }
             /* $this->TemplatePdf->SetFillColor(229, 229, 229); 
               $this->TemplatePdf->Ln(5);

@@ -4,7 +4,8 @@ $(document).ready(function(){
 	$('#agregar').click(function(){
 		var agrego = $("#tablaMenu").attr("xagregar");
 		if (agrego=='false'){ 
-			$('#tablaMenu').append("<tr><td></td><td><input  name='grupo' id='grupo' type='input' value=''></td><td><input name='nombre' type='input' value=''></td><td><input name='peso' type='input' value=''></td> <td><input name='code' type='input' value=''></td> </tr>");
+//			$('#tablaMenu').append("<tr><td></td><td><input  name='grupo' id='grupo' type='input' value=''></td><td><input name='nombre' type='input' value=''></td><td><input name='peso' type='input' value=''></td> <td><input name='code' type='input' value=''></td> </tr>");
+                        $('#tablaMenu').append("<tr><td></td><td><input  name='grupo' id='grupo' type='input' value=''></td><td><input name='nombre' type='input' value=''></td><td><input name='peso' type='input' value=''></td> </tr>");
 			$("#tablaMenu").attr("xagregar","true");
 		}
 	});
@@ -88,7 +89,7 @@ $(document).ready(function(){
                     <th class="header">Grupo<i class=""></i></th>
                     <th class="header">Nombre<i class=""></i></th>
                     <th class="header headerSortDown">Peso<i class=""></i></th>
-                    <th class="header headerSortDown">Code<i class=""></i></th>
+                    <!--<th class="header headerSortDown">Code<i class="s"></i></th>-->
                   </tr>
                 </thead>
                 <tbody>
@@ -99,7 +100,7 @@ $(document).ready(function(){
                   <td><input class="formulario" id="nombre-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre);?>'/></td>
                   <td><input class="formulario" id="peso-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->peso);?>'/></td>
                   <!--<td><input class="formulario" id="code-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->code);?>'/></td>-->
-                  <td><textarea class="formulario" id="code-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;'/><?php print_r($item->code);?> </textarea></td>
+                  <!--<td><textarea class="formulario" id="code-<?php print_r($item->idMenu);?>" style='width: 100%; border:none;'/><?php print_r($item->code);?> </textarea></td>-->
                 </tr>
                 <?php endforeach; ?>
                 </tbody>

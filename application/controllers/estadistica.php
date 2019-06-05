@@ -27,6 +27,16 @@ class Estadistica extends CI_Controller
                         $data['pedidosAnual'] = $this->estadisticas->getPedidosAnual();
                         $data['historicoMensual'] = $this->estadisticas->getHistoricoMensual();
                         $data['historicoGanadoMensual'] = $this->estadisticas->getHistoricoGanadoMensual();
+                        $data['historicoGastadoMensual'] = $this->estadisticas->getGastosMensuales();
+                        $data['historicoGastadoAnual'] =$this->estadisticas->getGastoAnual();
+                        $data['importeGastadoTotal'] = $this->estadisticas->getImporteAcumuladosGastoTotal();
+                        $data['importePedidoTotal'] =$this->estadisticas->getImporteAcumuladosPedidoTotal();
+                        $data['gananciaMensual'] = $this->estadisticas->getGananciasMensuales();
+                        $data['gananciaAnual'] = $this->estadisticas->getGananciaAnual();
+                        $data['gananciasAnuales'] = $this->estadisticas->getGananciasAnuales();
+                        $data['acumuladaFeleteMes'] = $this->estadisticas->getAcumuladaFeleteMes();
+                        $data['acumuladaGastoMes'] = $this->estadisticas->getAcumuladaGastoMes();
+                        
                         
                         
                         $data['tituloAcercaDe'] = $this->configuraciones->getConfiguracion("SITE_NAME");
@@ -38,5 +48,5 @@ class Estadistica extends CI_Controller
 			$this->load->view('pages/construccion', $data);
 		}
 	}
-
+        
 }

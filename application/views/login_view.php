@@ -25,22 +25,37 @@
                 <span class="focus-input100"></span>
             </div>
 
-            <div class="container-login100-form-btn">
-                <div class="wrap-login100-form-btn">
+            <div class="container-login100-form-btn" style="display: flex; justify-content: center; ">
+                <div class="wrap-login100-form-btn" >
                     <div class="login100-form-bgbtn"></div>
                     <button type="submit" name="submit" class="login100-form-btn"> Ingresar </button>
                 </div>
-                <?php if ($loginGoogle[0]->valor == 'true') { ?> 
-                    <a class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10" href="<?=base_url()?>googlelogin/login"><img src="<?=base_url()?>estilo/login/img/google-btn.png" alt=""/></a>
-                <?php } ?>
+                <br>
+                <br>
                 <?php if ($registrarse[0]->valor == 'true') { ?> 
                     <a href="<?= base_url() ?>index.php/registrarse/index" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
                         Registrarse
                         <i class="fa fa-long-arrow-right m-l-5"></i>
                     </a>
                 <?php } ?>
+                
             </div>
-            </form>
-        </div>
+            <div>                
+                <div style="display: flex; justify-content: space-around; margin-top: 15%;">
+                <?php if ($loginGoogle[0]->valor == 'true') { ?> 
+                <a class="" href="<?=base_url()?>googlelogin/login"><i class="fa fa-google-plus-official"></i> Google</a>
+            <?php } ?>
+            <?php if ($loginFacebook[0]->valor == 'true') { ?>     
+                <?php print_r($loginUrlFacebook); ?>
+<!--                    <a class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10" href="<?=base_url()?>facebooklogin/login"><img src="<?=base_url()?>estilo/login/img/flogin.gif" alt=""/></a>-->
+            <?php } ?>
+            </div>
+                
+            </div>
+            
+            
+        
     </div>
+        
 </div>
+
