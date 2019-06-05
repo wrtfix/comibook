@@ -60,7 +60,7 @@ class Imagen extends CI_Controller
             else
             {       $results=$this->upload->data();
                     $data['results'] = $results;
-                    $this->imagen->addImagen($results['file_name']);
+                    $this->imagenes->addImagen($results['file_name']);
                     $data['imagenes'] = $this->imagenes->getImagenes();
                     $this->layout->view('pages/imagen', $data);
             }
