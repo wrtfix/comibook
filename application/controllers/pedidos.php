@@ -37,27 +37,16 @@ class Pedidos extends CI_Controller {
     public function addPedido() {
         if ($this->session->userdata('logged_in')) {
             $this->load->library('form_validation');
-            $this->pedido->addPedido();
+            return $this->pedido->addPedido();
         } else {
             $data['page'] = 'construccion';
             $this->load->view('pages/construccion', $data);
         }
     }
 
-    public function updatePedido($id) {
+    public function updatePedido() {
         if ($this->session->userdata('logged_in')) {
-            $this->load->library('form_validation');
-            $this->form_validation->set_rules('ClienteOrigen', 'ClienteOrigen', 'required');
-            $this->form_validation->set_rules('Bultos', 'Bultos', 'required|numeric');
-            $this->form_validation->set_rules('ClienteDestino', 'ClienteDestino', 'required');
-            $this->form_validation->set_rules('valorDeclarado', 'valorDeclarado', 'numeric');
-            $this->form_validation->set_rules('CostoFlete', 'CostoFlete', 'required|numeric');
-
-            if ($this->form_validation->run() == FALSE) {
-                $this->output->set_status_header('400'); //Triggers the jQuery error callback
-            } else {
-                $this->pedido->updatePedidos($id);
-            }
+            return $this->pedido->updatePedidos();
         } else {
             $data['page'] = 'construccion';
             $this->load->view('pages/construccion', $data);
@@ -66,7 +55,7 @@ class Pedidos extends CI_Controller {
 
     public function delPedido($id) {
         if ($this->session->userdata('logged_in')) {
-            $this->pedido->delPedido($id);
+            return $this->pedido->delPedido($id);
         } else {
             $data['page'] = 'construccion';
             $this->load->view('pages/construccion', $data);

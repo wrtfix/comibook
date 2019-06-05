@@ -45,6 +45,7 @@ $(document).ready(function(){
 	});
 	$('#guardar').click(function(){
 		var agrego = $("#tablaCliente").attr("xagregar");
+                var sendData = [];
 		for (i = 0; i < guardar.length; i++)
 		{
 			var ClienteOrigen = $('#saveClienteOrigen-'+guardar[i]).val();
@@ -55,20 +56,25 @@ $(document).ready(function(){
 			var CostoFlete = $('#saveCostoFlete-'+guardar[i]).val();
 			var Pago = $('#savePago-'+guardar[i]).val();
 			var Observaciones = $('#saveObservaciones-'+guardar[i]).val();
-			$.ajax({
-				   data: {fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones},
+			sendData.push({fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones});
+		}
+                if (sendData.length>0){
+                $.ajax({
+                               data: {newData: sendData},
 			       type: "POST",
 			       url: "<?=base_url()?>index.php/pedidos/addPedido/",
 			       success: function(){
-			    	   $("#resultado").html("Los cambios se guardaron con exito");
-				   },
-				   error: function(){
-						console.log('ERROR : Verifique los campos ingresados');
-				   }
+			    	   alert('Los nuevos elementos se guardaron satisfactoriamente');
+                                   guardar=[];
+				},
+				error: function(){
+                                    console.log('ERROR : Verifique los campos ingresados');
+				}
 				       
 			});
-		}
-		guardar=[];
+                        }
+		
+                
 		for (i = 0; i < cambios.length; i++)
 		{
 			var ClienteOrigen = $('#ClienteOrigen-'+cambios[i]).val();
@@ -79,21 +85,25 @@ $(document).ready(function(){
 			var CostoFlete = $('#CostoFlete-'+cambios[i]).val();
 			var Pago = $('#Pago-'+cambios[i]).val();
 			var Observaciones = $('#Observaciones-'+cambios[i]).val();
-			$.ajax({
-				   data: {fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones},
+                        var Numero = cambios[i];
+			sendDataUpdate.push({fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones,Numero:Numero});
+		}
+                if (sendDataUpdate.length>0){
+                $.ajax({
+                               data: {updateData:sendDataUpdate},
 			       type: "POST",
-			       url: "<?=base_url()?>index.php/pedidos/updatePedido/"+cambios[i],
+			       url: "<?=base_url()?>index.php/pedidos/updatePedido/",
 			       success: function(){
-			    	   cambios = [];
-				   },
-				   error: function(){
-					   alert('ERROR : Verifique los campos ingresados');
-				   }
+			    	   alert('Los cambios se guardaron satisfactoriamente');
+                                   cambios=[];
+                                },
+                                error: function(){
+                                        alert('ERROR : Verifique los campos ingresados');
+                                }
 			       
 			});
-		}
-		alert('Los cambios se guardaron satisfactoriamente');
-		cambios=[];
+                }
+		
 	});
 	$('.pago').click(function(){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
@@ -122,16 +132,26 @@ $(document).ready(function(){
 	});
 
 	$('#eliminar').click(function(){
+                var removeElem = [];
 		$('input:checked').each(function() {
 		    var elem = $(this).attr('id');
 		    var id = $("#identificador").val();
-			$.ajax({
-			       type: "POST",
-			       url: "<?=base_url()?>index.php/pedidos/delPedido/"+elem
-			});
+                    removeElem.push({Numero:elem});
 		});
- 		$("input:checkbox:checked").parent().parent().remove();
-		location.reload();	
+                if (removeElem.length>0){
+                    $.ajax({
+                               data: {removeElem:removeElem},
+			       type: "POST",
+			       url: "<?=base_url()?>index.php/pedidos/delPedido/",
+                               success: function(){
+                                   alert('Los elementos fuero eliminados correctamente');
+                                    location.reload();	
+                               }
+                               
+			});
+                    $("input:checkbox:checked").parent().parent().remove();
+                    
+                }
 	});
          $("#addComment").click(function(){
             $("#comentario").show();

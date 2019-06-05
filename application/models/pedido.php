@@ -10,20 +10,26 @@ class Pedido extends CI_Model {
 
 	function addPedido()
 	{
-		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
-		$data = array(
-			'Fecha' => $ano."-".$mes."-".$dia,
-			'ClienteOrignen' => strtoupper($this->input->post('ClienteOrigen')),		
-			'Bultos' => $this->input->post('Bultos'),
-			'ClienteDestino' => strtoupper($this->input->post('ClienteDestino')),
-			'valorDeclarado' => $this->input->post('valorDeclarado'),
-			'Contrareembolso' => $this->input->post('Contrareembolso'),
-			'CostoFlete' => $this->input->post('CostoFlete'),
-			'Pago' => $this->input->post('Pago'),
-			'Observaciones' => strtoupper($this->input->post('Observaciones')),
-		);
 		
-		return $this->db->insert('pedidos', $data);
+                $jsonObject = $this->input->post('newData');
+                $consult = null;
+                foreach ($jsonObject as $value) {
+                    list($dia, $mes, $ano) = explode("-", $value['fecha']);
+                    $data = array(
+			'Fecha' => $ano."-".$mes."-".$dia,
+			'ClienteOrignen' => strtoupper($value['ClienteOrigen']),		
+			'Bultos' => $value['Bultos'],
+			'ClienteDestino' => strtoupper($value['ClienteDestino']),
+			'valorDeclarado' => $value['valorDeclarado'],
+			'Contrareembolso' => $value['Contrareembolso'],
+			'CostoFlete' => $value['CostoFlete'],
+			'Pago' => $value['Pago'],
+			'Observaciones' => strtoupper($value['Observaciones']),
+                    );
+                    $consult = $this->db->insert('pedidos', $data);
+                
+                }
+        	return $consult;
 	}
 	
 	function getPedidoPedientes(){
@@ -33,8 +39,13 @@ class Pedido extends CI_Model {
 		return $query->result();
 	}
 	
-	function delPedido($identificador){
-		return $this->db->delete('pedidos', array('Numero' => $identificador));
+	function delPedido(){
+                $jsonObject = $this->input->post('removeElem');
+                $consult = null;
+                foreach ($jsonObject as $value) {
+                    $consult = $this->db->delete('pedidos', array('Numero' => $value['Numero']));
+                }
+		return $consult;
 	}
 	function getPedidosPedientes($nombre,$fechaDesde,$fechaHasta,$pediente){
 		$this -> db -> from('pedidos');
@@ -76,23 +87,27 @@ class Pedido extends CI_Model {
 	}
 	
 	
-	function updatePedidos($id){
-		echo $this->input->post('fecha');
-		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
-		
-		$data = array(
+	function updatePedidos(){
+                $jsonObject = $this->input->post('updateData');
+                $consult = null;
+                foreach ($jsonObject as $value) {
+                    list($dia, $mes, $ano) = explode("-", $value['fecha']);
+                    $data = array(
 			'Fecha' => $ano."-".$mes."-".$dia,
-			'ClienteOrignen' => strtoupper($this->input->post('ClienteOrigen')),		
-			'Bultos' => $this->input->post('Bultos'),
-			'ClienteDestino' => strtoupper($this->input->post('ClienteDestino')),
-			'valorDeclarado' => $this->input->post('valorDeclarado'),
-			'Contrareembolso' => $this->input->post('Contrareembolso'),
-			'CostoFlete' => $this->input->post('CostoFlete'),
-			'Pago' => $this->input->post('Pago'),
-			'Observaciones' => strtoupper($this->input->post('Observaciones')),
-		);
-		$this->db->where('Numero', $id);
-        return $this->db->update('pedidos', $data);
+			'ClienteOrignen' => strtoupper($value['ClienteOrigen']),		
+			'Bultos' => $value['Bultos'],
+			'ClienteDestino' => strtoupper($value['ClienteDestino']),
+			'valorDeclarado' => $value['valorDeclarado'],
+			'Contrareembolso' => $value['Contrareembolso'],
+			'CostoFlete' => $value['CostoFlete'],
+			'Pago' => $value['Pago'],
+			'Observaciones' => strtoupper($value['Observaciones']),
+                    );
+                    $this->db->where('Numero', $value['Numero']);
+                    $consult = $this->db->update('pedidos', $data);
+                
+                }
+        	return $consult;
 	}
         
         function addComentario($id){
