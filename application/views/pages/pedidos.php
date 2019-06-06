@@ -44,6 +44,7 @@ $(document).ready(function(){
 		}
 	});
 	$('#guardar').click(function(){
+                block_screen();
 		var agrego = $("#tablaCliente").attr("xagregar");
                 var sendData = [];
 		for (i = 0; i < guardar.length; i++)
@@ -68,13 +69,18 @@ $(document).ready(function(){
                                    guardar=[];
 				},
 				error: function(){
-                                    console.log('ERROR : Verifique los campos ingresados');
-				}
+                                    alert('ERROR : Verifique los campos ingresados');
+				},
+                                complete: function (jqXHR, textStatus ) {
+                                    unblock_screen();
+                                }
 				       
 			});
-                        }
+                }else{
+                    unblock_screen();
+                }
 		
-                
+                block_screen();
 		for (i = 0; i < cambios.length; i++)
 		{
 			var ClienteOrigen = $('#ClienteOrigen-'+cambios[i]).val();
@@ -88,6 +94,7 @@ $(document).ready(function(){
                         var Numero = cambios[i];
 			sendDataUpdate.push({fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones,Numero:Numero});
 		}
+                sendDataUpdate = [];
                 if (sendDataUpdate.length>0){
                 $.ajax({
                                data: {updateData:sendDataUpdate},
@@ -99,9 +106,14 @@ $(document).ready(function(){
                                 },
                                 error: function(){
                                         alert('ERROR : Verifique los campos ingresados');
+                                },
+                                complete: function (jqXHR, textStatus ) {
+                                    unblock_screen();
                                 }
 			       
 			});
+                }else{
+                    unblock_screen();
                 }
 		
 	});

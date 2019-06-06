@@ -3,7 +3,7 @@ cambios=[];
 
 $(document).ready(function(){
 
-	$('.formulario').keypress(function(){
+	$('.formulario').keydown(function(){
 		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
 			cambios.push(($(this).attr('id').split('-')[1]));
 		}
@@ -24,6 +24,8 @@ $(document).ready(function(){
 	});
 
 	$('#guardar').click(function(){
+                var updateData = [];
+                block_screen();
 		for (i = 0; i < cambios.length; i++)
 		{
 			var fecha = $('#Fecha-'+cambios[i]).val().split("-");
@@ -36,20 +38,27 @@ $(document).ready(function(){
 			var CostoFlete = $('#CostoFlete-'+cambios[i]).val();
 			var Pago = $('#Pago-'+cambios[i]).val();
 			var Observaciones = $('#Observaciones-'+cambios[i]).val();
+                        var Numero = cambios[i];
+                        updateData.push({fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones, Numero:Numero})
+                }
+                if(updateData.length>0){
 			$.ajax({
-				   data: {fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones},
+                               data: {updateData:updateData},
 			       type: "POST",
-			       url: "<?=base_url()?>index.php/pedidos/updatePedido/"+cambios[i],
+			       url: "<?=base_url()?>index.php/pedidos/updatePedido/",
 			       success: function(){
-			    	   cambios = [];
-				   },
-				   error: function(){
-					   alert('ERROR : Verifique los campos ingresados');
-				   }
+                                   unblock_screen();
+                                    alert('Los cambios se guardaron satisfactoriamente');
+                                },
+                                error: function(){
+                                    alert('ERROR : Verifique los campos ingresados');
+                                }   
 			       
 			});
-		}
-		alert('Los cambios se guardaron satisfactoriamente');
+		}else{
+                    unblock_screen();
+                }
+		
 	});
         $("#impresion").click(function(){
             var $aux = $("form:first")
