@@ -20,7 +20,7 @@ class Contenido extends CI_Model {
 	function addRContenidoMenu($menuItems)
 	{
 		foreach($menuItems as $item) :
-                        $nose = $item->idGasto;
+                        $nose = $item->idMenu;
                         $value =$this->input->post($nose);
 			if (!empty($value)){
                             $data = array(
@@ -61,7 +61,8 @@ class Contenido extends CI_Model {
         function getItemMenu($idNoticia){
             $this->db->select('*');    
             $this->db->from('menu');
-            $this->db->join('(SELECT * from rContenidoMenu WHERE rContenidoMenu.idNoticia ='.$idNoticia.') AS B','B.idMenu = menu.idMenu','left outer');
+            $this->db->join('(SELECT rContenidoMenu.idMenu as `id`, rContenidoMenu.idRContenidoMenu from rContenidoMenu WHERE rContenidoMenu.idNoticia ='.$idNoticia.') AS B','B.id = menu.idMenu','left outer');
+            $this -> db -> where('menu.grupo like "frontend"');
             $query = $this->db->get();
             $result = $query->result();
             return $result;

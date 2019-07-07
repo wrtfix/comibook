@@ -96,7 +96,7 @@ class Noticia extends CI_Model {
             return $result;
 	}
         
-	function updatePedidos($id){
+	function updateNoticia($id){
             list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
             $data = array(
                     'fecha' => $ano."-".$mes."-".$dia,

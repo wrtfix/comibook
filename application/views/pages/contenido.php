@@ -26,9 +26,10 @@ else
 <div class="page-header">
 	<h3> Opcion de menu </h3>
 </div>
-<?php $cont = 0; while($cont < count($menu)) { ?>
+
+<?php $cont = 0; while($cont < count($menu)) {  ?>
         <input type="checkbox" name="<?php print_r($menu[$cont]->idMenu); ?>" <?php if ($menu[$cont]->idRContenidoMenu != null) echo 'checked'; ?> > <?php print_r($menu[$cont]->nombre); ?><br>
-<?php $cont++;}?>
+<?php  $cont++;}?>
         
 <input type="hidden" name="idNoticia" value="<?php print_r($idNoticia); ?>" >
 <?php if (!empty($noticia)) { ?>

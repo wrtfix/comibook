@@ -70,7 +70,7 @@ class Noticias extends CI_Controller
             if($this->session->userdata('logged_in'))
             {
                     $this->load->library('form_validation');
-                    $this->noticia->updateNoticia($id);
+                     $this->noticia->updateNoticia($id);
             }else{
                     $data['page'] = 'construccion';
                     $this->load->view('pages/construccion', $data);
