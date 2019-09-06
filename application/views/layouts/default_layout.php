@@ -226,7 +226,10 @@ $(function () {
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-edit"></i> CMS<b class="caret"></b></a> 
                 <ul class="dropdown-menu multi-level">
                    <li><a href="/saltaChequeado/index.php/noticias/index"><i class="fa fa-fw fa-edit"></i> Noticias</a></li>
-                   <li><a href="/saltaChequeado/index.php/imagen/index"><i class="fa fa-bar-chart-o"></i> Imagenes</a></li>
+                   <li><a href="/saltaChequeado/index.php/imagen/index"><i class="fa fa-camera-retro"></i> Imagenes</a></li>
+                   <li><a href="/saltaChequeado/index.php/cms/scrapping/index/clarin"><i class="fa fa-code-fork"></i> Scrapping Clarin </a></li>
+                   <li><a href="/saltaChequeado/index.php/cms/scrapping/index/quepasasalta"><i class="fa fa-code-fork"></i> Scrapping Que Pasa Salata </a></li>
+                   <!--<li><a href="/saltaChequeado/index.php/cms/scrapping/index/eltribuno"><i class="fa fa-code-fork"></i> Scrapping El tribuno </a></li>--> 
                 </ul>
              </li>
             <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
@@ -270,7 +273,7 @@ $(function () {
                    <li><a href="/saltaChequeado/index.php/ventas/index"><i class="fa fa-fw fa-coffee"></i> Ventas</a></li>
                    <li><a href="/saltaChequeado/index.php/stock/index"><i class="fa fa-flash"></i> Stock</a></li>
                    <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
-                   <!--<li><a href="/saltaChequeado/index.php/provedores/index"><i class="fa fa-ambulance"></i> Provedores</a></li>-->
+                   <li><a href="/saltaChequeado/index.php/provedores/index"><i class="fa fa-ambulance"></i> Provedores</a></li>
                    <li><a href="/saltaChequeado/index.php/solicitudes/index"><i class="fa fa-edit"></i> Solicitudes</a></li>
                 </ul>
              </li>
