@@ -16,6 +16,25 @@ class Contenido extends CI_Model {
 		);
 		return $this->db->insert('contenido', $data);
 	}
+        
+        function addContenidoScrapping($idNoticia, $contenido)
+	{
+		$data = array(
+			'idNoticia' => $idNoticia,	
+			'Contenido' => $contenido
+		);
+		return $this->db->insert('contenido', $data);
+	}
+        
+        function addRContenidoMenuScrapping($idNoticia, $idMenu)
+	{
+            $data = array(
+                    'idNoticia' => $idNoticia,	
+                    'idMenu' => $idMenu
+            );		
+            $this->db->insert('rContenidoMenu', $data);
+            
+	}
 
 	function addRContenidoMenu($menuItems)
 	{

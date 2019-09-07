@@ -24,6 +24,33 @@ class Noticia extends CI_Model {
             return $this->db->insert('noticias', $data);
 	}
         
+        function addNoticiaScraping($titulo, $resumen)
+	{
+            $hoy = date("Y-m-d");
+            list($dia, $mes, $ano) = explode("-", $hoy);
+            
+            $data = array(
+                    'fecha' => $dia."-".$mes."-".$ano,
+                    'titulo' => $titulo,		
+                    'visitas' => 0,
+                    'resumen' => $resumen,
+                    'likes' => 0,
+                    'unLikes' => 0,
+                    'urlImage' => '',
+            );
+
+            return $this->db->insert('noticias', $data);
+	}
+        
+        function getIdNoticia($titulo){
+            $this->db->select('idNoticia')
+                ->from('noticias')
+                ->like('titulo',$titulo);
+            $query = $this -> db -> get();
+            return $query->result();
+        }
+        
+        
 	function getNoticiasMasLeidas($filter=null, $fecha){
             if ($filter==null){
                 $this -> db -> from('noticias');
