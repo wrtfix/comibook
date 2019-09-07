@@ -87,7 +87,9 @@ class Configuracion extends CI_Controller
                     $password = $this->configuraciones->getConfiguracion("EMAIL_PASSWORD")[0]->valor;
                     $body = $this->configuraciones->getConfiguracion("ABOUT_MESSAGE")[0]->valor;
                     $title = $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor;
-                    $data["resultado"] = $this->email->send($emailFrom,$emailTo,$title,$body,$emailFrom,$password);
+                    $protocol = $this->configuraciones->getConfiguracion("EMAIL_PROTOCOL")[0]->valor;
+                    $puerto = $this->configuraciones->getConfiguracion("EMAIL_PORT")[0]->valor;
+                    $data["resultado"] = $this->email->send($protocol, $puerto, $emailFrom,$emailTo,$title,$body,$emailFrom,$password);
                     }else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);

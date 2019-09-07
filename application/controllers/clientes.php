@@ -20,7 +20,7 @@ class Clientes extends CI_Controller {
                 $h = str_replace("%20", " ", $n);
                 $c = str_replace("null", " ", $cuil);
                 $num = str_replace("null", " ", $numero);
-                $data['agregados'] = $this->cliente->getCliente($h, $c, " ", $num);
+                $data['agregados'] = $this->cliente->getCliente($h, $c, " ", $num, "CLIENTE");
             }
 
             $this->layout->view('pages/clientes', $data);

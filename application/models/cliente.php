@@ -22,8 +22,14 @@ class Cliente extends CI_Model {
 		return $this->db->insert('clientes', $data);
 	}
 	
-	function getClientes(){
+	function getClientes($tipo=null){
 		$this -> db -> from('clientes');
+                if($tipo==null){
+                    $this -> db -> like("tipo","CLIENTE");
+                }else{
+                    $this -> db -> like("tipo",$tipo);
+                }
+                
 		$query = $this -> db -> get();
 		return $query->result();
 	}
@@ -31,7 +37,7 @@ class Cliente extends CI_Model {
 	function delClientes($identificador){
 		return $this->db->delete('clientes', array('id' => $identificador));
 	}
-	function getCliente($nombre,$cuil,$numero,$localidad){
+	function getCliente($nombre,$cuil,$numero,$localidad, $tipo=null){
 		$this -> db -> from('clientes');
 		if ($nombre !=' ')
 			$this -> db -> like("Nombre",$nombre);
@@ -41,14 +47,23 @@ class Cliente extends CI_Model {
 			$this -> db -> like("Numero",$numero);
 		if ($localidad !=' ')
 			$this -> db -> like("Localidad",$localidad);
-			
+                if($tipo==null){
+                    $this -> db -> like("tipo","CLIENTE");
+                }else{
+                    $this -> db -> like("tipo",$tipo);
+                }
 		$query = $this -> db -> get();
 		return $query->result();
 	}
 	
-	function getClientelLocalidad($nombre){
+	function getClientelLocalidad($nombre, $tipo=null){
 		$this -> db -> from('clientes');
 		$this -> db -> like("Localidad",$nombre);
+                if($tipo==null){
+                    $this -> db -> like("tipo","CLIENTE");
+                }else{
+                    $this -> db -> like("tipo",$tipo);
+                }
 		$query = $this -> db -> get();
 		return $query->result();
 	}

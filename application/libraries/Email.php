@@ -9,7 +9,7 @@ class Email
         $this->ci->load->config('email');
     }
 
-    public function send($from='<wrtfix@gmail.com>', $to='<wrtfix@gmail.com>', $subject='No subject', $body='No body', $username, $password)
+    public function send($protocolo,$puerto, $from='<wrtfix@gmail.com>', $to='<wrtfix@gmail.com>', $subject='No subject', $body='No body', $username, $password)
     {
 
         $headers = array('MIME-Version' => '1.0rn',
@@ -20,8 +20,8 @@ class Email
         );
 
         $smtp = Mail::factory('smtp', array(
-                'host' => 'ssl://smtp.gmail.com',
-                'port' => '465',
+                'host' => $protocolo,
+                'port' => $puerto,
                 'auth' => true,
                 'username' => $username,
                 'password' => $password

@@ -67,8 +67,8 @@ class Portada extends CI_Controller {
 
     function index($filter = null) {
         $this->load->helper('form');
-        $paginaNoticias = $this->configuraciones->getConfiguracion("SHOW_NEWS_PAGE");
-        if ($paginaNoticias[0]->valor != 'false') {
+        $startPage = $this->configuraciones->getConfiguracion("SHOW_NEWS_PAGE");
+        if ($startPage[0]->valor != 'false') {
             $this->load->library('recaptcha');
 
             $hoy = date("Y-m-d");
@@ -135,9 +135,8 @@ class Portada extends CI_Controller {
             $this->layout->view('portada_view', $data);
         } else {
             
-            $paginaNoticias = $this->configuraciones->getConfiguracion("SHOW_HOME_PAGE");
-             if ($paginaNoticias[0]->valor != 'false') {
-                                     
+            $startPage = $this->configuraciones->getConfiguracion("START_PAGE");
+             if ($startPage[0]->valor != 'news') {
                 $this->layout->setLayout("layouts/login_layout_3");
                 $data['page'] = 'login_view';
                 $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
@@ -148,7 +147,6 @@ class Portada extends CI_Controller {
              }else{
                 $this->layout->setLayout("layouts/login_layout_2");
                 $this->load->library('FacebookSDK');
-                
                 if (!session_id()) {
                     session_start();
                 }

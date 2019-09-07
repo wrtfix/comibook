@@ -3,9 +3,6 @@
     guardar = [];
     remitos = [];
 
-
-
-
     $(function () {
         $("#datepicker").datepicker({dateFormat: 'dd-mm-yy', onSelect: function (dateText, inst) {
                 var dateAsString = dateText; //the first parameter of this function
@@ -29,12 +26,15 @@
 
 
     $(document).ready(function () {
-        var fecha = '<?php if ($fechaSeleccionada != null) echo $fechaSeleccionada ?>';
+        var fecha = '<?php $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+        $arrayDias = array('Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado');
+
+        echo $arrayDias[date('w')] . ", " . date('d') . " de " . $arrayMeses[date('m') - 1] . " de " . date('Y')?>';
         if (fecha == '') {
             fecha = $("#datepicker").val();
         }
 
-        $("#titulo").append("Ventas del " + fecha);
+        $("#titulo").append(fecha);
 
         $('.formulario').keypress(function () {
             if (jQuery.inArray(($(this).attr('id').split('-')[1]), cambios) == -1) {
@@ -162,7 +162,7 @@
                         }else{
                             clienteId = "#clienteId-" + donde.split("-")[1];
                         }
-                        
+                        $("#datosPersonales").html("<p> Domicilio:"+response[0].Domicilio+"</p><p> Localidad: "+response[0].Localidad+"</p><p>Telefono: "+response[0].Telefono+"</p><p> Cuil/Cuil: "+response[0].Cuit+"</p>")
                         $(clienteId).val(response[0].Id);
                     }
                 }
@@ -202,31 +202,33 @@
 <?php echo form_open('ventas/addVenta'); ?>
 <div class="row">
     <h2><div id="titulo"></div></h2>
-    <div id="datepicker"></div>
     <br>
+    <hr>
     <div id="row" class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4"></div>
-
+        <div class="col-lg-2"><label>Cliente</label></div>
+        <div class="col-lg-2"><input type="text" name="cliente" class="tabCliente" id="cliente"></div>
+        <div class="col-lg-2">
+            <div id="datosPersonales"></div>
+        </div>
+        <div class="col-lg-2"><h1>Total</h1></div>
+        <div class="col-lg-2"><div id="total"><h1>0,00</h1></div></div>
     </div>
+    <hr>
+    <div class="btn-group">
+        <button type="button" id="guardar" class="btn btn-primary">Finalizar Venta</button>
+    </div>
+    <br><br>
 
-    <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
-    <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-
-    <dir id="pedidos"></dir>
+    <br>
     <div class="table-responsive" id="pedidos">
         <table class="table table-bordered table-hover tablesorter">
             <thead>
                 <tr>
                     <th class="header">Selec.<i class=""></i></th>
-                    <th class="header">Producto<i class=""></i></th>
                     <th class="header headerSortDown" width="50px">Cantidad<i class=""></i></th>
-                    <th class="header">Cliente<i class=""></i></th>
+                    <th class="header">Producto<i class=""></i></th>
                     <th class="header"  width="50px">Precio<i class=""></i></th>
-                    <th class="header">Total<i class=""></i></th>
-                    <th class="header">Entregado<i class=""></i></th>
-                    <th class="header">Cobrado<i class=""></i></th>
-                    <th class="header">Rendido<i class=""></i></th>
+                    <th class="header" width="50px" >Sub Total<i class=""></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -236,62 +238,21 @@
                 foreach ($agregados as $item): $cont = $cont + 1; ?>
                     <tr>
                         <td><input type="checkbox" class="selec" id="<?php print_r($item->idVenta); ?>" value=""></td>
-                        <td><input class="formulario tab" id="producto-<?php print_r($item->idVenta); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ProductoNombre); ?>'/> <input id="productoId-<?php print_r($item->idVenta); ?>" type='hidden' value='<?php print_r($item->idProducto); ?>'/> <div id="listarProducto-<?php print_r($item->Numero); ?>"></div></td>
                         <td width="50px"><input class="formulario suma" id="cantidad-<?php print_r($item->idVenta); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->cantidad); ?>'/></td>
-                        <td><input class="formulario tabCliente" id="cliente-<?php print_r($item->idVenta); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteNombre); ?>'/> <input id="clienteId-<?php print_r($item->idVenta); ?>" type='hidden' value='<?php print_r($item->idCliente); ?>'/></td>
+                        <td><input class="formulario tab" id="producto-<?php print_r($item->idVenta); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ProductoNombre); ?>'/> <input id="productoId-<?php print_r($item->idVenta); ?>" type='hidden' value='<?php print_r($item->idProducto); ?>'/> <div id="listarProducto-<?php print_r($item->Numero); ?>"></div></td>
                         <td width="50px"><input class="formulario" id="precio-<?php print_r($item->idVenta); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->precio); ?>'/></td>
-                        <td><input class="formulario" id="total-<?php print_r($item->idVenta); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->total); ?>'/></td>
-                        <td>
-                            <select class="pago" id="entregado-<?php print_r($item->idVenta); ?>" style='width: 100%; border:none;' >
-                                <option value="0" <?php if ($item->entregado == 0) echo "selected"; ?>>No</option>
-                                <option value="1" <?php if ($item->entregado == 1) echo "selected"; ?>>Si</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="pago" id="cobrado-<?php print_r($item->idVenta); ?>" style='width: 100%; border:none;' >
-                                <option value="0" <?php if ($item->cobrado == 0) echo "selected"; ?>>No</option>
-                                <option value="1" <?php if ($item->cobrado == 1) echo "selected"; ?>>Si</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="pago" id="rendido-<?php print_r($item->idVenta); ?>" style='width: 100%; border:none;' >
-                                <option value="0" <?php if ($item->rendido == 0) echo "selected"; ?>>No</option>
-                                <option value="1" <?php if ($item->rendido == 1) echo "selected"; ?>>Si</option>
-                            </select>
-                        </td>
-
-
+                        <td><input width="50px" class="formulario" id="total-<?php print_r($item->idVenta); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->total); ?>'/></td>
                     </tr>
-<?php endforeach; ?>
-<?php for ($i = 0; $i < 100; $i++) { ?>
+                <?php endforeach; ?>
+                <?php for ($i = 0; $i < 100; $i++) { ?>
                     <tr>
                         <td><input type="checkbox" class="selec" value=""></td>
-                        <td><input class="guardar tab" id="saveProducto-<?php echo $i; ?>" style='width: 100%; border:none;' type='text' /> <input id="saveProductoId-<?php echo $i; ?>" type='hidden' />  <div id="listarProducto-<?php echo $i; ?>"></div></td>
                         <td width="50px" ><input class="guardar tabTotal" id="saveCantidad-<?php echo $i; ?>" style='width: 50px; border:none;' type='text' /></td>
-                        <td><input class="guardar tabCliente" id="saveCliente-<?php echo $i; ?>" style='width: 100%; border:none;' type='text' />  <input id="saveClienteId-<?php echo $i; ?>" type='hidden' /> </td>
+                        <td><input class="guardar tab" id="saveProducto-<?php echo $i; ?>" style='width: 100%; border:none;' type='text' /> <input id="saveProductoId-<?php echo $i; ?>" type='hidden' />  <div id="listarProducto-<?php echo $i; ?>"></div></td>
                         <td width="50px" ><input class="guardar" id="savePrecio-<?php echo $i; ?>" style='width: 50px; border:none;' type='text' /></td>
-                        <td width="50px"><input class="guardar suma" id="saveTotal-<?php echo $i; ?>" style='width: 50px; border:none;' type='text' /></td>
-                        <td>
-                            <select class="guardar" id="saveEntregado-<?php echo $i; ?>" style='width: 100%; border:none;' >
-                                <option value="0">No</option>
-                                <option value="1">Si</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="guardar" id="saveCobrado-<?php echo $i; ?>" style='width: 100%; border:none;' >
-                                <option value="0">No</option>
-                                <option value="1">Si</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="guardar" id="saveRendido-<?php echo $i; ?>" style='width: 100%; border:none;' >
-                                <option value="0">No</option>
-                                <option value="1">Si</option>
-                            </select>
-                        </td>
+                        <td width="50px" ><input class="guardar suma" id="saveTotal-<?php echo $i; ?>" style='width: 50px; border:none;' type='text' /></td>
                     </tr>
-
-<?php } ?>
+                <?php } ?>
             </tbody>
         </table>
     </div>
