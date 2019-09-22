@@ -11,13 +11,13 @@ class Cliente extends CI_Model {
 	function addCliente()
 	{
 		$data = array(
-			'id' => $this->input->post('numero'),	
 			'Nombre' => strtoupper($this->input->post('nombre')),
 			'Numero' => $this->input->post('numero'),		
 			'Domicilio' => strtoupper($this->input->post('domicilio')),
 			'Localidad' => strtoupper($this->input->post('localidad')),
 			'Telefono' => strtoupper($this->input->post('telefono')), 
-			'Cuit' => strtoupper($this->input->post('cuit')), 
+			'Cuit' => strtoupper($this->input->post('cuit')),
+                        'ambiente' => $this->session->userdata('logged_in')['idAmbiente']
 		);
 		return $this->db->insert('clientes', $data);
 	}
@@ -29,6 +29,7 @@ class Cliente extends CI_Model {
                 }else{
                     $this -> db -> like("tipo",$tipo);
                 }
+                $this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
                 
 		$query = $this -> db -> get();
 		return $query->result();
@@ -52,6 +53,7 @@ class Cliente extends CI_Model {
                 }else{
                     $this -> db -> like("tipo",$tipo);
                 }
+                $this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
 		$query = $this -> db -> get();
 		return $query->result();
 	}
@@ -64,6 +66,7 @@ class Cliente extends CI_Model {
                 }else{
                     $this -> db -> like("tipo",$tipo);
                 }
+                $this-> db -> where('ambiente', $this->session->userdata('logged_in')['idAmbiente']);
 		$query = $this -> db -> get();
 		return $query->result();
 	}

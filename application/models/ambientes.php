@@ -10,6 +10,7 @@ class Ambientes extends CI_Model {
     function addAmbiente() {
         $data = array(
             'nombre' => $this->input->post('nombre'),
+            'ambiente' => $this->session->userdata('logged_in')['idAmbiente']
         );
         return $this->db->insert('ambiente', $data);
     }

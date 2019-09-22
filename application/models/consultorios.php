@@ -20,12 +20,14 @@ Class Consultorios extends CI_Model
                         'especialidad' => $this->input->post('especialidad'),
 			'telefono' => $this->input->post('telefono'),
 			'horario' =>  $this->input->post('horario'),
+                        'ambiente' => $this->session->userdata('logged_in')['idAmbiente']
 		);
             return $this->db->insert('consultorios', $data);
         }
         
         function getConsultorios(){
             $this -> db -> from('consultorios');
+            $this-> db -> where('ambiente' ,$this->session->userdata('logged_in')['idAmbiente']);
             $query = $this -> db -> get();
             return $query->result();
         }
@@ -33,6 +35,7 @@ Class Consultorios extends CI_Model
         function getConsultorio($idConsultorio){
             $this -> db -> from('consultorios');
             $this->db->where('idConsultorio', $idConsultorio);
+            $this->db->where('ambiente', $this->session->userdata('logged_in')['idAmbiente']);
             $query = $this -> db -> get();
             return $query->result();
         }
