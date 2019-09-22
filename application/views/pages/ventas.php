@@ -3,6 +3,9 @@
     guardar = [];
     remitos = [];
 
+
+
+
     $(function () {
         $("#datepicker").datepicker({dateFormat: 'dd-mm-yy', onSelect: function (dateText, inst) {
                 var dateAsString = dateText; //the first parameter of this function

@@ -26,14 +26,14 @@
                         <!-- row -->
                         <div class="row">
                             <?php $cont = 0; 
-                            while (!empty($noticiasPrincipales)  &&  $cont < 4 ) { ?>                  
+                            while (!empty($noticiasPrincipales)  &&  $cont < 4 ) { if ($noticiasPrincipales[$cont]->idNoticia != ''){ ?>                  
                                 <div class="col-md-3 col-sm-6">
                                     <!-- ARTICLE -->
                                     <article class="article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
                                                 <?php if ($noticiasPrincipales[$cont]->urlImage!=''){ ?>
-                                                    <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
+                                                    <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="<?php print_r($noticiasPrincipales[$cont]->titulo); ?>">
                                                 <?php }?>
                                             </a>
                                         </div>
@@ -50,7 +50,7 @@
                                     </article>
                                     <!-- /ARTICLE -->
                                 </div>
-                                <?php $cont++; } ?>
+                                <?php } $cont++; } ?>
                         </div>
                         <!-- /row -->
 
@@ -64,7 +64,7 @@
                                     <article class="article widget-article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="<?php print_r($noticiasPrincipales[$cont]->titulo); ?>">
                                             </a>
                                         </div>
                                         <div class="article-body">
@@ -86,7 +86,7 @@
                                     <article class="article widget-article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="<?php print_r($noticiasPrincipales[$cont]->titulo); ?>">
                                             </a>
                                         </div>
                                         <div class="article-body">
@@ -113,7 +113,7 @@
                                     <article class="article widget-article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="<?php print_r($noticiasPrincipales[$cont]->titulo); ?>">
                                             </a>
                                         </div>
                                         <div class="article-body">
@@ -134,7 +134,7 @@
                                     <article class="article widget-article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="<?php print_r($noticiasPrincipales[$cont]->titulo); ?>">
                                             </a>
                                         </div>
                                         <div class="article-body">
@@ -160,7 +160,7 @@
                                     <article class="article widget-article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="<?php print_r($noticiasPrincipales[$cont]->titulo); ?>">
                                             </a>
                                         </div>
                                         <div class="article-body">
@@ -182,7 +182,7 @@
                                     <article class="article widget-article">
                                         <div class="article-img">
                                             <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasPrincipales[$cont]->idNoticia); ?>">
-                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="">
+                                                <img src="<?php print_r($noticiasPrincipales[$cont]->urlImage); ?>" alt="<?php print_r($noticiasPrincipales[$cont]->titulo); ?>">
                                             </a>
                                         </div>
                                         <div class="article-body">
@@ -244,7 +244,7 @@
                                 <div class="article-img">
 
                                     <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[0]->idNoticia); ?>">
-                                        <img src="<?php print_r($resumenNoticias[0]->urlImage); ?>" alt="">
+                                        <img src="<?php print_r($resumenNoticias[0]->urlImage); ?>" alt="<?php print_r($resumenNoticias[0]->titulo); ?>">
                                     </a>
                                 </div>
                                 <div class="article-body">
@@ -268,7 +268,7 @@
                             <article class="article">
                                 <div class="article-img">
                                     <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[1]->idNoticia); ?>">
-                                        <img src="<?php print_r($resumenNoticias[1]->urlImage); ?>" alt="">
+                                        <img src="<?php print_r($resumenNoticias[1]->urlImage); ?>" alt="<?php print_r($resumenNoticias[1]->titulo); ?>">
                                     </a>
                                 </div>
                                 <div class="article-body">
@@ -298,7 +298,7 @@
                             <article class="article">
                                 <div class="article-img">
                                     <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[2]->idNoticia); ?>">
-                                        <img src="<?php print_r($resumenNoticias[2]->urlImage); ?>" alt="">
+                                        <img src="<?php print_r($resumenNoticias[2]->urlImage); ?>" alt="<?php print_r($resumenNoticias[2]->titulo); ?>">
                                     </a>
                                 </div>
                                 <div class="article-body">
@@ -324,7 +324,7 @@
                             <article class="article">
                                 <div class="article-img">
                                     <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[3]->idNoticia); ?>">
-                                        <img src="<?php print_r($resumenNoticias[3]->urlImage); ?>" alt="">
+                                        <img src="<?php print_r($resumenNoticias[3]->urlImage); ?>" alt="<?php print_r($resumenNoticias[3]->titulo); ?>">
                                     </a>
                                 </div>
                                 <div class="article-body">
@@ -350,7 +350,7 @@
                             <article class="article">
                                 <div class="article-img">
                                     <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($resumenNoticias[4]->idNoticia); ?>">
-                                        <img src="<?php print_r($resumenNoticias[4]->urlImage); ?>" alt="">
+                                        <img src="<?php print_r($resumenNoticias[4]->urlImage); ?>" alt="<?php print_r($resumenNoticias[4]->titulo); ?>">
                                     </a>
                                 </div>
                                 <div class="article-body">
@@ -402,13 +402,14 @@
                     <!-- /owl carousel 3 -->
 
                     <!-- ARTICLE -->
+                    
 
 <?php $cont = 0;
 while ($cont < count($noticiasMasLeidas) && $cont < 4) { ?>          
                         <article class="article widget-article">
                             <div class="article-img">
                                 <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($noticiasMasLeidas[$cont]->idNoticia); ?>">
-                                    <img src="<?php print_r($noticiasMasLeidas[$cont]->urlImage); ?>" alt="">
+                                    <img src="<?php print_r($noticiasMasLeidas[$cont]->urlImage); ?>" alt="<?php print_r($noticiasMasLeidas[$cont]->titulo); ?>">
                                 </a>
                             </div>
                             <div class="article-body">
@@ -425,6 +426,12 @@ while ($cont < count($noticiasMasLeidas) && $cont < 4) { ?>
     <?php $cont++;
 } ?>
                     <!-- /ARTICLE -->
+                    <center>
+                    <?php print_r($twitterNews[0]->valor);?>
+                    <br/>
+                    <?php print_r($dolarToday[0]->valor);?>    
+                    
+                    </center>
                 </div>
 <?php if (count($comentarios)>0) { ?>                        
                                 <div class="widget">

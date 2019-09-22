@@ -39,6 +39,7 @@
 */
 
 $route['default_controller'] = "portada";
+$route['sitemap.xml'] = "seo/sitemap";
 $route['404_override'] = '';
 
 

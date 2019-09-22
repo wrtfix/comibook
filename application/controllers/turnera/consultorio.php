@@ -11,7 +11,7 @@ class Consultorio extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in')&& ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'))
+		if($this->session->userdata('logged_in')&& ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001'))
 		{
 			$this->load->library('form_validation');
 			$data['agregados'] = $this->consultorios->getConsultorios();
@@ -22,7 +22,7 @@ class Consultorio extends CI_Controller
 		}
 	}
 	public function addConsultorio(){
-		if($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'))
+		if($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001'))
 		{
 			$this->load->library('form_validation');
 			$this->consultorios->addConsultorio();
@@ -35,7 +35,7 @@ class Consultorio extends CI_Controller
 	}
 	
 	public function delConsultorio($id){
-		if($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'))
+		if($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001'))
 		{
 			$this->load->library('form_validation');
 			$this->consultorios->delConsultorio($id);
@@ -48,7 +48,7 @@ class Consultorio extends CI_Controller
 	}
 	
 	public function updateConsultorio($id){
-            if($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'))
+            if($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001'))
             {
                     $this->load->library('form_validation');
                     $result = $this->consultorios->updateConsultorio($id);
@@ -60,7 +60,7 @@ class Consultorio extends CI_Controller
         
         public function selectConsultrio()
 	{
-		if($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'))
+		if($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001'))
 		{
 			$this->load->library('form_validation');
 			$data['agregados'] = $this->consultorios->getConsultorios();

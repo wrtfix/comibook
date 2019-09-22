@@ -12,7 +12,7 @@ class Agenda extends CI_Controller {
     }
 
     public function index($fecha = null) {
-        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000')) {
+        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001')) {
             $this->load->library('form_validation');
             date_default_timezone_set('America/Argentina/Buenos_Aires');
             $hoy = date("Y-m-d");
@@ -41,7 +41,7 @@ class Agenda extends CI_Controller {
     }
 
     public function insertOrUpdateAgenda() {
-        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000')) {
+        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001')) {
             $this->load->library('form_validation');
             $this->turnos->addTurno();
         } else {

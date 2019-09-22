@@ -1,0 +1,2 @@
+User-Agent: *
+Sitemap: https://onemorecode-qa.000webhostapp.com/index.php/sitemap.xml

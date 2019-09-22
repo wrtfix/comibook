@@ -1,11 +1,12 @@
-<html>
+<html lang='es'>
+    
 <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title><?= $this->layout->placeholder("title"); ?></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
+        <meta name="description" content="<?= $ogdescription; ?>">
         <meta name="author" content="jorge carlos mendiola" >
 
         <meta property="og:url"           content="<?= $ogurl; ?>" />
@@ -14,7 +15,8 @@
         <meta property="og:description"   content="<?= $ogdescription; ?>" />
         <meta property="og:image"         content="<?= $ogimage; ?>" />
         <meta property="fb:app_id"        content="<?= $fbapp_id; ?>" />
-
+        
+        
         
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CLato:300,400" rel="stylesheet"> 
@@ -58,13 +60,7 @@
         <script src="<?= base_url() ?>estilo/login/js/jquery.marquee.min.js"></script>
        
         <!-- Anuncios de google -->
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-9057244181464070",
-            enable_page_level_ads: true
-          });
-        </script>
+        <?php print_r($googleAdsense[0]->valor); ?>
         
         <style>
         .marquee {
@@ -74,7 +70,9 @@
           }
           <?= $styleCustom[0]->valor?>
         </style>
-        
+        <script>
+         <?php print_r($headerContent[0]->valor); ?>
+        </script>
     </head>
     <body style=".article .article-meta li:{color: <?php print_r($menuColor[0]->valor); ?>!important}">
 
@@ -86,16 +84,18 @@
                         <!-- Column 1 -->
                         <div class="col-xs-8 col-sm-4 justify-content-center">
                             <?php print_r($fechaActual); ?>  <?php if ($login[0]->valor == 'true' ) { ?> 
-                                | <a href="<?=base_url()?>index.php/login/"> Ingresar </a> 
+                                | <a href="<?=base_url()?>index.php/login/"> Demo </a> 
                             <?php } if ($registrarse[0]->valor == 'true' ) { ?> 
                                 | <a href="<?=base_url()?>index.php/registrarse/"> Registrarse </a> 
                             <?php } ?>
                         </div>
 
                         <div style="text-align: right;margin-right: 13px;">
+                            <a target="_blank" href=" https://wa.me/<?php print_r($whatsappNumber[0]->valor);?>" class="instagram"><i class="fa fa-whatsapp"></i></a>
                             <a target="_blank" href="https://www.facebook.com/sharer.php?u=<?= $ogurl; ?>" class="fb-xfbml-parse-ignore" ><i class="fa fa-facebook"></i></a>
                             <a target="_blank" href="https://twitter.com/intent/tweet?text=<?= $ogtitle; ?> <?= $ogurl; ?>" data-size="large"><i class="fa fa-twitter"></i></a>
                             <a target="_blank" href="http://instagram.com/<?php print_r($instagramUser[0]->valor);?>?ref=badge" class="instagram"><i class="fa fa-instagram"></i></a>
+                            <a target="_blank" href="<?php print_r($githubURL[0]->valor);?>" class="instagram"><i class="fa fa-github"></i></a>
                         </div>    
                     </div>
             </div>
@@ -106,10 +106,11 @@
             <div id="center-header">
                 <div class="container">
                     <div class="header-logo">
-                        <a href="<?= base_url() ?>" class="logo"><img src="<?php print_r($logo[0]->valor);?>" alt=""></a> 
+                        <h2> <a href="<?= base_url() ?>" class="logo"><img src="<?php print_r($logo[0]->valor);?>" alt="<?= $this->layout->placeholder("title"); ?>"> <?= $this->layout->placeholder("title"); ?> </a> 
+                        </h2> 
                     </div>
                     <div class="header-ads">
-                        <img src="https://www.meteored.com.ar/wimages/foto5e6b69604898650032923b629caac3c7.png">
+                       <?php print_r($showWeather[0]->valor);?>
                     </div>
                 </div>
             </div>
@@ -119,7 +120,7 @@
                 <div class="container">
                     <nav id="main-nav" style="background:<?php print_r($menuColor[0]->valor); ?>">
                         <div class="nav-logo">
-                            <a href="<?= base_url() ?>" class="logo"><img style="width: 80%" src="<?php if(!empty($logoUpside[0]->valor)) print_r($logoUpside[0]->valor); else print_r($logo[0]->valor);?>" alt=""></a>
+                            <a href="<?= base_url() ?>" class="logo"><img style="width: 80%" src="<?php if(!empty($logoUpside[0]->valor)) print_r($logoUpside[0]->valor); else print_r($logo[0]->valor);?>" alt="logo"></a>
                         </div>
                         <ul class="main-nav nav navbar-nav">
                             <li><a href="<?= base_url() ?>">Portada</a></li>
@@ -139,7 +140,10 @@
                     </div>
                     
                 </div>
+                <?php if($marquetNews[0]->valor == 'true') { ?>
                 <div style="display:none;"class="marquee"><?php foreach ($banner as $item): ?> <a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->idNoticia); ?>"> <?php print_r($item->titulo); echo "&nbsp";?> | <?php endforeach;?> </a></div>
+                <?php } ?>
+                
             </div>
         </header>
         
@@ -149,7 +153,7 @@
                     <?php foreach ($banner as $item): ?>
                     <article class="article thumb-article">
                             <div class="article-img" >
-                                <img src="<?php print_r($item->urlImage); ?>" alt="" style="width:100%; height: 30%">
+                                <img src="<?php print_r($item->urlImage); ?>" alt="<?php print_r($item->titulo); ?>" style="width:100%; height: 30%">
                             </div>
                             <div class="article-body">
                                     <h2 class="article-title"><a href="<?= base_url() ?>index.php/portada/detalle/<?php print_r($item->idNoticia); ?>"><?php print_r($item->titulo); ?></a></h2>
@@ -173,7 +177,7 @@
                     
                     <article class="article article-post">
                     <div class="article-main-img">
-                        <img class="center-block" style="height: 25%;" src="<?php print_r($topBanner[0]->valor);?>" alt="">
+                        <img class="center-block" style="height: 25%;" src="<?php print_r($topBanner[0]->valor);?>" alt="bannerSuperior">
                     </article>
                     
                 </div>
@@ -200,7 +204,7 @@
 
          <!-- AD SECTION -->
         <div class="visible-lg visible-md">
-            <img class="center-block" src="<?php print_r($downBanner[0]->valor);?>" alt="">
+            <img class="center-block" src="<?php print_r($downBanner[0]->valor);?>" alt="bannerInferior">
         </div>
          <br>
         <!-- /AD SECTION -->

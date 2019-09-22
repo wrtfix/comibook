@@ -49,6 +49,15 @@ class Portada extends CI_Controller {
         $data['styleCustom'] = $this->configuraciones->getConfiguracion("CUSTOM_STYLE");
         $data['login'] = $this->configuraciones->getConfiguracion("SHOW_LOGIN");
         $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
+        $data['whatsappNumber'] = $this->configuraciones->getConfiguracion("WHATSAPP_NUMBER");
+        $data['showWeather'] = $this->configuraciones->getConfiguracion("SHOW_WEATHER");
+        $data['googleAdsense'] = $this->configuraciones->getConfiguracion("GOOGLE_ADSENSE");
+        $data['dolarToday'] = $this->configuraciones->getConfiguracion("DOLAR_TODAY");
+        $data['githubURL'] = $this->configuraciones->getConfiguracion("GITHUB_USER");
+        $data['marquetNews'] = $this->configuraciones->getConfiguracion("MARQUET_NEWS");
+        $data['twitterNews'] = $this->configuraciones->getConfiguracion("TWITTER_NEWS");
+        $data['headerContent'] = $this->configuraciones->getConfiguracion("HEADER_CONTENT");
+
 
         $data['ogurl'] = $url;
         $data['ogtype'] = "website";
@@ -147,6 +156,7 @@ class Portada extends CI_Controller {
              }else{
                 $this->layout->setLayout("layouts/login_layout_2");
                 $this->load->library('FacebookSDK');
+                
                 if (!session_id()) {
                     session_start();
                 }
@@ -160,6 +170,7 @@ class Portada extends CI_Controller {
                 $loginUrl = $helper->getLoginUrl('http://localhost/saltaChequeado/facebooklogin/login', $permissions);
                 $data['loginUrlFacebook'] = '<a href="' . htmlspecialchars($loginUrl) . '"><i class="fa fa-facebook-official"></i> Facebook </a>';
                 $data['page'] = 'login_view';
+                $data['userStateAdd'] = null;
                 $data['loginFacebook'] = $this->configuraciones->getConfiguracion("FACEBOOK_LOGIN");
                 $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
                 $data['loginGoogle'] = $this->configuraciones->getConfiguracion("GOOGLE_LOGIN");

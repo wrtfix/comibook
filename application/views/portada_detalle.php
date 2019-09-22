@@ -153,7 +153,7 @@
                                 </a>
                             </div>
                             <div class="article-body">
-                                <h4 class="article-title"><a href="post.html"><?php print_r($noticiasMasLeidas[$cont]->titulo); ?></a></h4>
+                                <h4 class="article-title"><a href="<?php print_r($noticiasMasLeidas[$cont]->idNoticia); ?>"><?php print_r($noticiasMasLeidas[$cont]->titulo); ?></a></h4>
                                 <ul class="article-meta">
                                     <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticiasMasLeidas[$cont]->fecha),'d-m-Y')); ?> </li>
                                     <li><i class="fa fa-fire"></i> <?php print_r($noticiasMasLeidas[$cont]->visitas); ?></li>

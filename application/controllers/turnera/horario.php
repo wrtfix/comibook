@@ -15,7 +15,7 @@ class Horario extends CI_Controller {
     }
 
     public function index($idConsultorio = null) {
-        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000')) {
+        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001')) {
             $this->load->library('form_validation');
             $data['page'] = 'horario';
             $data['agregados'] = $this->horarios->getHorario($idConsultorio);
@@ -28,7 +28,7 @@ class Horario extends CI_Controller {
     }
 
     public function addHorario() {
-        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000')) {
+        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001')) {
             $this->load->library('form_validation');
             $this->horarios->addHorario();
             $data['agregados'] = $this->horarios->getHorario($this->input->post('idConsultorio'));
@@ -41,7 +41,7 @@ class Horario extends CI_Controller {
     }
 
     public function delHorario($identificador) {
-        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000')) {
+        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001')) {
             $this->horarios->delHorario($identificador);
         } else {
             $data['page'] = 'construccion';
@@ -50,7 +50,7 @@ class Horario extends CI_Controller {
     }
 
     public function updateHorario($id) {
-        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000')) {
+        if ($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001')) {
             $this->horarios->updateHorario($id);
         } else {
             $data['page'] = 'construccion';

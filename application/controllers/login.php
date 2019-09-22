@@ -17,6 +17,7 @@ class Login extends CI_Controller {
     function index() {
         $this->load->helper('form');
         $data['page'] = 'login_view';
+        $data['userStateAdd'] = null;
         
         $this->load->library('FacebookSDK');
         if (!session_id()) {

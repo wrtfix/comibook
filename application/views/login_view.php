@@ -15,9 +15,11 @@
             <?php } ?>
             <!--<form class="login100-form validate-form">-->
             <?php echo form_open('verifylogin'); ?>
+            <a href="<?= base_url() ?>">
             <span class="login100-form-title p-b-59">
                 <?= $this->layout->placeholder("title"); ?>
             </span>
+            </a>
             <div class="wrap-input100 validate-input" data-validate="El usuario es requerido">
                 <span class="label-input100">Usuario</span> 
                 <input class="input100" type="text" name="username" placeholder="Usuario">
