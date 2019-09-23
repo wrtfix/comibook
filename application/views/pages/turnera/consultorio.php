@@ -19,8 +19,10 @@
                     var nombre = $('#nombre-' + cambios[i]).val();
                     var horario = $('#horario-' + cambios[i]).val();
                     var telefono = $('#telefono-' + cambios[i]).val();
+                    var especialidad = $('#especialidad-' + cambios[i]).val();
+                    var direccion = $('#direccion-' + cambios[i]).val();
                     $.ajax({
-                        data: {nombre: nombre, horario: horario, telefono: telefono},
+                        data: {nombre: nombre, horario: horario, telefono: telefono, especialidad: especialidad, direccion: direccion},
                         type: "POST",
                         url: "<?= base_url() ?>index.php/turnera/consultorio/updateConsultorio/" + cambios[i],
                         success: function () {

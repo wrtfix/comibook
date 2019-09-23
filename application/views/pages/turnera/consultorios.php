@@ -1,3 +1,14 @@
+<script>
+    $(document).ready(function () {
+        var consultorios = $(':radio[name="idConsultorio"]').length;
+        if (consultorios == 1){
+            $(':radio[name="idConsultorio"]').attr("checked","checked");
+            $("form:first").submit();
+        }
+    });
+</script>
+
+
 <?php    echo form_open('turnera/agenda/index'); ?>
 
 <div class="page-header">
