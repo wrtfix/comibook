@@ -35,7 +35,7 @@ class Login extends CI_Controller {
         $data['loginFacebook'] = $this->configuraciones->getConfiguracion("FACEBOOK_LOGIN");
         $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
         $data['loginGoogle'] = $this->configuraciones->getConfiguracion("GOOGLE_LOGIN");
-
+        $data['loginImage'] = $this->configuraciones->getConfiguracion("LOGIN_IMAGE");
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $this->layout->view('login_view', $data);
     }

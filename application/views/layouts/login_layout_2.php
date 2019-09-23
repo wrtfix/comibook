@@ -22,7 +22,12 @@
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>estilo/login2/css/util.css">
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>estilo/login2/css/main.css">
 
-
+    <style>
+        .login100-more{
+            background-image: url('<?php print_r($loginImage[0]->valor)?>') !important;
+        }
+        
+    </style>
 </head>
 <body>
       <div id="page-wrapper">
