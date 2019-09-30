@@ -6,6 +6,7 @@ class Comentario extends CI_Controller
 		parent:: __construct();
 		$this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
 		$this->load->model('comentarios','',TRUE);
+                $this->load->model('configuraciones', '', TRUE);
 		$this->load->spark('markdown-extra/0.0.0');
 	}
 
@@ -23,6 +24,23 @@ class Comentario extends CI_Controller
 			$this->load->view('pages/construccion', $data);
 		}
 	}
+        
+        public function comentarios()
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$this->load->library('form_validation');
+			$data['page'] = 'comentarios';
+                        $maxComments = $this->configuraciones->getConfiguracion("MAX_COMMENTS");
+			$data['comentarios'] = $this->comentarios->getUltimosComentarios($maxComments);
+			$this->layout->view('pages/comentarios', $data);
+		}else
+		{
+			$data['page'] = 'construccion';
+			$this->load->view('pages/construccion', $data);
+		}
+	}
+	
 	
 	public function deleteComentarios($id){
 		

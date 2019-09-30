@@ -15,14 +15,16 @@ class Gasto extends CI_Model {
 		$data = array(
 			'nombre' => strtoupper($this->input->post('nombre')),
 			'importe' => $this->input->post('importe'),		
-			'fecha' => $ano."-".$mes."-".$dia
+			'fecha' => $ano."-".$mes."-".$dia,
+                        'ambiente' => $this->session->userdata('logged_in')['idAmbiente']
 		);
-		
+		$this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
 		return $this->db->insert('gastos', $data);
 	}
 	
 	function getGastos(){
 		$this -> db -> from('gastos');
+                $this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
 		$query = $this -> db -> get();
 		return $query->result();
 	}
@@ -43,6 +45,7 @@ class Gasto extends CI_Model {
 				return $this->db->query("select * from gastos where fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "'")->result();
 			}
 		}
+                $this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
 		$query = $this -> db -> get();
 		return $query->result();
 	}
@@ -58,7 +61,9 @@ class Gasto extends CI_Model {
 	}
 	
 	function  getGastoTotal($fechaDesde,$fechaHasta){
-		return $this->db->query("select sum(importe) as importe from gastos where fecha BETWEEN '".$fechaDesde."' AND '".$fechaHasta."'")->result();
+                $this->db->query("select sum(importe) as importe from gastos where fecha BETWEEN '".$fechaDesde."' AND '".$fechaHasta."'");
+                $this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
+		return $this -> db ->result();
 	}
 }
 ?>

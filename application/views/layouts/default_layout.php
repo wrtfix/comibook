@@ -227,6 +227,7 @@ $(function () {
                 <ul class="dropdown-menu multi-level">
                    <li><a href="/saltaChequeado/index.php/noticias/index"><i class="fa fa-fw fa-edit"></i> Noticias</a></li>
                    <li><a href="/saltaChequeado/index.php/imagen/index"><i class="fa fa-camera-retro"></i> Imagenes</a></li>
+                   <li><a href="/saltaChequeado/index.php/comentario/comentarios"><i class="fa fa-comments"></i> Comentarios </a></li>
             <?php if ($this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
                    <li><a href="/saltaChequeado/index.php/cms/scrapping/index/clarin"><i class="fa fa-code-fork"></i> Scrapping Clarin </a></li>
                    <li><a href="/saltaChequeado/index.php/cms/scrapping/index/quepasasalta"><i class="fa fa-code-fork"></i> Scrapping Que Pasa Salata </a></li>
@@ -240,6 +241,7 @@ $(function () {
                 <ul class="dropdown-menu multi-level">
                     <li><a href="/saltaChequeado/index.php/turnera/consultorio/index"><i class="fa fa-fw fa-gear"></i> Consultorio </a></li>
                    <li><a href="/saltaChequeado/index.php/turnera/consultorio/selectConsultrio"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
+                   <li><a href="/saltaChequeado/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
                    <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Pacientes</a></li>
                 </ul>
              </li>

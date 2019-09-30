@@ -27,7 +27,7 @@ class Comentarios extends CI_Model {
 		return $query->result();
 	}
         
-        function getUltimosComentarios($cantidad){
+        function getUltimosComentarios($cantidad=0){
             
 		$this -> db -> from('comentarios');
                 $this-> db ->limit($cantidad,0);
