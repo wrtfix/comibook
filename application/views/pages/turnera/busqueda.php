@@ -16,14 +16,18 @@
                 <div class="product-wrapper mb-35">
                     <div class="product-img">
                         <a href="product-details.html">
+                            <?php if(empty($item->imagen)){ ?>
                             <img src="<?=base_url()?>estilo/ecommerce/assets/img/product/product-1.jpg" alt="">
+                            <?php } else { ?>
+                            <img src="<?php print_r($item->imagen);?>" alt="">
+                            <?php } ?>
                         </a>
-                        <div class="product-item-dec">
+<!--                        <div class="product-item-dec">
                             <ul>
                                 <li><?php print_r($item->telefono);?></li>
                                 <li><?php print_r($item->horario); ?></li>
                             </ul>
-                        </div>
+                        </div>-->
                         <div class="product-action">
                             <a class="action-plus-2 p-action-none" title="Add To Cart" href="#">
                                 <i class=" ti-shopping-cart"></i>
@@ -84,7 +88,10 @@
                         <?php } else { ?>
                         <p></p>
                         <div class="shop-list-cart">
-                            <a href="cart.html"><i class="ti-shopping-cart"></i> Comprar</a>
+                            <a class="action-reload" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
+<!--                            <a  href="cart.html">-->
+                                <i class="ti-shopping-cart"></i> Comprar
+                            </a>
                         </div>
                         <?php } ?>
                     </div>

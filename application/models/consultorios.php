@@ -8,6 +8,7 @@ Class Consultorios extends CI_Model
                         'especialidad' => $this->input->post('especialidad'),
 			'telefono' => $this->input->post('telefono'),
                         'horario' => $this->input->post('horario'),
+                        'imagen' =>  $this->input->post('imagen')
 		);
             $this->db->where('idConsultorio', $id);
             return $this->db->update('consultorios', $data);
@@ -20,6 +21,7 @@ Class Consultorios extends CI_Model
                         'especialidad' => $this->input->post('especialidad'),
 			'telefono' => $this->input->post('telefono'),
 			'horario' =>  $this->input->post('horario'),
+                        'imagen' =>  $this->input->post('imagen'),
                         'ambiente' => $this->session->userdata('logged_in')['idAmbiente']
 		);
             return $this->db->insert('consultorios', $data);

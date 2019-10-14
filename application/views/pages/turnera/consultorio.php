@@ -4,7 +4,7 @@
         $('#agregar').click(function () {
             var agrego = $("#tablaConsultorios").attr("xagregar");
             if (agrego == 'false') {
-                $('#tablaConsultorios').append("<tr><td></td><td><input name='nombre' type='input' value=''></td><td><input name='especialidad' type='input' value=''></td><td><input name='direccion' type='input' value=''></td><td><input name='telefono' type='input' value=''></td><td><input name='horario' type='input' value=''></td></tr>");
+                $('#tablaConsultorios').append("<tr><td></td><td><input name='nombre' type='input' value=''></td><td><input name='especialidad' type='input' value=''></td><td><input name='direccion' type='input' value=''></td><td><input name='telefono' type='input' value=''></td><td><input name='horario' type='input' value=''></td><td><input name='imagen' type='input' value=''></td></tr>");
                 $("#tablaConsultorios").attr("xagregar", "true");
                 $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
             }
@@ -18,11 +18,12 @@
                 for (i = 0; i < cambios.length; i++) {
                     var nombre = $('#nombre-' + cambios[i]).val();
                     var horario = $('#horario-' + cambios[i]).val();
+                    var imagen = $('#imagen-' + cambios[i]).val();
                     var telefono = $('#telefono-' + cambios[i]).val();
                     var especialidad = $('#especialidad-' + cambios[i]).val();
                     var direccion = $('#direccion-' + cambios[i]).val();
                     $.ajax({
-                        data: {nombre: nombre, horario: horario, telefono: telefono, especialidad: especialidad, direccion: direccion},
+                        data: {nombre: nombre, horario: horario, telefono: telefono, especialidad: especialidad, direccion: direccion, imagen:imagen},
                         type: "POST",
                         url: "<?= base_url() ?>index.php/turnera/consultorio/updateConsultorio/" + cambios[i],
                         success: function () {
@@ -134,6 +135,7 @@
                     <th class="header">Direccion<i class=""></i></th>
                     <th class="header">Telefono<i class=""></i></th>
                     <th class="header">Horario de atencion<i class=""></i></th>
+                    <th class="header">Imagen</th>
                 </tr>
             </thead>
             <tbody>
@@ -146,6 +148,7 @@
                         <td><input class="formulario" name="direccion" id="direccion-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->direccion); ?>'/></td>
                         <td><input class="formulario" name="telefono" id="telefono-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->telefono); ?>'/></td>
                         <td><input class="formulario" name="horario" id="horario-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->horario); ?>'/></td>
+                        <td><input class="formulario" name="imagen" id="imagen-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->imagen); ?>'/></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
