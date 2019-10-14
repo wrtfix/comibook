@@ -62,6 +62,10 @@
                         <div class="product-price">
                             <span>$ <?php print_r($item->precio); ?></span>
                         </div>
+                        <?php } if(!empty($item->peso)){ ?>
+                        <div class="product-price">
+                            <span>Peso: <?php print_r($item->peso); ?> gr</span>
+                        </div>
                         <?php } if(!empty($item->horario)){ ?>
                         <div class="product-price">
                             <span>Horario: <?php print_r($item->horario); ?></span>
@@ -69,6 +73,10 @@
                         <?php } if(!empty($item->horario)){ ?>
                         <div class="product-price">
                             <span>Telefono: <?php print_r($item->telefono);?> </span>
+                        </div>
+                        <?php } if(!empty($item->direccion)){ ?>
+                        <div class="product-price">
+                            <span>Direccion: <?php print_r($item->direccion);?> </span>
                         </div>
                         <?php } if(!empty($item->comments)){ ?>
                         <div class="product-price">

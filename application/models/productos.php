@@ -14,6 +14,7 @@ class Productos extends CI_Model {
 			'nombre' => strtoupper($this->input->post('nombre')),
 			'numero' => $this->input->post('numero'),
                         'peso' => $this->input->post('peso'),
+                        'imagen' => $this->input->post('imagen'),
 		);
 		return $this->db->insert('productos', $data);
 	}
@@ -49,6 +50,7 @@ class Productos extends CI_Model {
 			'numero' => $this->input->post('numero'),		
                         'peso' => $this->input->post('peso'),
                         'precio' => $this->input->post('precio'),
+                        'imagen' => $this->input->post('imagen')
 		);
 		$this->db->where('idProducto', $id);
         return $this->db->update('productos', $data);

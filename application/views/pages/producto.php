@@ -4,7 +4,7 @@
         $('#agregar').click(function () {
             var agrego = $("#tablaCliente").attr("xagregar");
             if (agrego == 'false') {
-                $('#tablaCliente').append("<tr><td></td><td><input name='numero' type='input' value=''></td><td><input name='nombre' type='input' value=''></td><td><input name='peso' type='input' value=''></td><td><input name='precio' type='input' value=''></td></tr>");
+                $('#tablaCliente').append("<tr><td></td><td><input name='numero' type='input' value=''></td><td><input name='nombre' type='input' value=''></td><td><input name='peso' type='input' value=''></td><td><input name='precio' type='input' value=''></td><td><input name='imagen' type='input' value=''></td></tr>");
                 $("#tablaCliente").attr("xagregar", "true");
             }
         });
@@ -18,8 +18,9 @@
                     var nombre = $('#nombre-' + cambios[i]).val();
                     var peso = $('#peso-' + cambios[i]).val();
                     var precio = $('#precio-' + cambios[i]).val();
+                    var imagen = $('#imagen-' + cambios[i]).val();
                     $.ajax({
-                        data: {numero: numero, nombre: nombre, peso: peso, precio: precio},
+                        data: {numero: numero, nombre: nombre, peso: peso, precio: precio, imagen:imagen},
                         type: "POST",
                         url: "<?= base_url() ?>index.php/producto/updateProducto/" + cambios[i],
                         success: function () {
@@ -88,6 +89,7 @@
                     <th class='header'>Nombre<i class=''></i></th>
                     <th class='header'>Peso (gr)<i class=''></i></th>
                     <th class='header'>Precio unitario ($)<i class=''></i></th>
+                    <th class='header'>Imagen</th>
                 </tr>
             </thead>
             <tbody>
@@ -99,6 +101,7 @@
                         <td><input class="formulario" id="nombre-<?php print_r($item->idProducto); ?>" name=""style='width: 100%; border:none;' type='text' value='<?php echo $item->nombre; ?>'/></td>
                         <td><input class="formulario" id="peso-<?php print_r($item->idProducto); ?>" name=""style='width: 100%; border:none;' type='text' value='<?php echo $item->peso; ?>'/></td>
                         <td><input class="formulario" id="precio-<?php print_r($item->idProducto); ?>" name=""style='width: 100%; border:none;' type='text' value='<?php echo $item->precio; ?>'/></td>
+                        <td><input class="formulario" id="imagen-<?php print_r($item->idProducto); ?>" name=""style='width: 100%; border:none;' type='text' value='<?php echo $item->imaegn; ?>'/></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
