@@ -12,7 +12,7 @@
 <?php    echo form_open('turnera/agenda/index'); ?>
 
 <div class="page-header">
-	<h3> Seleccione Consultorio </h3>
+	<h3> Seleccione un Local </h3>
 </div>
 
 

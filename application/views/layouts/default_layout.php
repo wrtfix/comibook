@@ -223,7 +223,7 @@ $(function () {
             <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '20' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001') { ?>
              
              <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-edit"></i> CMS<b class="caret"></b></a> 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-edit"></i> Diario <b class="caret"></b></a> 
                 <ul class="dropdown-menu multi-level">
                    <li><a href="/saltaChequeado/index.php/noticias/index"><i class="fa fa-fw fa-edit"></i> Noticias</a></li>
                    <li><a href="/saltaChequeado/index.php/imagen/index"><i class="fa fa-camera-retro"></i> Imagenes</a></li>
@@ -237,12 +237,12 @@ $(function () {
              </li>
             <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001') { ?>
              <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-check"></i> Turnos<b class="caret"></b></a> 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-check"></i> Servicio <b class="caret"></b></a> 
                 <ul class="dropdown-menu multi-level">
-                    <li><a href="/saltaChequeado/index.php/turnera/consultorio/index"><i class="fa fa-fw fa-gear"></i> Consultorio </a></li>
+                    <li><a href="/saltaChequeado/index.php/turnera/consultorio/index"><i class="fa fa-fw fa-gear"></i> Locales </a></li>
                    <li><a href="/saltaChequeado/index.php/turnera/consultorio/selectConsultrio"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
                    <li><a href="/saltaChequeado/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
-                   <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Pacientes</a></li>
+                   <li><a href="/saltaChequeado/index.php/clientes/index"><i class="fa fa-user"></i> Clientes </a></li>
                 </ul>
              </li>
              <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '40'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001' ) { ?>

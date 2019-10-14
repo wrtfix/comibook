@@ -14,7 +14,12 @@ class Consultorio extends CI_Controller
 		if($this->session->userdata('logged_in')&& ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001'))
 		{
 			$this->load->library('form_validation');
-			$data['agregados'] = $this->consultorios->getConsultorios();
+                        if ($this->session->userdata('logged_in')['menu'][0]->peso !== '1000'){
+                            $data['agregados'] = $this->consultorios->getConsultorios();
+                        }else{
+                            $data['agregados'] = $this->consultorios->getConsultoriosWithOutSession();
+                        }
+			
 			$this->layout->view('pages/turnera/consultorio', $data);
 		}else{
 			$data['page'] = 'construccion';
@@ -63,7 +68,11 @@ class Consultorio extends CI_Controller
 		if($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001'))
 		{
 			$this->load->library('form_validation');
-			$data['agregados'] = $this->consultorios->getConsultorios();
+			if ($this->session->userdata('logged_in')['menu'][0]->peso !== '1000'){
+                            $data['agregados'] = $this->consultorios->getConsultorios();
+                        }else{
+                            $data['agregados'] = $this->consultorios->getConsultoriosWithOutSession();
+                        }
 			$this->layout->view('pages/turnera/consultorios', $data);
 		}else{
 			$data['page'] = 'construccion';

@@ -32,6 +32,12 @@ Class Consultorios extends CI_Model
             return $query->result();
         }
         
+        function getConsultoriosWithOutSession(){
+            $this -> db -> from('consultorios');
+            $query = $this -> db -> get();
+            return $query->result();
+        }
+        
         function getConsultorio($idConsultorio){
             $this -> db -> from('consultorios');
             $this->db->where('idConsultorio', $idConsultorio);

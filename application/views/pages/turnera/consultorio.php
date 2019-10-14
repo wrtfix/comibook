@@ -110,7 +110,7 @@
 <?php } ?>
 <?php echo form_open('turnera/consultorio/addConsultorio'); ?>
 <div class="page-header">
-    <h2>Consultorios</h2>
+    <h2>Locales</h2>
 </div>
 <div class="row">
     <div class="btn-group">

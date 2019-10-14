@@ -124,6 +124,8 @@
                         </div>
                         <ul class="main-nav nav navbar-nav">
                             <li><a href="<?= base_url() ?>">Portada</a></li>
+                            <li><a href="<?= base_url()?>index.php/turnera/busqueda ">Servicios</a></li>
+                            
                             <?php foreach ($menu as $item): ?>                  
                                 <li><a href="<?= base_url() ?>index.php/portada/index/<?php print_r($item->idMenu); ?>"><?php print_r($item->nombre); ?></a></li>
                             <?php endforeach; ?>
