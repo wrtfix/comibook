@@ -22,11 +22,19 @@ class Turnos extends CI_Model {
         if ($idTurno == '') {
             return $this->db->insert('turno', $data);
         }else{
-            print_r('aca');
             $this->db->where('idTurno', $idTurno);
             return $this->db->update('turno', $data);
         }
-        
+    }
+    function addPublicTurno($fecha, $horario, $idCliente, $idConsultorio) {
+        list($dia, $mes, $ano) = explode("-", $fecha);
+        $data = array(
+            'hora' => $horario,
+            'fecha' => $ano."-".$mes."-".$dia,
+            'idPaciente' => $idCliente,
+            'idConsultorio' => $idConsultorio,
+        );
+        return $this->db->insert('turno', $data);
         
     }
 
@@ -35,6 +43,16 @@ class Turnos extends CI_Model {
         list($dia, $mes, $ano) = explode("-", $fecha);
         $this->db->join('clientes', 'turno.idPaciente = clientes.Id');
         $this->db->where('fecha', $ano."-".$mes."-".$dia);
+        $this->db->where('idConsultorio', $idConsultorio);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function getTurnosByHorario($idConsultorio,$fecha,$horario) {
+        $this->db->from('turno');
+        list($dia, $mes, $ano) = explode("-", $fecha);
+        $this->db->join('clientes', 'turno.idPaciente = clientes.Id');
+        $this->db->where('fecha', $ano."-".$mes."-".$dia);
+        $this->db->where('hora', $horario);
         $this->db->where('idConsultorio', $idConsultorio);
         $query = $this->db->get();
         return $query->result();

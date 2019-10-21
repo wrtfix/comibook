@@ -50,7 +50,7 @@
             <div class="contact-message-wrapper">
                 <div class="contact-message">
                     <form id="contact-form" action="<?=base_url()?>turnera/reserva/realizarReserva" method="post">
-                        <input name="cuil" type="hidden" id="numeroAFIP" value="" id="cuilAFIP">
+                        <input name="nroCuil" type="hidden" value="" id="cuilAFIP">
                         <input type="hidden" name="horario" value="<?php print_r($horario);?>"/>
                         <input type="hidden" name="fecha" value="<?php print_r($fecha);?>"/>
                         <input type="hidden" name="idConsultorio" value="<?php print_r($idConsultorio);?>"/>

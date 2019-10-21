@@ -43,7 +43,7 @@ Class Consultorios extends CI_Model
         function getConsultorio($idConsultorio){
             $this -> db -> from('consultorios');
             $this->db->where('idConsultorio', $idConsultorio);
-            if ($this->session->userdata('logged_in')['idAmbiente'] !=null) {
+            if ($this->session->userdata('logged_in')['idAmbiente'] !== null) {
                 $this->db->where('ambiente', $this->session->userdata('logged_in')['idAmbiente']);
             }
             $query = $this -> db -> get();

@@ -9,6 +9,7 @@ class Reserva extends CI_Controller {
         $this->load->model('horarios', '', TRUE);
         $this->load->model('configuraciones', '', TRUE);
         $this->load->model('consultorios', '', TRUE);
+        $this->load->model('cliente', '', TRUE);
         $this->load->spark('markdown-extra/0.0.0');
         ini_set('memory_limit', '-1');
     }
@@ -102,9 +103,6 @@ class Reserva extends CI_Controller {
         
     }
 
-    public function save() {
-        
-    }
     public function reservarHorario(){
         $this->load->library('recaptcha');
         $this->load->library('form_validation');
@@ -130,16 +128,33 @@ class Reserva extends CI_Controller {
         $response = $this->recaptcha->verifyResponse($captcha_answer);
 
         // Processing ...
+        $horario = $this->input->post('horario');
+        $fecha = $this->input->post('fecha');
+        $idConsultorio = $this->input->post('idConsultorio');
+        $data['exito'] = false;
         if ($response['success']) {
            //Valido que exista usuario y tomo id
-           //Valido que no este ocupado el turno
-           //Agrego el turno 
+           $cuil =  $this->input->post('nroCuil');
+           
+           $cliente = $this->cliente->getCliente(null, $cuil, " ", null, "CLIENTE");
+           if (count($cliente) > 0){
+               //Valido que no este ocupado el turno
+               $turnos = $this->turnos->getTurnosByHorario($idConsultorio,$fecha,$horario);
+               if (count($turnos) == 0){
+                   //Agrego el turno 
+                   $this->turnos->addPublicTurno($fecha, $horario, $cliente[0]->Id,$idConsultorio);
+                   $data['exito'] = true;
+               }
+               
+           }
         }
-        $data['fecha'] = $this->input->post('fecha');
-        $data['horario'] = $this->input->post('horario');
+
+        $data['fecha'] = $fecha;
+        $data['horario'] = $horario;
         $data['consultorio'] = $this->consultorios->getConsultorio($this->input->post('idConsultorio'));
+
         $data['type'] = "servicios";
-        $data['logo'] = $this->configuraciones->getConfiguracion("SITE_IMAGE");
+        $data['logo'] = $this->configuraciones->getConfiguracion("SITE_IMAGE");        
         $this->layout->placeholder("title", $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor);
         $this->layout->setLayout("layouts/login_layout_3");
         $this->layout->view('pages/turnera/confirmacionTurno', $data);

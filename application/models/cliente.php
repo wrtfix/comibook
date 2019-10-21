@@ -53,7 +53,9 @@ class Cliente extends CI_Model {
                 }else{
                     $this -> db -> like("tipo",$tipo);
                 }
-                $this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
+                if($this->session->userdata('logged_in')['idAmbiente'] !== null){
+                    $this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
+                }
 		$query = $this -> db -> get();
 		return $query->result();
 	}
