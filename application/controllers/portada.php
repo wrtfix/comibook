@@ -77,7 +77,7 @@ class Portada extends CI_Controller {
     function index($filter = null) {
         $this->load->helper('form');
         $startPage = $this->configuraciones->getConfiguracion("SHOW_NEWS_PAGE");
-        if ($startPage[0]->valor != 'false') {
+        if ($startPage != null && $startPage[0]->valor != 'false') {
             $this->load->library('recaptcha');
 
             $hoy = date("Y-m-d");

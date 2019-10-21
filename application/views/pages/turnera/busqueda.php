@@ -22,30 +22,23 @@
                             <img src="<?php print_r($item->imagen);?>" alt="">
                             <?php } ?>
                         </a>
-<!--                        <div class="product-item-dec">
-                            <ul>
-                                <li><?php print_r($item->telefono);?></li>
-                                <li><?php print_r($item->horario); ?></li>
-                            </ul>
-                        </div>-->
                         <div class="product-action">
-                            <a class="action-plus-2 p-action-none" title="Add To Cart" href="#">
+                            <?php if($type == 'servicios'){ ?>
+                            <a class="action-plus-2 p-action-none" title="Reservar" href="<?=base_url()?>index.php/turnera/reserva/index/<?php print_r($item->idConsultorio); ?>">
+                                <i class=" ti-calendar"></i>
+                            </a>
+                            <?php } else { ?>
+                            <a class="action-plus-2 p-action-none" title="Comprar" href="#">
                                 <i class=" ti-shopping-cart"></i>
                             </a>
-<!--                            <a class="action-cart-2" title="Wishlist" href="#">
-                                <i class=" ti-heart"></i>
-                            </a>-->
-<!--                            <a class="action-reload" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class=" ti-zoom-in"></i>
-                            </a>-->
+                            <?php }?>
                         </div>
                         <div class="product-content-wrapper">
                             <div class="product-title-spreed">
-                                <h4><a href="product-details.html">Gloriori GSX 250 R</a></h4>
-                                <span>6600 RPM</span>
+                                <h4><a href="product-details.html"><?php print_r($item->nombre); ?></a></h4>
                             </div>
                             <div class="product-price">
-                                <span>$2549</span>
+                                <span><?php if(!empty($item->especialidad)){ print_r($item->especialidad); } if(!empty($item->precio)) { echo '$'; print_r($item->precio); } ?></span>
                             </div>
                         </div>
                     </div>
@@ -83,21 +76,17 @@
                             <span>Comentarios: </span>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipic it, sed do eiusmod tempor incididunt ut labore et dolore mag aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        <?php } if(!empty($item->description)){ ?>
-                        <div class="product-price">
-                            <span>Descripcion: </span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipic it, sed do eiusmod tempor incididunt ut labore et dolore mag aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        <?php } if(!empty($item->descripcion)){ ?>
+                        <p><?php print_r($item->descripcion); ?></p>
                         <?php } if($type == 'servicios'){ ?>
                         <p></p>
                         <div class="shop-list-cart">
-                            <a href="cart.html"><i class="ti-calendar"></i> Reservar</a>
+                            <a href="<?=base_url()?>index.php/turnera/reserva/index/<?php print_r($item->idConsultorio); ?>"><i class="ti-calendar"></i> Reservar</a>
                         </div>
                         <?php } else { ?>
                         <p></p>
                         <div class="shop-list-cart">
                             <a class="action-reload" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-<!--                            <a  href="cart.html">-->
                                 <i class="ti-shopping-cart"></i> Comprar
                             </a>
                         </div>
@@ -121,43 +110,3 @@
 </div>-->
 </div>
 
-
-
-
-<!--<div class="contenedor">
-    <?php $cont = 0; foreach ($agregados as $item): $cont = $cont + 1; ?>
-        <div class="gridItem">
-            <div class="gridContent">
-                <img src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1.png"/>
-                <ul>
-                    <li>
-                        Nombre: 
-                    </li>
-                    <li>
-                        <?php if ($item->direccion !=null ) { ?>
-                        Ubicacion: <?php print_r($item->direccion); ?>
-                        <?php } ?>
-                    </li>
-                    <li>
-                        Telefono: <?php print_r($item->telefono); ?>
-                    </li>
-                    <li>
-                        Ranking: 
-                    </li>
-                    <li>
-                        Horario: <?php print_r($item->horario); ?>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    
-<?php endforeach; ?>
-        <tr>
-            <td><input class="formulario" name="nombre" id="nombre-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre); ?>'/></td>
-            <td><input class="formulario" name="especialidad" id="especialidad-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->especialidad); ?>'/></td>
-            <td><input class="formulario" name="direccion" id="direccion-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->direccion); ?>'/></td>
-            <td><input class="formulario" name="telefono" id="telefono-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->telefono); ?>'/></td>
-            <td><input class="formulario" name="horario" id="horario-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->horario); ?>'/></td>
-        </tr>
-</div>-->

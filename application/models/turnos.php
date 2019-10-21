@@ -69,6 +69,16 @@ class Turnos extends CI_Model {
         $this->db->where('idDia', $id);
         return $this->db->update('dia', $data);
     }
+    
+    function getEspacios($idConsultorio){
+        $result = $this->db->query("SELECT nombre, horaHasta, horaDesde, (FLOOR(TIMESTAMPDIFF(SECOND, horaDesde, horaHasta)/(intervalo*60))+1) HORAS FROM dia WHERE idConsultorio = '" . $idConsultorio."'")->result();
+        return $result;
+    }
+    
+    function getTurnosOtorgados($idConsultorio, $dias){
+        return $this->db->query("select fecha, UPPER(DATE_FORMAT(fecha, '%a')) Dias, COUNT(*) Turnos from turno WHERE idConsultorio = ".$idConsultorio." AND fecha >= DATE_SUB(NOW(), INTERVAL 1 DAY) AND fecha <= DATE_ADD(NOW(), INTERVAL ".$dias." DAY) GROUP BY fecha")->result();
+        
+    }
 
 }
 

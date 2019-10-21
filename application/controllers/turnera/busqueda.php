@@ -11,7 +11,7 @@ class Busqueda extends CI_Controller
             $this->load->spark('markdown-extra/0.0.0');
 	}
 
-	public function index($type)
+	public function index($type="servicios")
 	{
             $data['logo'] = $this->configuraciones->getConfiguracion("SITE_IMAGE");
             $this->layout->setLayout("layouts/login_layout_3");

@@ -110,7 +110,6 @@ $(document).ready(function(){
 	<div id="datepicker"></div>
 	<br>
 	<button type="button" id="guardar" class="btn btn-primary">Guardar</button>        
-	
 	<?php function mostrarTotal($total){ echo "<p> En Caja: $<input type='text' disabled id='calcularTotal' value='".number_format($total,2)."'/> </p>"; } ?>
 	<dir id="pedidos"></dir>
 	<div class="table-responsive" id="pedidos">
@@ -163,9 +162,10 @@ $(document).ready(function(){
 					<td><input class="guardar" id="saveObservaciones-<?php echo $i;?>" style='width: 100%; border:none;' type='text' value="<?php $turno != null ? print_r($turno->observaciones) : ''; ?>"/></td>
 				</tr>
                                 
-                                <?php $current = strtotime( '+'.$horario[0]->intervalo.' minute', $current ); $i = $i + 1;} } 
+                                <?php $current = strtotime( '+'.$horario[0]->intervalo.' minute', $current ); $i = $i + 1;
+                                    } 
+                                } 
                                 mostrarTotal($total);
-                                
                                 ?>
                                 
                                 
