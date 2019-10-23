@@ -89,7 +89,7 @@ class Turnos extends CI_Model {
     }
     
     function getEspacios($idConsultorio){
-        $result = $this->db->query("SELECT nombre, horaHasta, horaDesde, (FLOOR(TIMESTAMPDIFF(SECOND, horaDesde, horaHasta)/(intervalo*60))+1) HORAS FROM dia WHERE idConsultorio = '" . $idConsultorio."'")->result();
+        $result = $this->db->query("SELECT nombre, horaHasta, horaDesde, (FLOOR(TIMESTAMPDIFF(SECOND, horaDesde, horaHasta)/(intervalo*60))) HORAS FROM dia WHERE idConsultorio = '" . $idConsultorio."'")->result();
         return $result;
     }
     

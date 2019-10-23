@@ -23,14 +23,14 @@ class VerifyLogin extends CI_Controller {
 
     $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
     $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
-	
+    $data['loginImage'] = $this->configuraciones->getConfiguracion("LOGIN_IMAGE");
+
     if($this->form_validation->run() == FALSE)
     {
       //Field validation failed.  User redirected to login page
       $data['page'] = 'login_view';
       $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
       $this->layout->view('login_view', $data);
-      //$this->load->view('login_view');
     }
     else
     {

@@ -116,7 +116,7 @@ class Noticia extends CI_Model {
                 ->join('rContenidoMenu', 'noticias.idNoticia = rContenidoMenu.idNoticia')
                 ->where('rContenidoMenu.idMenu ='.$filter)
                 -> where("fecha <=",$fecha)
-                ->order_by('idNoticia desc');
+                ->order_by('noticias.idNoticia desc');
             }
             $query = $this -> db -> get();          
             $result =$query->result();
@@ -166,7 +166,7 @@ class Noticia extends CI_Model {
                 ->join('rContenidoMenu', 'noticias.idNoticia = rContenidoMenu.idNoticia')
                 ->where('rContenidoMenu.idMenu ='.$filter)
                 ->where('noticias.fecha <= ',$fecha)
-                ->order_by('idNoticia desc');
+                ->order_by('noticias.idNoticia desc');
             }
             $query = $this -> db -> get();
             
@@ -197,7 +197,7 @@ class Noticia extends CI_Model {
                 ->join('rContenidoMenu', 'noticias.idNoticia = rContenidoMenu.idNoticia')
                 ->where('rContenidoMenu.idMenu ='.$filter)
                 ->where('noticias.fecha <= ',$fecha)
-                ->order_by('idNoticia desc');
+                ->order_by('noticias.idNoticia desc');
             }
             $result = $this->db->count_all_results();
             
@@ -226,7 +226,7 @@ class Noticia extends CI_Model {
                 ->join('rContenidoMenu', 'noticias.idNoticia = rContenidoMenu.idNoticia')
                 ->where('rContenidoMenu.idMenu ='.$filter)
                 -> where("fecha <=",$fecha)
-                ->order_by('idNoticia desc');
+                ->order_by('noticias.idNoticia desc');
             }
             $query = $this -> db -> get();
             $result =$query->result();
