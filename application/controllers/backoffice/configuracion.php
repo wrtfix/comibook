@@ -58,7 +58,7 @@ class Configuracion extends CI_Controller
 		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
-                        $result = $this->configuraciones->updateConfiguracion($id);
+                        $result = $this->configuraciones->updateConfiguracion();
 	        }
         	else{
 			$data['page'] = 'construccion';
@@ -94,6 +94,11 @@ class Configuracion extends CI_Controller
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);
 		}
+        }
+        
+        public function loadCard(){
+            $this->layout->setLayout("layouts/empty");
+            $this->layout->view('pages/backoffice/configurationCard');
         }
 	
 }

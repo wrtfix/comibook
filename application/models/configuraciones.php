@@ -34,14 +34,20 @@ class Configuraciones extends CI_Model {
 		return $query->result();
 	}
 	
-	function updateConfiguracion($id){
-		$data = array(
-			'atributo' => strtoupper($this->input->post('atributo')),
-			'valor' => $this->input->post('valor'),
-			'descripcion' => $this->input->post('descripcion'),
-		);
-		$this->db->where('id', $id);
-        return $this->db->update('configuracion', $data);
+	function updateConfiguracion(){
+            $jsonObject = $this->input->post('updateData');
+            $consult = null;
+            foreach ($jsonObject as $value) {
+                $data = array(
+                    'atributo' => strtoupper($value['atributo']),		
+                    'valor' => $value['valor'],
+                    'descripcion' => strtoupper($value['descripcion']),
+                );
+                $this->db->where('id', $value['id']);
+                $consult = $this->db->update('configuracion', $data);
+
+            }
+            return $consult;
 	}
 	
 }

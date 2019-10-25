@@ -187,6 +187,17 @@ $(function () {
                 setTimeout($.unblockUI, 1000); 
         }
         
+        function loadContent(id, url){
+            var postUrl = "<?= base_url() ?>"+ url;
+            $.ajax({
+                type: "POST",
+                url: postUrl,
+                success: function (response) {
+                    $(id).prepend(response)
+                }
+            });
+        }
+        
 	</script>
 </head>
 <body>

@@ -1,150 +1,171 @@
 <script>
-cambios=[];
-$(document).ready(function(){
-	$('#agregar').click(function(){
-		var agrego = $("#tablaConfiguracion").attr("xagregar");
-		if (agrego=='false'){
-			$('#tablaConfiguracion').append("<tr><td></td><td><input name='atributo' type='input' value=''></td><td><input name='valor' id='valor' class='tab' type='input' value=''></td><td><input class='tab' id='descripcion' name='descripcion' type='input' value=''></td></tr>");
-			$("#tablaConfiguracion").attr("xagregar","true");
-		}
-	});
-	$('#guardar').click(function(){
-		var agrego = $("#tablaConfiguracion").attr("xagregar");
-		if (agrego=='true'){ 
-			$("form:first").submit();
-		}else{
-			for (i = 0; i < cambios.length; i++){
-				var atributo = $('#atributo-'+cambios[i]).val();
-				var valor = $('#valor-'+cambios[i]).val();
-				var descripcion = $('#descripcion-'+cambios[i]).val();
-				$.ajax({
-					   data: {atributo:atributo,valor:valor,descripcion:descripcion},
-				       type: "POST",
-				       url: "<?=base_url()?>index.php/backoffice/configuracion/updateConfiguracion/"+cambios[i],
-					   success: function(){
-				    	   alert('Los cambios se guardaron con exito!');
-				    	   cambios = [];
-					   },
-					   error: function(){
-						   alert('ERROR : Verifique los campos ingresados');
-					   }
-				});
-			}
-		}
-			
-	});
-
-	$('#eliminar').click(function(){
-		$('input:checked').each(function() {
-		    var elem = $(this).attr('id');
-		    var id = $("#identificador").val();
-			$.ajax({
-			       type: "POST",
-			       url: "<?=base_url()?>index.php/backoffice/configuracion/delConfiguracion/"+elem
-			});
-		});
- 		$(":checked").parent().parent().remove();
-	});
+    cambios = [];
+    $(document).ready(function () {
         
-        $('#sendEmail').click(function(){
+        $('#agregar').click(function () {
+            var agrego = $("#tablaConfiguracion").attr("xagregar");
+            if (agrego == 'false') {
+                if (mobileAndTabletcheck()){
+                    loadContent("#panelConfiguracion", "index.php/backoffice/configuracion/loadCard");
+                }else{
+                    $('#tablaConfiguracion').append("<tr><td></td><td><input name='atributo' type='input' value=''></td><td><input name='valor' id='valor' class='tab' type='input' value=''></td><td><input class='tab' id='descripcion' name='descripcion' type='input' value=''></td></tr>");
+                }
+                $("#tablaConfiguracion").attr("xagregar", "true");
+            }
+        });
+        $('#guardar').click(function () {
+            block_screen();
+            var agrego = $("#tablaConfiguracion").attr("xagregar");
+            if (agrego == 'true') {
+                $("form:first").submit();
+            } else {
+                var sendData = [];
+                for (i = 0; i < cambios.length; i++) {
+                    var atributo = $('#atributo-' + cambios[i]).val();
+                    var valor = $('#valor-' + cambios[i]).val();
+                    var descripcion = $('#descripcion-' + cambios[i]).val();
+                    sendData.push({id:cambios[i], atributo: atributo, valor: valor, descripcion: descripcion});
+                }
                 $.ajax({
-                       type: "POST",
-                       url: "<?=base_url()?>index.php/backoffice/configuracion/testSendEmail/",
-                       success: function(){
-                           console.log('hola');
-                       }
-                       
+                    data: {updateData: sendData},
+                    type: "POST",
+                    url: "<?= base_url() ?>index.php/backoffice/configuracion/updateConfiguracion/",
+                    success: function () {
+                        showInfo('Los cambios se guardaron con exito!', 'info');
+                        cambios = [];
+                    },
+                    error: function () {
+                        alert('ERROR : Verifique los campos ingresados');
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        unblock_screen();
+                    }
                 });
+            }
+
+
         });
 
-	
+        $('#eliminar').click(function () {
+            var sendData = [];
+            $('input:checked').each(function () {
+                var elem = $(this).attr('id');
+                var id = $("#identificador").val();
+                $.ajax({
+                    type: "POST",
+                    url: "<?= base_url() ?>index.php/backoffice/configuracion/delConfiguracion/" + elem
+                });
+            });
+            if (mobileAndTabletcheck()){
+                $(":checked").parent().parent().parent().remove();
+            }else{
+                $(":checked").parent().parent().remove();
+            }
+            
+            showInfo('Los elementos fueron eliminados correctamente', 'info');
+            
+        });
 
-	$('.formulario').keydown(function(event){
-		if (jQuery.inArray( ($(this).attr('id').split('-')[1]), cambios )==-1){
-			cambios.push(($(this).attr('id').split('-')[1]));
-		}
-	});
-        
+        $('#sendEmail').click(function () {
+            block_screen();
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>index.php/backoffice/configuracion/testSendEmail/",
+                success: function () {
+                    unblock_screen();
+                    showInfo('El email se envio correctamente', 'info');
+                },
+                error: function () {
+                    unblock_screen();
+                    showInfo('Verifique los campos ingresados', 'error');
+                },
 
-});
+            });
+        });
+
+
+
+        $('.formulario').keydown(function (event) {
+            if (jQuery.inArray(($(this).attr('id').split('-')[1]), cambios) == -1) {
+                cambios.push(($(this).attr('id').split('-')[1]));
+            }
+        });
+
+
+    });
 
 
 </script>
 
-<?php if (validation_errors()){?>
-<div class="alert alert-dismissable alert-danger">
-	<button type="button" class="close" data-dismiss="alert">×</button>
-	<strong>ERROR</strong>
-	<?php echo validation_errors(); ?>
-</div>
-<?php }?>
-
 <?php echo form_open('backoffice/configuracion/addConfiguracion'); ?>
-    <div class="page-header">
-                 <h3>Configuracion</h3>
-    </div>
+<div class="page-header">
+    <h3>Configuracion</h3>
+</div>
 <div class="btn-group">
-                <button type="button" id="agregar" class="btn btn-success">Agregar</button>
-                <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
-                <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-                <button type="button" id="sendEmail" class="btn btn-default">Test email</button>
-            </div>
+    <button type="button" id="agregar" class="btn btn-success">Agregar</button>
+    <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
+    <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
+    <button type="button" id="sendEmail" class="btn btn-default">Test email</button>
+</div>
 <div class="row">
 
-  
-        
-            
-            <br>
-            <br>
-            
-            <div class="table-responsive desktop">
-              <table class="table table-bordered table-hover tablesorter" id="tablaConfiguracion" xagregar="false">
-                <thead>
-                  <tr>
-                    <th class="header">Seleccionar<i class=""></i></th>                    
-  					<th class="header">Clave<i class=""></i></th>
-                    <th class="header">Valor<i class=""></i></th>
-  					<th class="header">Descripcion<i class=""></i></th>
-                  </tr>
-                </thead>
-                <tbody>
-				<?php $cont=0; foreach($agregados as $item): $cont=$cont+1;?>
-                <tr>
-                  <td><input type="checkbox" id="<?php print_r($item->id);?>" class="fila tab"></td>
-                  <td><input class="formulario" id="atributo-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->atributo);?>'/></td>
-                  <!--<td><input class="formulario tab" id="valor-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->valor);?>'/></td>-->
-                  <td><textarea class="formulario tab" id="valor-<?php print_r($item->id);?>" style='width: 100%; border:none;'><?php print_r($item->valor);?></textarea></td>
-                  <td><input class="formulario tab" id="descripcion-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->descripcion);?>'/></td>
-                  </tr>
-                  <?php endforeach; ?>
-				</tbody>
-              </table>
-            </div>
-            <div class="col-sm-4 mobile">
-            
-            <?php $cont=0; foreach($agregados as $item): $cont=$cont+1;?>
-            <div  class="panel panel-green">
-                    <div class="col-lg-6 panel-body">
-                            <div class="form-group">
-                                <label>Clave</label>
-                                <input class="form-control" id="atributo-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->atributo);?>'/>
-                                <p class="help-block"></p>
-                            </div>
-                            <div class="form-group">
-                                <label>Valor</label>
-                                <textarea class="form-control formulario tab" id="valor-<?php print_r($item->id);?>" style='width: 100%; border:none;'><?php print_r($item->valor);?></textarea>
-                                <p class="help-block"></p>
-                            </div>
-                            <div class="form-group">
-                                <label>Descripcion</label>
-                                <input class="form-control formulario tab" id="descripcion-<?php print_r($item->id);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->descripcion);?>'/>
-                                <p class="help-block"></p>
-                            </div>
-                    </div>
-            </div>
-            <?php endforeach; ?>
-                </div>
-          </div>
-          
+    <br>
+    <br>
 
-      </div>
+    <div class="table-responsive desktop">
+        <table class="table table-bordered table-hover tablesorter" id="tablaConfiguracion" xagregar="false">
+            <thead>
+                <tr>
+                    <th class="header">Seleccionar<i class=""></i></th>                    
+                    <th class="header">Clave<i class=""></i></th>
+                    <th class="header">Valor<i class=""></i></th>
+                    <th class="header">Descripcion<i class=""></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $cont = 0;
+                foreach ($agregados as $item): $cont = $cont + 1; ?>
+                    <tr>
+                        <td><input type="checkbox" id="<?php print_r($item->id); ?>" class="fila tab"></td>
+                        <td><input class="formulario" id="atributo-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->atributo); ?>'/></td>
+                        <!--<td><input class="formulario tab" id="valor-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->valor); ?>'/></td>-->
+                        <td><textarea class="formulario tab" id="valor-<?php print_r($item->id); ?>" style='width: 100%; border:none;'><?php print_r($item->valor); ?></textarea></td>
+                        <td><input class="formulario tab" id="descripcion-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->descripcion); ?>'/></td>
+                    </tr>
+<?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-4 mobile" id="panelConfiguracion">
+<?php $cont = 0; foreach ($agregados as $item): $cont = $cont + 1; ?>
+            <div  class="panel panel-green">
+                <div class="col-lg-6 panel-body">
+                    <div class="form-group">
+                        <input  type="checkbox" id="<?php print_r($item->id); ?>" />
+                        <label>Eliminar</label>
+                        <!--<input class="form-control" id="atributo-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->atributo); ?>'/>-->
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Clave</label>
+                        <input class="form-control" id="atributo-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->atributo); ?>'/>
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Valor</label>
+                        <textarea class="form-control formulario tab" id="valor-<?php print_r($item->id); ?>" style='width: 100%; border:none;'><?php print_r($item->valor); ?></textarea>
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripcion</label>
+                        <input class="form-control formulario tab" id="descripcion-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->descripcion); ?>'/>
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+            </div>
+<?php endforeach; ?>
+    </div>
+</div>
+
+
+</form>
