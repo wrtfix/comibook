@@ -27,8 +27,8 @@ class Configuracion extends CI_Controller
 		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
-			$result = $this->configuraciones->addConfiguracion();	
-	       	$data['page'] = 'configuracion';
+                        $data['result'] = $this->configuraciones->addConfiguracion();	
+                        $data['page'] = 'configuracion';
 			$data['agregados'] =  $this->configuraciones->getConfiguraciones();
 			$this->layout->view('pages/backoffice/configuracion', $data);
 		}else{
@@ -37,6 +37,7 @@ class Configuracion extends CI_Controller
 
 		}
 	}
+        
 	
 	public function delConfiguracion($id){
 		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000' )

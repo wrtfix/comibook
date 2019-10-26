@@ -8,7 +8,7 @@
                 if (mobileAndTabletcheck()){
                     loadContent("#panelConfiguracion", "index.php/backoffice/configuracion/loadCard");
                 }else{
-                    $('#tablaConfiguracion').append("<tr><td></td><td><input name='atributo' type='input' value=''></td><td><input name='valor' id='valor' class='tab' type='input' value=''></td><td><input class='tab' id='descripcion' name='descripcion' type='input' value=''></td></tr>");
+                    $('#tablaConfiguracion').prepend("<tr><td></td><td><input name='atributo' type='input' value=''></td><td><input name='valor' id='valor' class='tab' type='input' value=''></td><td><input class='tab' id='descripcion' name='descripcion' type='input' value=''></td></tr>");
                 }
                 $("#tablaConfiguracion").attr("xagregar", "true");
             }
@@ -45,9 +45,8 @@
 
 
         });
-
-        $('#eliminar').click(function () {
-            var sendData = [];
+        
+        var elem = function eliminar(){
             $('input:checked').each(function () {
                 var elem = $(this).attr('id');
                 var id = $("#identificador").val();
@@ -61,11 +60,16 @@
             }else{
                 $(":checked").parent().parent().remove();
             }
-            
             showInfo('Los elementos fueron eliminados correctamente', 'info');
-            
+        }
+        
+        tasks.push(elem);
+        
+        $("#eliminar").click(function(){
+            $("#msjConfirmacionModal").html("Esta seguro que desea eliminar?");
+            taskNumber = 1;
         });
-
+        
         $('#sendEmail').click(function () {
             block_screen();
             $.ajax({
@@ -83,14 +87,15 @@
             });
         });
 
-
-
         $('.formulario').keydown(function (event) {
             if (jQuery.inArray(($(this).attr('id').split('-')[1]), cambios) == -1) {
                 cambios.push(($(this).attr('id').split('-')[1]));
             }
         });
-
+        
+        <?php if(!empty($result)) { ?> 
+            showInfo('Los nuevos atributos se guardaron con exito!', 'info');
+        <?php } ?>
 
     });
 
@@ -103,7 +108,7 @@
 </div>
 <div class="btn-group">
     <button type="button" id="agregar" class="btn btn-success">Agregar</button>
-    <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
+    <button type="button" data-target='#confirmationModal' data-toggle='modal' id="eliminar" class="btn btn-danger">Eliminar</button>
     <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
     <button type="button" id="sendEmail" class="btn btn-default">Test email</button>
 </div>

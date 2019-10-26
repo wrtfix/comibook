@@ -25,9 +25,9 @@ class Reserva extends CI_Controller {
         $diasMap = array();
         //HASH
         $diasMap['MON'] = "Lunes";
-        $diasMap['THU'] = "Martes";
+        $diasMap['TUE'] = "Martes";
         $diasMap['WED'] = "Miercoles";
-        $diasMap['TUE'] = "Jueves";
+        $diasMap['THU'] = "Jueves";
         $diasMap['FRI'] = "Viernes";
         $diasMap['SAT'] = "Sabado";
         $diasMap['SUN'] = "Domingo";
