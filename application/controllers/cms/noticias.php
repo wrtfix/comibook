@@ -40,7 +40,7 @@ class Noticias extends CI_Controller
                     $data['page'] = 'noticias';
                     $data['imagenes'] = $this->imagenes->getImagenes();
                     $data['agregados'] = $this->noticia->getNoticiaFecha(null,$lafecha,$lafecha,"No");
-                    $this->layout->view('pages/noticias', $data);
+                    $this->layout->view('pages/cms/noticias', $data);
             }else{
                     $data['page'] = 'construccion';
                     $this->load->view('pages/construccion', $data);
@@ -58,7 +58,7 @@ class Noticias extends CI_Controller
                     $lafecha = $ano."-".$mes."-".$dia;
                     $data['page'] = 'noticias';
                     $data['agregados'] = $this->noticia->getNoticiaFecha(null,$lafecha,$lafecha,"No");
-                    $this->layout->view('pages/noticias', $data);
+                    $this->layout->view('pages/cms/noticias', $data);
             } else{
                     $data['page'] = 'construccion';
                     $this->load->view('pages/construccion', $data);

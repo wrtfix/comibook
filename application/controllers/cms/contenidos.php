@@ -21,7 +21,7 @@ class Contenidos extends CI_Controller
 			$data['noticia'] = $this->contenido->getContenidoNoticia($idNoticia);
 			$data['menu'] = $this->contenido->getItemMenu($idNoticia);
 			$data['idNoticia'] = $idNoticia;
-			$this->layout->view('pages/contenido', $data);
+			$this->layout->view('pages/cms/contenido', $data);
 		}else
 		{
 			$data['page'] = 'construccion';
@@ -48,7 +48,7 @@ class Contenidos extends CI_Controller
                 $data['noticia'] = $this->contenido->getContenidoNoticia($this->input->post('idNoticia'));
                 $data['page'] = 'contenido';
                 $data['idNoticia'] = $this->input->post('idNoticia');
-                $this->layout->view('pages/contenido', $data);
+                $this->layout->view('pages/cms/contenido', $data);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);
@@ -67,7 +67,7 @@ class Contenidos extends CI_Controller
                 $data['noticiaSeleccionada'] = $this->noticia->getNoticia($this->input->post('idNoticia'));
                 $data['menu'] = $this->contenido->getItemMenu($this->input->post('idNoticia'));
                 $data['idNoticia'] = $this->input->post('idNoticia');
-                $this->layout->view('pages/contenido', $data);
+                $this->layout->view('pages/cms/contenido', $data);
                     
 	    }else{
                     $data['page'] = 'construccion';

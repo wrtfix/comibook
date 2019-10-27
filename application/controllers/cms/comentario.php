@@ -17,7 +17,7 @@ class Comentario extends CI_Controller
 			$this->load->library('form_validation');
 			$data['page'] = 'comentarios';
 			$data['comentarios'] = $this->comentarios->getComentarios($this->input->post('idNoticia'));
-			$this->layout->view('pages/comentarios', $data);
+			$this->layout->view('pages/cms/comentarios', $data);
 		}else
 		{
 			$data['page'] = 'construccion';
@@ -32,8 +32,8 @@ class Comentario extends CI_Controller
 			$this->load->library('form_validation');
 			$data['page'] = 'comentarios';
                         $maxComments = $this->configuraciones->getConfiguracion("MAX_COMMENTS");
-			$data['comentarios'] = $this->comentarios->getUltimosComentarios($maxComments);
-			$this->layout->view('pages/comentarios', $data);
+			$data['comentarios'] = $this->comentarios->getUltimosComentarios(100);
+			$this->layout->view('pages/cms/comentarios', $data);
 		}else
 		{
 			$data['page'] = 'construccion';

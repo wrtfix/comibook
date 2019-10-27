@@ -248,7 +248,7 @@
                                     <li><a href="/saltaChequeado/index.php/backoffice/menu/index"><i class="fa fa-wrench"></i> Menu </a></li>
                                     <li><a href="/saltaChequeado/index.php/backoffice/ambiente/index"><i class="fa fa-globe"></i> Ambiente </a></li>
                                     <li><a href="/saltaChequeado/index.php/backoffice/usuario/index"><i class="fa fa-user"></i> Usuarios </a></li>
-                                    <li><a href="/saltaChequeado/index.php/backup/index"><i class="fa fa-desktop"></i> Actualizaciones </a></li>
+                                    <li><a href="/saltaChequeado/index.php/backoffice/backup/index"><i class="fa fa-desktop"></i> Actualizaciones </a></li>
 
                                 </ul>
                             </li>
@@ -257,9 +257,9 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-edit"></i> Diario <b class="caret"></b></a> 
                                 <ul class="dropdown-menu multi-level">
-                                    <li><a href="/saltaChequeado/index.php/noticias/index"><i class="fa fa-fw fa-edit"></i> Noticias</a></li>
-                                    <li><a href="/saltaChequeado/index.php/imagen/index"><i class="fa fa-camera-retro"></i> Imagenes</a></li>
-                                    <li><a href="/saltaChequeado/index.php/comentario/comentarios"><i class="fa fa-comments"></i> Comentarios </a></li>
+                                    <li><a href="/saltaChequeado/index.php/cms/noticias/index"><i class="fa fa-fw fa-edit"></i> Noticias</a></li>
+                                    <li><a href="/saltaChequeado/index.php/cms/imagen/index"><i class="fa fa-camera-retro"></i> Imagenes</a></li>
+                                    <li><a href="/saltaChequeado/index.php/cms/comentario/comentarios"><i class="fa fa-comments"></i> Comentarios </a></li>
                                     <?php if ($this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
                                         <li><a href="/saltaChequeado/index.php/cms/scrapping/index/clarin"><i class="fa fa-code-fork"></i> Scrapping Clarin </a></li>
                                         <li><a href="/saltaChequeado/index.php/cms/scrapping/index/quepasasalta"><i class="fa fa-code-fork"></i> Scrapping Que Pasa Salata </a></li>

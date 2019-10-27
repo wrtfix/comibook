@@ -6,7 +6,7 @@
 	$(document).ready(function(){
                 $('#verComentarios').click(function(){
  			var $aux = $("form:first");
-                        $aux.attr('action',"<?=base_url()?>index.php/comentario/index");
+                        $aux.attr('action',"<?=base_url()?>index.php/cms/comentario/index");
                         $aux.submit();
  		});
                 
@@ -15,9 +15,9 @@
 </script>
 
 <?php if (empty($noticia)) 
-    echo form_open('contenidos/addContenido'); 
+    echo form_open('cms/contenidos/addContenido'); 
 else 
-    echo form_open('contenidos/update'); ?>
+    echo form_open('cms/contenidos/update'); ?>
 <div class="page-header">
     <h1><?php  print_r($noticiaSeleccionada[0]->titulo); ?></h1>
     <p><?php  print_r($noticiaSeleccionada[0]->resumen); ?></p>

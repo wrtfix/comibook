@@ -7,7 +7,7 @@ guardar=[];
             var dateAsString = dateText; //the first parameter of this function
             var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
             var $aux = $("form:first")
-            $aux.attr('action',"<?=base_url()?>index.php/noticias/index/"+dateAsString);
+            $aux.attr('action',"<?=base_url()?>index.php/cms/noticias/index/"+dateAsString);
             $aux.submit();
          } });
 
@@ -51,7 +51,7 @@ $(document).ready(function(){
 	    var idNoticia = $('input:checked:first').attr('id');
             if (idNoticia != undefined){
                 var $aux = $("form:first")
-                $aux.attr('action',"<?=base_url()?>index.php/contenidos/index/"+idNoticia);
+                $aux.attr('action',"<?=base_url()?>index.php/cms/contenidos/index/"+idNoticia);
                 $aux.submit();
             }else{
                 alert("No es posible cargar el contenido de esta noticia sin haberla guardado previamente");
@@ -101,7 +101,7 @@ $(document).ready(function(){
                             $.ajax({
                                        data: {fecha:fecha,titulo:titulo,visitas:visitas,resumen:resumen,likes:likes,Contrareembolso:Contrareembolso,unLikes:unLikes,Pago:Pago,urlImage:urlImage},
                                    type: "POST",
-                                   url: "<?=base_url()?>index.php/noticias/updateNoticia/"+cambios[i],
+                                   url: "<?=base_url()?>index.php/cms/noticias/updateNoticia/"+cambios[i],
                                    success: function(){
                                        alert('Los cambios se guardaron con exito!');
                                        cambios = [];
@@ -130,7 +130,7 @@ $(document).ready(function(){
                                 var id = $("#identificador").val();
                                     $.ajax({
                                            type: "POST",
-                                           url: "<?=base_url()?>index.php/noticias/delNoticia/"+elem
+                                           url: "<?=base_url()?>index.php/cms/noticias/delNoticia/"+elem
                                     });
                             });
                             $("input:checkbox:checked").parent().parent().remove();
@@ -150,7 +150,7 @@ $(document).ready(function(){
 	<?php echo validation_errors(); ?>
 </div>
 <?php }?>
-<?php echo form_open('noticias/addNoticia'); ?>
+<?php echo form_open('cms/noticias/addNoticia'); ?>
 <div class="page-header">
     <h3><div id="titulo"></div></h3>
 </div>

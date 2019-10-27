@@ -16,7 +16,7 @@ class Imagen extends CI_Controller
 		if($this->session->userdata('logged_in'))
 		{
                         $data['imagenes'] = $this->imagenes->getImagenes();
-			$this->layout->view('pages/imagen', $data);
+			$this->layout->view('pages/cms/imagen', $data);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);
@@ -36,7 +36,7 @@ class Imagen extends CI_Controller
                              echo 'errors occured';
                         }
                         
-			$this->layout->view('pages/imagen', $data);
+			$this->layout->view('pages/cms/imagen', $data);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);
@@ -55,14 +55,14 @@ class Imagen extends CI_Controller
             if ( ! $this->upload->do_upload('userfile'))
             {
                     $error = array('error' => $this->upload->display_errors());
-                    $this->layout->view('pages/imagen', $error);
+                    $this->layout->view('pages/cms/imagen', $error);
             }
             else
             {       $results=$this->upload->data();
                     $data['results'] = $results;
                     $this->imagenes->addImagen($results['file_name']);
                     $data['imagenes'] = $this->imagenes->getImagenes();
-                    $this->layout->view('pages/imagen', $data);
+                    $this->layout->view('pages/cms/imagen', $data);
             }
     }
 

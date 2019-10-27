@@ -17,7 +17,7 @@ class Backup extends CI_Controller
 			$data['page'] = 'backup';
                         $data['databaseLogs'] = $this->backups->getDatabaseLogs();
                         $this->load->library('form_validation');		
-			$this->layout->view('pages/backup', $data);
+			$this->layout->view('pages/backoffice/backup', $data);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);
@@ -32,7 +32,7 @@ class Backup extends CI_Controller
 			$data['page'] = 'backup';
                         $this->load->library('form_validation');
 			$data['agregados'] =  $this->backups->generarBackUp();
-			$this->layout->view('pages/backup', $data);
+			$this->layout->view('pages/backoffice/backup', $data);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);
@@ -42,12 +42,12 @@ class Backup extends CI_Controller
         
         public function ejecutar($nombre){
 	    $this->backups->ejecutarSQL($nombre);
-            $this->layout->view('pages/backup', $data);
+            $this->layout->view('pages/backoffice/backup', $data);
         }
         
         public function restaurar(){
 	    $this->backups->restoreDataBase();
-            $this->layout->view('pages/backup', $data);
+            $this->layout->view('pages/backoffice/backup', $data);
         }
         
         public function eliminarDatabaseLog($nombre)
@@ -63,7 +63,7 @@ class Backup extends CI_Controller
                              echo 'errors occured';
                         }
                         
-			$this->layout->view('pages/backup', $data);
+			$this->layout->view('pages/backoffice/backup', $data);
 		}else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);

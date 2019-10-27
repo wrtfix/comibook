@@ -9,7 +9,7 @@ $(document).ready(function(){
 		    var elem = $(this).attr('id');
 			$.ajax({
 			       type: "POST",
-			       url: "<?=base_url()?>index.php/imagen/eliminarImagen/"+elem
+			       url: "<?=base_url()?>index.php/cms/imagen/eliminarImagen/"+elem
 			});
 		});
  		$(":checked").parent().parent().remove();
@@ -46,7 +46,7 @@ $(document).ready(function(){
 
 
 
-<?php echo form_open_multipart('imagen/do_upload');?>
+<?php echo form_open_multipart('cms/imagen/do_upload');?>
 
 <input type="file" name="userfile" size="20" />
 

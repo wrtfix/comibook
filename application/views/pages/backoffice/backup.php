@@ -6,14 +6,14 @@
                 var elem = $(this).attr('id');
                 $.ajax({
                     type: "POST",
-                    url: "<?= base_url() ?>index.php/backup/ejecutar/" + elem
+                    url: "<?= base_url() ?>index.php/backoffice/backup/ejecutar/" + elem
                 });
             });
         });
 
         $('#generar').click(function () {
             var aux = $("form:first")
-            aux.attr('action', "<?= base_url() ?>index.php/backup/generar");
+            aux.attr('action', "<?= base_url() ?>index.php/backoffice/backup/generar");
             aux.submit();
         });
 
@@ -22,7 +22,7 @@
                 var elem = $(this).attr('id');
                 $.ajax({
                     type: "POST",
-                    url: "<?= base_url() ?>index.php/backup/eliminarDatabaseLog/" + elem
+                    url: "<?= base_url() ?>index.php/backoffice/backup/eliminarDatabaseLog/" + elem
                 });
             });
             $(":checked").parent().parent().remove();
@@ -43,7 +43,7 @@
 </div>
 
 
-<?php echo form_open_multipart('backup/do_upload'); ?>
+<?php echo form_open_multipart('backoffice/backup/do_upload'); ?>
 <input type="file" name="userfile" size="20" />
 <br /><br />
 <div class="btn-group">
