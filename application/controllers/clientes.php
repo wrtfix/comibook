@@ -11,6 +11,23 @@ class Clientes extends CI_Controller {
 
     public function index($nombre = null, $cuil = null, $numero = null) {
         if ($this->session->userdata('logged_in')) {
+            //Inicio de mapa
+            $this->load->library('leaflet');
+            $config = array(
+                'center' => '-37.29643, -59.15102', // Center of the map
+                'zoom' => 16, // Map zoom
+            );
+            $this->leaflet->initialize($config);
+
+            $marker = array(
+                'latlng' => '-37.29643, -59.15102', // Marker Location
+                'popupContent' => 'Onemorecode software factory!!', // Popup Content
+            );
+            $this->leaflet->add_marker($marker);
+            $data['map'] = $this->leaflet->create_map();
+
+            //Fin de mapa
+
             $this->load->library('form_validation');
             $data['page'] = 'clientes';
             if ($nombre == null && $cuil == null && $numero == null) {
@@ -77,13 +94,13 @@ class Clientes extends CI_Controller {
             $this->load->view('pages/construccion', $data);
         }
     }
-    
-    public function getClientes(){
-         if ($this->session->userdata('logged_in')) {
-             $respuesta =   json_encode($this->cliente->getClientes());
-             print_r($respuesta);
-             return $respuesta;
-         } else {
+
+    public function getClientes() {
+        if ($this->session->userdata('logged_in')) {
+            $respuesta = json_encode($this->cliente->getClientes());
+            print_r($respuesta);
+            return $respuesta;
+        } else {
             $data['page'] = 'construccion';
             $this->load->view('pages/construccion', $data);
         }

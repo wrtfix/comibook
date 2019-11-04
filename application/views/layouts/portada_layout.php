@@ -58,7 +58,8 @@
         <script src="<?= base_url() ?>estilo/login/js/bootstrap.min.js"></script>
         <script src="<?= base_url() ?>estilo/login/js/owl.carousel.min.js"></script>
         <script src="<?= base_url() ?>estilo/login/js/jquery.marquee.min.js"></script>
-       
+        <link rel="stylesheet" href="<?=base_url()?>estilo/mapa/leaflet.css" />	
+        <script src="<?=base_url()?>estilo/mapa/leaflet.js"></script>       
         <!-- Anuncios de google -->
         <?php print_r($googleAdsense[0]->valor); ?>
         
@@ -210,7 +211,9 @@
         </div>
          <br>
         <!-- /AD SECTION -->
-
+        
+        <?php echo $map['html']; ?>
+        <?php echo $map['js']; ?>
         <!-- FOOTER -->
         <footer id="footer">
             <!-- Bottom Footer -->

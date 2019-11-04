@@ -33,6 +33,8 @@
         <script src="<?= base_url() ?>estilo/admin/js/jquery-1.10.2.js"></script>
         <script src="<?= base_url() ?>estilo/admin/js/jquery-ui-1.10.4.custom.js"></script>
         <script src="<?= base_url() ?>estilo/admin/js/jquery.blockUI.js"></script>
+        <link rel="stylesheet" href="<?=base_url()?>estilo/mapa/leaflet.css" />	
+        <script src="<?=base_url()?>estilo/mapa/leaflet.js"></script>
 
         <!-- Tabla dinamica -->
         <script data-jsfiddle="common" src="<?= base_url() ?>estilo/admin/js/handsontable/jquery.handsontable.full.js"></script>

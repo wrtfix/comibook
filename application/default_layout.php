@@ -32,6 +32,7 @@
         <link href="<?=base_url()?>estilo/admin/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 	<script src="<?=base_url()?>estilo/admin/js/jquery-1.10.2.js"></script>
 	<script src="<?=base_url()?>estilo/admin/js/jquery-ui-1.10.4.custom.js"></script>
+        
 	
 	<!-- Tabla dinamica -->
 	<script data-jsfiddle="common" src="<?=base_url()?>estilo/admin/js/handsontable/jquery.handsontable.full.js"></script>

@@ -65,6 +65,23 @@ class Portada extends CI_Controller {
         $data['ogdescription'] = $description;
         $data['ogimage'] = $imagen;
         $data['fbapp_id'] = $this->configuraciones->getConfiguracion("FACEBOOK_KEY")[0]->valor;
+        
+        //Inicio de mapa
+        $this->load->library('leaflet');
+        $config = array(
+            'center' => '-37.29643, -59.15102', // Center of the map
+            'zoom' => 16, // Map zoom
+        );
+        $this->leaflet->initialize($config);
+
+        $marker = array(
+            'latlng' => '-37.29643, -59.15102', // Marker Location
+            'popupContent' => 'Onemorecode software factory!!', // Popup Content
+        );
+        $this->leaflet->add_marker($marker);
+        $data['map'] = $this->leaflet->create_map();
+        //Fin de mapa
+
 
 
         $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');

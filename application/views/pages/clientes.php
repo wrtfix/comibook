@@ -214,11 +214,16 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+    
+        <?php //echo $map['html']; ?>
+        <?php //echo $map['js']; ?>
         <div class="btn-group">
             <button type='button' id='buscar' class='btn btn-default'>Buscar</button>
             <button type='button' id='agregar' class='btn btn-success'>Agregar</button>
             <button type='button' id="eliminar" class='btn btn-danger'>Eliminar</button>
             <button type='button' id='guardar' class='btn btn-primary'>Guardar</button>
+            
+`
             <!--<button type='button' id='columnas' class='btn btn-warning'>Columnas</button>-->
             <!--<button type='button' id='guardarColumnas' class='btn btn-warning' style="display:none">Guadar Columnas</button>-->
         </div>    
