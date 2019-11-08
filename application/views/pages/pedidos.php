@@ -81,6 +81,7 @@ $(document).ready(function(){
                 }
 		
                 block_screen();
+		
 		var sendDataUpdate = [];
 		for (i = 0; i < cambios.length; i++)
 		{
