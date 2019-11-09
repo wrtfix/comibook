@@ -81,6 +81,8 @@ $(document).ready(function(){
                 }
 		
                 block_screen();
+		
+		var sendDataUpdate = [];
 		for (i = 0; i < cambios.length; i++)
 		{
 			var ClienteOrigen = $('#ClienteOrigen-'+cambios[i]).val();
@@ -94,7 +96,7 @@ $(document).ready(function(){
                         var Numero = cambios[i];
 			sendDataUpdate.push({fecha:fecha,ClienteOrigen:ClienteOrigen,Bultos:Bultos,ClienteDestino:ClienteDestino,valorDeclarado:valorDeclarado,Contrareembolso:Contrareembolso,CostoFlete:CostoFlete,Pago:Pago,Observaciones:Observaciones,Numero:Numero});
 		}
-                sendDataUpdate = [];
+                
                 if (sendDataUpdate.length>0){
                 $.ajax({
                                data: {updateData:sendDataUpdate},
