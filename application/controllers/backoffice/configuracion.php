@@ -55,7 +55,7 @@ class Configuracion extends CI_Controller
 	}
 	
 	
-	public function updateConfiguracion($id){
+	public function updateConfiguracion(){
 		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');

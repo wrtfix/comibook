@@ -211,9 +211,10 @@
         </div>
          <br>
         <!-- /AD SECTION -->
-        
-        <?php echo $map['html']; ?>
-        <?php echo $map['js']; ?>
+        <div class="visible-lg visible-md">
+            <?php echo $map['html']; ?>
+            <?php echo $map['js']; ?>
+        </div>
         <!-- FOOTER -->
         <footer id="footer">
             <!-- Bottom Footer -->

@@ -1,5 +1,6 @@
 <script>
-    cambios = [];
+    var cambios = [];
+    var cambiosMobile = [];
     $(document).ready(function () {
         
         $('#agregar').click(function () {
@@ -25,6 +26,12 @@
                     var valor = $('#valor-' + cambios[i]).val();
                     var descripcion = $('#descripcion-' + cambios[i]).val();
                     sendData.push({id:cambios[i], atributo: atributo, valor: valor, descripcion: descripcion});
+                }
+                for (i = 0; i < cambiosMobile.length; i++) {
+                    var atributo = $('#atributoMobile-' + cambiosMobile[i]).val();
+                    var valor = $('#valorMobile-' + cambiosMobile[i]).val();
+                    var descripcion = $('#descripcionMobile-' + cambiosMobile[i]).val();
+                    sendData.push({id:cambiosMobile[i], atributo: atributo, valor: valor, descripcion: descripcion});
                 }
                 $.ajax({
                     data: {updateData: sendData},
@@ -93,6 +100,12 @@
             }
         });
         
+        $('.formularioMobile').keydown(function (event) {
+            if (jQuery.inArray(($(this).attr('id').split('-')[1]), cambiosMobile) == -1) {
+                cambiosMobile.push(($(this).attr('id').split('-')[1]));
+            }
+        });
+        
         <?php if(!empty($result)) { ?> 
             showInfo('Los nuevos atributos se guardaron con exito!', 'info');
         <?php } ?>
@@ -153,17 +166,17 @@
                     </div>
                     <div class="form-group">
                         <label>Clave</label>
-                        <input class="form-control" id="atributo-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->atributo); ?>'/>
+                        <input class="form-control formularioMobile" id="atributoMobile-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->atributo); ?>'/>
                         <p class="help-block"></p>
                     </div>
                     <div class="form-group">
                         <label>Valor</label>
-                        <textarea class="form-control formulario tab" id="valor-<?php print_r($item->id); ?>" style='width: 100%; border:none;'><?php print_r($item->valor); ?></textarea>
+                        <textarea class="form-control formularioMobile tab" id="valorMobile-<?php print_r($item->id); ?>" style='width: 100%; border:none;'><?php print_r($item->valor); ?></textarea>
                         <p class="help-block"></p>
                     </div>
                     <div class="form-group">
                         <label>Descripcion</label>
-                        <input class="form-control formulario tab" id="descripcion-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->descripcion); ?>'/>
+                        <input class="form-control formularioMobile tab" id="descripcionMobile-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->descripcion); ?>'/>
                         <p class="help-block"></p>
                     </div>
                 </div>

@@ -55,7 +55,7 @@
                     <div class="article-body">
                         <h1 class="article-title"><?php print_r($noticia[0]->titulo); ?></h1>
                         <ul class="article-meta">
-                            <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticia[0]->Fecha),'d-m-Y')); ?></li>
+                            <li><i class="fa fa-clock-o"></i> <?php print_r(date_format(date_create($noticia[0]->fecha),'d-m-Y')); ?></li>
                             <li> ¿Que te parecio la noticia?</li>
                             <li><i class="fa fa-fire"></i> <?php print_r($noticia[0]->visitas); ?> </li>
                             

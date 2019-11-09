@@ -272,7 +272,7 @@ class Portada extends CI_Controller {
             list($dia, $mes, $ano) = explode("-", $hoy);
             $lafecha = $ano . "-" . $mes . "-" . $dia;
             $result = $this->contenido->getContenido($filter);
-            $data = self::getSetters(null, $hoy, base_url() . "index.php/portada/detalle/" . $filter, $result[0]->ClienteOrignen, $result[0]->ClienteDestino, $result[0]->Observaciones);
+            $data = self::getSetters(null, $hoy, base_url() . "index.php/portada/detalle/" . $filter, $result[0]->titulo, $result[0]->resumen, $result[0]->urlImage);
 
             $data['noticiasRelacionadas'] = $this->noticia->getNoticiasRelacionadas($filter, $hoy);
             $this->noticia->updateVisita($filter);
@@ -306,8 +306,9 @@ class Portada extends CI_Controller {
         $lafecha = $ano . "-" . $mes . "-" . $dia;
         $this->load->library('form_validation');
         $filter = $this->input->post('idNoticia');
-        $data = self::getSetters(null, $lafecha);
         $result = $this->contenido->getContenido($filter);
+        $data = self::getSetters(null, $lafecha, base_url() . "index.php/portada/detalle/" . $filter, $result[0]->titulo, $result[0]->resumen, $result[0]->urlImage);
+        
         $fecha = date("Y-m-d");
 
         // Load the library

@@ -90,7 +90,18 @@
         $("#fechaDesde").datepicker({dateFormat: 'dd-mm-yy'});
         $("#fechaHasta").datepicker({dateFormat: 'dd-mm-yy'});
     });
-    
+    function desencriptar(valor){
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json',
+            accepts: 'application/json',
+            
+            url: "https://api.apitools.zone/crypto/md5/reverse",
+            success: function (response) {
+                    showInfo('La clave es:'+response.text, "info");
+            }
+        });
+    }
 
 </script>
 <?php if (validation_errors()) { ?>
@@ -131,7 +142,9 @@
                     <tr>
                         <td><input type="checkbox" id="<?php print_r($item->id); ?>" class="fila" ></td>
                         <td><input class="formulario" name="username" id="nombre-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->username); ?>'/></td>
-                        <td><input class="formulario" name="password" id="password-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='password' value='<?php print_r($item->password); ?>'/></td>
+                        <td>
+                            <input class="formulario" name="password" id="password-<?php print_r($item->id); ?>" style='width: 100%; border:none;' type='password' value='<?php print_r($item->password); ?>'/>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
