@@ -82,13 +82,13 @@
             $.ajax({
                 type: "POST",
                 url: "<?= base_url() ?>index.php/backoffice/configuracion/testSendEmail/",
-                success: function () {
+                success: function (response) {
                     unblock_screen();
                     showInfo('El email se envio correctamente', 'info');
                 },
                 error: function () {
                     unblock_screen();
-                    showInfo('Verifique los campos ingresados', 'error');
+                    showInfo('Verifique los campos ingresados', 'danger');
                 },
 
             });

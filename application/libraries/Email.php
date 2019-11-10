@@ -11,7 +11,6 @@ class Email
 
     public function send($protocolo,$puerto, $from='<wrtfix@gmail.com>', $to='<wrtfix@gmail.com>', $subject='No subject', $body='No body', $username, $password)
     {
-
         $headers = array('MIME-Version' => '1.0rn',
         'Content-Type' => "text/html; charset=ISO-8859-1rn",
             'From' => $from,
@@ -30,9 +29,10 @@ class Email
         $mail = $smtp->send($to, $headers, $body);
 
         if (PEAR::isError($mail)) {
-            return $mail->getMessage();
+            print_r($mail->getMessage());
+            return false;
         } else {
-            return "Message successfully sent!";
+            return true;
         }
     }
     

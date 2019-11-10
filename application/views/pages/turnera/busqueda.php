@@ -1,3 +1,17 @@
+<script>
+    function obtenerDetalle(id){
+        $.ajax({
+            data: {idProducto: id},
+            type: "POST",
+            url: "<?= base_url() ?>index.php/ecommerce/producto",
+            success: function (response) {
+                $("#modalCompras").html(response)
+            }
+        });
+    }
+</script>
+
+
 <div class="col-lg-9">
 <div class="shop-topbar-wrapper">
     <div class="grid-list-options">
@@ -8,6 +22,7 @@
     </div>
 
 </div>
+    
 <div class="grid-list-product-wrapper tab-content">
     <div id="new-product" class="product-list product-view tab-pane active">
         <div class="row">
@@ -86,7 +101,7 @@
                         <?php } else { ?>
                         <p></p>
                         <div class="shop-list-cart">
-                            <a class="action-reload" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
+                            <a class="action-reload" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#" onclick="obtenerDetalle(<?php print_r($item->idProducto); ?>)">
                                 <i class="ti-shopping-cart"></i> Comprar
                             </a>
                         </div>

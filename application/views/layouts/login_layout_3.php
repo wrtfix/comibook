@@ -37,8 +37,9 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-4">
                                 <div class="logo-small-device">
-                                    <h2> <a href="<?= base_url() ?>" class="logo"> <?= $this->layout->placeholder("title"); ?> </a> </h2>   
+                                    <a href="<?= base_url() ?>"><?php if(!empty($imageLogo)){ ?><img alt="<?= $this->layout->placeholder("title"); ?>" src="<?php print_r($imageLogo); ?>"><?php } ?> <h1><?php print_r($this->layout->placeholder("title")); ?></h1></a>
                                 </div>
+                                
                             </div>
                             <div class="col-lg-8 col-md-8 col-8">
                                 <div class="header-contact-menu-wrapper pl-45">
@@ -170,16 +171,15 @@
                     </div>
                 </div>
             </header>
-            <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(<?=base_url()?>estilo/ecommerce/assets/img/banner/banner-4.jpg)">
+            <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(<?php print_r($headerImage)?>)">
                 <div class="container-fluid">
                     <div class="breadcrumb-content text-center">
-                        <h2>&nbsp;</h2>
-<!--                        <ul>
+                        <ul>
                             <li>
                                 <a href="#">home</a>
                             </li>
                             <li>Shop page</li>
-                        </ul>-->
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -188,6 +188,7 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="product-sidebar-area pr-60">
+                                <?php if($showSearchs=='true') { ?>
                                 <div class="sidebar-widget pb-55">
                                     <h3 class="sidebar-widget">Busqueda</h3>
                                     <div class="sidebar-search">
@@ -197,6 +198,7 @@
                                         </form>
                                     </div>
                                 </div>
+                                <?php } ?>
                                 <div class="sidebar-widget pb-50">
                                     <h3 class="sidebar-widget">Categorias</h3>
                                     <div class="widget-categories">
@@ -369,7 +371,7 @@
                 </button>
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-body" id="reservarTurno">
+                        <div class="modal-body" id="modalCompras">
                             
                         </div>
                     </div>

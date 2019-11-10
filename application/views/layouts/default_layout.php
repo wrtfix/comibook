@@ -116,6 +116,7 @@
 
 
             function showInfo(msg, type) {
+                $(".close").trigger( "click" );
                 $("#resultadoOperacion").append('<div class="alert alert-dismissable alert-' + type + '"> <button type="button" class="close" data-dismiss="alert">×</button>' + msg + '</div>');
             }
 

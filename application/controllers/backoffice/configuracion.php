@@ -90,7 +90,9 @@ class Configuracion extends CI_Controller
                     $title = $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor;
                     $protocol = $this->configuraciones->getConfiguracion("EMAIL_PROTOCOL")[0]->valor;
                     $puerto = $this->configuraciones->getConfiguracion("EMAIL_PORT")[0]->valor;
-                    $data["resultado"] = $this->email->send($protocol, $puerto, $emailFrom,$emailTo,$title,$body,$emailFrom,$password);
+                    if ($this->email->send($protocol, $puerto, $emailFrom,$emailTo,$title,$body,$emailFrom,$password)){
+                        $this->output->set_status_header('400'); //Triggers the jQuery error callback
+                    }
                     }else{
 			$data['page'] = 'construccion';
 			$this->load->view('pages/construccion', $data);
