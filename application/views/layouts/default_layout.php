@@ -252,6 +252,7 @@
                                     <li><a href="/saltaChequeado/index.php/backoffice/ambiente/index"><i class="fa fa-globe"></i> Ambiente </a></li>
                                     <li><a href="/saltaChequeado/index.php/backoffice/usuario/index"><i class="fa fa-user"></i> Usuarios </a></li>
                                     <li><a href="/saltaChequeado/index.php/backoffice/backup/index"><i class="fa fa-desktop"></i> Actualizaciones </a></li>
+                                    <li><a href="/saltaChequeado/index.php/backoffice/monitoreo/index"><i class="fa fa-book"></i> Monitoreo </a></li>
 
                                 </ul>
                             </li>

@@ -5,6 +5,7 @@ class Ambientes extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->database();
+        $this->load->model('auditoria','',TRUE);
     }
 
     function addAmbiente() {
@@ -32,6 +33,8 @@ class Ambientes extends CI_Model {
     function getAmbiente() {
         $this->db->from('ambiente');
         $query = $this->db->get();
+        $outQuery = $this->db->last_query();
+        $this->auditoria->addActivity($outQuery,$this->session->userdata('logged_in')['id'], 'Ambiente');
         return $query->result();
     }
 
