@@ -16,6 +16,10 @@ class Auditoria extends CI_Model {
         if (strpos($query,'UPDATE') !== false){
             $type = 'Actualizo';
         }
+        if (strpos($query,'INSERT') !== false){
+            $type = 'Agrego';
+        }
+
                 
         
         $data = array(

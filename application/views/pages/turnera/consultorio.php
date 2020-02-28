@@ -41,8 +41,7 @@
 
         $('#eliminar').click(function () {
             $('input:checked').each(function () {
-                var elem = $(this).attr('id');
-                var id = $("#identificador").val();
+                var elem = $(this).attr('id');                
                 $.ajax({
                     type: "POST",
                     url: "<?= base_url() ?>index.php/turnera/consultorio/delConsultorio/" + elem
@@ -72,6 +71,21 @@
                 }
             }
 	});
+        
+        $("#whatsapp").click(function(){
+            $('input:checked').each(function () {
+                var elem = $(this).attr('id');
+                var tel = $("#telefono-"+elem).val();
+                $.ajax({
+                    type: "POST",
+                    url: "https://api.whatsapp.com/send?phone=" + tel,
+                    success: function (reponse) {
+                        consoel.log(response);
+                    }
+                });
+            });
+            console.log('https://api.whatsapp.com/send?phone=+542494609270');
+        });
         
         $('#agenda').click(function(){
 	    var idConsultorio = $('input:checked:first').attr('id');
@@ -120,6 +134,7 @@
         <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
         <button type="button" id="permisos" class="btn btn-warning">Configuracion</button>
         <button type="button" id="agenda" class="btn btn-default">Agenda</button>
+        <button type="button" id="whatsapp" class="btn btn-default">Validar whatsapp</button>
     </div>
     
 
@@ -142,11 +157,11 @@
                 <?php $cont = 0;
                 foreach ($agregados as $item): $cont = $cont + 1; ?>                  
                     <tr>
-                        <td><input type="checkbox" id="<?php print_r($item->idConsultorio); ?>" class="fila" ></td>
+                        <td><input type="checkbox" id="consultorio-<?php print_r($item->idConsultorio); ?>" class="fila" ></td>
                         <td><input class="formulario" name="nombre" id="nombre-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre); ?>'/></td>
                         <td><input class="formulario" name="especialidad" id="especialidad-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->especialidad); ?>'/></td>
                         <td><input class="formulario" name="direccion" id="direccion-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->direccion); ?>'/></td>
-                        <td><input class="formulario" name="telefono" id="telefono-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->telefono); ?>'/></td>
+                        <td><input class="formulario" name="telefono" id="telefono-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->telefono); ?>'/> </td>
                         <td><input class="formulario" name="horario" id="horario-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->horario); ?>'/></td>
                         <td><input class="formulario" name="imagen" id="imagen-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->imagen); ?>'/></td>
                     </tr>
