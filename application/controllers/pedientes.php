@@ -17,22 +17,33 @@ class Pedientes extends CI_Controller {
             $nombre = $this->input->post('nombreBusqueda');
             $fechaDesde = $this->input->post('desde');
             $fechaHasta = $this->input->post('hasta');
-
+            $pendiente = $this->input->post('pendiente');
             if (empty($nombre) && empty($fechaDesde) && empty($fechaHasta)) {
-                $data['agregados'] = $this->pedido->getPedidoPedientes();
                 $data['nombre'] = "null";
+                
+                //Fecha por default
+                $hoy = date("Y-m-d");
+                list($dia, $mes, $ano) = explode("-", $hoy);
+                $lafecha = $ano . "-" . $mes . "-" . $dia;
+                
                 $data['fechaDesde'] = "null";
                 $data['fechaHasta'] = "null";
+                
+                $data['agregados'] = $this->pedido->getPedidosPedientes("", $lafecha, $lafecha, $pendiente);
+                $data['totalImporte'] = $this->pedido->getPedidosPedientesImporte("", $lafecha, $lafecha,  $pendiente);
+                
             } else {
                 $n = str_replace("null", " ", $nombre);
                 $h = str_replace("%20", " ", $n);
                 $desde = str_replace("null", " ", $fechaDesde);
                 $hasta = str_replace("null", " ", $fechaHasta);
-                $data['agregados'] = $this->pedido->getPedidosPedientes($h, $desde, $hasta, "Si");
+                $data['agregados'] = $this->pedido->getPedidosPedientes($h, $desde, $hasta,  $pendiente);
+                $data['totalImporte'] = $this->pedido->getPedidosPedientesImporte($h, $desde, $hasta,  $pendiente);
                 $data['nombre'] = $h;
                 $data['fechaDesde'] = $desde;
                 $data['fechaHasta'] = $hasta;
             }
+            
             $this->layout->view('pages/pedientes', $data);
         } else {
             $data['page'] = 'construccion';
@@ -55,12 +66,12 @@ class Pedientes extends CI_Controller {
             $nombre = $this->input->post('nombreBusqueda');
             $fechaDesde = $this->input->post('desde');
             $fechaHasta = $this->input->post('hasta');
-
+            $pendiente = $this->input->post('pendiente');
             if (empty($nombre) && empty($fechaDesde) && empty($fechaHasta)) {
                 $hoy = date("Y-m-d");
                 list($dia, $mes, $ano) = explode("-", $hoy);
                 $lafecha = $ano . "-" . $mes . "-" . $dia;
-                $pedidos = $this->pedido->getPedidosPedientes(' ', $lafecha, $lafecha, "No");
+                $pedidos = $this->pedido->getPedidosPedientes(' ', $lafecha, $lafecha, $pendiente);
                 $this->TemplatePdf->setTitulos('Pendientes', 'Correspondiente al dia ' . $lafecha);
             } else {
                 $n = str_replace("null", " ", $nombre);
@@ -72,7 +83,7 @@ class Pedientes extends CI_Controller {
                 $hasta = str_replace("null", " ", $fechaHasta);
                 $hasta = str_replace("%20", " ", $hasta);
 
-                $pedidos = $this->pedido->getPedidosPedientes($h, $desde, $hasta, "No");
+                $pedidos = $this->pedido->getPedidosPedientes($h, $desde, $hasta, $pendiente);
                 if (!empty($desde) && !empty($hasta)) {
                     list($dia, $mes, $ano) = explode("-", $desde);
                     $fd = $ano . "-" . $mes . "-" . $dia;

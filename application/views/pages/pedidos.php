@@ -2,8 +2,8 @@
 cambios=[];
 guardar=[];
 remitos=[];
-
-
+var generarRemitos;
+var clientsWithOutInformation = [];
 
 
 $(function() {
@@ -22,7 +22,24 @@ $(document).on({
     ajaxStop: function() { $body.removeClass("loading"); }    
 });
 
- 
+function impresion(){
+    clientsWithOutInformation = [];
+    $('.clientesWihtOutInformation').each(function(elem){
+    var nombre = $(this).val();
+    var id = $(this).attr('id');
+    clientsWithOutInformation.push({nombre:nombre, id:id, domicilio:false});
+    });
+    $.ajax({
+        data: {clientes : clientsWithOutInformation},
+        type: "POST",
+        url: "<?= base_url() ?>index.php/pedidos/clienteWithOutInformation/",
+        success: function (data) {
+            taskNumber = 1;
+            $(".modal-body").html(data);
+        }
+    });
+}
+
 
 $(document).ready(function(){
 	var fecha= '<?php if ($fechaSeleccionada!=null)echo $fechaSeleccionada?>';
@@ -188,17 +205,7 @@ $(document).ready(function(){
             $("#comentario").hide();
         });
         
-        $("#impresion").click(function(){
-            $('input:checked').each(function() {
-		    var elem = $(this).attr('id');
-                    remitos.push(elem);
-                });
-            $("#remitosIds").val(remitos);
-            var $aux = $("form:first");
-            $aux.attr('action',"<?=base_url()?>index.php/pedidos/generarPDF/"+fecha);
-            $aux.submit();
-        });
-        
+
         $("#planilla").click(function(){
             $('input:checked').each(function() {
 		    var elem = $(this).attr('id');
@@ -211,8 +218,27 @@ $(document).ready(function(){
         });
         
         $("#comentario").hide();
+        
+        generarRemitos = function(){
+        $('input:checked').each(function() {
+                var elem = $(this).attr('id');
+                var domicilio = $("#domicilio-ClienteDestino-"+elem).val();
+                var telefono = $("#telefono-ClienteDestino-"+elem).val();
+                remitos.push({id:elem, domicilio:domicilio, telefono:telefono});
+        });
+        $("#remitosIds").val(JSON.stringify(remitos));
+        var $aux = $("form:first");
+        $aux.attr('action',"<?=base_url()?>index.php/pedidos/generarPDF/"+fecha);
+        $aux.submit();
+
+        }
+
+        
        
 });
+
+
+
 
 </script>
 <?php if (validation_errors()){?>
@@ -246,7 +272,7 @@ $(document).ready(function(){
 	<!--  <button type="button" id="agregar" class="btn btn-success">Agregar</button>-->
 	<button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
 	<button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-        <a id="impresion" class="btn btn-success">Generar remitos</a>
+        <a id="impresion" class="btn btn-success"  data-target="#confirmationModal" data-toggle="modal" onclick="impresion()">Generar remitos</a>
         <button type="button" id="addComment" class="btn btn-info">Describir remitos</button>
         <button type="button" id="planilla" class="btn btn-warning">Generar planilla</button>
         
@@ -275,7 +301,7 @@ $(document).ready(function(){
 					<td><input type="checkbox" class="selec" id="<?php print_r($item->Numero);?>" value=""></td>
 					<td><input class="formulario tab" id="ClienteOrigen-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteOrignen);?>'/></td>
 					<td width="50px"><input class="formulario" id="Bultos-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Bultos);?>'/></td>
-					<td><input class="formulario tab" id="ClienteDestino-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteDestino);?>'/></td>
+					<td><input class="formulario tab clientesWihtOutInformation" id="ClienteDestino-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ClienteDestino);?>'/></td>
 					<td width="50px"><input class="formulario" id="valorDeclarado-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->valorDeclarado);?>'/></td>
 					<td>
 					<!-- <input class="formulario" id="Contrareembolso-<?php print_r($item->Numero);?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->ContraReembolso);?>'/>-->
@@ -299,7 +325,7 @@ $(document).ready(function(){
 					<td><input type="checkbox" class="selec" value=""></td>
 					<td><input class="guardar tab" id="saveClienteOrigen-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
 					<td width="50px" ><input class="guardar" id="saveBultos-<?php echo $i;?>" style='width: 50px; border:none;' type='text' /></td>
-					<td><input class="guardar tab" id="saveClienteDestino-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
+					<td><input class="guardar tab clientesDestino" id="saveClienteDestino-<?php echo $i;?>" style='width: 100%; border:none;' type='text' /></td>
 					<td width="50px" ><input class="guardar" id="savevalorDeclarado-<?php echo $i;?>" style='width: 50px; border:none;' type='text' /></td>
 					<td>
 					<!-- <input class="guardar" id="saveContrareembolso-<?php echo $i;?>" style='width: 100%; border:none;' type='text' />-->

@@ -73,18 +73,48 @@ class Pedido extends CI_Model {
 		
 		return $query->result();
 	}
+        
+        function getPedidosPedientesImporte($nombre,$fechaDesde,$fechaHasta,$pediente){
+		$this -> db -> from('pedidos');
+		if (!empty($nombre) && empty($fechaDesde)  && empty($fechaHasta) && $pediente != 'No' ){
+			return $this->db->query("select sum(CostoFlete) total from pedidos where Pago like '0' and ClienteOrignen like '%".$nombre."%' OR ClienteDestino like '%".$nombre."%'")->result();
+		}
+		
+		$pen="";
+		if ($pediente != 'No'){
+			$pen = "Pago like '0' and" ;
+			$this -> db -> where("Pago",0);
+		}
+		if (!empty($fechaDesde) && !empty($fechaHasta)){
+			list($dia, $mes, $ano) = explode("-", $fechaDesde);
+			list($dia2, $mes2, $ano2) = explode("-", $fechaHasta);
+			if (!empty($nombre)){
+				return $this->db->query("select sum(CostoFlete) total from pedidos where ".$pen." fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "' AND ( ClienteOrignen like '%".$nombre."%' OR ClienteDestino like '%".$nombre."%')")->result();
+			}else{ 	
+				return $this->db->query("select sum(CostoFlete) total from pedidos where ".$pen." fecha BETWEEN '".$ano."-".$mes."-".$dia."' AND '".$ano2."-".$mes2."-".$dia2. "'")->result();
+			}
+		}
+		
+		$this->db->order_by("numero", "desc"); 
+		$query = $this -> db -> get();
+		
+		return $query->result();
+	}
 	
-	function getPedidos($fecha,$ids=null){
+	function getPedidos($fecha,$remitoIds=null){
 		$this -> db -> from('pedidos');
 		list($dia, $mes, $ano) = explode("-", $fecha);
                 $consulta = "select * from pedidos where fecha = '".$ano."-".$mes."-".$dia. "'";
-                if ($ids !=null){
-                    $listaIds = str_replace(",","' OR Numero='",$ids);
-                    $consulta = $consulta ." AND Numero='".$listaIds."'" ;
+                if ($remitoIds !=null){
+                   $ids= '';
+                   foreach ($remitoIds as $item):
+                        $consulta = $consulta ." OR Numero='".$item->id."'" ;
+                   endforeach;
                 }
                 $consulta = $consulta." order by numero";
 		return $this->db->query($consulta)->result();
 	}
+
 	
 	
 	function updatePedidos(){

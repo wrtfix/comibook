@@ -33,6 +33,25 @@ class Pedidos extends CI_Controller {
             $this->load->view('pages/construccion', $data);
         }
     }
+    
+            
+    function clienteWithOutInformation(){
+        $clientes = $this->input->post('clientes');
+        $response = [];
+        foreach($clientes as $item): 
+            $nombre = $item['nombre'];
+            $result = $this->cliente->getCliente($nombre, ' ', ' ', ' ');
+            if (empty($result)){
+                array_push($response, $item);
+            }
+            
+        endforeach;
+        $data['clientes'] = $response;
+        $this->layout->setLayout("layouts/empty");
+        $this->layout->view('pages/nuevoDestino', $data);
+        
+        
+    }
 
     public function addPedido() {
         if ($this->session->userdata('logged_in')) {
@@ -84,9 +103,10 @@ class Pedidos extends CI_Controller {
                 $data['fechaSeleccionada'] = null;
                 $lafecha = $ano . "-" . $mes . "-" . $dia;
             }
-            $remitosIds = $this->input->post('remitosIds');
+            $remitosIdsString =  $this->input->post('remitosIds');
+            $remitosIds = json_decode($remitosIdsString);
             $pedidos = $this->pedido->getPedidos($lafecha, $remitosIds);
-
+            
             $this->load->library('TemplateRemitoPdf');
             $this->TemplateRemitoPdf = new TemplateRemitoPdf();
             $this->TemplateRemitoPdf->AddPage();
@@ -143,10 +163,18 @@ class Pedidos extends CI_Controller {
                 } else {
                     $this->TemplateRemitoPdf->Cell(100, 10, "Domicilio ", 0, 0, 'L');
                 }
+                
+                
                 if (count($clienteDestino) > 0) {
                     $this->TemplateRemitoPdf->Cell(100, 10, "Domicilio " . $clienteDestino[0]->Domicilio, 0, 0, 'L');
                 } else {
-                    $this->TemplateRemitoPdf->Cell(100, 10, "Domicilio ", 0, 0, 'L');
+                    $extraInforCliente = $this->extraInfo($remitosIds,$item->Numero);
+                    if ($extraInforCliente != null){
+                        $this->TemplateRemitoPdf->Cell(100, 10, "Domicilio ".strtoupper($extraInforCliente->domicilio). " Tel ".$extraInforCliente->telefono , 0, 0, 'L');
+                    }else{
+                        $this->TemplateRemitoPdf->Cell(100, 10, "Domicilio ", 0, 0, 'L');
+                    }
+                    
                 }
                 $this->TemplateRemitoPdf->Ln(5);
                 $this->TemplateRemitoPdf->SetFont('Arial', 'B', 8);
@@ -254,6 +282,16 @@ class Pedidos extends CI_Controller {
         }
     }
     
+    private function extraInfo($jsonObject, $id){
+        $result = null;
+        foreach ($jsonObject as $item):
+            if ($id == $item->id){
+                $result = $item;
+            }
+        endforeach;
+        return $result;
+    }
+    
     
     public function generarPlanilla($fecha = null) {
         if ($this->session->userdata('logged_in')) {
@@ -275,9 +313,9 @@ class Pedidos extends CI_Controller {
             $this->TemplatePdf = new TemplatePdf();
             $this->TemplatePdf->setTitulos('Fecha: '.$fecha, ''); 
             
-            $columnas = array('Origen', 'Bultos', 'Destino', 'Valor declarado', 'Costo de Flete', 'Contrareembolso', 'Pago?');
-            $alineacion = array('C', 'C', 'C', 'C', 'C', 'C', 'C');
-            $ancho = array(60, 15, 75, 30, 45, 30, 15);
+            $columnas = array('Origen', 'Bultos', 'Destino', 'Valor declarado', 'Contrareembolso', 'Pago Contra.?', 'Costo de Flete', 'Pago Flete?');
+            $alineacion = array('C', 'C', 'C', 'C', 'C', 'C', 'C', 'C');
+            $ancho = array(50, 15, 50, 30, 30, 30, 45, 25);
             $this->TemplatePdf->setTabla($columnas, $ancho, $alineacion);
 
             $this->TemplatePdf->AddPage();
@@ -286,24 +324,34 @@ class Pedidos extends CI_Controller {
 
             $x = 1;
             foreach ($pedidos as $item) {
-                $this->TemplatePdf->Cell(60, 5, $item->ClienteOrignen, 'LRB', 0, 'C', 0);
+                $this->TemplatePdf->Cell(50, 5, $item->ClienteOrignen, 'LRB', 0, 'C', 0);
                 $this->TemplatePdf->Cell(15, 5, $item->Bultos, 'LRB', 0, 'C', 0);
-                $this->TemplatePdf->Cell(75, 5, $item->ClienteDestino, 'LRB', 0, 'C', 0);
+                $this->TemplatePdf->Cell(50, 5, $item->ClienteDestino, 'LRB', 0, 'C', 0);
                 $this->TemplatePdf->Cell(30, 5, $item->valorDeclarado, 'LRB', 0, 'C', 0);
-                if (strpos($item->Observaciones, 'F/O') !== false ){
-                    $this->TemplatePdf->Cell(45, 5, "", 'LRB', 0, 'C', 0);
-                }else{
-                        $this->TemplatePdf->Cell(45, 5, $item->CostoFlete, 'LRB', 0, 'C', 0);
-                }
                 
                 if ($item->ContraReembolso == 0)
                     $this->TemplatePdf->Cell(30, 5, 'No', 'LRB', 0, 'C', 0);
                 else
                     $this->TemplatePdf->Cell(30, 5, 'Si', 'LRB', 0, 'C', 0);
+                
+                $this->TemplatePdf->Cell(30, 5, "", 'LRB', 0, 'C', 0);
+                
+                if (strpos($item->Observaciones, 'F/D') !== false ){
+                    if ($item->ContraReembolso == 0){
+                        $this->TemplatePdf->Cell(45, 5, "", 'LRB', 0, 'C', 0);    
+                    }else{
+                        $this->TemplatePdf->Cell(45, 5, $item->CostoFlete, 'LRB', 0, 'C', 0);    
+                    }
+                    
+                }else{
+                        $this->TemplatePdf->Cell(45, 5, "", 'LRB', 0, 'C', 0);
+                }
+                
+                
                 if ($item->Pago == 0)
-                    $this->TemplatePdf->Cell(15, 5, '', 'LRB', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(25, 5, '', 'LRB', 0, 'C', 0);
                 else
-                    $this->TemplatePdf->Cell(15, 5, '', 'LRB', 0, 'C', 0);
+                    $this->TemplatePdf->Cell(25, 5, '', 'LRB', 0, 'C', 0);
                 $this->TemplatePdf->Ln(5);
             }
             

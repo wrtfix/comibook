@@ -66,7 +66,7 @@
             </div>
         </div>-->
         <div class="select-option-part">
-            <label>Cantidad</label>
+            <label>Cantidad: </label>
             <input  type="number" value="0" min="0" id="qtybutton">
         </div>
         <a class="btn-style" href="#">Agregar</a>
