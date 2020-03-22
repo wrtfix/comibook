@@ -169,7 +169,8 @@ class Portada extends CI_Controller {
                 $data['loginGoogle'] = $this->configuraciones->getConfiguracion("GOOGLE_LOGIN");
                 $data['loginFacebook'] = $this->configuraciones->getConfiguracion("FACEBOOK_LOGIN");
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
-                $this->layout->view('home_views', $data);
+//                $this->layout->view('home_views', $data);
+                redirect('turnera/busqueda/index/productos', 'refresh');
              }else{
                 $this->layout->setLayout("layouts/login_layout_2");
                 $this->load->library('FacebookSDK');

@@ -49,19 +49,12 @@
                                 </div>
                                 <?php if($type=="productos"){ ?>
                                 <div class="header-cart cart-small-device">
-                                    <button class="icon-cart">
+                                    <button class="icon-cart" onclick="obtenerListado()">
                                         <i class="ti-shopping-cart"></i>
                                         <span class="count-style">0</span>
                                         <span class="count-price-add">$0.001</span>
                                     </button>
                                     <div class="shopping-cart-content">
-                                        <div class="listItems"></div>
-                                        <div class="shopping-cart-total">
-                                            <h4>total: <span class="count-price-add">$0.001</span></h4>
-                                        </div>
-                                        <div class="shopping-cart-btn">
-                                            <a class="btn-style cr-btn" href="#">Comprar</a>
-                                        </div>
                                     </div>
                                 </div>
                                 <?php }?>
@@ -72,26 +65,19 @@
                     <div class="header-cart-wrapper">
                         <?php if($type=="productos"){ ?>
                         <div class="header-cart">
-                            <button class="icon-cart">
+                            <button class="icon-cart" onclick="obtenerListado()">
                                 <i class="ti-shopping-cart"></i>
                                 <span class="count-style">0</span>
                                 <span class="count-price-add">$0.00</span>
                             </button>
                             <div class="shopping-cart-content">
-                                <div class="listItems"></div>
-                                <div class="shopping-cart-total">
-                                    <h4>total: <span class="count-price-add">$0.00</span></h4>
-                                </div>
-                                <div class="shopping-cart-btn">
-                                    <a class="btn-style cr-btn" href="#">Comprar</a>
-                                </div>
                             </div>
                         </div>
                         <?php } ?>
                     </div>
                 </div>
             </header>
-            <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(<?php print_r($headerImage)?>)">
+            <div class="breadcrumb-area pb-170" style="background-image: url(<?php print_r($headerImage)?>)">
                 <div class="container-fluid">
                     <div class="breadcrumb-content text-center">
                         <ul>
@@ -201,7 +187,7 @@
                                             <li><a href="<?=base_url() ?>/index.php/login/">Ingresar</a></li>
                                             <li><a href="<?=base_url() ?>/index.php/registrarse/index">Registrarse</a></li>
                                             <li><a href="shop.html">Noticias</a></li>
-                                            <li><a href="contact.html">Contactanos</a></li>
+                                            <li><a href="<?=base_url() ?>/index.php/portada/detalle/7">Contactanos</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -309,7 +295,13 @@
         <script src="<?=base_url()?>estilo/ecommerce/assets/js/plugins.js"></script>
         <script src="<?=base_url()?>estilo/ecommerce/assets/js/main.js"></script>
         <script>
+            
+            
             $(document).ready(function(){
+                updateTotal();
+            });
+            
+            function updateTotal(){
                 $.ajax({
                         type: "POST",
                         url: "<?= base_url() ?>index.php/ecommerce/producto/detalleCart",
@@ -317,28 +309,20 @@
                         success: function (response) {
                             $(".count-price-add").text("$ "+response.total);
                             $(".count-style").text(response.list.length);
-                            $(".listItems").append("<ul>");
-                            //TODO utilizar otra invocacion de servicio
-                            for (var i=0; i<response.list.length;i++){
-                                $(".listItems").append("<li class='single-shopping-cart'>");
-//                                $(".listItems").append("<div class='shopping-cart-img'>");
-//                                $(".listItems").append("<a href='#'><img alt='' src='<?=base_url()?>estilo/ecommerce/assets/img/cart/cart-1.jpg'></a>");
-//                                $(".listItems").append("</div>");
-                                $(".listItems").append("<div class='shopping-cart-title'>");
-                                $(".listItems").append("<h3><a href='#'>"+response.list[i].name+"</a></h3>");
-                                $(".listItems").append("<span>Precio: " +response.list[i].price+"</span>");
-                                $(".listItems").append("<span>Cantidad: " +response.list[i].qty+ "</span>");
-                                $(".listItems").append("</div>");
-                                $(".listItems").append("<div class='shopping-cart-delete'>");
-                                $(".listItems").append("<a href='#'><i class='icofont icofont-ui-delete'></i></a>");
-                                $(".listItems").append("</div>");
-                                $(".listItems").append("</li>");
-                            }
-                            $(".listItems").append("</ul>");
-                            
                         }
                 });
-            });
+            }
+            function obtenerListado(){
+                $.ajax({
+                        type: "POST",
+                        url: "<?= base_url() ?>index.php/ecommerce/producto/detalleCartView",
+                        success: function (response) {
+                            console.log(response);
+                            $(".shopping-cart-content").html(response);
+                        }
+                });
+                
+            }
         </script>
     
 </body>

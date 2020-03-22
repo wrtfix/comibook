@@ -54,6 +54,21 @@ class Producto extends CI_Controller
             print_r($respuesta);
             return  $respuesta;
         }
+        
+        public function detalleCartView(){
+            $this->layout->setLayout("layouts/empty");
+            $data['agregados'] = $this->listarCart();
+            $data['total'] = $this->cart->total();
+            $this->layout->view('pages/ecommerce/productoList', $data);
+        }
+        
+        public function borrarItem(){
+            $data = array(
+                'rowid' => $this->input->post('row_id'), 
+                'qty' => 0, 
+            );
+            $this->cart->update($data);
+        }
 
 
         
