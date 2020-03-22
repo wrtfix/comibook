@@ -16,6 +16,18 @@ class Producto extends CI_Controller
                 $this->layout->setLayout("layouts/empty");
                 $this->layout->view('pages/ecommerce/producto', $data);
 	}
+        
+        public function agregarProducto(){
+            $data = array(
+            'id' => $this->input->post('product_id'), 
+            'name' => $this->input->post('product_name'), 
+            'price' => $this->input->post('product_price'), 
+            'qty' => $this->input->post('quantity'), 
+            );
+            $this->cart->insert($data);
+            echo $this->show_cart(); 
+        
+        }
 
         
 }

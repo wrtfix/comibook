@@ -1,4 +1,14 @@
 <script>
+    function agregarProducto(precio, nombre, id){
+        var data = {
+            product_id: id,
+            product_name:nombre,
+            product_price:precio,
+            quantity: $("#qtybutton").val()
+        }
+        
+        
+    }
     $(document).ready(function(){
         $("#qtybutton").focus();
     });
@@ -69,7 +79,7 @@
             <label>Cantidad: </label>
             <input  type="number" value="0" min="0" id="qtybutton">
         </div>
-        <a class="btn-style" href="#">Agregar</a>
+        <a class="btn-style" href="#" onclick="agregarProducto('<?php print_r($detalle[0]->precio);?>', '<?php print_r($detalle[0]->nombre);?>', '<?php print_r($detalle[0]->idProducto);?>' )">Agregar</a>
         
        
     </div>
