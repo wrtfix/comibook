@@ -6,6 +6,7 @@
             type: "POST",
             url: "<?= base_url() ?>index.php/ecommerce/producto/borrarItem",
             success: function (response) {
+                $("#item-"+id).remove();
                 updateTotal();
             }
         });

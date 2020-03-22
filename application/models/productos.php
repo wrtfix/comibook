@@ -32,7 +32,7 @@ class Productos extends CI_Model {
         
         function getProducto($id){
 		$this -> db -> from('productos');
-		$this-> db ->where('numero', $id);
+		$this-> db ->where('idProducto', $id);
                 $query = $this -> db -> get();
 		return $query->result();
 	}

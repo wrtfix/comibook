@@ -27,9 +27,12 @@
     <div class="quick-view-learg-img">
         <div class="quick-view-tab-content tab-content">
             <div class="tab-pane active show fade" id="modal1" role="tabpanel">
-                <img src="<?php print_r($detalle[0]->imagen);?>" alt="">
+                <?php if($detalle[0]->imagen != null){?>
+                    <img src="<?php print_r($detalle[0]->imagen);?>" alt=""/>
+                <?php }else { ?>
+                    <img src="<?=base_url()?>estilo/ecommerce/assets/img/product/product-1.jpg" alt=""/>
+                <?php } ?>
             </div>
-s
         </div>
     </div>
 
