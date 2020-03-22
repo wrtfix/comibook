@@ -26,13 +26,13 @@ class Producto extends CI_Controller
             'qty' => $this->input->post('quantity'), 
             );
             $this->cart->insert($data);
-            $respuesta = json_encode($this->showCart());
+            $respuesta = json_encode($this->listarCart());
             print_r($respuesta);
             return  $respuesta;
         
         }
         
-        public function showCart(){
+        public function listarCart(){
             $respuesta = [];
             foreach ($this->cart->contents() as $items) {
                 $elem = new stdClass();
@@ -46,8 +46,13 @@ class Producto extends CI_Controller
             return $respuesta;
         }
         
-        public function showProducto(){
-            
+        public function detalleCart(){
+            $respuesta = new stdClass();
+            $respuesta->list = $this->listarCart();
+            $respuesta->total = $this->cart->total();
+            $respuesta = json_encode($respuesta);
+            print_r($respuesta);
+            return  $respuesta;
         }
 
 

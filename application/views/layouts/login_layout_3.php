@@ -52,55 +52,15 @@
                                     <button class="icon-cart">
                                         <i class="ti-shopping-cart"></i>
                                         <span class="count-style">0</span>
-                                        <span class="count-price-add">$0.00</span>
+                                        <span class="count-price-add">$0.001</span>
                                     </button>
                                     <div class="shopping-cart-content">
-<!--                                        <ul>
-                                            <li class="single-shopping-cart">
-                                                <div class="shopping-cart-img">
-                                                    <a href="#"><img alt="" src="<?=base_url()?>estilo/ecommerce/assets/img/cart/cart-1.jpg"></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h3><a href="#">Gloriori GSX 250 R </a></h3>
-                                                    <span>Price: $275</span>
-                                                    <span>Qty: 01</span>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="icofont icofont-ui-delete"></i></a>
-                                                </div>
-                                            </li>
-                                            <li class="single-shopping-cart">
-                                                <div class="shopping-cart-img">
-                                                    <a href="#"><img alt="" src="<?=base_url()?>estilo/ecommerce/assets/img/cart/cart-2.jpg"></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h3><a href="#">Demonissi Gori</a></h3>
-                                                    <span>Price: $275</span>
-                                                    <span class="qty">Qty: 01</span>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="icofont icofont-ui-delete"></i></a>
-                                                </div>
-                                            </li>
-                                            <li class="single-shopping-cart">
-                                                <div class="shopping-cart-img">
-                                                    <a href="#"><img alt="" src="<?=base_url()?>estilo/ecommerce/assets/img/cart/cart-3.jpg"></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h3><a href="#">Demonissi Gori</a></h3>
-                                                    <span>Price: $275</span>
-                                                    <span class="qty">Qty: 01</span>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="icofont icofont-ui-delete"></i></a>
-                                                </div>
-                                            </li>
-                                        </ul>-->
+                                        <div class="listItems"></div>
                                         <div class="shopping-cart-total">
-                                            <h4>total: <span>$0.00</span></h4>
+                                            <h4>total: <span class="count-price-add">$0.001</span></h4>
                                         </div>
                                         <div class="shopping-cart-btn">
-                                            <a class="btn-style cr-btn" href="#">checkout</a>
+                                            <a class="btn-style cr-btn" href="#">Comprar</a>
                                         </div>
                                     </div>
                                 </div>
@@ -118,52 +78,12 @@
                                 <span class="count-price-add">$0.00</span>
                             </button>
                             <div class="shopping-cart-content">
-<!--                                <ul>
-                                    <li class="single-shopping-cart">
-                                        <div class="shopping-cart-img">
-                                            <a href="#"><img alt="" src="<?=base_url()?>estilo/ecommerce/assets/img/cart/cart-1.jpg"></a>
-                                        </div>
-                                        <div class="shopping-cart-title">
-                                            <h3><a href="#">Gloriori GSX 250 R </a></h3>
-                                            <span>Price: $275</span>
-                                            <span>Qty: 01</span>
-                                        </div>
-                                        <div class="shopping-cart-delete">
-                                            <a href="#"><i class="icofont icofont-ui-delete"></i></a>
-                                        </div>
-                                    </li>
-                                    <li class="single-shopping-cart">
-                                        <div class="shopping-cart-img">
-                                            <a href="#"><img alt="" src="<?=base_url()?>estilo/ecommerce/assets/img/cart/cart-2.jpg"></a>
-                                        </div>
-                                        <div class="shopping-cart-title">
-                                            <h3><a href="#">Demonissi Gori</a></h3>
-                                            <span>Price: $275</span>
-                                            <span class="qty">Qty: 01</span>
-                                        </div>
-                                        <div class="shopping-cart-delete">
-                                            <a href="#"><i class="icofont icofont-ui-delete"></i></a>
-                                        </div>
-                                    </li>
-                                    <li class="single-shopping-cart">
-                                        <div class="shopping-cart-img">
-                                            <a href="#"><img alt="" src="<?=base_url()?>estilo/ecommerce/assets/img/cart/cart-3.jpg"></a>
-                                        </div>
-                                        <div class="shopping-cart-title">
-                                            <h3><a href="#">Demonissi Gori</a></h3>
-                                            <span>Price: $275</span>
-                                            <span class="qty">Qty: 01</span>
-                                        </div>
-                                        <div class="shopping-cart-delete">
-                                            <a href="#"><i class="icofont icofont-ui-delete"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>-->
+                                <div class="listItems"></div>
                                 <div class="shopping-cart-total">
-                                    <h4>total: <span>$0.00</span></h4>
+                                    <h4>total: <span class="count-price-add">$0.00</span></h4>
                                 </div>
                                 <div class="shopping-cart-btn">
-                                    <a class="btn-style cr-btn" href="#">checkout</a>
+                                    <a class="btn-style cr-btn" href="#">Comprar</a>
                                 </div>
                             </div>
                         </div>
@@ -391,6 +311,38 @@
         <script src="<?=base_url()?>estilo/ecommerce/assets/js/owl.carousel.min.js"></script>
         <script src="<?=base_url()?>estilo/ecommerce/assets/js/plugins.js"></script>
         <script src="<?=base_url()?>estilo/ecommerce/assets/js/main.js"></script>
+        <script>
+            $(document).ready(function(){
+                $.ajax({
+                        type: "POST",
+                        url: "<?= base_url() ?>index.php/ecommerce/producto/detalleCart",
+                        dataType: 'json',
+                        success: function (response) {
+                            $(".count-price-add").text("$ "+response.total);
+                            $(".count-style").text(response.list.length);
+                            $(".listItems").append("<ul>");
+                            //TODO utilizar otra invocacion de servicio
+                            for (var i=0; i<response.list.length;i++){
+                                $(".listItems").append("<li class='single-shopping-cart'>");
+//                                $(".listItems").append("<div class='shopping-cart-img'>");
+//                                $(".listItems").append("<a href='#'><img alt='' src='<?=base_url()?>estilo/ecommerce/assets/img/cart/cart-1.jpg'></a>");
+//                                $(".listItems").append("</div>");
+                                $(".listItems").append("<div class='shopping-cart-title'>");
+                                $(".listItems").append("<h3><a href='#'>"+response.list[i].name+"</a></h3>");
+                                $(".listItems").append("<span>Precio: " +response.list[i].price+"</span>");
+                                $(".listItems").append("<span>Cantidad: " +response.list[i].qty+ "</span>");
+                                $(".listItems").append("</div>");
+                                $(".listItems").append("<div class='shopping-cart-delete'>");
+                                $(".listItems").append("<a href='#'><i class='icofont icofont-ui-delete'></i></a>");
+                                $(".listItems").append("</div>");
+                                $(".listItems").append("</li>");
+                            }
+                            $(".listItems").append("</ul>");
+                            
+                        }
+                });
+            });
+        </script>
     
 </body>
 </html>
