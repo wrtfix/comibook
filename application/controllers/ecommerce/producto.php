@@ -18,6 +18,7 @@ class Producto extends CI_Controller
 	}
         
         public function agregarProducto(){
+            
             $data = array(
             'id' => $this->input->post('product_id'), 
             'name' => $this->input->post('product_name'), 
@@ -25,9 +26,30 @@ class Producto extends CI_Controller
             'qty' => $this->input->post('quantity'), 
             );
             $this->cart->insert($data);
-            echo $this->show_cart(); 
+            $respuesta = json_encode($this->showCart());
+            print_r($respuesta);
+            return  $respuesta;
         
         }
+        
+        public function showCart(){
+            $respuesta = [];
+            foreach ($this->cart->contents() as $items) {
+                $elem = new stdClass();
+                $elem->name = $items['name'];
+                $elem->price = $items['price'];
+                $elem->qty = $items['qty'];
+                $elem->subtotal = $items['subtotal'];
+                $elem->rowid = $items['rowid'];            
+                array_push($respuesta,$elem);
+            }
+            return $respuesta;
+        }
+        
+        public function showProducto(){
+            
+        }
+
 
         
 }

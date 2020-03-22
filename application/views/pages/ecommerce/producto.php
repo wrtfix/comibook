@@ -7,6 +7,16 @@
             quantity: $("#qtybutton").val()
         }
         
+        $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>index.php/ecommerce/producto/agregarProducto",
+                dataType: 'json',
+                data: data,
+                success: function (response) {
+                    console.log(response);
+                    
+                }
+        });
         
     }
     $(document).ready(function(){
