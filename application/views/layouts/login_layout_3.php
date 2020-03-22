@@ -171,7 +171,7 @@
             </div>
             
             <footer>
-<!--                <div class="footer-top pt-210 pb-98 theme-bg">
+                <div class="footer-top pt-210 pb-98 theme-bg">
                     <div class="container">
                        <div class="row">
                             <div class="col-lg-3 col-md-6 col-12">
@@ -182,10 +182,10 @@
                                         </a>
                                     </div>
                                     <div class="footer-about">
-                                        <p><span>OSWAN</span> the most latgest bike store in the wold can serve you latest ulity of motorcycle soucan sell here your motorcycle it quo </p>
+                                        <p><span>One more code</span> Sistema de gestion de emprendedores para emprendedores. </p>
                                         <div class="footer-support">
-                                            <h5>FOR SUPPORT</h5>
-                                            <span> 01245 658 698 (Toll Free)</span>
+                                            <h5>Suporte</h5>
+                                            <span> +54 249 460 92 70</span>
                                         </div>
                                     </div>
                                 </div>
@@ -193,25 +193,23 @@
                             <div class="col-lg-3 col-md-6 col-12">
                                 <div class="footer-widget mb-30 pl-60">
                                     <div class="footer-widget-title">
-                                        <h3>QUICK LINK</h3>
+                                        <h3>Accesos rapidos</h3>
                                     </div>
                                     <div class="quick-links">
                                         <ul>
-                                            <li><a href="about-us.html">About us</a></li>
-                                            <li><a href="#">Service</a></li>
-                                            <li><a href="#">Inventory</a></li>
-                                            <li><a href="shop.html">Shop</a></li>
-                                            <li><a href="blog-sidebar.html">Blog</a></li>
-                                            <li><a href="#">Conditions</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="about-us.html">Acerca de nosotros</a></li>
+                                            <li><a href="<?=base_url() ?>/index.php/login/">Ingresar</a></li>
+                                            <li><a href="<?=base_url() ?>/index.php/registrarse/index">Registrarse</a></li>
+                                            <li><a href="shop.html">Noticias</a></li>
+                                            <li><a href="contact.html">Contactanos</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-12">
+<!--                            <div class="col-lg-3 col-md-6 col-12">
                                 <div class="footer-widget mb-30">
                                     <div class="footer-widget-title">
-                                        <h3>LATEST TWEET</h3>
+                                        <h3>Ultimos Comentarios</h3>
                                     </div>
                                     <div class="food-widget-content pr-30">
                                         <div class="single-tweet">
@@ -228,28 +226,27 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="col-lg-3 col-md-6 col-12">
                                 <div class="footer-widget mb-30">
                                     <div class="footer-widget-title">
-                                        <h3>CONTACT INFO</h3>
+                                        <h3>Contactate</h3>
                                     </div>
                                     <div class="food-info-wrapper">
                                         <div class="food-address">
                                             <div class="food-info-title">
-                                                <span>Address</span>
+                                                <span>Direccion</span>
                                             </div>
                                             <div class="food-info-content">
-                                                <p>276 Jhilli Nogor, 4th folor, Momen Tower, Main Town, New Yourk</p>
+                                                <p>Maria Graciela Toncovich 657, Tandil, Buenos Aires, Argentina</p>
                                             </div>
                                         </div>
                                         <div class="food-address">
                                             <div class="food-info-title">
-                                                <span>Phone</span>
+                                                <span>Telefono</span>
                                             </div>
                                             <div class="food-info-content">
-                                                <p>+090 12568 369 987</p>
-                                                <p>+090 12568 369 987</p>
+                                                <p>+54 249 460 92 70</p>
                                             </div>
                                         </div>
                                         <div class="food-address">
@@ -257,8 +254,8 @@
                                                 <span>Web</span>
                                             </div>
                                             <div class="food-info-content">
-                                                <a href="#">info@oswanmega.com</a>
-                                                <a href="#">www.oswanmega.com</a>
+                                                <a href="#">admin@onemorecode.com</a>
+                                                <a href="#">www.onemorecode.com</a>
                                             </div>
                                         </div>
                                     </div>
@@ -266,8 +263,8 @@
                             </div>
                         </div>
                     </div>
-                </div>-->
-<!--                <div class="footer-bottom ptb-35 black-bg">
+                </div>
+                <div class="footer-bottom ptb-35 black-bg">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8 col-12">
@@ -275,14 +272,14 @@
                                     <p>©Copyright, 2018 All Rights Reserved by <a href="https://freethemescloud.com/">Free themes Cloud</a></p>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-12">
+<!--                            <div class="col-md-4 col-12">
                                 <div class="footer-payment-method">
                                     <a href="#"><img alt="" src="<?=base_url()?>estilo/ecommerce/assets/img/icon-img/payment.png"></a>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
-                </div>-->
+                </div>
             </footer>
             <!-- modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
