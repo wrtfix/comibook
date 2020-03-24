@@ -11,6 +11,10 @@
             }
         });
     }
+    
+    function finalizarCompra(){
+        
+    }
 </script>
 
 <ul>                          
@@ -35,5 +39,8 @@
     <h4>total: <span class="count-price-add"><?php print_r($total) ?> </span></h4>
 </div>
 <div class="shopping-cart-btn">
-    <a class="btn-style cr-btn" href="#" >Comprar</a>
+    <form id="contact-form" action="<?=base_url()?>ecommerce/producto/realizarCompra" method="post">
+        <input type="submit" class="btn-style cr-btn" value="Comprar">
+    </form>
+<!--    <a class="" href="#" onclick="finalizarCompra()" >Comprar</a>-->
 </div>
