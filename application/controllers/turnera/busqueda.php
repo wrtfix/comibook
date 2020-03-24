@@ -11,7 +11,7 @@ class Busqueda extends CI_Controller
             $this->load->spark('markdown-extra/0.0.0');
 	}
 
-	public function index($type="servicios")
+	public function index($type="servicios",$idLocal=1)
 	{
             $data['logo'] = $this->configuraciones->getConfiguracion("SITE_IMAGE");
             $this->layout->setLayout("layouts/login_layout_3");
@@ -24,7 +24,8 @@ class Busqueda extends CI_Controller
             if($type=="servicios"){
                 $data['agregados'] = $this->consultorios->getConsultoriosWithOutSession();
             }else{
-                $data['agregados'] = $this->productos->getProductos();
+                $data['type']= "productos";
+                $data['agregados'] = $this->productos->getProductosByLocal($idLocal);
             }
             $this->layout->view('pages/turnera/busqueda', $data);
 	}

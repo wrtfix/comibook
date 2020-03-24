@@ -20,9 +20,6 @@
 <ul>                          
 <?php $cont = 0; foreach ($agregados as $item): $cont = $cont + 1; ?>                  
     <li class='single-shopping-cart' id="item-<?php print_r($item->rowid); ?>">
-        <div class='shopping-cart-img'>
-            <a href='#'><img alt='' src='<?=base_url()?>estilo/ecommerce/assets/img/cart/cart-1.jpg'></a>
-        </div>
         <div class='shopping-cart-title'>
             <h3><a href='#'><?php print_r($item->name); ?> </a></h3>
             <span>Precio:  <?php print_r($item->price); ?></span>

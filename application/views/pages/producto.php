@@ -4,7 +4,7 @@
         $('#agregar').click(function () {
             var agrego = $("#tablaCliente").attr("xagregar");
             if (agrego == 'false') {
-                $('#tablaCliente').append("<tr><td></td><td><input name='numero' type='input' value=''></td><td><input name='nombre' type='input' value=''></td><td><input name='peso' type='input' value=''></td><td><input name='precio' type='input' value=''></td><td><input name='imagen' type='input' value=''></td><td><textarea name='descripcion'></textarea></td></tr>");
+                $('#tablaCliente').append("<tr><td></td><td><input name='numero' type='input' value=''></td><td><input name='nombre' type='input' value=''></td><td><input name='peso' type='input' value=''></td><td><input name='precio' type='input' value=''></td><td><input name='imagen' type='input' value=''><input name='idLocal' type='hidden' value='<?php print_r($idLocal)?>'></td><td><textarea name='descripcion'></textarea></td></tr>");
                 $("#tablaCliente").attr("xagregar", "true");
             }
         });
@@ -20,8 +20,9 @@
                     var precio = $('#precio-' + cambios[i]).val();
                     var imagen = $('#imagen-' + cambios[i]).val();
                     var descripcion = $('#descripcion-' + cambios[i]).val();
+                    var idLocal = '<?php print_r($idLocal)?>';
                     $.ajax({
-                        data: {numero: numero, nombre: nombre, peso: peso, precio: precio, imagen:imagen, descripcion:descripcion},
+                        data: {numero: numero, nombre: nombre, peso: peso, precio: precio, imagen:imagen, descripcion:descripcion, idLocal:idLocal},
                         type: "POST",
                         url: "<?= base_url() ?>index.php/producto/updateProducto/" + cambios[i],
                         success: function () {

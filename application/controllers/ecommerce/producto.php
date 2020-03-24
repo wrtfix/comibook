@@ -11,10 +11,12 @@ class Producto extends CI_Controller
 
 	public function index()
 	{
-                $this->load->library('form_validation');
-                $data['detalle']= $this->productos->getProducto($this->input->post('idProducto'));
-                $this->layout->setLayout("layouts/empty");
-                $this->layout->view('pages/ecommerce/producto', $data);
+            
+            $this->load->library('form_validation');
+            $data['detalle']= $this->productos->getProducto($this->input->post('idProducto'));
+            $this->layout->setLayout("layouts/empty");
+            $this->layout->view('pages/ecommerce/producto', $data);
+            
 	}
         
         public function agregarProducto(){

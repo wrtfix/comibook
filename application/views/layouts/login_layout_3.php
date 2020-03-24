@@ -10,8 +10,7 @@
     <meta name="author" content="jorge carlos mendiola" >
     
 
-      <!-- css -->
-    <!--<link href="<?=base_url()?>estilo/ecommerce/estilo/custom/style.css" rel="stylesheet" type="text/css">-->
+      <!-- css -->    
     <link rel="stylesheet" href="<?=base_url()?>estilo/ecommerce/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>estilo/ecommerce/assets/css/animate.css">
     <link rel="stylesheet" href="<?=base_url()?>estilo/ecommerce/assets/css/owl.carousel.min.css">
@@ -109,46 +108,13 @@
                                     <h3 class="sidebar-widget">Categorias</h3>
                                     <div class="widget-categories">
                                         <ul>
-                                            <li><a href="<?=base_url()?>index.php/turnera/busqueda/index/servicios">Servicios</a></li>
-                                            <li><a href="<?=base_url()?>index.php/turnera/busqueda/index/productos">Productos</a></li>
+                                            <li><a href="<?=base_url()?>index.php/turnera/busqueda/index/servicios">Locales</a></li>
+<!--                                            <li><a href="<?=base_url()?>index.php/turnera/busqueda/index/productos">Productos</a></li>-->
                                         </ul>
                                     </div>
                                 </div>
                                 
-                                
-                                
-<!--                                <div class="sidebar-widget">
-                                    <h3 class="sidebar-widget">Busquedas mas populares</h3>
-                                    <div class="best-seller">
-                                        <div class="single-best-seller">
-                                            <div class="best-seller-img">
-                                                <a href="#"><img src="<?=base_url()?>estilo/ecommerce/assets/img/product/product-12.jpg" alt=""></a>
-                                            </div>
-                                            <div class="best-seller-text">
-                                                <h3><a href="#">Minimal White Shoes</a></h3>
-                                                <span>$39.9</span>
-                                            </div>
-                                        </div>
-                                        <div class="single-best-seller">
-                                            <div class="best-seller-img">
-                                                <a href="#"><img src="<?=base_url()?>estilo/ecommerce/assets/img/product/product-13.jpg" alt=""></a>
-                                            </div>
-                                            <div class="best-seller-text">
-                                                <h3><a href="#">Minimal White Shoes</a></h3>
-                                                <span>$39.9</span>
-                                            </div>
-                                        </div>
-                                        <div class="single-best-seller">
-                                            <div class="best-seller-img">
-                                                <a href="#"><img src="<?=base_url()?>estilo/ecommerce/assets/img/product/product-14.jpg" alt=""></a>
-                                            </div>
-                                            <div class="best-seller-text">
-                                                <h3><a href="#">Minimal White Shoes</a></h3>
-                                                <span>$39.9</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>-->
+                               
                             </div>
                         </div>
                         <?php echo $content_for_layout ?> 
@@ -192,27 +158,6 @@
                                     </div>
                                 </div>
                             </div>
-<!--                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="footer-widget mb-30">
-                                    <div class="footer-widget-title">
-                                        <h3>Ultimos Comentarios</h3>
-                                    </div>
-                                    <div class="food-widget-content pr-30">
-                                        <div class="single-tweet">
-                                            <p><a href="#">@Smith,</a> the most latgest bike store in the wold can serve you 
-10 min ago</p>
-                                        </div>
-                                        <div class="single-tweet">
-                                            <p><a href="#">@Smith,</a> the most latgest bike store in the wold can serve you 
-10 min ago</p>
-                                        </div>
-                                        <div class="single-tweet">
-                                            <p><a href="#">@Smith,</a> the most latgest bike store in the wold can serve you 
-10 min ago</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
                             <div class="col-lg-3 col-md-6 col-12">
                                 <div class="footer-widget mb-30">
                                     <div class="footer-widget-title">
@@ -258,11 +203,6 @@
                                     <p>©Copyright, 2018 All Rights Reserved by <a href="https://freethemescloud.com/">Free themes Cloud</a></p>
                                 </div>
                             </div>
-<!--                            <div class="col-md-4 col-12">
-                                <div class="footer-payment-method">
-                                    <a href="#"><img alt="" src="<?=base_url()?>estilo/ecommerce/assets/img/icon-img/payment.png"></a>
-                                </div>
-                            </div>-->
                         </div>
                     </div>
                 </div>

@@ -15,6 +15,8 @@ class Productos extends CI_Model {
 			'numero' => $this->input->post('numero'),
                         'peso' => $this->input->post('peso'),
                         'imagen' => $this->input->post('imagen'),
+                        'precio' => $this->input->post('precio'),
+                        'idLocal' => $this->input->post('idLocal'),
                         'descripcion' => $this->input->post('descripcion')
 		);
 		return $this->db->insert('productos', $data);
@@ -23,8 +25,16 @@ class Productos extends CI_Model {
 	function delProducto($identificador){
 		return $this->db->delete('productos', array('idProducto' => $identificador));
 	}
-	function getProductos(){
+        
+        function getProductos(){
 		$this -> db -> from('productos');
+		$query = $this -> db -> get();
+		return $query->result();
+	}
+        
+	function getProductosByLocal($idLocal){
+		$this -> db -> from('productos');
+                $this-> db ->where('idLocal', $idLocal);
 		$query = $this -> db -> get();
 		return $query->result();
 	}

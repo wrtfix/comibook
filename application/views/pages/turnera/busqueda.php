@@ -13,15 +13,6 @@
 
 
 <div class="col-lg-9">
-<div class="shop-topbar-wrapper">
-    <div class="grid-list-options">
-        <ul class="view-mode">
-            <li><a href="#product-grid" data-view="product-grid"><i class="ti-layout-grid2"></i></a></li>
-            <li class="active"><a href="#product-list" data-view="product-list"><i class="ti-view-list"></i></a></li>
-        </ul>
-    </div>
-
-</div>
     
 <div class="grid-list-product-wrapper tab-content">
     <div id="new-product" class="product-list product-view tab-pane active">
@@ -50,7 +41,7 @@
                         </div>
                         <div class="product-content-wrapper">
                             <div class="product-title-spreed">
-                                <h4><a href="product-details.html"><?php print_r($item->nombre); ?></a></h4>
+                                <h4><a href="product/<?php print_r($item->idConsultorio); ?>"><?php print_r($item->nombre); ?></a></h4>
                             </div>
                             <div class="product-price">
                                 <span><?php if(!empty($item->especialidad)){ print_r($item->especialidad); } if(!empty($item->precio)) { echo '$'; print_r($item->precio); } ?></span>
@@ -58,13 +49,13 @@
                         </div>
                     </div>
                     <div class="product-list-details">
-                        <h2><a href="product-details.html"><?php print_r($item->nombre); ?> <?php if(!empty($item->especialidad)){ ?> - <?php print_r($item->especialidad)?> <?php } ?></a></h2>
+                        <h2><a href="product/<?php print_r($item->idConsultorio); ?>"><?php print_r($item->nombre); ?> <?php if(!empty($item->especialidad)){ ?> - <?php print_r($item->especialidad)?> <?php } ?></a></h2>
                         <div class="quick-view-rating">
+<!--                            <i class="fa fa-star reting-color"></i>
                             <i class="fa fa-star reting-color"></i>
                             <i class="fa fa-star reting-color"></i>
                             <i class="fa fa-star reting-color"></i>
-                            <i class="fa fa-star reting-color"></i>
-                            <i class="fa fa-star reting-color"></i>
+                            <i class="fa fa-star reting-color"></i>-->
                         </div>
                         <?php if(!empty($item->precio)){ ?>
                         <div class="product-price">
@@ -72,7 +63,7 @@
                         </div>
                         <?php } if(!empty($item->peso)){ ?>
                         <div class="product-price">
-                            <span>Peso: <?php print_r($item->peso); ?> gr</span>
+                            <span>Peso: <?php print_r($item->peso); ?> </span>
                         </div>
                         <?php } if(!empty($item->horario)){ ?>
                         <div class="product-price">
@@ -93,10 +84,15 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipic it, sed do eiusmod tempor incididunt ut labore et dolore mag aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo it. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                         <?php } if(!empty($item->descripcion)){ ?>
                         <p><?php print_r($item->descripcion); ?></p>
-                        <?php } if($type == 'servicios'){ ?>
+                        <?php } if($type == 'servicios' &&  !$item->provee = 'producto'){ ?>
                         <p></p>
                         <div class="shop-list-cart">
                             <a href="<?=base_url()?>index.php/turnera/reserva/index/<?php print_r($item->idConsultorio); ?>"><i class="ti-calendar"></i> Reservar</a>
+                        </div>
+                        <?php } else if ($item->provee = 'producto'){ ?>
+                        <p></p>
+                        <div class="shop-list-cart">
+                            <a href="<?=base_url()?>index.php/turnera/busqueda/index/producto/<?php print_r($item->idConsultorio); ?>"><i class="ti-shopping-cart"></i> Productos </a>
                         </div>
                         <?php } else { ?>
                         <p></p>

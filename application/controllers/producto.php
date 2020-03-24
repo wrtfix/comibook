@@ -11,10 +11,21 @@ class Producto extends CI_Controller {
 
     public function index($nombre = null, $cuil = null, $numero = null) {
         if ($this->session->userdata('logged_in')) {
-            $this->load->library('form_validation');
-            $data['page'] = 'producto';
-            $data['agregados'] = $this->productos->getProductos();
-            $this->layout->view('pages/producto', $data);
+            if ($this->input->post('idLocal') != null){
+                $this->load->library('form_validation');
+                
+                $data['page'] = 'producto';
+                $data['idLocal'] = $this->input->post('idLocal');
+                $data['agregados'] = $this->productos->getProductosByLocal($this->input->post('idLocal'));
+                $this->layout->view('pages/producto', $data);
+                
+            }else{
+                $this->load->library('form_validation');
+                $data['page'] = 'producto';
+                $data['agregados'] = $this->productos->getProductos();
+                $this->layout->view('pages/producto', $data);
+            }
+            
         } else {
             $data['page'] = 'construccion';
             $this->load->view('pages/construccion', $data);
@@ -33,8 +44,14 @@ class Producto extends CI_Controller {
             } else {
                 $result = $this->productos->addProducto();
             }
+            if ($this->input->post('idLocal') !=null){
+                $data['agregados'] = $this->productos->getProductosByLocal($this->input->post('idLocal'));
+            }else{
+                $data['agregados'] = $this->productos->getProductos();
+            }
+            
             $data['page'] = 'producto';
-            $data['agregados'] = $this->productos->getProductos();
+            
             $this->layout->view('pages/producto', $data);
         } else {
             $data['page'] = 'construccion';

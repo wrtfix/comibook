@@ -29,11 +29,13 @@
                         type: "POST",
                         url: "<?= base_url() ?>index.php/turnera/consultorio/updateConsultorio/" + cambios[i],
                         success: function () {
-                            alert('Los cambios se guardaron con exito!');
+                            showInfo("Los cambios se guardaron con exito!",'info');
+                            
                             cambios = [];
                         },
                         error: function () {
-                            alert('ERROR : Verifique los campos ingresados');
+                            showInfo("Verifique los campos ingresados",'error');
+                            
                         }
                     });
                 }
@@ -61,14 +63,16 @@
         $(".fechaInput").datepicker({dateFormat: 'dd-mm-yy'});
         
         $('#permisos').click(function(){
-            var idUsuario = $("input[name='consultorio']:checked").val().split("-")[1];
+            var idUsuario = $("input[name='consultorio']:checked").val();
 	    
             if (idUsuario != undefined){
+                idUsuario = idUsuario.split("-")[1]
                 var $aux = $("form:first")
                 $aux.attr('action',"<?=base_url()?>index.php/turnera/horario/index/"+idUsuario);
                 $aux.submit();
             }else{
-                alert("No es posible cargar el contenido de esta noticia sin haberla guardado previamente");
+                showInfo("Debe seleccionar un local para poder configurar su agenda",'warning');
+                
                 if (guardar.length===0){
                     location.reload();
                 }
@@ -76,8 +80,11 @@
 	});
         
         $("#whatsapp").click(function(){
-            var elem = $("input[name='consultorio']:checked").val().split("-")[1];
-            var tel = $("#telefono-"+elem).val();
+            
+            var elem = $("input[name='consultorio']:checked").val();
+            if (elem != undefined){
+                elem = elem.split("-")[1];
+                 var tel = $("#telefono-"+elem).val();
             
             var $aux = $("form:first");
                 $aux.append(jQuery('<input>', {
@@ -88,13 +95,20 @@
                 $aux.attr("target","_blank");
                 $aux.attr('action',"http://api.whatsapp.com/send");
                 $aux.submit();
+            
+            }else{
+                showInfo("Debe seleccionar un local para validar el numero en whatsapp",'warning');
+            }
+            
+           
 
         });
         
         $('#agenda').click(function(){
-            var idConsultorio = $("input[name='consultorio']:checked").val().split("-")[1];
+            var idConsultorio = $("input[name='consultorio']:checked").val();
 	    
             if (idConsultorio != undefined){
+                idConsultorio = idConsultorio.split("-")[1];
                 var $aux = $("form:first");
                 $aux.append(jQuery('<input>', {
                     'name': 'idConsultorio',
@@ -104,25 +118,26 @@
                 $aux.attr('action',"<?=base_url()?>index.php/turnera/agenda/index/");
                 $aux.submit();
             }else{
-                showInfo("Debe seleccionar una agenda",'warning');
+                showInfo("Debe seleccionar un local",'warning');
                 if (guardar.length===0){
                     location.reload();
                 }
             }
 	});
         $('#productos').click(function(){
-	    var idConsultorio = $("input[name='consultorio']:checked").val().split("-")[1];
-            if (idConsultorio != undefined){
+	    var idLocal = $("input[name='consultorio']:checked").val();
+            if (idLocal != undefined){
+                idLocal = idLocal.split("-")[1];
                 var $aux = $("form:first");
                 $aux.append(jQuery('<input>', {
-                    'name': 'idConsultorio',
-                    'value': idConsultorio,
+                    'name': 'idLocal',
+                    'value': idLocal,
                     'type': 'hidden'
                 }));
-                $aux.attr('action',"<?=base_url()?>index.php/turnera/agenda/index/");
+                $aux.attr('action',"<?=base_url()?>index.php/producto/index");
                 $aux.submit();
             }else{
-                showInfo("Debe seleccionar una agenda",'warning');
+                showInfo("Debe seleccionar un local",'warning');
                 if (guardar.length===0){
                     location.reload();
                 }
