@@ -159,6 +159,6 @@
 </div>
 
 <form action="http://api.whatsapp.com/send" id="solcitarCompra" method="GET">
-    <input type="hidden" name="phone" id="phone" value="+5492494694645"/>
+    <input type="hidden" name="phone" id="phone" value="<?php print_r($telefono);?>"/>
     <input type="hidden" name="text" id="texto"/>
 </form>

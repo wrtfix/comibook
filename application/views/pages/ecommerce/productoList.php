@@ -37,6 +37,7 @@
 </div>
 <div class="shopping-cart-btn">
     <form id="contact-form" action="<?=base_url()?>ecommerce/producto/realizarCompra" method="post">
+        <input type="hidden" value="<?php print_r($telefono)?>" name="tel"/>
         <input type="submit" class="btn-style cr-btn" value="Comprar">
     </form>
 <!--    <a class="" href="#" onclick="finalizarCompra()" >Comprar</a>-->

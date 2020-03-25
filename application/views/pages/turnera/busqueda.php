@@ -89,7 +89,7 @@
                         <div class="shop-list-cart">
                             <a href="<?=base_url()?>index.php/turnera/reserva/index/<?php print_r($item->idConsultorio); ?>"><i class="ti-calendar"></i> Reservar</a>
                         </div>
-                        <?php } else if ($item->provee = 'producto'){ ?>
+                        <?php } else if ($type == 'servicios' && $item->provee = 'producto'){ ?>
                         <p></p>
                         <div class="shop-list-cart">
                             <a href="<?=base_url()?>index.php/turnera/busqueda/index/producto/<?php print_r($item->idConsultorio); ?>"><i class="ti-shopping-cart"></i> Productos </a>

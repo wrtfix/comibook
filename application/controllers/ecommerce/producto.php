@@ -61,6 +61,7 @@ class Producto extends CI_Controller
             $this->layout->setLayout("layouts/empty");
             $data['agregados'] = $this->listarCart();
             $data['total'] = $this->cart->total();
+            $data['telefono'] = $this->input->post('tel');
             $this->layout->view('pages/ecommerce/productoList', $data);
         }
         
@@ -76,6 +77,7 @@ class Producto extends CI_Controller
             $this->layout->setLayout("layouts/login_layout_3");
             $data['agregados'] = $this->listarCart();
             $data['total'] = $this->cart->total();
+                $data['telefono'] = $this->input->post('tel');
             $this->layout->view('pages/ecommerce/comprar', $data);
         }
 

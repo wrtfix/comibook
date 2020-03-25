@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="<?= $this->layout->placeholder("descripcion"); ?>">
     <meta name="author" content="jorge carlos mendiola" >
     
 
@@ -34,9 +34,10 @@
                 <div class="header-area transparent-bar ptb-55">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-4">
+                            <div class="col-lg-4 col-4 col-4">
                                 <div class="logo-small-device">
                                     <a href="<?= base_url() ?>"><?php if(!empty($imageLogo)){ ?><img alt="<?= $this->layout->placeholder("title"); ?>" src="<?php print_r($imageLogo); ?>"><?php } ?> <h1><?php print_r($this->layout->placeholder("title")); ?></h1></a>
+                                    <p><?= $this->layout->placeholder("descripcion"); ?></p>
                                 </div>
                                 
                             </div>
@@ -130,15 +131,11 @@
                                 <div class="footer-widget mb-30">
                                     <div class="footer-logo">
                                         <a href="index.html">
-                                            <img src="<?=base_url()?>estilo/ecommerce/assets/img/logo/2.png" alt="">
+                                            <?php print_r($this->layout->placeholder("title")); ?>
                                         </a>
                                     </div>
                                     <div class="footer-about">
                                         <p><span>One more code</span> Sistema de gestion de emprendedores para emprendedores. </p>
-                                        <div class="footer-support">
-                                            <h5>Suporte</h5>
-                                            <span> +54 249 460 92 70</span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -256,6 +253,7 @@
                 $.ajax({
                         type: "POST",
                         url: "<?= base_url() ?>index.php/ecommerce/producto/detalleCartView",
+                        data: {tel: '<?php print_r($telefono); ?>'}
                         success: function (response) {
                             console.log(response);
                             $(".shopping-cart-content").html(response);

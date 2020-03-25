@@ -16,6 +16,7 @@ class Busqueda extends CI_Controller
             $data['logo'] = $this->configuraciones->getConfiguracion("SITE_IMAGE");
             $this->layout->setLayout("layouts/login_layout_3");
             $this->layout->placeholder("title", $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor);
+            
             $data['showSearchs'] = $this->configuraciones->getConfiguracion("SHOW_SEARCHS")[0]->valor;
             $data['headerImage'] = $this->configuraciones->getConfiguracion("ECOMMERSE_HEADER_IMAGE")[0]->valor;
             $data['imageLogo'] = $this->configuraciones->getConfiguracion("ECOMMERCE_IMAGE_LOGO")[0]->valor;
@@ -25,6 +26,10 @@ class Busqueda extends CI_Controller
                 $data['agregados'] = $this->consultorios->getConsultoriosWithOutSession();
             }else{
                 $data['type']= "productos";
+                $local = $this->consultorios->getConsultorio($idLocal);
+                $this->layout->placeholder("title", $local[0]->nombre);
+                $this->layout->placeholder("descripcion", $local[0]->direccion." <br> Telefono: ".$local[0]->telefono." <br> Horario: ".$local[0]->horario);
+                $data['telefono'] = $this->productos->getProductosByLocal($local[0]->telefono);
                 $data['agregados'] = $this->productos->getProductosByLocal($idLocal);
             }
             $this->layout->view('pages/turnera/busqueda', $data);

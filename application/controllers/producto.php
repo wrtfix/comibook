@@ -16,6 +16,7 @@ class Producto extends CI_Controller {
                 
                 $data['page'] = 'producto';
                 $data['idLocal'] = $this->input->post('idLocal');
+                
                 $data['agregados'] = $this->productos->getProductosByLocal($this->input->post('idLocal'));
                 $this->layout->view('pages/producto', $data);
                 
