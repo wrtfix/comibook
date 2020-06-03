@@ -246,13 +246,13 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i> Sistema<b class="caret"></b></a> 
                                 <ul class="dropdown-menu multi-level">
-                                    <li><a href="/comibook/index.php/backoffice/configuracion/index"><i class="fa fa-fw fa-gear"></i> Configuracion </a></li>
-                                    <li><a href="/comibook/index.php/backoffice/literales/index"><i class="fa fa-fw fa-flag"></i> Literales </a></li>
-                                    <li><a href="/comibook/index.php/backoffice/menu/index"><i class="fa fa-wrench"></i> Menu </a></li>
-                                    <li><a href="/comibook/index.php/backoffice/ambiente/index"><i class="fa fa-globe"></i> Ambiente </a></li>
-                                    <li><a href="/comibook/index.php/backoffice/usuario/index"><i class="fa fa-user"></i> Usuarios </a></li>
-                                    <li><a href="/comibook/index.php/backoffice/backup/index"><i class="fa fa-desktop"></i> Actualizaciones </a></li>
-                                    <li><a href="/comibook/index.php/backoffice/monitoreo/index"><i class="fa fa-book"></i> Monitoreo </a></li>
+                                    <li><a href="/index.php/backoffice/configuracion/index"><i class="fa fa-fw fa-gear"></i> Configuracion </a></li>
+                                    <li><a href="/index.php/backoffice/literales/index"><i class="fa fa-fw fa-flag"></i> Literales </a></li>
+                                    <li><a href="/index.php/backoffice/menu/index"><i class="fa fa-wrench"></i> Menu </a></li>
+                                    <li><a href="/index.php/backoffice/ambiente/index"><i class="fa fa-globe"></i> Ambiente </a></li>
+                                    <li><a href="/index.php/backoffice/usuario/index"><i class="fa fa-user"></i> Usuarios </a></li>
+                                    <li><a href="/index.php/backoffice/backup/index"><i class="fa fa-desktop"></i> Actualizaciones </a></li>
+                                    <li><a href="/index.php/backoffice/monitoreo/index"><i class="fa fa-book"></i> Monitoreo </a></li>
 
                                 </ul>
                             </li>
@@ -261,13 +261,13 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-edit"></i> Diario <b class="caret"></b></a> 
                                 <ul class="dropdown-menu multi-level">
-                                    <li><a href="/comibook/index.php/cms/noticias/index"><i class="fa fa-fw fa-edit"></i> Noticias</a></li>
-                                    <li><a href="/comibook/index.php/cms/imagen/index"><i class="fa fa-camera-retro"></i> Imagenes</a></li>
-                                    <li><a href="/comibook/index.php/cms/comentario/comentarios"><i class="fa fa-comments"></i> Comentarios </a></li>
+                                    <li><a href="/index.php/cms/noticias/index"><i class="fa fa-fw fa-edit"></i> Noticias</a></li>
+                                    <li><a href="/index.php/cms/imagen/index"><i class="fa fa-camera-retro"></i> Imagenes</a></li>
+                                    <li><a href="/index.php/cms/comentario/comentarios"><i class="fa fa-comments"></i> Comentarios </a></li>
                                     <?php if ($this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
-                                        <li><a href="/comibook/index.php/cms/scrapping/index/clarin"><i class="fa fa-code-fork"></i> Scrapping Clarin </a></li>
-                                        <li><a href="/comibook/index.php/cms/scrapping/index/quepasasalta"><i class="fa fa-code-fork"></i> Scrapping Que Pasa Salata </a></li>
-                                        <!--<li><a href="/comibook/index.php/cms/scrapping/index/eltribuno"><i class="fa fa-code-fork"></i> Scrapping El tribuno </a></li>--> 
+                                        <li><a href="/index.php/cms/scrapping/index/clarin"><i class="fa fa-code-fork"></i> Scrapping Clarin </a></li>
+                                        <li><a href="/index.php/cms/scrapping/index/quepasasalta"><i class="fa fa-code-fork"></i> Scrapping Que Pasa Salata </a></li>
+                                        <!--<li><a href="/index.php/cms/scrapping/index/eltribuno"><i class="fa fa-code-fork"></i> Scrapping El tribuno </a></li>--> 
     <?php } ?>
                                 </ul>
                             </li>
@@ -275,57 +275,57 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-check"></i> Servicio <b class="caret"></b></a> 
                                 <ul class="dropdown-menu multi-level">
-                                    <li><a href="/comibook/index.php/turnera/consultorio/index"><i class="fa fa-fw fa-gear"></i> Locales </a></li>
-                                    <li><a href="/comibook/index.php/provedores/index"><i class="fa fa-ambulance"></i> Provedores</a></li>
-                                    <li><a href="/comibook/index.php/turnera/consultorio/selectConsultrio"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
-                                    <li><a href="/comibook/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
-                                    <li><a href="/comibook/index.php/clientes/index"><i class="fa fa-user"></i> Clientes </a></li>
-                                    <li><a href="/comibook/index.php/backoffice/monitoreo/index"><i class="fa fa-book"></i> Monitoreo </a></li>
+                                    <li><a href="/index.php/turnera/consultorio/index"><i class="fa fa-fw fa-gear"></i> Locales </a></li>
+                                    <li><a href="/index.php/provedores/index"><i class="fa fa-ambulance"></i> Provedores</a></li>
+                                    <li><a href="/index.php/turnera/consultorio/selectConsultrio"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
+                                    <li><a href="/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
+                                    <li><a href="/index.php/clientes/index"><i class="fa fa-user"></i> Clientes </a></li>
+                                    <li><a href="/index.php/backoffice/monitoreo/index"><i class="fa fa-book"></i> Monitoreo </a></li>
                                 </ul>
                             </li>
 <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '40' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001') { ?>
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-ambulance"></i> Logistica<b class="caret"></b></a> 
                                 <ul class="dropdown-menu multi-level">
-                                    <li><a href="/comibook/index.php/pedidos/index"><i class="fa fa-fw fa-book"></i> Pedidos</a></li>
-                                    <li><a href="/comibook/index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
-                                    <li><a href="/comibook/index.php/cheques/index"><i class="fa fa-fw fa-money"></i> Cheques </a></li>
-                                    <li><a href="/comibook/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
-                                    <li><a href="/comibook/index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>
-                                    <li><a href="/comibook/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
+                                    <li><a href="/index.php/pedidos/index"><i class="fa fa-fw fa-book"></i> Pedidos</a></li>
+                                    <li><a href="/index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
+                                    <li><a href="/index.php/cheques/index"><i class="fa fa-fw fa-money"></i> Cheques </a></li>
+                                    <li><a href="/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
+                                    <li><a href="/index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>
+                                    <li><a href="/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
                                 <?php if ($this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
-                                        <li> <a href="/comibook/index.php/estadistica/index"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
+                                        <li> <a href="/index.php/estadistica/index"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
     <?php } ?>
                                 </ul>
 <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '41') { ?>
                             <li>
-                            <li><a href="/comibook/index.php/pedidos/index"><i class="fa fa-fw fa-book"></i> Pedidos</a></li>
-                            <li><a href="/comibook/index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
-                            <li><a href="/comibook/index.php/cheques/index"><i class="fa fa-fw fa-money"></i> Cheques </a></li>
-                            <li><a href="/comibook/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
-                            <li><a href="/comibook/index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>
-                            <li><a href="/comibook/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
-                            <li> <a href="/comibook/index.php/estadistica/index"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
+                            <li><a href="/index.php/pedidos/index"><i class="fa fa-fw fa-book"></i> Pedidos</a></li>
+                            <li><a href="/index.php/pedientes/index"><i class="fa fa-calendar"></i> Pedientes </a></li>
+                            <li><a href="/index.php/cheques/index"><i class="fa fa-fw fa-money"></i> Cheques </a></li>
+                            <li><a href="/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
+                            <li><a href="/index.php/imprimir/index"><i class="fa fa-file"></i> Imprimir</a></li>
+                            <li><a href="/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
+                            <li> <a href="/index.php/estadistica/index"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
                             </li>
 <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '50' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001') { ?>
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-home"></i> Punto de Venta<b class="caret"></b></a> 
                                 <ul class="dropdown-menu multi-level">
-                                    <li><a href="/comibook/index.php/producto/index"><i class="fa fa-gift"></i> Productos</a></li>
-                                    <li><a href="/comibook/index.php/ventas/index"><i class="fa fa-fw fa-coffee"></i> Ventas</a></li>
-                                    <li><a href="/comibook/index.php/stock/index"><i class="fa fa-flash"></i> Stock</a></li>
-                                    <li><a href="/comibook/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
-                                    <li><a href="/comibook/index.php/provedores/index"><i class="fa fa-ambulance"></i> Provedores</a></li>
-                                    <li><a href="/comibook/index.php/solicitudes/index"><i class="fa fa-edit"></i> Solicitudes</a></li>
+                                    <li><a href="/index.php/producto/index"><i class="fa fa-gift"></i> Productos</a></li>
+                                    <li><a href="/index.php/ventas/index"><i class="fa fa-fw fa-coffee"></i> Ventas</a></li>
+                                    <li><a href="/index.php/stock/index"><i class="fa fa-flash"></i> Stock</a></li>
+                                    <li><a href="/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
+                                    <li><a href="/index.php/provedores/index"><i class="fa fa-ambulance"></i> Provedores</a></li>
+                                    <li><a href="/index.php/solicitudes/index"><i class="fa fa-edit"></i> Solicitudes</a></li>
                                 </ul>
                             </li>
 <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '51') { ?>
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-home"></i> Kiosko<b class="caret"></b></a> 
                                 <ul class="dropdown-menu multi-level">
-                                    <li><a href="/comibook/index.php/ventas/index"><i class="fa fa-fw fa-coffee"></i> Ventas</a></li>
-                                    <li><a href="/comibook/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
-                                    <li><a href="/comibook/index.php/solicitudes/index"><i class="fa fa-edit"></i> Generar Solicitudes</a></li>
+                                    <li><a href="/index.php/ventas/index"><i class="fa fa-fw fa-coffee"></i> Ventas</a></li>
+                                    <li><a href="/index.php/clientes/index"><i class="fa fa-user"></i> Clientes</a></li>
+                                    <li><a href="/index.php/solicitudes/index"><i class="fa fa-edit"></i> Generar Solicitudes</a></li>
                                 </ul>
                             </li>
 <?php } ?>
