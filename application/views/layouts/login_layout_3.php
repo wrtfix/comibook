@@ -147,10 +147,10 @@
                                     <div class="quick-links">
                                         <ul>
                                             <li><a href="about-us.html">Acerca de nosotros</a></li>
-                                            <li><a href="<?=base_url() ?>/index.php/login/">Ingresar</a></li>
-                                            <li><a href="<?=base_url() ?>/index.php/registrarse/index">Registrarse</a></li>
+                                            <li><a href="<?=base_url() ?>index.php/login/">Ingresar</a></li>
+                                            <li><a href="<?=base_url() ?>index.php/registrarse/index">Registrarse</a></li>
                                             <li><a href="shop.html">Noticias</a></li>
-                                            <li><a href="<?=base_url() ?>/index.php/portada/detalle/7">Contactanos</a></li>
+                                            <li><a href="<?=base_url() ?>index.php/portada/detalle/7">Contactanos</a></li>
                                         </ul>
                                     </div>
                                 </div>
