@@ -10,26 +10,19 @@ class Solicitud extends CI_Model {
 
 	function addSolicitud()
 	{
-		list($dia, $mes, $ano) = explode("-", $this->input->post('fecha'));
-		list($dia2, $mes2, $ano2) = explode("-", $this->input->post('vencimiento'));
 		$data = array(
-			'banco' => strtoupper($this->input->post('banco')),
-			'importe' => $this->input->post('importe'),		
-			'fecha' => $ano."-".$mes."-".$dia,
-			'fechavto' => $ano2."-".$mes2."-".$dia2,
-			'proviene' => $this->input->post('origen'),
-			'entregado' => $this->input->post('destino'),
+			'nombre' => strtoupper($this->input->post('nombre')),
+			'telefono' => $this->input->post('telefono'),		
+			'email' => strtoupper($this->input->post('email')),
 		);
 		
-		return $this->db->insert('cheques', $data);
+		return $this->db->insert('solicitudes', $data);
 	}
         
         function getSolicitudProductos(){
-//		$this -> db -> from('productos')->join('rSolicitudProducto', 'productos.idProducto = rSolicitudProducto.idProducto', 'LEFT');
-            $this -> db -> from('productos');
-		$query = $this -> db -> get();
-//                print_r($this->db->last_query());
-		return $query->result();
+            $this -> db -> from('solicitudes');
+            $query = $this -> db -> get();
+            return $query->result();
 	}
 	
 	function getCheques(){

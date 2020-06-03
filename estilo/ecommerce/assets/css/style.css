@@ -28,7 +28,7 @@
 /* header area */
 .header-area {
     left: 0;
-    position: absolute;
+    position: static;
     top: 0;
     width: 100%;
     z-index: 99;

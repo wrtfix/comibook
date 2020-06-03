@@ -11,7 +11,7 @@ class Monitoreo extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
+		if($this->session->userdata('logged_in'))
 		{
 			$this->load->library('form_validation');
 			$data['page'] = 'auditoria';

@@ -8,14 +8,21 @@ class Ambientes extends CI_Model {
         $this->load->model('auditoria','',TRUE);
     }
 
-    function addAmbiente() {
+    function addAmbiente($nombre) {
         $data = array(
-            'nombre' => $this->input->post('nombre'),
-            'ambiente' => $this->session->userdata('logged_in')['idAmbiente']
+            'nombre' => $nombre,
         );
         return $this->db->insert('ambiente', $data);
     }
 
+    function addAmbienteById($nombre) {
+        $data = array(
+            'nombre' => $nombre,
+        );
+        $this->db->insert('ambiente', $data);
+        return $this->db->insert_id();
+    }
+    
     function getMenuConfig() {
         $this->db->from('menu');
         $this->db->order_by('idMenu desc');
@@ -138,6 +145,16 @@ class Ambientes extends CI_Model {
         endforeach;
 
         return true;
+    }
+    
+    function addItemRUsuarioAmbiente($idAmbiente,$idUsuario){
+        $data = array(
+            'idUsuario' => $idUsuario,
+            'idAmbiente' => $idAmbiente
+        );
+        $this->db->insert('rUsuarioAmbiente', $data);
+        return true;
+            
     }
 
     function deleteRUsuarioAmbiente($idUsuario) {

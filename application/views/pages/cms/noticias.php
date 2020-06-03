@@ -219,47 +219,7 @@ $(document).ready(function(){
 		</table>
 	</div>
 
-<!-- Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <ul class="nav nav-tabs">
-            <li id="tab1" class="active"><a href="#">Imagen desde URL</a></li>
-            <li id="tab2"><a href="#">Seleccionar Imagen</a></li>
-        </ul>
-        <div class="modal-body" >
-            <div id="screenSelImagen" style="display:none;">
-            <table class="table table-bordered table-hover tablesorter" id="tablaGastos" xagregar="false">
-            <thead>
-              <tr>
-                <th class="header">Seleccionar<i class=""></i></th>                    
-                <th class="header">Imagen<i class=""></i></th>
-              </tr>
-            </thead>
-            <tbody>
-            <?php foreach($imagenes as $item): ?>                  
-            <tr>
-              <td><input type="checkbox" id="<?php echo base_url().'uploads/'; print_r($item->nombre);?>" class="fila" ></td>
-              <td><img width="50%" height="50%" src="<?php echo base_url().'uploads/'; print_r($item->nombre);?>"/></td>
-            </tr>
-            <?php endforeach; ?>
-            </tbody>
-            </table>
-        </div>
-        <div id="screenUrlImagen">
-            URL: <input type="text" id="imageURL" > <button type="button" class="btn btn-primary" id="validarImagen">Validar</button><br><br>
-            <div id="imagenResult"><center><img width="50%" height="50%" src="" id="setImage"/></center></div>
-        </div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="selectImagen">Seleccionar</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+
 
 
 

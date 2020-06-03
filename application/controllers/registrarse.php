@@ -12,6 +12,8 @@ class Registrarse extends CI_Controller {
         $this->layout->placeholder("title", $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor);
         $this->load->spark('markdown-extra/0.0.0');
         $this->layout->setLayout("layouts/login_layout_2");
+        $this->load->model('ambientes','',TRUE);
+        $this->load->model('menus','',TRUE);
         
     }
 
@@ -39,8 +41,14 @@ class Registrarse extends CI_Controller {
         $response = $this->recaptcha->verifyResponse($captcha_answer);
 
         // Processing ...
-        if ($response['success']) {
-            $this->user->addUser();
+        if ($response['success'] && $this->form_validation->run()) {
+            $nombre = $this->input->post('username');
+            $idAmbiente = $this->ambientes->addAmbienteById($nombre);
+            $idUsuario = $this->user->addUserById($idAmbiente );
+            
+            $this->ambientes->addItemRUsuarioAmbiente($idAmbiente,$idUsuario);
+            $idMenu = $this->configuraciones->getConfiguracion("MENU_DEFAULT")[0]->valor;
+            $menuItems = $this->menus->addItemRusuarioMenu($idUsuario, $idMenu);
             $data['userStateAdd'] = 'El usuario se registro correctamente';
             $this->layout->view('login_view', $data);
         }else{

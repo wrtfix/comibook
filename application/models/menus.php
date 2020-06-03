@@ -92,6 +92,16 @@ class Menus extends CI_Model {
 		return true;
 	}
         
+        function addItemRusuarioMenu($idUsuario, $idMenu){
+            $data = array(
+                    'idUsuario' => $idUsuario,	
+                    'idMenu' => $idMenu
+            );		
+            $this->db->insert('rUsuarioMenu', $data);
+            
+        }
+
+
         function getCountMenu($idUsuario){
             $this -> db -> from('rUsuarioMenu');
             $this -> db-> where('idUsuario like '.$idUsuario);

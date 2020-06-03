@@ -12,33 +12,27 @@ class Solicitudes extends CI_Controller {
         ini_set('memory_limit', '-1');
     }
 
-    public function index($fecha = null) {
+    public function index() {
         if ($this->session->userdata('logged_in')) {
             $this->load->library('form_validation');
-            date_default_timezone_set('America/Argentina/Buenos_Aires');
-            $hoy = date("Y-m-d");
-            list($dia, $mes, $ano) = explode("-", $hoy);
-            if ($fecha != null) {
-                $data['fechaSeleccionada'] = $fecha;
-                $lafecha = $fecha;
-            } else {
-                $data['fechaSeleccionada'] = null;
-                $lafecha = $ano . "-" . $mes . "-" . $dia;
-            }
-            $data['page'] = 'ventas';
-            $data['productos'] = $this->solicitud->getSolicitudProductos();
-            $data['agregados'] = $this->pedido->getPedidos($lafecha);
-            $this->layout->view('pages/solicitudes', $data);
+            
+            $data['page'] = 'listarSolicitudes';
+            $data['solicitudes'] = $this->solicitud->getSolicitudProductos();
+            
+            $this->layout->view('pages/ecommerce/listarSolicitudes', $data);
         } else {
             $data['page'] = 'construccion';
             $this->load->view('pages/construccion', $data);
         }
     }
 
-    public function addPedido() {
+    public function addSolicitud() {
         if ($this->session->userdata('logged_in')) {
             $this->load->library('form_validation');
-            $this->pedido->addPedido();
+            $this->solicitud->addSolicitud();
+            $data['page'] = 'listarSolicitudes';
+            $data['solicitudes'] = $this->solicitud->getSolicitudProductos();
+            $this->layout->view('pages/ecommerce/listarSolicitudes', $data);
         } else {
             $data['page'] = 'construccion';
             $this->load->view('pages/construccion', $data);

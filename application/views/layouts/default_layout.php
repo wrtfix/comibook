@@ -276,9 +276,11 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-check"></i> Servicio <b class="caret"></b></a> 
                                 <ul class="dropdown-menu multi-level">
                                     <li><a href="/comibook/index.php/turnera/consultorio/index"><i class="fa fa-fw fa-gear"></i> Locales </a></li>
+                                    <li><a href="/comibook/index.php/provedores/index"><i class="fa fa-ambulance"></i> Provedores</a></li>
                                     <li><a href="/comibook/index.php/turnera/consultorio/selectConsultrio"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
                                     <li><a href="/comibook/index.php/gastos/index"><i class="fa fa-wrench"></i> Gastos </a></li>
                                     <li><a href="/comibook/index.php/clientes/index"><i class="fa fa-user"></i> Clientes </a></li>
+                                    <li><a href="/comibook/index.php/backoffice/monitoreo/index"><i class="fa fa-book"></i> Monitoreo </a></li>
                                 </ul>
                             </li>
 <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '40' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001') { ?>
@@ -307,7 +309,7 @@
                             </li>
 <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '50' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001') { ?>
                             <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-home"></i> Kiosko<b class="caret"></b></a> 
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-home"></i> Punto de Venta<b class="caret"></b></a> 
                                 <ul class="dropdown-menu multi-level">
                                     <li><a href="/comibook/index.php/producto/index"><i class="fa fa-gift"></i> Productos</a></li>
                                     <li><a href="/comibook/index.php/ventas/index"><i class="fa fa-fw fa-coffee"></i> Ventas</a></li>
@@ -381,6 +383,49 @@
                     
               </div>
             </div>
+            
+            <!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <ul class="nav nav-tabs">
+            <li id="tab1" class="active"><a href="#">Imagen desde URL</a></li>
+            <li id="tab2"><a href="#">Seleccionar Imagen</a></li>
+        </ul>
+        <div class="modal-body" >
+            <div id="screenSelImagen" style="display:none;">
+            <table class="table table-bordered table-hover tablesorter" id="tablaGastos" xagregar="false">
+            <thead>
+              <tr>
+                <th class="header">Seleccionar<i class=""></i></th>                    
+                <th class="header">Imagen<i class=""></i></th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php foreach($imagenes as $item): ?>                  
+            <tr>
+              <td><input type="checkbox" id="<?php echo base_url().'uploads/'; print_r($item->nombre);?>" class="fila" ></td>
+              <td><img width="50%" height="50%" src="<?php echo base_url().'uploads/'; print_r($item->nombre);?>"/></td>
+            </tr>
+            <?php endforeach; ?>
+            </tbody>
+            </table>
+        </div>
+        <div id="screenUrlImagen">
+            URL: <input type="text" id="imageURL" > <button type="button" class="btn btn-primary" id="validarImagen">Validar</button><br><br>
+            <div id="imagenResult"><center><img width="50%" height="50%" src="" id="setImage"/></center></div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="selectImagen">Seleccionar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+            
           </div>
             
     </body>

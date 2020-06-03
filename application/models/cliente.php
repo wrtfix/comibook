@@ -6,6 +6,7 @@ class Cliente extends CI_Model {
 	{
 		parent::__construct();
 		$this->load->database();
+                $this->load->model('auditoria','',TRUE);
 	}
 
 	function addCliente()
@@ -19,10 +20,15 @@ class Cliente extends CI_Model {
 			'Cuit' => strtoupper($this->input->post('cuit')),
                         'ambiente' => $this->session->userdata('logged_in')['idAmbiente']
 		);
-		return $this->db->insert('clientes', $data);
+                
+                $result = $query->result();
+                $outQuery = $this->db->last_query();
+                $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Alta de cliente');
+		return $result;
 	}
 	
 	function getClientes($tipo=null){
+            
 		$this -> db -> from('clientes');
                 if($tipo==null){
                     $this -> db -> like("tipo","CLIENTE");
@@ -33,6 +39,20 @@ class Cliente extends CI_Model {
                 
 		$query = $this -> db -> get();
 		return $query->result();
+	}
+        
+        function getClientePorNumero($numero,$tipo){
+            $this -> db -> from('clientes');
+            $this -> db -> like("tipo",$tipo);
+            $this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
+            $this -> db -> where('Numero',$numero);
+            $query = $this -> db -> get();
+            
+            $result = $query->result();
+            $outQuery = $this->db->last_query();
+            $this->auditoria->addActivity($outQuery, 1, 'Consulto cliente');
+
+            return $result;
 	}
 	
 	function delClientes($identificador){

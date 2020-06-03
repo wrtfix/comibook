@@ -6,6 +6,7 @@ class Producto extends CI_Controller {
         parent:: __construct();
         $this->layout->placeholder("title", "Sistema de Gestion de Pedidos");
         $this->load->model('productos', '', TRUE);
+        $this->load->model('cliente', '', TRUE);
         $this->load->spark('markdown-extra/0.0.0');
     }
 
@@ -17,7 +18,7 @@ class Producto extends CI_Controller {
                 $data['page'] = 'producto';
                 $data['idLocal'] = $this->input->post('idLocal');
                 
-                $data['agregados'] = $this->productos->getProductosByLocal($this->input->post('idLocal'));
+                $data['agregados'] = $this->productos->getProductosPorLocalProveedor($this->input->post('idLocal'));
                 $this->layout->view('pages/producto', $data);
                 
             }else{
@@ -46,7 +47,7 @@ class Producto extends CI_Controller {
                 $result = $this->productos->addProducto();
             }
             if ($this->input->post('idLocal') !=null){
-                $data['agregados'] = $this->productos->getProductosByLocal($this->input->post('idLocal'));
+                $data['agregados'] = $this->productos->getProductosPorLocalProveedor($this->input->post('idLocal'));
             }else{
                 $data['agregados'] = $this->productos->getProductos();
             }
@@ -81,6 +82,17 @@ class Producto extends CI_Controller {
             } else {
                 $result = $this->productos->updateProducto($id);
             }
+        } else {
+            $data['page'] = 'construccion';
+            $this->load->view('pages/construccion', $data);
+        }
+    }
+    
+    public function getProveedor($numero) {
+        if ($this->session->userdata('logged_in')) {
+            $respuesta = json_encode($this->cliente->getClientePorNumero($numero,"PROVEDOR"));
+            print_r($respuesta);
+            return $respuesta;
         } else {
             $data['page'] = 'construccion';
             $this->load->view('pages/construccion', $data);

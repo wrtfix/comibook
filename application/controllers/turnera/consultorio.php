@@ -52,11 +52,15 @@ class Consultorio extends CI_Controller
 		}
 	}
 	
-	public function updateConsultorio($id){
+	public function updateConsultorio(){
             if($this->session->userdata('logged_in') && ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001'))
             {
                     $this->load->library('form_validation');
-                    $result = $this->consultorios->updateConsultorio($id);
+                    $jsonObject = $this->input->post('dataPost');
+                    foreach ($jsonObject as $value) {
+                        $result = $this->consultorios->updateConsultorio($value['id'],$value['nombre'],$value['direccion'],$value['especialidad'],$value['telefono'],$value['horario'],$value['provee'],$value['imagen']);
+                    }
+                    
 	    }else{
                     $data['page'] = 'construccion';
                     $this->load->view('pages/construccion', $data);
@@ -79,5 +83,10 @@ class Consultorio extends CI_Controller
 			$this->load->view('pages/construccion', $data);
 		}
 	}
+        
+        public function loadCard(){
+            $this->layout->setLayout("layouts/empty");
+            $this->layout->view('pages/turnera/consultorioCard');
+        }
                 
 }

@@ -18,9 +18,6 @@ Class User extends CI_Model {
 
         $query = $this->db->get();
 
-
-
-
         if ($query->num_rows() == 1) {
             $result = $query->result();
 
@@ -46,6 +43,21 @@ Class User extends CI_Model {
         return $result;
     }
 
+    function addUserById($idAmbiente) {
+        $data = array(
+            'username' => $this->input->post('username'),
+            'password' => MD5($this->input->post('password')),
+            'email' => $this->input->post('email'),
+            'telefono' => $this->input->post('tel'), 
+            'idAmbiente' => $idAmbiente
+        );
+        $result = $this->db->insert('users', $data);
+        $id = $this->db->insert_id();
+        $outQuery = $this->db->last_query();
+        $this->auditoria->addActivity($outQuery, $id, 'Agregar Usuario');
+        return $id;
+    }
+    
     function addUser() {
         $data = array(
             'username' => $this->input->post('username'),
@@ -55,7 +67,7 @@ Class User extends CI_Model {
         );
         $result = $this->db->insert('users', $data);
         $outQuery = $this->db->last_query();
-        $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Agregar Usuario');
+        $this->auditoria->addActivity($outQuery, 1, 'Agregar Usuario');
         return $result;
     }
 

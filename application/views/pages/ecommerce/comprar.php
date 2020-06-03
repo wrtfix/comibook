@@ -11,7 +11,29 @@
         $("#solcitarCompra").submit();
     }
     
-        function buscarAFIP() {
+    function finalizarCompraEmail(){
+        var tel = $("#telefono").val();
+        var localidad = $("#localidadAFIP").val();
+        var mail = $("#mail").val();
+        var nombre = $("#nombreAFIP").val();
+        var domicilio = $("#domicilioAFIP").val();
+        var formaPago = $("input[name='pago']:checked").val();
+        
+        $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>index.php/producto/getProveedor/" + elem,
+                dataType: 'json',
+                data: {tel:tel, localidad:localidad, mail:mail, nombre:nombre, domicilio:domicilio, formaPago:formaPago},
+                success: function (response) {
+                    console.log('Solicitud Generada con exito!');
+                }
+        });
+        
+    }
+    
+    
+    
+    function buscarAFIP() {
         var elem = 'https://afip.tangofactura.com/Index/GetCuitsPorDocumento/?NumeroDocumento=' + $("#numeroAFIP").val();
         $.ajax({
             type: "GET",
@@ -152,7 +174,8 @@
                 </div>
                 
                 <hr/>
-                <a class="btn-style cr-btn" onclick="finalizarCompra()">Comprar</a>
+                <a class="btn-style cr-btn" onclick="finalizarCompra()">Comprar por Whatsapp</a>
+                <a class="btn-style cr-btn" onclick="generarSolicitud()">Comprar por Email</a>
             </div>
         </div>
         
@@ -161,4 +184,6 @@
 <form action="http://api.whatsapp.com/send" id="solcitarCompra" method="GET">
     <input type="hidden" name="phone" id="phone" value="<?php print_r($telefono);?>"/>
     <input type="hidden" name="text" id="texto"/>
+    <input type="hidden" name="body" id="body"/>
 </form>
+

@@ -27,7 +27,8 @@ class Ambiente extends CI_Controller
 		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
 		{
 			$this->load->library('form_validation');
-			$result = $this->ambientes->addAmbiente();
+                        $nombre = $this->input->post('nombre');
+			$result = $this->ambientes->addAmbiente($nombre);
 			$data['page'] = 'ambiente';
 			$data['agregados'] =  $this->ambientes->getAmbiente();
 			$this->layout->view('pages/backoffice/ambiente', $data);

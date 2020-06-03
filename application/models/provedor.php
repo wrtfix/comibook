@@ -19,6 +19,7 @@ class Provedor extends CI_Model {
 			'Telefono' => strtoupper($this->input->post('telefono')), 
 			'Cuit' => strtoupper($this->input->post('cuit')), 
                         'tipo' => 'PROVEDOR',
+                        'ambiente' => $this->session->userdata('logged_in')['idAmbiente']
 		);
 		return $this->db->insert('clientes', $data);
 	}

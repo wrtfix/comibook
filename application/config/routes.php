@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "portada";
+$route['default_controller'] = "turnera/busqueda";
 $route['sitemap.xml'] = "seo/sitemap";
 $route['404_override'] = '';
 

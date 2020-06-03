@@ -10,8 +10,7 @@
                 if (mobileAndTabletcheck()){
                     loadContent("#panelConfiguracion", "index.php/turnera/consultorio/loadCard");
                 }else{
-                    $('#tablaConsultorios').append("<tr><td></td><td><input name='nombre' type='input' value=''></td><td><input name='especialidad' type='input' value=''></td><td><input name='direccion' type='input' value=''></td><td><input name='telefono' type='input' value=''></td><td><input name='horario' type='input' value=''></td><td><input name='provee' type='input' value=''></td><td><input id='NewurlImage' name='imagem' type='hidden' value=''><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#imageModal' >Imagen</button></tr>");
-                    $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
+                    $('#tablaConsultorios').append("<tr><td></td><td></td><td><input name='nombre' type='input' value=''></td><td><input name='email' type='input' value=''></td><td><input name='telefono' type='input' value=''></td></tr>");                    
                 }
                 $("#tablaConsultorios").attr("xagregar", "true");
             }
@@ -158,7 +157,7 @@
             }
 	});
         $('#productos').click(function(){
-	    var idLocal = $("input[name='consultorio']:checked").val();
+	    var idLocal = $("input[name='solicitudes']:checked").val();
             if (idLocal != undefined){
                 idLocal = idLocal.split("-")[1];
                 var $aux = $("form:first");
@@ -208,21 +207,15 @@
         <?php echo validation_errors(); ?>
     </div>
 <?php } ?>
-<?php echo form_open('turnera/consultorio/addConsultorio'); ?>
+<?php echo form_open('solicitudes/addSolicitud'); ?>
 <div class="page-header">
-    <h2>Locales</h2>
+    <h2>Solicitudes</h2>
 </div>
 <div class="row">
     <div class="btn-group">
-        <?php if ($this->session->userdata('logged_in')['menu'][0]->peso === '1000' || empty($agregados)) { ?>
         <button type="button" id="agregar" class="btn btn-success">Agregar</button>
-        <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
-        <?php } ?>
         <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-        <button type="button" id="permisos" class="btn btn-warning">Agenda</button>
         <button type="button" id="productos" class="btn btn-circle">Productos</button>
-        <button type="button" id="agenda" class="btn btn-default">Ver Agenda</button>
-        <button type="button" id="whatsapp" class="btn btn-success">Validar whatsapp</button>
     </div>
     
 
@@ -233,80 +226,27 @@
             <thead>
                 <tr>
                     <th class="header">Seleccionar<i class=""></i></th>                    
-                    <th class="header">Nombre<i class=""></i></th>
-                    <th class="header">Especialidad<i class=""></i></th>
-                    <th class="header">Direccion<i class=""></i></th>
+                    <th class="header">Fecha<i class=""></i></th>
+                    <th class="header">Usuario<i class=""></i></th>
+                    <th class="header">Email<i class=""></i></th>
                     <th class="header">Telefono<i class=""></i></th>
-                    <th class="header">Horario de atencion<i class=""></i></th>
-                    <th class="header">Provee?</th>
-                    <th class="header">Imagen</th>
                 </tr>
             </thead>
             <tbody>
                 <?php $cont = 0;
-                foreach ($agregados as $item): $cont = $cont + 1; ?>                  
+                foreach ($solicitudes as $item): $cont = $cont + 1; ?>                  
                     <tr>
-                        <td><input type="radio" name="consultorio" value="consultorio-<?php print_r($item->idConsultorio); ?>" class="fila" ></td>
-                        <td><input class="formulario" name="nombre" id="nombre-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre); ?>'/></td>
-                        <td><input class="formulario" name="especialidad" id="especialidad-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->especialidad); ?>'/></td>
-                        <td><input class="formulario" name="direccion" id="direccion-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->direccion); ?>'/></td>
-                        <td><input class="formulario" name="telefono" id="telefono-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->telefono); ?>'/> </td>
-                        <td><input class="formulario" name="horario" id="horario-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->horario); ?>'/></td>
-                        <td><input class="formulario" name="provee" id="provee-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->provee); ?>'/></td>
-                        <td><input class="formulario" name="imagen" id="imagen-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->imagen); ?>'/></td>
+                        <td><input type="radio" name="solicitudes" value="solicitudes-<?php print_r($item->idSolicitud); ?>" class="fila" ></td>
+                        <td><input class="formulario" name="fecha" id="nombre-<?php print_r($item->idSolicitud); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->fecha); ?>'/></td>
+                        <td><input class="formulario" name="usuario" id="especialidad-<?php print_r($item->idSolicitud); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre); ?>'/></td>
+                        <td><input class="formulario" name="email" id="direccion-<?php print_r($item->idSolicitud); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->email); ?>'/></td>
+                        <td><input class="formulario" name="telefono" id="telefono-<?php print_r($item->idSolicitud); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->telefono); ?>'/> </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
-    <div class="col-sm-4 mobile" id="panelConfiguracion">
-        <?php $cont = 0; foreach ($agregados as $item): $cont = $cont + 1; ?>                  
-            <div  class="panel panel-green">
-                <div class="col-lg-6 panel-body">
-                    <div class="form-group">
-                        <input  type="radio" name="consultorio" value="consultorio-<?php print_r($item->idConsultorio); ?>" />
-                        <label>Eliminar</label>
-                        <p class="help-block"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Nombre</label>
-                        <input class="form-control formularioMobile" id="nombreMobile-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre); ?>'/>
-                        <p class="help-block"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Especialidad</label>
-                        <input class="form-control formularioMobile" id="especialidadMobile-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->especialidad); ?>'/>
-                        <p class="help-block"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Direccion</label>
-                        <input class="form-control formularioMobile" id="direccionMobile-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->direccion); ?>'/>
-                        <p class="help-block"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Telefono</label>
-                        <input class="form-control formularioMobile" id="telefonoMobile-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->telefono); ?>'/>
-                        <p class="help-block"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Horario</label>
-                        <input class="form-control formularioMobile" id="horarioMobile-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->horario); ?>'/>
-                        <p class="help-block"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Provee</label>
-                        <input class="form-control formularioMobile" id="proveeMobile-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->provee); ?>'/>
-                        <p class="help-block"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Imagen</label>
-                        <input class="form-control formularioMobile" id="imagenMobile-<?php print_r($item->idConsultorio); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->imagen); ?>'/>
-                        <p class="help-block"></p>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+   
 </div>
-</div>
+
 

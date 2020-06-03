@@ -36,7 +36,7 @@
 
             <div class="wrap-input100 validate-input" data-validate = "El telefono es requerido">
                 <span class="label-input100">Telefono</span>
-                <input class="input100" type="text" name="email" placeholder="Numero de telefono...">
+                <input class="input100" type="text" name="tel" placeholder="Numero de telefono...">
                 <span class="focus-input100"></span>
             </div>
 

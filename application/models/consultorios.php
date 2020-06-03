@@ -1,18 +1,20 @@
 <?php
 Class Consultorios extends CI_Model
 {
-        function updateConsultorio($id){
+        function updateConsultorio($id,$nombre,$direccion,$especialidad,$telefono,$horario,$provee,$imagen){
+            
             $data = array(
-			'nombre' => $this->input->post('nombre'),
-                        'direccion' => $this->input->post('direccion'),
-                        'especialidad' => $this->input->post('especialidad'),
-			'telefono' => $this->input->post('telefono'),
-                        'horario' => $this->input->post('horario'),
-                        'provee' => $this->input->post('provee'),
-                        'imagen' =>  $this->input->post('imagen')
-		);
+                    'nombre' => $nombre,
+                    'direccion' => $direccion,
+                    'especialidad' => $especialidad,
+                    'telefono' => $telefono,
+                    'horario' => $horario,
+                    'provee' => $provee,
+                    'imagen' =>  $imagen
+            );
             $this->db->where('idConsultorio', $id);
             return $this->db->update('consultorios', $data);
+
         }
         
         function addConsultorio(){

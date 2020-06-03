@@ -31,17 +31,17 @@
     <div class="wrapper">
             <!-- header start -->
             <header>
-                <div class="header-area transparent-bar ptb-55">
+                <div class="header-area transparent-bar">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-4 col-4">
+                            <div class="col-lg-8 col-md-8 col-8">
                                 <div class="logo-small-device">
                                     <a href="<?= base_url() ?>"><?php if(!empty($imageLogo)){ ?><img alt="<?= $this->layout->placeholder("title"); ?>" src="<?php print_r($imageLogo); ?>"><?php } ?> <h1><?php print_r($this->layout->placeholder("title")); ?></h1></a>
                                     <p><?= $this->layout->placeholder("descripcion"); ?></p>
                                 </div>
                                 
                             </div>
-                            <div class="col-lg-8 col-md-8 col-8">
+                            <div class="">
                                 <div class="header-contact-menu-wrapper pl-45">
                                     <div class="header-contact">
                                         <p></p>
@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </header>
-            <div class="breadcrumb-area pb-170" style="background-image: url(<?php print_r($headerImage)?>)">
+            <div class="breadcrumb-area" style="background-image: url(<?php print_r($headerImage)?>)">
                 <div class="container-fluid">
                     <div class="breadcrumb-content text-center">
                         <ul>
@@ -253,9 +253,8 @@
                 $.ajax({
                         type: "POST",
                         url: "<?= base_url() ?>index.php/ecommerce/producto/detalleCartView",
-                        data: {tel: '<?php print_r($telefono); ?>'}
+                        data: {tel: '<?php print_r($telefono); ?>'},
                         success: function (response) {
-                            console.log(response);
                             $(".shopping-cart-content").html(response);
                         }
                 });

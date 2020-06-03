@@ -17,9 +17,13 @@ class Productos extends CI_Model {
                         'imagen' => $this->input->post('imagen'),
                         'precio' => $this->input->post('precio'),
                         'idLocal' => $this->input->post('idLocal'),
+                        'idProveedor' => $this->input->post('idProvedor'),
                         'descripcion' => $this->input->post('descripcion')
 		);
-		return $this->db->insert('productos', $data);
+                $result = $this->db->insert('productos', $data);
+                $outQuery = $this->db->last_query();
+                $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Listar productos por local');
+		return $result;
 	}
 	
 	function delProducto($identificador){
@@ -37,6 +41,22 @@ class Productos extends CI_Model {
                 $this-> db ->where('idLocal', $idLocal);
 		$query = $this -> db -> get();
 		return $query->result();
+	}
+        
+        function getProductosPorLocalProveedor($idLocal){
+		$this -> db -> from('productos');
+                $this->db->join('clientes','clientes.Numero = productos.idProveedor','join');
+                
+                $this-> db ->where('idLocal', $idLocal);
+                $this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
+                
+		$query = $this -> db -> get();
+                $result = $query->result();
+                
+                $outQuery = $this->db->last_query();
+                $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Listar productos por local');
+                
+		return $result;
 	}
         
         
@@ -62,10 +82,11 @@ class Productos extends CI_Model {
                         'peso' => $this->input->post('peso'),
                         'precio' => $this->input->post('precio'),
                         'imagen' => $this->input->post('imagen'),
-                        'descripcion' => $this->input->post('descripcion')
+                        'descripcion' => $this->input->post('descripcion'),
+                        'idProveedor' => $this->input->post('idProvedor')
 		);
 		$this->db->where('idProducto', $id);
-        return $this->db->update('productos', $data);
+                return $this->db->update('productos', $data);
 	}
 }
 ?>

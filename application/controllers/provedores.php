@@ -34,14 +34,14 @@ class Provedores extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
 
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('numero', 'numero', 'required|numeric');
-            $this->form_validation->set_rules('nombre', 'nombre', 'required');
-
-            if ($this->form_validation->run() == FALSE) {
-                $this->output->set_status_header('400'); //Triggers the jQuery error callback
-            } else {
+//            $this->form_validation->set_rules('numero', 'numero', 'required|numeric');
+//            $this->form_validation->set_rules('nombre', 'nombre', 'required');
+//
+//            if ($this->form_validation->run() == FALSE) {
+//                $this->output->set_status_header('400'); //Triggers the jQuery error callback
+//            } else {
                 $result = $this->provedor->addCliente();
-            }
+//            }
             $data['page'] = 'provedores';
             $data['agregados'] = $this->provedor->getClientes();
             $this->layout->view('pages/provedores', $data);
