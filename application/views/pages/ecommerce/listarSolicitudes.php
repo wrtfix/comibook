@@ -10,7 +10,7 @@
                 if (mobileAndTabletcheck()){
                     loadContent("#panelConfiguracion", "index.php/turnera/consultorio/loadCard");
                 }else{
-                    $('#tablaConsultorios').append("<tr><td></td><td></td><td><input name='nombre' type='input' value=''></td><td><input name='email' type='input' value=''></td><td><input name='telefono' type='input' value=''></td></tr>");                    
+                    $('#tablaConsultorios').append("<tr><td></td><td></td><td><input name='nombre' type='input' value=''></td><td><input name='email' type='input' value=''></td><td><input name='telefono' type='input' value=''></td><td><input name='domicilio' type='input' value=''></td><td><input name='formaPago' type='input' value=''> <input name='idLocal' type='hidden' value='<?php print_r($idLocal); ?>'> </td> </tr>");                    
                 }
                 $("#tablaConsultorios").attr("xagregar", "true");
             }
@@ -21,7 +21,8 @@
             if (agrego == 'true') {
                 $("form:first").submit();
             } else {
-		var dataPost = [];
+                //TODO REVISAR
+		/*var dataPost = [];
                 for (var i = 0; i < cambios.length; i++) {
                     var id = cambios[i];
                     var nombre = $('#nombre-' + cambios[i]).val();
@@ -58,27 +59,12 @@
                             showInfo("Verifique los campos ingresados",'error');
                             
                         }
-                    });
+                    });*/
+                    showInfo("Actualmente esta funcionalidad no soporta modificaciones, estamos trabajando para usted",'danger');
                 }
-            
-
+                
         });
 
-        $('#eliminar').click(function () {
-            
-            var elem = $("input[name='consultorio']:checked").val().split("-")[1];                
-            $.ajax({
-                type: "POST",
-                url: "<?= base_url() ?>index.php/turnera/consultorio/delConsultorio/" + elem
-            });
-
-            if (mobileAndTabletcheck()){
-               $("input[name='consultorio']:checked").parent().parent().parent().remove();
-            }else{
-                $("input[name='consultorio']:checked").parent().parent().remove();
-            }
-            
-        });
 
         $('.formulario').blur(function () {
             if (jQuery.inArray(($(this).attr('id').split('-')[1]), cambios) == -1) {
@@ -94,102 +80,6 @@
         
         $(".fechaInput").datepicker({dateFormat: 'dd-mm-yy'});
         
-        $('#permisos').click(function(){
-            var idUsuario = $("input[name='consultorio']:checked").val();
-	    
-            if (idUsuario != undefined){
-                idUsuario = idUsuario.split("-")[1]
-                var $aux = $("form:first")
-                $aux.attr('action',"<?=base_url()?>index.php/turnera/horario/index/"+idUsuario);
-                $aux.submit();
-            }else{
-                showInfo("Debe seleccionar un local para poder configurar su agenda",'warning');
-                
-                if (guardar.length===0){
-                    location.reload();
-                }
-            }
-	});
-        
-        $("#whatsapp").click(function(){
-            
-            var elem = $("input[name='consultorio']:checked").val();
-            if (elem != undefined){
-                elem = elem.split("-")[1];
-                 var tel = $("#telefono-"+elem).val();
-            
-            var $aux = $("form:first");
-                $aux.append(jQuery('<input>', {
-                    'name': 'phone',
-                    'value': tel,
-                    'type': 'hidden'
-                }));
-                $aux.attr("target","_blank");
-                $aux.attr('action',"http://api.whatsapp.com/send");
-                $aux.submit();
-            
-            }else{
-                showInfo("Debe seleccionar un local para validar el numero en whatsapp",'warning');
-            }
-            
-           
-
-        });
-        
-        $('#agenda').click(function(){
-            var idConsultorio = $("input[name='consultorio']:checked").val();
-	    
-            if (idConsultorio != undefined){
-                idConsultorio = idConsultorio.split("-")[1];
-                var $aux = $("form:first");
-                $aux.append(jQuery('<input>', {
-                    'name': 'idConsultorio',
-                    'value': idConsultorio,
-                    'type': 'hidden'
-                }));
-                $aux.attr('action',"<?=base_url()?>index.php/turnera/agenda/index/");
-                $aux.submit();
-            }else{
-                showInfo("Debe seleccionar un local",'warning');
-                if (guardar.length===0){
-                    location.reload();
-                }
-            }
-	});
-        $('#productos').click(function(){
-	    var idLocal = $("input[name='solicitudes']:checked").val();
-            if (idLocal != undefined){
-                idLocal = idLocal.split("-")[1];
-                var $aux = $("form:first");
-                $aux.append(jQuery('<input>', {
-                    'name': 'idLocal',
-                    'value': idLocal,
-                    'type': 'hidden'
-                }));
-                $aux.attr('action',"<?=base_url()?>index.php/producto/index");
-                $aux.submit();
-            }else{
-                showInfo("Debe seleccionar un local",'warning');
-                if (guardar.length===0){
-                    location.reload();
-                }
-            }
-	});
-        
-        $("#validarImagen").click(function(){
-            var url =  $("#imageURL").val();
-            $("#setImage").attr('src',url);
-            
-        });
-        $('#selectImagen').click(function(){
-		var idNoticia = $('input:checked:first').attr('id');
-                var url =  $("#imageURL").val();
-                if (url == ''){
-                    $("#NewurlImage").val(idNoticia);
-                }else{
-                    $("#NewurlImage").val(url);
-                }
-	});
         
     });
 
@@ -215,7 +105,6 @@
     <div class="btn-group">
         <button type="button" id="agregar" class="btn btn-success">Agregar</button>
         <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
-        <button type="button" id="productos" class="btn btn-circle">Productos</button>
     </div>
     
 
@@ -230,6 +119,9 @@
                     <th class="header">Usuario<i class=""></i></th>
                     <th class="header">Email<i class=""></i></th>
                     <th class="header">Telefono<i class=""></i></th>
+                    <th class="header">Domicilio<i class=""></i></th>
+                    <th class="header">Forma de pago<i class=""></i></th>
+                    <th class="header">Acciones<i class=""></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -241,6 +133,9 @@
                         <td><input class="formulario" name="usuario" id="especialidad-<?php print_r($item->idSolicitud); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre); ?>'/></td>
                         <td><input class="formulario" name="email" id="direccion-<?php print_r($item->idSolicitud); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->email); ?>'/></td>
                         <td><input class="formulario" name="telefono" id="telefono-<?php print_r($item->idSolicitud); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->telefono); ?>'/> </td>
+                        <td><input class="formulario" name="domicilio" id="domicilio-<?php print_r($item->idSolicitud); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->domicilio); ?>'/> </td>
+                        <td><input class="formulario" name="formaPago" id="formaPago-<?php print_r($item->idSolicitud); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->formaPago); ?>'/> </td>
+                        <td><button type="button" id="productos" class="btn btn-circle">Productos</button> </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

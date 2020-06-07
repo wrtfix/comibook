@@ -1,11 +1,13 @@
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <meta charset="utf-8">
     <title><?= $this->layout->placeholder("title"); ?></title>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
     <meta name="description" content="">
     <meta name="author" content="jorge carlos mendiola" >
 

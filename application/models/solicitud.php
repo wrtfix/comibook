@@ -14,6 +14,9 @@ class Solicitud extends CI_Model {
 			'nombre' => strtoupper($this->input->post('nombre')),
 			'telefono' => $this->input->post('telefono'),		
 			'email' => strtoupper($this->input->post('email')),
+                        'domicilio' => strtoupper($this->input->post('domicilio')),
+                        'formaPago' => strtoupper($this->input->post('formaPago')),
+                        'idLocal'=> $this->input->post('idLocal'),
 		);
 		
 		return $this->db->insert('solicitudes', $data);
@@ -21,6 +24,13 @@ class Solicitud extends CI_Model {
         
         function getSolicitudProductos(){
             $this -> db -> from('solicitudes');
+            $query = $this -> db -> get();
+            return $query->result();
+	}
+        
+        function getSolicitudProductosPorLocal($idLocal){
+            $this -> db -> from('solicitudes');
+            $this->db->where('idLocal', $idLocal);
             $query = $this -> db -> get();
             return $query->result();
 	}

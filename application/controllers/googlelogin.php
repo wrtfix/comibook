@@ -20,10 +20,12 @@ class Googlelogin extends CI_Controller {
     }
 
     public function login() {
+        $sess_array = array();
+
 
         $clientId = $this->configuraciones->getConfiguracion("GOOGLE_CLIEN_ID")[0]->valor; //Google client ID
         $clientSecret = $this->configuraciones->getConfiguracion("GOOGLE_CLIEN_SECRET")[0]->valor; //Google client secret
-        $redirectURL = base_url() . 'googlelogin/login';
+        $redirectURL = base_url() . 'index.php/googlelogin/login';
 
         //https://curl.haxx.se/docs/caextract.html
         //Call Google API
@@ -45,18 +47,17 @@ class Googlelogin extends CI_Controller {
         }
 
         if ($gClient->getAccessToken()) {
-            $userProfile = $google_oauthV2->userinfo->get();
-//            print_r($userProfile);
-
-            $sess_array = array(
-                'id' => '8',
-                'username' => 'admin',
-                'menu' => $this->menus->getUsuarioMenu(8),
-                'idAmbiente' => '3',
-                'cantAmbientes' => '1',
-            );
+            //$userProfile = $google_oauthV2->userinfo->get();
+//          print_r($userProfile);
+            $this->load->library('session'); 
+                $sess_array = array(
+        		'id' => '18',
+                        'username' => 'admin',
+                        'menu' => $this->menus->getUsuarioMenu(18),
+                        'idAmbiente' => '3',
+                        'cantAmbientes' => '1'
+                    );
             $this->session->set_userdata('logged_in', $sess_array);
-
             //Go to private area
             $data['page'] = 'about';
             $data['textoAcercaDe'] = $this->configuraciones->getConfiguracion("ABOUT_MESSAGE");

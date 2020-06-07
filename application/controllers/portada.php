@@ -57,6 +57,8 @@ class Portada extends CI_Controller {
         $data['marquetNews'] = $this->configuraciones->getConfiguracion("MARQUET_NEWS");
         $data['twitterNews'] = $this->configuraciones->getConfiguracion("TWITTER_NEWS");
         $data['headerContent'] = $this->configuraciones->getConfiguracion("HEADER_CONTENT");
+        $data['headerTag'] = $this->configuraciones->getConfiguracion("HEADER_TAG");
+        $data['showMap'] = $this->configuraciones->getConfiguracion("SHOW_MAP");
 
 
         $data['ogurl'] = $url;
@@ -70,7 +72,7 @@ class Portada extends CI_Controller {
         $this->load->library('leaflet');
         $config = array(
             'center' => '-37.29643, -59.15102', // Center of the map
-            'zoom' => 16, // Map zoom
+            'zoom' => 12, // Map zoom
         );
         $this->leaflet->initialize($config);
 
@@ -81,7 +83,6 @@ class Portada extends CI_Controller {
         $this->leaflet->add_marker($marker);
         $data['map'] = $this->leaflet->create_map();
         //Fin de mapa
-
 
 
         $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
@@ -184,7 +185,7 @@ class Portada extends CI_Controller {
                 ));
                 $helper = $fb->getRedirectLoginHelper();
                 $permissions = ['email']; // Optional permissions
-                $loginUrl = $helper->getLoginUrl('http://localhost/saltaChequeado/facebooklogin/login', $permissions);
+                $loginUrl = $helper->getLoginUrl( base_url().'/index.php/facebooklogin/login', $permissions);
                 $data['loginUrlFacebook'] = '<a href="' . htmlspecialchars($loginUrl) . '"><i class="fa fa-facebook-official"></i> Facebook </a>';
                 $data['page'] = 'login_view';
                 $data['userStateAdd'] = null;
@@ -306,9 +307,11 @@ class Portada extends CI_Controller {
         $lafecha = $ano . "-" . $mes . "-" . $dia;
         $this->load->library('form_validation');
         $filter = $this->input->post('idNoticia');
-        $result = $this->contenido->getContenido($filter);
-        $data = self::getSetters(null, $lafecha, base_url() . "index.php/portada/detalle/" . $filter, $result[0]->titulo, $result[0]->resumen, $result[0]->urlImage);
         
+        $result = $this->contenido->getContenido($filter);
+        $data = self::getSetters($filter, $lafecha, base_url() . "index.php/portada/detalle/" . $filter, $result[0]->titulo, $result[0]->resumen, $result[0]->urlImage);
+            
+        $result = $this->contenido->getContenido($filter);
         $fecha = date("Y-m-d");
 
         // Load the library

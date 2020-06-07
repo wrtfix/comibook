@@ -51,11 +51,6 @@
                     <div class="product-list-details">
                         <h2><a href="product/<?php print_r($item->idConsultorio); ?>"><?php print_r($item->nombre); ?> <?php if(!empty($item->especialidad)){ ?> - <?php print_r($item->especialidad)?> <?php } ?></a></h2>
                         <div class="quick-view-rating">
-<!--                            <i class="fa fa-star reting-color"></i>
-                            <i class="fa fa-star reting-color"></i>
-                            <i class="fa fa-star reting-color"></i>
-                            <i class="fa fa-star reting-color"></i>
-                            <i class="fa fa-star reting-color"></i>-->
                         </div>
                         <?php if(!empty($item->precio)){ ?>
                         <div class="product-price">

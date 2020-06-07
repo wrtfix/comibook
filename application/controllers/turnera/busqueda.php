@@ -29,6 +29,7 @@ class Busqueda extends CI_Controller
                 $local = $this->consultorios->getConsultorio($idLocal);
                 $this->layout->placeholder("title", $local[0]->nombre);
                 $this->layout->placeholder("descripcion", $local[0]->direccion." <br> Telefono: ".$local[0]->telefono." <br> Horario: ".$local[0]->horario);
+                $data['idLocal'] = $idLocal;
                 $data['telefono'] = $local[0]->telefono;
                 $data['agregados'] = $this->productos->getProductosByLocal($idLocal);
             }

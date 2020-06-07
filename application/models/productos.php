@@ -6,6 +6,7 @@ class Productos extends CI_Model {
 	{
 		parent::__construct();
 		$this->load->database();
+                $this->load->model('auditoria','',TRUE);
 	}
 
 	function addProducto()
@@ -22,7 +23,7 @@ class Productos extends CI_Model {
 		);
                 $result = $this->db->insert('productos', $data);
                 $outQuery = $this->db->last_query();
-                $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Listar productos por local');
+                $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Agregar productos por local');
 		return $result;
 	}
 	
@@ -40,7 +41,14 @@ class Productos extends CI_Model {
 		$this -> db -> from('productos');
                 $this-> db ->where('idLocal', $idLocal);
 		$query = $this -> db -> get();
-		return $query->result();
+                $result = $query->result();
+                $outQuery = $this->db->last_query();
+                if ($this->session->userdata('logged_in') != null)
+                    $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Listar productos por local');
+                else{
+                    $this->auditoria->addActivity($outQuery, 1, 'Listar productos por local');
+                }
+		return $result;
 	}
         
         function getProductosPorLocalProveedor($idLocal){
@@ -48,6 +56,7 @@ class Productos extends CI_Model {
                 $this->db->join('clientes','clientes.Numero = productos.idProveedor','join');
                 
                 $this-> db ->where('idLocal', $idLocal);
+                $this-> db ->where('clientes.tipo', 'PROVEDOR');
                 $this -> db -> where('ambiente',$this->session->userdata('logged_in')['idAmbiente']);
                 
 		$query = $this -> db -> get();

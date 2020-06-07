@@ -8,24 +8,37 @@
         var domicilio = $("#domicilioAFIP").val();
         var formaPago = $("input[name='pago']:checked").val();
         $("#texto").val("Hola soy "+nombre+" y vivo en "+domicilio +", "+localidad+" y mi telefono es "+tel+" y mi email es "+mail +". \n Le escribo para solicitarle los siguientes productos: \n"+pedido+ "\n Forma de pago: "+ formaPago)
+        generarSolicitud();
         $("#solcitarCompra").submit();
     }
     
-    function finalizarCompraEmail(){
+    function borrarCarrito(){
+        $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>index.php/ecommerce/producto/borrarTodo",
+                dataType: 'json',
+        });
+        
+    }
+    
+    function generarSolicitud(){
         var tel = $("#telefono").val();
         var localidad = $("#localidadAFIP").val();
         var mail = $("#mail").val();
         var nombre = $("#nombreAFIP").val();
         var domicilio = $("#domicilioAFIP").val();
         var formaPago = $("input[name='pago']:checked").val();
+        var idLocal = '<?php print_r($idLocal); ?>';
         
         $.ajax({
                 type: "POST",
-                url: "<?= base_url() ?>index.php/producto/getProveedor/" + elem,
+                url: "<?= base_url() ?>index.php/solicitudes/addSolicitudWithOutSession/",
                 dataType: 'json',
-                data: {tel:tel, localidad:localidad, mail:mail, nombre:nombre, domicilio:domicilio, formaPago:formaPago},
+                data: {telefono:tel, localidad:localidad, email:mail, nombre:nombre, domicilio:domicilio, formaPago:formaPago, idLocal:idLocal},
                 success: function (response) {
-                    console.log('Solicitud Generada con exito!');
+                    $("#solicitudPantalla").hide();
+                    $("#fin").show();
+                    borrarCarrito();
                 }
         });
         
@@ -56,14 +69,15 @@
             }
         });
     }
+    
 
 </script>
 
-
-<div class="col-lg-9">
+<div class="col-lg-9" id="solicitudPantalla">
     <div class="shop-topbar-wrapper">
         <h1>Solicitud</h1>    
     </div>
+    
     <p>Ingrese su numero de documento y presione buscar luego corrobore que sus datos personales esta actuliazados luego presione comprar.</p>
 
 
@@ -174,14 +188,23 @@
                 </div>
                 
                 <hr/>
-                <a class="btn-style cr-btn" onclick="finalizarCompra()">Comprar por Whatsapp</a>
-                <a class="btn-style cr-btn" onclick="generarSolicitud()">Comprar por Email</a>
+                <a class="btn-style cr-btn" onclick="finalizarCompra()">Comprar</a>
             </div>
         </div>
         
 </div>
+<div id="fin" style="display: none">
+     <div class="shop-topbar-wrapper">
+        <h1>Felicitaciones!!!</h1>    
+    </div>
+    
+    <p>Su compra ha finalizado por a la brevedad uno de los operadores del local se estara contactando. Muchas gracias por su compra.</p>
+    
+    <a class="btn-style cr-btn" href="<?=base_url();?>" >Comprar en otro locales</a>
+    
+</div>
 
-<form action="http://api.whatsapp.com/send" id="solcitarCompra" method="GET">
+<form action="http://api.whatsapp.com/send" id="solcitarCompra" method="GET" target="_blank">
     <input type="hidden" name="phone" id="phone" value="<?php print_r($telefono);?>"/>
     <input type="hidden" name="text" id="texto"/>
     <input type="hidden" name="body" id="body"/>

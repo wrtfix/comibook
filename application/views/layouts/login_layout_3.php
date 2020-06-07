@@ -253,7 +253,7 @@
                 $.ajax({
                         type: "POST",
                         url: "<?= base_url() ?>index.php/ecommerce/producto/detalleCartView",
-                        data: {tel: '<?php print_r($telefono); ?>'},
+                        data: {tel: '<?php print_r($telefono); ?>', idLocal:'<?php print_r($idLocal); ?>'},
                         success: function (response) {
                             $(".shopping-cart-content").html(response);
                         }

@@ -41,19 +41,25 @@ class Registrarse extends CI_Controller {
         $response = $this->recaptcha->verifyResponse($captcha_answer);
 
         // Processing ...
-        if ($response['success'] && $this->form_validation->run()) {
-            $nombre = $this->input->post('username');
-            $idAmbiente = $this->ambientes->addAmbienteById($nombre);
-            $idUsuario = $this->user->addUserById($idAmbiente );
+	if ($this->configuraciones->getConfiguracion("VALIDATE_CAPTCHA")[0]->valor == 'true'){
+	        if ($response['success'] && $this->form_validation->run()) {
+	            $nombre = $this->input->post('username');
+	            $idAmbiente = $this->ambientes->addAmbienteById($nombre);
+	            $idUsuario = $this->user->addUserById($idAmbiente );
             
-            $this->ambientes->addItemRUsuarioAmbiente($idAmbiente,$idUsuario);
-            $idMenu = $this->configuraciones->getConfiguracion("MENU_DEFAULT")[0]->valor;
-            $menuItems = $this->menus->addItemRusuarioMenu($idUsuario, $idMenu);
+	            $this->ambientes->addItemRUsuarioAmbiente($idAmbiente,$idUsuario);
+	            $idMenu = $this->configuraciones->getConfiguracion("MENU_DEFAULT")[0]->valor;
+	            $menuItems = $this->menus->addItemRusuarioMenu($idUsuario, $idMenu);
+	            $data['userStateAdd'] = 'El usuario se registro correctamente';
+	            $this->layout->view('login_view', $data);
+	        }else{
+	            $data['page'] = 'registrarse';
+	            $this->layout->view('pages/registrarse', $data);
+		}
+	}else{
+            $this->user->addUser();
             $data['userStateAdd'] = 'El usuario se registro correctamente';
-            $this->layout->view('login_view', $data);
-        }else{
-            $data['page'] = 'registrarse';
-            $this->layout->view('pages/registrarse', $data);
+            $this->layout->view('login_view', $data);        
         }
         
     }

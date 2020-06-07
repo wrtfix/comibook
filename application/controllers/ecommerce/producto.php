@@ -72,6 +72,7 @@ class Producto extends CI_Controller {
         $data['agregados'] = $this->listarCart();
         $data['total'] = $this->cart->total();
         $data['telefono'] = $this->input->post('tel');
+        $data['idLocal'] = $this->input->post('idLocal');
         $this->layout->view('pages/ecommerce/productoList', $data);
     }
 
@@ -82,12 +83,19 @@ class Producto extends CI_Controller {
         );
         $this->cart->update($data);
     }
+    
+    public function borrarTodo() {
+        $respuesta = json_encode($this->cart->destroy());
+        print_r($respuesta);
+        return $respuesta;
+    }
 
     public function realizarCompra() {
         $this->layout->setLayout("layouts/login_layout_3");
         $data['agregados'] = $this->listarCart();
         $data['total'] = $this->cart->total();
         $data['telefono'] = $this->input->post('tel');
+        $data['idLocal'] = $this->input->post('idLocal');
         $this->layout->view('pages/ecommerce/comprar', $data);
     }
 

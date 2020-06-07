@@ -177,6 +177,21 @@
             }
 	});
         
+        $('#solicitudes').click(function(){
+	    var idLocal = $("input[name='consultorio']:checked").val();
+            if (idLocal != undefined){
+                idLocal = idLocal.split("-")[1];
+                var $aux = $("form:first");
+                $aux.attr('action',"<?=base_url()?>index.php/solicitudes/index/"+idLocal);
+                $aux.submit();
+            }else{
+                showInfo("Debe seleccionar un local",'warning');
+                if (guardar.length===0){
+                    location.reload();
+                }
+            }
+	});
+        
         $("#validarImagen").click(function(){
             var url =  $("#imageURL").val();
             $("#setImage").attr('src',url);
@@ -215,14 +230,15 @@
 <div class="row">
     <div class="btn-group">
         <?php if ($this->session->userdata('logged_in')['menu'][0]->peso === '1000' || empty($agregados)) { ?>
-        <button type="button" id="agregar" class="btn btn-success">Agregar</button>
-        <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
+        <button type="button" id="agregar" class="btn btn-success">Agregar</button>        
         <?php } ?>
+        <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
         <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
         <button type="button" id="permisos" class="btn btn-warning">Agenda</button>
         <button type="button" id="productos" class="btn btn-circle">Productos</button>
         <button type="button" id="agenda" class="btn btn-default">Ver Agenda</button>
-        <button type="button" id="whatsapp" class="btn btn-success">Validar whatsapp</button>
+        <!--<button type="button" id="whatsapp" class="btn btn-success">Validar whatsapp</button>-->
+        <button type="button" id="solicitudes" class="btn btn-success">Solicitudes</button>
     </div>
     
 

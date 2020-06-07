@@ -1,13 +1,15 @@
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta charset="utf-8">
-        <title><?= $this->layout->placeholder("title"); ?></title>
+  <head>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="jorge carlos mendiola" >
+    <meta charset="utf-8">
+    <title><?= $this->layout->placeholder("title"); ?></title>
+
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+
+    <meta name="description" content="">
+    <meta name="author" content="jorge carlos mendiola" >
 
         <title>CT20 - Admin</title>
 
@@ -280,6 +282,7 @@
                                     <li><a href="<?php echo site_url('/turnera/consultorio/selectConsultrio'); ?>"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
                                     <li><a href="<?php echo site_url('/gastos/index'); ?>"><i class="fa fa-wrench"></i> Gastos </a></li>
                                     <li><a href="<?php echo site_url('/clientes/index'); ?>"><i class="fa fa-user"></i> Clientes </a></li>
+                                    
                                     <li><a href="<?php echo site_url('/backoffice/monitoreo/index'); ?>"><i class="fa fa-book"></i> Monitoreo </a></li>
                                 </ul>
                             </li>

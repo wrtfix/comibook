@@ -5,7 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title><?= $this->layout->placeholder("title"); ?></title>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
         <meta name="description" content="<?= $ogdescription; ?>">
         <meta name="author" content="jorge carlos mendiola" >
 
@@ -16,7 +18,7 @@
         <meta property="og:image"         content="<?= $ogimage; ?>" />
         <meta property="fb:app_id"        content="<?= $fbapp_id; ?>" />
         
-        
+        <?php print_r($headerTag[0]->valor); ?>
         
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CLato:300,400" rel="stylesheet"> 
@@ -60,6 +62,7 @@
         <script src="<?= base_url() ?>estilo/login/js/jquery.marquee.min.js"></script>
         <link rel="stylesheet" href="<?=base_url()?>estilo/mapa/leaflet.css" />	
         <script src="<?=base_url()?>estilo/mapa/leaflet.js"></script>       
+        
         <!-- Anuncios de google -->
         <?php print_r($googleAdsense[0]->valor); ?>
         
@@ -206,15 +209,18 @@
         <!-- /SECTION -->
 
          <!-- AD SECTION -->
+         <?php if(!empty($downBanner[0]->valor)){ ?>
         <div class="visible-lg visible-md">
             <img class="center-block" src="<?php print_r($downBanner[0]->valor);?>" alt="bannerInferior">
         </div>
+        <?php } ?>
          <br>
-        <!-- /AD SECTION -->
+        <?php if($showMap[0]->valor == 'true') { ?>
         <div class="visible-lg visible-md">
             <?php echo $map['html']; ?>
             <?php echo $map['js']; ?>
         </div>
+        <?php } ?>
         <!-- FOOTER -->
         <footer id="footer">
             <!-- Bottom Footer -->

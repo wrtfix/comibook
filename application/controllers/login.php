@@ -30,7 +30,7 @@ class Login extends CI_Controller {
         ));
         $helper = $fb->getRedirectLoginHelper();
         $permissions = ['email']; // Optional permissions
-        $loginUrl = $helper->getLoginUrl('http://localhost/saltaChequeado/facebooklogin/login', $permissions);
+        $loginUrl = $helper->getLoginUrl(base_url().'index.php/facebooklogin/login', $permissions);
         $data['loginUrlFacebook'] = '<a href="' . htmlspecialchars($loginUrl) . '"><i class="fa fa-facebook-official"></i> Facebook </a>';
         $data['loginFacebook'] = $this->configuraciones->getConfiguracion("FACEBOOK_LOGIN");
         $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");

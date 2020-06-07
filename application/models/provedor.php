@@ -26,6 +26,7 @@ class Provedor extends CI_Model {
 	
 	function getClientes(){
 		$this -> db -> from('clientes') ->like('tipo','PROVEDOR');
+                $this-> db -> where('ambiente', $this->session->userdata('logged_in')['idAmbiente']);
 		$query = $this -> db -> get();
 		return $query->result();
 	}

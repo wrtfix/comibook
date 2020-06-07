@@ -61,7 +61,7 @@ class Noticia extends CI_Model {
                 ->join('rContenidoMenu', 'noticias.idNoticia = rContenidoMenu.idNoticia')
                 ->where('rContenidoMenu.idMenu ='.$filter)
                 ->where('noticias.fecha <= ',$fecha)
-                -> order_by('idNoticia desc');
+                -> order_by('noticias.idNoticia desc');
             }
             $this -> db-> order_by('visitas desc');
             $query = $this -> db -> get();
