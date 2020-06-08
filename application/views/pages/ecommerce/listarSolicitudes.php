@@ -15,6 +15,11 @@
                 $("#tablaConsultorios").attr("xagregar", "true");
             }
         });
+        
+        $('#productos').click(function () {
+            showInfo("Actualmente esta funcionalidad no soporta modificaciones, estamos trabajando para usted",'danger');
+        });
+        
         $('#guardar').click(function () {
             var agrego = $("#tablaConsultorios").attr("xagregar");
 
