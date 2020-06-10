@@ -57,9 +57,15 @@ class Registrarse extends CI_Controller {
 	            $this->layout->view('pages/registrarse', $data);
 		}
 	}else{
-            $this->user->addUser();
+            $nombre = $this->input->post('username');
+            $idAmbiente = $this->ambientes->addAmbienteById($nombre);
+            $idUsuario = $this->user->addUserById($idAmbiente );
+
+            $this->ambientes->addItemRUsuarioAmbiente($idAmbiente,$idUsuario);
+            $idMenu = $this->configuraciones->getConfiguracion("MENU_DEFAULT")[0]->valor;
+            $menuItems = $this->menus->addItemRusuarioMenu($idUsuario, $idMenu);
             $data['userStateAdd'] = 'El usuario se registro correctamente';
-            $this->layout->view('login_view', $data);        
+            $this->layout->view('login_view', $data);   
         }
         
     }
