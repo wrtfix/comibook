@@ -11,25 +11,38 @@ class Configuracion extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
-		{
+		if($this->session->userdata('logged_in') ){
+                    if ($this->session->userdata('logged_in')['menu'][0]->peso == '1000')
+                    {
 			$this->load->library('form_validation');
 			$data['page'] = 'configuraciones';
 			$data['agregados'] =  $this->configuraciones->getConfiguraciones();
 			$this->layout->view('pages/backoffice/configuracion', $data);
-		}else{
-			$data['page'] = 'construccion';
-			$this->load->view('pages/construccion', $data);
-		}
+                    }else{
+                        $this->load->library('form_validation');
+			$data['page'] = 'configuraciones';
+			$data['agregados'] =  $this->configuraciones->getNoAdminConfiguraciones();
+			$this->layout->view('pages/backoffice/configuracion', $data);
+                    }
+                }else{
+                    $data['page'] = 'construccion';
+                    $this->load->view('pages/construccion', $data);
+                }
 	}
 	
 	public function addConfiguracion(){
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
+		if($this->session->userdata('logged_in'))
 		{
 			$this->load->library('form_validation');
                         $data['result'] = $this->configuraciones->addConfiguracion();	
                         $data['page'] = 'configuracion';
-			$data['agregados'] =  $this->configuraciones->getConfiguraciones();
+                        
+                        if ( $this->session->userdata('logged_in')['menu'][0]->peso === '1000'){
+                            $data['agregados'] =  $this->configuraciones->getConfiguraciones();
+                        }else{
+                            $data['agregados'] =  $this->configuraciones->getNoAdminConfiguraciones();
+                        }
+			
 			$this->layout->view('pages/backoffice/configuracion', $data);
 		}else{
 			$data['page'] = 'construccion';
@@ -40,12 +53,17 @@ class Configuracion extends CI_Controller
         
 	
 	public function delConfiguracion($id){
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000' )
+		if($this->session->userdata('logged_in') )
 		{
 			$this->load->library('form_validation');
 			$result = $this->configuraciones->delConfiguracion($id);	
 			$data['page'] = 'configuracion';
-			$data['agregados'] =  $this->configuraciones->getConfiguraciones();
+                        if ( $this->session->userdata('logged_in')['menu'][0]->peso === '1000'){
+                            $data['agregados'] =  $this->configuraciones->getConfiguraciones();
+                        }else{
+                            $data['agregados'] =  $this->configuraciones->getNoAdminConfiguraciones();
+                        }
+			
 			$this->layout->view('pages/backoffice/configuracion', $data);
 		}else{
 			$data['page'] = 'construccion';
@@ -56,15 +74,15 @@ class Configuracion extends CI_Controller
 	
 	
 	public function updateConfiguracion(){
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
-		{
-			$this->load->library('form_validation');
-                        $result = $this->configuraciones->updateConfiguracion();
-	        }
-        	else{
-			$data['page'] = 'construccion';
-			$this->load->view('pages/construccion', $data);
-	    }
+            if($this->session->userdata('logged_in'))
+            {
+                    $this->load->library('form_validation');
+                    $result = $this->configuraciones->updateConfiguracion();
+            }
+            else{
+                    $data['page'] = 'construccion';
+                    $this->load->view('pages/construccion', $data);
+            }
 	}
         
         public function update(){
@@ -102,6 +120,11 @@ class Configuracion extends CI_Controller
         public function loadCard(){
             $this->layout->setLayout("layouts/empty");
             $this->layout->view('pages/backoffice/configurationCard');
+        }
+        
+        public function loadTable(){
+            $this->layout->setLayout("layouts/empty");
+            $this->layout->view('pages/backoffice/configurationTabla');
         }
 	
 }

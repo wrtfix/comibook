@@ -15,6 +15,7 @@ class Configuraciones extends CI_Model {
 			'atributo' => strtoupper($this->input->post('atributo')),
 			'valor' => $this->input->post('valor'),
 			'descripcion' => $this->input->post('descripcion'),
+                        'propietario' => $this->input->post('propietario') != null ? $this->input->post('propietario') : "",
 		);
                 $result = $this->db->insert('configuracion', $data);
                 $outQuery = $this->db->last_query();
@@ -29,6 +30,19 @@ class Configuraciones extends CI_Model {
                 $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Configuracion');
 		return $query->result();
 	}
+        
+        function getNoAdminConfiguraciones(){
+		$this -> db -> from('configuracion');
+		$this -> db -> not_like("propietario","ADMIN");
+                
+                $query = $this -> db -> get();
+                
+                $outQuery = $this->db->last_query();
+                $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Configuracion');
+		return $query->result();
+	}
+        
+        
 	
 	function delConfiguracion($identificador){
             $result = $this->db->delete('configuracion', array('id' => $identificador));
@@ -53,6 +67,7 @@ class Configuraciones extends CI_Model {
                     'atributo' => strtoupper($value['atributo']),		
                     'valor' => $value['valor'],
                     'descripcion' => strtoupper($value['descripcion']),
+                    'propietario' => strtoupper($value['propietario']),
                 );
                 $this->db->where('id', $value['id']);
                 $consult = $this->db->update('configuracion', $data);

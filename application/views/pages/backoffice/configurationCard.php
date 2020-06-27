@@ -15,5 +15,18 @@
             <input class='form-control formulario tab' name='descripcion' style='width: 100%; border:none;' type='text' value=''/>
             <p class='help-block'></p>
         </div>
+        <div class='form-group'>
+            <label>Propietario</label>
+            <input class='form-control formulario tab' name='propietario' style='width: 100%; border:none;' type='text' value=''/>
+            <p class='help-block'></p>
+        </div>
+        <div class="form-group">
+            <label>Pendiente</label>
+            <select class="form-control" id="pendiente" name="propietario">
+                <option value="ADMIN">Admin</option>
+                <option value="OTROS">Otros</option>
+            </select>
+            <p class='help-block'></p>
+        </div>
     </div>
 </div>
