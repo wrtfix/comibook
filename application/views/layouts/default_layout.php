@@ -312,15 +312,12 @@
                             </li>
 <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '50' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001') { ?>
                             <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-home"></i> Punto de Venta<b class="caret"></b></a> 
-                                <ul class="dropdown-menu multi-level">
-                                    <li><a href="<?php echo site_url('/producto/index'); ?>"><i class="fa fa-gift"></i> Productos</a></li>
-                                    <li><a href="<?php echo site_url('/ventas/index'); ?>"><i class="fa fa-fw fa-coffee"></i> Ventas</a></li>
-                                    <li><a href="<?php echo site_url('/stock/index'); ?>"><i class="fa fa-flash"></i> Stock</a></li>
-                                    <li><a href="<?php echo site_url('/clientes/index'); ?>"><i class="fa fa-user"></i> Clientes</a></li>
-                                    <li><a href="<?php echo site_url('/provedores/index'); ?>"><i class="fa fa-ambulance"></i> Provedores</a></li>
-                                    <li><a href="<?php echo site_url('/solicitudes/index'); ?>"><i class="fa fa-edit"></i> Solicitudes</a></li>
-                                </ul>
+                                <li><a href="<?php echo site_url('/turnera/consultorio/index'); ?>"><i class="fa fa-fw fa-gear"></i> Locales </a></li>
+                                <li><a href="<?php echo site_url('/producto/index'); ?>"><i class="fa fa-gift"></i> Productos</a></li>
+                                <li><a href="<?php echo site_url('/cms/comentario/comentarios'); ?>"><i class="fa fa-comments"></i> Consultas </a></li>
+                                <li><a href="<?php echo site_url('/solicitudes/index'); ?>"><i class="fa fa-edit"></i> Solicitudes</a></li>
+                                <li> <a href="<?php echo site_url('/estadistica/index'); ?>"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
+                                <li><a href="<?php echo site_url('/solicitudes/index'); ?>"><i class="fa fa-edit"></i> Configuracion </a></li>
                             </li>
 <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '51') { ?>
                             <li>
