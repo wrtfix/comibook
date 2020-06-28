@@ -43,3 +43,4 @@
     </form>
 <!--    <a class="" href="#" onclick="finalizarCompra()" >Comprar</a>-->
 </div>
+

@@ -34,8 +34,8 @@
             }
 
         });
-
-        $('#eliminar').click(function () {
+        
+        var eliminar = function eliminar(){
             $('input:checked').each(function () {
                 var elem = $(this).attr('id');
                 var id = $("#identificador").val();
@@ -45,6 +45,13 @@
                 });
             });
             $(":checked").parent().parent().remove();
+        }
+        
+        tasks.push(eliminar);
+        
+        $('#eliminar').click(function () {
+            $("#msjConfirmacionModal").html("Esta seguro que desea eliminar?");
+            taskNumber = 1;
         });
 
         $('.formulario').blur(function () {
@@ -118,7 +125,7 @@
 <div class="row">
     <div class="btn-group">
         <button type="button" id="agregar" class="btn btn-success">Agregar</button>
-        <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
+        <button type="button"  data-target='#confirmationModal' data-toggle='modal' id="eliminar"class="btn btn-danger">Eliminar</button>
         <button type="button" id="guardar" class="btn btn-primary">Guardar</button>
         <button type="button" id="permisos" class="btn btn-warning">Menus</button>
         <button type="button" id="permisosAmbiente" class="btn btn-secondary">Ambientes</button>

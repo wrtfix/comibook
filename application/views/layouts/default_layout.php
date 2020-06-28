@@ -282,8 +282,9 @@
                                     <li><a href="<?php echo site_url('/turnera/consultorio/selectConsultrio'); ?>"><i class="fa fa-fw fa-book"></i> Agenda</a></li>
                                     <li><a href="<?php echo site_url('/gastos/index'); ?>"><i class="fa fa-wrench"></i> Gastos </a></li>
                                     <li><a href="<?php echo site_url('/clientes/index'); ?>"><i class="fa fa-user"></i> Clientes </a></li>
-                                    
-                                    <li><a href="<?php echo site_url('/backoffice/monitoreo/index'); ?>"><i class="fa fa-book"></i> Monitoreo </a></li>
+                                    <li><a href="<?php echo site_url('/producto/index'); ?>"><i class="fa fa-gift"></i> Productos</a></li>
+                                    <li><a href="<?php echo site_url('/solicitudes/index'); ?>"><i class="fa fa-inbox"></i> Solicitudes</a></li>
+                                    <li><a href="<?php echo site_url('/cms/comentario/comentarios'); ?>"><i class="fa fa-comments"></i> Consultas </a></li>
                                 </ul>
                             </li>
 <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '40' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001') { ?>
@@ -310,15 +311,23 @@
                             <li><a href="<?php echo site_url('/clientes/index'); ?>"><i class="fa fa-user"></i> Clientes</a></li>
                             <li> <a href="<?php echo site_url('/estadistica/index'); ?>"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
                             </li>
-<?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '50' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000' || $this->session->userdata('logged_in')['menu'][0]->peso === '1001') { ?>
+<?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '50' ) { ?>
                             <li>
-                                <li><a href="<?php echo site_url('/turnera/consultorio/index'); ?>"><i class="fa fa-fw fa-gear"></i> Locales </a></li>
+                                <li><a href="<?php echo site_url('/turnera/consultorio/index'); ?>"><i class="fa fa-fw fa-home"></i> Locales </a></li>
+                                <li><a href="<?php echo site_url('/solicitudes/index'); ?>"><i class="fa fa-inbox"></i> Solicitudes</a></li>
                                 <li><a href="<?php echo site_url('/producto/index'); ?>"><i class="fa fa-gift"></i> Productos</a></li>
                                 <li><a href="<?php echo site_url('/cms/comentario/comentarios'); ?>"><i class="fa fa-comments"></i> Consultas </a></li>
-                                <li><a href="<?php echo site_url('/solicitudes/index'); ?>"><i class="fa fa-edit"></i> Solicitudes</a></li>
                                 <li> <a href="<?php echo site_url('/estadistica/index'); ?>"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
-                                <li><a href="<?php echo site_url('/solicitudes/index'); ?>"><i class="fa fa-edit"></i> Configuracion </a></li>
+                                <li><a href="<?php echo site_url('/backoffice/usuario/index'); ?>"><i class="fa fa-users"></i> Usuarios </a></li>
+                                <li><a href="<?php echo site_url('/backoffice/configuracion/index'); ?>"><i class="fa fa-gear"></i> Configuracion </a></li>
                             </li>
+<?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '53' ) { ?>
+                            <li>
+                                <li><a href="<?php echo site_url('/solicitudes/index'); ?>"><i class="fa fa-inbox"></i> Solicitudes</a></li>
+                                <li><a href="<?php echo site_url('/producto/index'); ?>"><i class="fa fa-gift"></i> Productos</a></li>
+                                <li><a href="<?php echo site_url('/cms/comentario/comentarios'); ?>"><i class="fa fa-comments"></i> Consultas </a></li>
+                                <li> <a href="<?php echo site_url('/estadistica/index'); ?>"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
+                            </li> 
 <?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '51') { ?>
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-home"></i> Kiosko<b class="caret"></b></a> 
@@ -329,16 +338,16 @@
                                 </ul>
                             </li>
 <?php } ?>
-                        <li><a href="<?= base_url() ?>index.php/about/index'); ?>"><i class="fa fa-info-circle"></i> Acerca de...</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-gear"></i> <?php print_r($this->session->userdata('logged_in')['username']); ?> <b class="caret"></b></a> 
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-edit"></i> <?php print_r($this->session->userdata('logged_in')['username']); ?> <b class="caret"></b></a> 
                             <ul class="dropdown-menu multi-level">
 <?php if (count($this->session->userdata('logged_in')['cantAmbientes']) > 1) { ?>
                                     <li><a href="<?= base_url() ?>index.php/backoffice/elegirAmbiente/index/<?php print_r($this->session->userdata('logged_in')['id']); ?>"><i class="fa fa-fw fa-home"></i> Ambiente </a></li>
 <?php } ?>
                                 <li><a href="<?= base_url() ?>index.php/backoffice/usuario/perfil"><i class="fa fa-fw fa-user"></i> Perfil</a></li>
+                                <li><a href="<?php echo site_url('/about/index'); ?>"><i class="fa fa-fw fa-book"></i> Acerca de...</a></li>
                                 <li><a href="https://wa.me/5492494609270"><i class="fa fa-fw fa-question"></i> Ayuda</a></li>
                                 <li class="divider"></li>
                                 <li><a data-target='#confirmationModal' data-toggle='modal' onclick="exit();" ><i class="fa fa-power-off"></i> Salir </a></li>

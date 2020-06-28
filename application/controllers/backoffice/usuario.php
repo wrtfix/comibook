@@ -11,7 +11,7 @@ class Usuario extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000')
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['menu'][0]->peso === '1000' ||  $this->session->userdata('logged_in')['menu'][0]->peso === '50')
 		{
 			$this->load->library('form_validation');
 			$data['agregados'] = $this->user->getUsers();

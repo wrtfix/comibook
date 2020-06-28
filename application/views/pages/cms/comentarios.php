@@ -22,15 +22,22 @@
     </div>
 <?php } ?>
 
-<div class="row">
 
 
-    <h2>Comentarios</h2>
-
+<div class="page-header">
+    <h3>Comentarios</h3>
+</div>
+    
+<div class="btn-group">
     <button type="button" id="eliminar"class="btn btn-danger">Eliminar</button>
+    <button type="button" id="eliminar"class="btn btn-info">Responder</button>
+</div>
+    
 
-    <br>
-    <br>
+    
+    <div class="row">
+        <br>
+        <br>
     <div class="table-responsive">
         <table class="table table-bordered table-hover tablesorter" id="tablaGastos" xagregar="false">
             <thead>
@@ -43,7 +50,7 @@
             <tbody>
                 <?php foreach ($comentarios as $item): ?>                  
                     <tr>
-                        <td><input type="checkbox" id="<?php print_r($item->idComentario); ?>" class="fila" ></td>
+                        <td><input type="radio" id="<?php print_r($item->idComentario); ?>" class="fila" ></td>
                         <td><input class="formulario" id="nombre-<?php print_r($item->idComentario); ?>" style='width: 100%; border:none;' type='text' value='<?php print_r($item->Nombre); ?>'/></td>
                         <td><textarea class="formulario" id="importe-<?php print_r($item->idComentario); ?>" style='width: 100%; border:none;' ><?php print_r($item->Comentario); ?></textarea></td>
                     </tr>

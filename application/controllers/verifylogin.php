@@ -35,11 +35,12 @@ class VerifyLogin extends CI_Controller {
     else
     {
       //Go to private area
-      $data['page'] = 'about';
+      $data['page'] = 'portada';
       $data['textoAcercaDe'] = $this->configuraciones->getConfiguracion("ABOUT_MESSAGE");
-      $data['tituloAcercaDe'] = $this->configuraciones->getConfiguracion("SITE_NAME");
+//      $data['tituloAcercaDe'] = $this->configuraciones->getConfiguracion("SITE_NAME");
+      $data['tituloAcercaDe'] = "¡Bienvenido!";
       $this->layout->setLayout("layouts/default_layout");
-      $this->layout->view('pages/about', $data);
+      $this->layout->view('pages/portada', $data);
       //redirect('home', 'refresh');
     }
     

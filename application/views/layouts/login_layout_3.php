@@ -76,8 +76,8 @@
                         <?php } ?>
                     </div>
                 </div>
-            </header>
-            <div class="breadcrumb-area" style="background-image: url(<?php print_r($headerImage)?>)">
+            </header>   
+            <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(<?php print_r($headerImage)?>)">
                 <div class="container-fluid">
                     <div class="breadcrumb-content text-center">
                         <ul>
@@ -94,9 +94,9 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="product-sidebar-area pr-60">
-                                <?php if($showSearchs=='true') { ?>
+                                <?php if($showSearchs ==='true') { ?>
                                 <div class="sidebar-widget pb-55">
-                                    <h3 class="sidebar-widget">Busqueda</h3>
+                                    <h3 class="sidebar-widget">Buscar</h3>
                                     <div class="sidebar-search">
                                         <form action="#">
                                             <input type="text" >
@@ -106,11 +106,12 @@
                                 </div>
                                 <?php } ?>
                                 <div class="sidebar-widget pb-50">
+                                    
                                     <h3 class="sidebar-widget">Categorias</h3>
                                     <div class="widget-categories">
                                         <ul>
                                             <li><a href="<?=base_url()?>index.php/turnera/busqueda/index/servicios">Locales</a></li>
-<!--                                            <li><a href="<?=base_url()?>index.php/turnera/busqueda/index/productos">Productos</a></li>-->
+                                            <li><a href="<?=base_url()?>index.php/turnera/busqueda/index/productos">Productos</a></li>
                                         </ul>
                                     </div>
                                 </div>

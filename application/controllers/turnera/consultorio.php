@@ -11,7 +11,7 @@ class Consultorio extends CI_Controller
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in')&& ($this->session->userdata('logged_in')['menu'][0]->peso === '30'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001'))
+		if($this->session->userdata('logged_in')&& ($this->session->userdata('logged_in')['menu'][0]->peso === '50'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1000'  || $this->session->userdata('logged_in')['menu'][0]->peso === '1001'))
 		{
 			$this->load->library('form_validation');
                         if ($this->session->userdata('logged_in')['menu'][0]->peso !== '1000'){
