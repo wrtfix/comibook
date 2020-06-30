@@ -1,7 +1,7 @@
 <div class="page-header">
     <h3> <?php print_r($tituloAcercaDe); ?></h3>
 </div>
-<?php if ($this->session->userdata('logged_in')['menu'][0]->peso === '50' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
+<?php if ($this->session->userdata('logged_in')['menu'][0]->peso === '50' ) { ?>
 <div class="row">
      <div class="col-lg-3 col-md-6">
         <div class="panel panel-yellow">
@@ -11,7 +11,7 @@
                         <i class="fa fa-shopping-cart fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">124</div>
+                        <div class="huge"><?php print_r($solicitudTotal); ?></div>
                         <div>Solicitudes</div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                         <i class="fa fa-comments fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">26</div>
+                        <div class="huge"><?php print_r($comentarioTotal); ?></div>
                         <div>Consultas</div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
     </div>
     
 </div>
-<?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '53') { ?>
+<?php } if ($this->session->userdata('logged_in')['menu'][0]->peso === '53' || $this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>
 <div class="row">
      <div class="col-lg-3 col-md-6">
         <div class="panel panel-yellow">
@@ -108,7 +108,7 @@
                         <i class="fa fa-shopping-cart fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">124</div>
+                        <div class="huge"><?php print_r($solicitudTotal); ?></div>
                         <div>Solicitudes</div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                         <i class="fa fa-tasks fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">12</div>
+                        <div class="huge"><?php print_r($productoTotal); ?></div>
                         <div>Productos </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                         <i class="fa fa-comments fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">26</div>
+                        <div class="huge"><?php print_r($comentarioTotal); ?></div>
                         <div>Consultas</div>
                     </div>
                 </div>
