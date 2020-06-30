@@ -34,7 +34,7 @@
                         <i class="fa fa-tasks fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">12</div>
+                        <div class="huge"><?php print_r($productoTotal); ?></div>
                         <div>Productos </div>
                     </div>
                 </div>
