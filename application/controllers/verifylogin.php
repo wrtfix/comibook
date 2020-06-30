@@ -10,7 +10,8 @@ class VerifyLogin extends CI_Controller {
     $this->load->model('menus','',TRUE);
     $this->load->model('ambientes','',TRUE);
     $this->load->model('configuraciones', '', TRUE);
-    
+    $this->load->model('estadisticas','',TRUE);
+
     $this->layout->placeholder("title", $this->configuraciones->getConfiguracion("SITE_NAME")[0]->valor);
     $this->load->spark('markdown-extra/0.0.0');
     $this->layout->setLayout("layouts/login_layout_2");
@@ -39,6 +40,7 @@ class VerifyLogin extends CI_Controller {
       $data['textoAcercaDe'] = $this->configuraciones->getConfiguracion("ABOUT_MESSAGE");
 //      $data['tituloAcercaDe'] = $this->configuraciones->getConfiguracion("SITE_NAME");
       $data['tituloAcercaDe'] = "¡Bienvenido!";
+      $data['productoTotal'] =$this->estadisticas->getProductoTotal();
       $this->layout->setLayout("layouts/default_layout");
       $this->layout->view('pages/portada', $data);
       //redirect('home', 'refresh');
