@@ -120,7 +120,10 @@ class Estadisticas extends CI_Model {
         }
         return json_encode($result);
     }
-    
+    function getProductoTotal() {
+        return $this->db->query("select count(*) as productos from productos")->result();
+    }
+
     function getHistoricoGastadoMensual(){
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $hoy = date("Y-m-d");
