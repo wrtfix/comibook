@@ -40,7 +40,7 @@ class VerifyLogin extends CI_Controller {
       $data['textoAcercaDe'] = $this->configuraciones->getConfiguracion("ABOUT_MESSAGE");
 //      $data['tituloAcercaDe'] = $this->configuraciones->getConfiguracion("SITE_NAME");
       $data['tituloAcercaDe'] = "¡Bienvenido!";
-      $data['productoTotal'] =$this->estadisticas->getProductoTotal()[0]->producto;
+      $data['productoTotal'] =$this->estadisticas->getProductoTotal()[0]->productos;
       $this->layout->setLayout("layouts/default_layout");
       $this->layout->view('pages/portada', $data);
       //redirect('home', 'refresh');
