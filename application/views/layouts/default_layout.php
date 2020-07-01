@@ -11,7 +11,6 @@
     <meta name="description" content="">
     <meta name="author" content="jorge carlos mendiola" >
 
-        <title>CT20 - Admin</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<?= base_url() ?>estilo/admin/css/table-responsive.css" rel="stylesheet">
@@ -234,6 +233,7 @@
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
+                    <a class="navbar-brand" href="<?php echo site_url('/home/index'); ?>"><?= $this->layout->placeholder("title"); ?></a>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -241,7 +241,7 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-
+                
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
 <?php if ($this->session->userdata('logged_in')['menu'][0]->peso === '1000') { ?>

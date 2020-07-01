@@ -123,6 +123,14 @@ class Estadisticas extends CI_Model {
     function getProductoTotal() {
         return $this->db->query("select count(*) as productos from productos")->result();
     }
+    
+    function getSolicitudesTotal() {
+        return $this->db->query("select count(*) as solicitudes from solicitudes")->result();
+    }
+    
+    function getComentariosTotal() {
+        return $this->db->query("select count(*) as comentarios from comentarios")->result();
+    }
 
     function getHistoricoGastadoMensual(){
         date_default_timezone_set('America/Argentina/Buenos_Aires');
