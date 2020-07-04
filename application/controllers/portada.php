@@ -164,6 +164,7 @@ class Portada extends CI_Controller {
             
             $startPage = $this->configuraciones->getConfiguracion("START_PAGE");
              if ($startPage[0]->valor != 'news') {
+                
                 $this->layout->setLayout("layouts/login_layout_3");
                 $data['page'] = 'login_view';
                 $data['registrarse'] = $this->configuraciones->getConfiguracion("SHOW_REGISTER");
