@@ -18,19 +18,54 @@ class Solicitud extends CI_Model {
                         'formaPago' => strtoupper($this->input->post('formaPago')),
                         'idLocal'=> $this->input->post('idLocal'),
 		);
+                $this->db->insert('solicitudes', $data);
 		
-		return $this->db->insert('solicitudes', $data);
+		return $this->db->insert_id();
+	}
+        
+        function addSolicitudProducto($carrito, $idSolicitud)
+	{
+                foreach ($carrito as $items) {
+                    $elem = array(
+			'idSolicitud' => $idSolicitud,
+			'idProducto' => $items['id'],		
+			'cantidad' =>  $items['qty'],
+                    );
+                    $this->db->insert('rSolicitudProducto', $elem);
+                }
+                
+		return true;
 	}
         
         function getSolicitudProductos(){
             $this -> db -> from('solicitudes');
+            $this->db->not_like('estado', 'FINALIZADO');
             $query = $this -> db -> get();
             return $query->result();
 	}
         
+        function getSolicitudPorProducto($idSolcitud){
+            $this->db->select('*');
+            $this->db->from('productos');
+            $this->db->join('rSolicitudProducto', 'rSolicitudProducto.idProducto = productos.idProducto', 'join');
+            $this->db->where('idSolicitud', $idSolcitud);
+            $query = $this -> db -> get();
+            return $query->result();
+	}
+        
+        function updateSolicitud($idSolicitud){
+            $data = array(
+                'estado' => 'FINALIZADO',
+            );
+            $this->db->where('idSolicitud', $idSolicitud);
+            
+            return $this->db->update('solicitudes', $data);
+            
+        }
         function getSolicitudProductosPorLocal($idLocal){
             $this -> db -> from('solicitudes');
             $this->db->where('idLocal', $idLocal);
+            $this->db->not_like('estado', 'FINALIZADO');
             $query = $this -> db -> get();
             return $query->result();
 	}
