@@ -65,6 +65,49 @@
             </tbody>
         </table>
     </div>
+    <div class="col-sm-4 mobile" id="panelConfiguracion">
+        <?php $cont = 0; foreach ($solicitudes as $item): $cont = $cont + 1; ?>
+            <div  class="panel panel-green">
+                <div class="col-lg-6 panel-body">
+                     <div class="form-group">
+                        <input  type="radio" value="solicitudes-<?php print_r($item->idSolicitud); ?>" name="solicitudes" />
+                        <label>Seleccionar</label>
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <input class="form-control formularioMobile" id="" style='width: 100%; border:none;' type='text' value='<?php print_r($item->fecha); ?>'/>
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Usuario</label>
+                        <input class="form-control formularioMobile" id="" style='width: 100%; border:none;' type='text' value='<?php print_r($item->nombre); ?>'/>
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <textarea class="form-control formularioMobile tab" id="" style='width: 100%; border:none;'><?php print_r($item->email); ?></textarea>
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefono</label>
+                        <textarea class="form-control formularioMobile tab" id="" style='width: 100%; border:none;'><?php print_r($item->telefono); ?></textarea>
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Domicilio</label>
+                        <textarea class="form-control formularioMobile tab" id="" style='width: 100%; border:none;'><?php print_r($item->Domicilio); ?></textarea>
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Forma de Pago</label>
+                        <textarea class="form-control formularioMobile tab" id="" style='width: 100%; border:none;'><?php print_r($item->formaPago); ?></textarea>
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
    
 </div>
 
