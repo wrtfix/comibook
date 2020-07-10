@@ -11,6 +11,7 @@ class Configuraciones extends CI_Model {
 
 	function addConfiguracion()
 	{
+                $this->db->cache_delete_all();
 		$data = array(
 			'atributo' => strtoupper($this->input->post('atributo')),
 			'valor' => $this->input->post('valor'),
@@ -24,11 +25,17 @@ class Configuraciones extends CI_Model {
 	}
 	
 	function getConfiguraciones(){
-		$this -> db -> from('configuracion');
-		$query = $this -> db -> get();
-                $outQuery = $this->db->last_query();
+            $this->db->cache_on();
+            $this -> db -> from('configuracion');
+            $query = $this -> db -> get();
+            $outQuery = $this->db->last_query();
+            if ($this->session->userdata('logged_in')['id'] != null){
                 $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Configuracion');
-		return $query->result();
+            }else{
+                $this->auditoria->addActivity($outQuery, 'Anonimo', 'Configuracion');
+            }
+
+            return $query->result();
 	}
         
         function getNoAdminConfiguraciones(){
@@ -45,21 +52,23 @@ class Configuraciones extends CI_Model {
         
 	
 	function delConfiguracion($identificador){
+            $this->db->cache_delete_all();
             $result = $this->db->delete('configuracion', array('id' => $identificador));
             $outQuery = $this->db->last_query();
             $this->auditoria->addActivity($outQuery, $this->session->userdata('logged_in')['id'], 'Configuracion');
             return $result;
 	}
 	function getConfiguracion($nombre){
-		$this -> db -> from('configuracion');
-		$this -> db -> like("atributo",$nombre);
-		$query = $this -> db -> get();
-                $outQuery = $this->db->last_query();
-                $this->auditoria->addActivity($outQuery, '0', 'Configuracion');
-		return $query->result();
-	}
+            $array  = $this->getConfiguraciones();
+            foreach ($array as $value) {
+                if ($value->atributo === $nombre){
+                    return array($value);
+                }
+            }
+        }
 	
 	function updateConfiguracion(){
+            $this->db->cache_delete_all();
             $jsonObject = $this->input->post('updateData');
             $consult = null;
             foreach ($jsonObject as $value) {
