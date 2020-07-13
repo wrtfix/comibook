@@ -27,7 +27,8 @@ class Home extends CI_Controller {
             $data['productoTotal'] = $this->estadisticas->getProductoTotal()[0]->productos;
             $data['solicitudTotal'] = $this->estadisticas->getSolicitudesTotal()[0]->solicitudes;
             $data['comentarioTotal'] = $this->estadisticas->getComentariosTotal()[0]->comentarios;
-
+            $data['localTotal'] =$this->estadisticas->getLocalesTotal()[0]->consultorios;
+            
             $this->layout->setLayout("layouts/default_layout");
             $this->layout->view('pages/portada', $data);
         } else {
