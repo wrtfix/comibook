@@ -123,6 +123,10 @@ class Estadisticas extends CI_Model {
     function getProductoTotal() {
         return $this->db->query("select count(*) as productos from productos")->result();
     }
+    
+    function getUsuarioTotal() {
+        return $this->db->query("select count(*) as usuarios from users")->result();
+    }
 
     function getLocalesTotal() {
         return $this->db->query("select count(*) as consultorios from consultorios")->result();
