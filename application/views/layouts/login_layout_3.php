@@ -77,7 +77,9 @@
                     </div>
                 </div>
             </header>   
-            <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(<?php print_r($headerImage)?>)">
+      
+            <div class="breadcrumb-area <?php if ($headerImage != '') { ?> pt-255 pb-170 <?php } ?>" style="background-image: url(<?php print_r($headerImage)?>)">
+      
                 <div class="container-fluid">
                     <div class="breadcrumb-content text-center">
                         <ul>
@@ -89,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="shop-wrapper fluid-padding-2 pt-120 pb-150">
+            <div class="shop-wrapper fluid-padding-2 <?php if ($headerImage != '') { ?> pt-120 pb-150 <?php } ?>">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-3">
