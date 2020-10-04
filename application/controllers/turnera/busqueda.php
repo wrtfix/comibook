@@ -21,6 +21,9 @@ class Busqueda extends CI_Controller
             $data['showSearchs'] = $this->configuraciones->getConfiguracion("SHOW_SEARCH")[0]->valor;
             $data['headerImage'] = $this->configuraciones->getConfiguracion("ECOMMERSE_HEADER_IMAGE")[0]->valor;
             $data['imageLogo'] = $this->configuraciones->getConfiguracion("ECOMMERCE_IMAGE_LOGO")[0]->valor;
+	    $data['pageShow'] = $this->configuraciones->getConfiguracion("ECOMMERCE_PAGE_SHOW")[0]->valor;
+
+		
             
             $data['type']= $type;
             if($type=="servicios"){
