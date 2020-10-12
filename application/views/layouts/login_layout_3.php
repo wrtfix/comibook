@@ -107,6 +107,8 @@
                                     </div>
                                 </div>
                                 <?php } ?>
+                              
+                              <?php if ($showCategories == 'true') { ?> 
                                 <div class="sidebar-widget pb-50">
                                     
                                     <h3 class="sidebar-widget">Categorias</h3>
@@ -117,7 +119,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                
+                                <?php } ?>
                                
                             </div>
                         </div>
