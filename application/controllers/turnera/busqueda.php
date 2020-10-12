@@ -22,6 +22,8 @@ class Busqueda extends CI_Controller
             $data['headerImage'] = $this->configuraciones->getConfiguracion("ECOMMERSE_HEADER_IMAGE")[0]->valor;
             $data['imageLogo'] = $this->configuraciones->getConfiguracion("ECOMMERCE_IMAGE_LOGO")[0]->valor;
 	    $data['pageShow'] = $this->configuraciones->getConfiguracion("ECOMMERCE_PAGE_SHOW")[0]->valor;
+	    $data['showCategories'] = $this->configuraciones->getConfiguracion("ECOMMERCE_SHOW_CATEGORIES")[0]->valor;
+		
 
 		
             
