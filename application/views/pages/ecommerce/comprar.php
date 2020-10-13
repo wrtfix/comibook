@@ -9,7 +9,10 @@
         var formaPago = $("input[name='pago']:checked").val();
         $("#texto").val("Hola soy "+nombre+" y vivo en "+domicilio +", "+localidad+" y mi telefono es "+tel+" y mi email es "+mail +". \n Le escribo para solicitarle los siguientes productos: \n"+pedido+ "\n Forma de pago: "+ formaPago)
         generarSolicitud();
-        $("#solcitarCompra").submit();
+        
+        var url = $("#solcitarCompra").serialize();
+        var ref = window.open(url, '_system', 'location=no,hideurlbar=yes,hidenavigationbuttons=yes,toolbar=no,clearsessioncache=yes,clearcache=yes,zoom=no');
+
     }
     
     function borrarCarrito(){
