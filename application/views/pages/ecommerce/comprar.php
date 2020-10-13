@@ -204,7 +204,7 @@
     
 </div>
 
-<form action="http://api.whatsapp.com/send" id="solcitarCompra" method="GET" target="_blank">
+<form action="http://api.whatsapp.com/send" id="solcitarCompra" method="GET" target="_system">
     <input type="hidden" name="phone" id="phone" value="<?php print_r($telefono);?>"/>
     <input type="hidden" name="text" id="texto"/>
     <input type="hidden" name="body" id="body"/>
